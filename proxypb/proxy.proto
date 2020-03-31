@@ -1,0 +1,84 @@
+syntax = "proto3";
+import "google/protobuf/timestamp.proto";
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+
+package proxypb;
+option go_package = "proxypb";
+
+option (gogoproto.marshaler_all) = true;
+option (gogoproto.unmarshaler_all) = true;
+option (gogoproto.sizer_all) = true;
+option (gogoproto.gostring_all) = true;
+option (gogoproto.goproto_stringer_all) = false;
+option (gogoproto.stringer_all) = true;
+option (gogoproto.populate_all) = true;
+option (gogoproto.goproto_unrecognized_all) = false;
+option (gogoproto.goproto_unkeyed_all) = false;
+option (gogoproto.goproto_sizecache_all) = false;
+option (gogoproto.equal_all) = true;
+option (gogoproto.testgen_all) = true;
+
+
+service Proxy {
+    rpc CreateProxy (CreateProxyRequest) returns (CreateProxyResponse) {
+    }
+    rpc CreateProxyStat (CreateProxyStatRequest) returns (CreateProxyStatResponse) {
+    }
+    rpc GetNextProxy (GetNextProxyRequest) returns (GetNextProxyResponse) {
+    }
+    rpc GetBestProxy (GetBestProxyRequest) returns (GetBestProxyResponse) {
+    }
+//    rpc CreateProxyStat (CreateProxyStatRequest) returns (CreateProxyStatResponse) {
+//    }
+}
+
+message CreateProxyStatRequest {
+    ProxyStat proxy_stat = 1;
+}
+message CreateProxyStatResponse {
+    ProxyStat proxy_stat = 1;
+}
+message GetNextProxyRequest {
+}
+message GetNextProxyResponse {
+    ProxyItem proxy_item = 1;
+}
+message CreateProxyRequest {
+    ProxyItem proxy_item = 1;
+}
+message CreateProxyResponse {
+    ProxyItem proxy_item = 1;
+}
+message GetBestProxyRequest {
+}
+message GetBestProxyResponse {
+    ProxyItem proxy_item = 1;
+}
+
+message ProxyCountry {
+    int64 country_id = 1;
+    string country_name = 2;
+    string country_code = 3;
+    google.protobuf.Timestamp created_at = 4 [(gogoproto.stdtime) = true];
+}
+
+message ProxyStat {
+//    Удалил бывший PK
+//    int64 stat_id = 1;
+    int64 proxy_id = 2;
+    int64 conn_time = 3;
+    bool conn_status = 4;
+//    Новый PK
+    google.protobuf.Timestamp created_at = 5 [(gogoproto.stdtime) = true];
+}
+
+message ProxyItem {
+    int64 proxy_id = 1;
+    string proxy_ip = 2;
+    int64 proxy_port = 3;
+    string anonymity = 5;
+    ProxyCountry proxy_country = 4;
+    google.protobuf.Timestamp created_at = 6 [(gogoproto.stdtime) = true];
+    google.protobuf.Timestamp updated_at = 7 [(gogoproto.stdtime) = true];
+    google.protobuf.Timestamp deleted_at = 8 [(gogoproto.stdtime) = true];
+}
