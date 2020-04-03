@@ -1,5 +1,5 @@
 syntax = "proto3";
-import "google/protobuf/timestamp.proto";
+//import "google/protobuf/timestamp.proto";
 import "github.com/gogo/protobuf/gogoproto/gogo.proto";
 
 package fortedpb;
@@ -30,4 +30,3 @@ message HelloFortedRequest {
 message HelloFortedResponse {
     string msg = 1;
 }
-//hello world
