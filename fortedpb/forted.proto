@@ -1,0 +1,32 @@
+syntax = "proto3";
+import "google/protobuf/timestamp.proto";
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+
+package fortedpb;
+option go_package = "fortedpb";
+
+option (gogoproto.marshaler_all) = true;
+option (gogoproto.unmarshaler_all) = true;
+option (gogoproto.sizer_all) = true;
+option (gogoproto.gostring_all) = true;
+option (gogoproto.goproto_stringer_all) = false;
+option (gogoproto.stringer_all) = true;
+option (gogoproto.populate_all) = true;
+option (gogoproto.goproto_unrecognized_all) = false;
+option (gogoproto.goproto_unkeyed_all) = false;
+option (gogoproto.goproto_sizecache_all) = false;
+option (gogoproto.equal_all) = true;
+option (gogoproto.testgen_all) = true;
+
+
+service Proxy {
+    rpc HelloForted (HelloFortedRequest) returns (HelloFortedResponse) {
+    }
+}
+
+message HelloFortedRequest {
+    string msg = 1;
+}
+message HelloFortedResponse {
+    string msg = 1;
+}
