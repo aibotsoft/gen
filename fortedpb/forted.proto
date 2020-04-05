@@ -1,5 +1,5 @@
 syntax = "proto3";
-//import "google/protobuf/timestamp.proto";
+import "google/protobuf/timestamp.proto";
 import "github.com/gogo/protobuf/gogoproto/gogo.proto";
 
 package fortedpb;
@@ -15,18 +15,43 @@ option (gogoproto.populate_all) = true;
 option (gogoproto.goproto_unrecognized_all) = false;
 option (gogoproto.goproto_unkeyed_all) = false;
 option (gogoproto.goproto_sizecache_all) = false;
-option (gogoproto.equal_all) = true;
-option (gogoproto.testgen_all) = true;
+//option (gogoproto.equal_all) = true;
+//option (gogoproto.testgen_all) = true;
 
 
-service Proxy {
-    rpc HelloForted (HelloFortedRequest) returns (HelloFortedResponse) {
+service Forted {
+    rpc CreateSurebet (CreateSurebetRequest) returns (CreateSurebetResponse) {
     }
 }
 
-message HelloFortedRequest {
-    string msg = 1;
+message CreateSurebetRequest {
+    Surebet surebet = 1;
 }
-message HelloFortedResponse {
-    string msg = 1;
+message CreateSurebetResponse {
+    int64 surebet_id = 1;
+    int64 surebet_hash = 2;
 }
+
+message Surebet {
+    google.protobuf.Timestamp created_at = 1 [(gogoproto.stdtime) = true];
+    string surebet_hash = 2;
+    string starts = 3;
+    string forted_home = 4;
+    string forted_away = 5;
+    string forted_profit = 6;
+    repeated SurebetSide members = 15;
+}
+message SurebetSide {
+    string num = 1;
+    string service_name = 2;
+    string sport_name = 3;
+    string league_name = 4;
+    string home = 5;
+    string away = 6;
+    string market = 7;
+    string price = 8;
+    string url = 9;
+    string initiator = 10;
+}
+
+

@@ -8,7 +8,6 @@ import (
 	fmt "fmt"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
-	_ "github.com/gogo/protobuf/types"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -23,18 +22,193 @@ import (
 var _ = proto.Marshal
 var _ = fmt.Errorf
 var _ = math.Inf
+
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the proto package it is being compiled against.
 // A compilation error at this line likely means your copy of the
 // proto package needs to be updated.
 const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
+
+type CreateSurebetRequest struct {
+	Surebet *Surebet `protobuf:"bytes,1,opt,name=surebet,proto3" json:"surebet,omitempty"`
+}
+
+func (m *CreateSurebetRequest) Reset()      { *m = CreateSurebetRequest{} }
+func (*CreateSurebetRequest) ProtoMessage() {}
+func (*CreateSurebetRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_16a4d244bf92f218, []int{0}
+}
+func (m *CreateSurebetRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *CreateSurebetRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_CreateSurebetRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *CreateSurebetRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CreateSurebetRequest.Merge(m, src)
+}
+func (m *CreateSurebetRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *CreateSurebetRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_CreateSurebetRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CreateSurebetRequest proto.InternalMessageInfo
+
+func (m *CreateSurebetRequest) GetSurebet() *Surebet {
+	if m != nil {
+		return m.Surebet
+	}
+	return nil
+}
+
+type CreateSurebetResponse struct {
+	SurebetId int64 `protobuf:"varint,1,opt,name=surebet_id,json=surebetId,proto3" json:"surebet_id,omitempty"`
+}
+
+func (m *CreateSurebetResponse) Reset()      { *m = CreateSurebetResponse{} }
+func (*CreateSurebetResponse) ProtoMessage() {}
+func (*CreateSurebetResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_16a4d244bf92f218, []int{1}
+}
+func (m *CreateSurebetResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *CreateSurebetResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_CreateSurebetResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *CreateSurebetResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CreateSurebetResponse.Merge(m, src)
+}
+func (m *CreateSurebetResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *CreateSurebetResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_CreateSurebetResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CreateSurebetResponse proto.InternalMessageInfo
+
+func (m *CreateSurebetResponse) GetSurebetId() int64 {
+	if m != nil {
+		return m.SurebetId
+	}
+	return 0
+}
+
+type Surebet struct {
+	SurebetSide []*SurebetSide `protobuf:"bytes,1,rep,name=surebet_side,json=surebetSide,proto3" json:"surebet_side,omitempty"`
+}
+
+func (m *Surebet) Reset()      { *m = Surebet{} }
+func (*Surebet) ProtoMessage() {}
+func (*Surebet) Descriptor() ([]byte, []int) {
+	return fileDescriptor_16a4d244bf92f218, []int{2}
+}
+func (m *Surebet) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *Surebet) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_Surebet.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *Surebet) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Surebet.Merge(m, src)
+}
+func (m *Surebet) XXX_Size() int {
+	return m.Size()
+}
+func (m *Surebet) XXX_DiscardUnknown() {
+	xxx_messageInfo_Surebet.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Surebet proto.InternalMessageInfo
+
+func (m *Surebet) GetSurebetSide() []*SurebetSide {
+	if m != nil {
+		return m.SurebetSide
+	}
+	return nil
+}
+
+type SurebetSide struct {
+	ServiceName string `protobuf:"bytes,1,opt,name=service_name,json=serviceName,proto3" json:"service_name,omitempty"`
+}
+
+func (m *SurebetSide) Reset()      { *m = SurebetSide{} }
+func (*SurebetSide) ProtoMessage() {}
+func (*SurebetSide) Descriptor() ([]byte, []int) {
+	return fileDescriptor_16a4d244bf92f218, []int{3}
+}
+func (m *SurebetSide) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *SurebetSide) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_SurebetSide.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *SurebetSide) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SurebetSide.Merge(m, src)
+}
+func (m *SurebetSide) XXX_Size() int {
+	return m.Size()
+}
+func (m *SurebetSide) XXX_DiscardUnknown() {
+	xxx_messageInfo_SurebetSide.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_SurebetSide proto.InternalMessageInfo
+
+func (m *SurebetSide) GetServiceName() string {
+	if m != nil {
+		return m.ServiceName
+	}
+	return ""
+}
+
 type HelloFortedRequest struct {
 	Msg string `protobuf:"bytes,1,opt,name=msg,proto3" json:"msg,omitempty"`
 }
+
 func (m *HelloFortedRequest) Reset()      { *m = HelloFortedRequest{} }
 func (*HelloFortedRequest) ProtoMessage() {}
 func (*HelloFortedRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_16a4d244bf92f218, []int{0}
+	return fileDescriptor_16a4d244bf92f218, []int{4}
 }
 func (m *HelloFortedRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -77,7 +251,7 @@ type HelloFortedResponse struct {
 func (m *HelloFortedResponse) Reset()      { *m = HelloFortedResponse{} }
 func (*HelloFortedResponse) ProtoMessage() {}
 func (*HelloFortedResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_16a4d244bf92f218, []int{1}
+	return fileDescriptor_16a4d244bf92f218, []int{5}
 }
 func (m *HelloFortedResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -114,6 +288,10 @@ func (m *HelloFortedResponse) GetMsg() string {
 }
 
 func init() {
+	proto.RegisterType((*CreateSurebetRequest)(nil), "fortedpb.CreateSurebetRequest")
+	proto.RegisterType((*CreateSurebetResponse)(nil), "fortedpb.CreateSurebetResponse")
+	proto.RegisterType((*Surebet)(nil), "fortedpb.Surebet")
+	proto.RegisterType((*SurebetSide)(nil), "fortedpb.SurebetSide")
 	proto.RegisterType((*HelloFortedRequest)(nil), "fortedpb.HelloFortedRequest")
 	proto.RegisterType((*HelloFortedResponse)(nil), "fortedpb.HelloFortedResponse")
 }
@@ -121,71 +299,74 @@ func init() {
 func init() { proto.RegisterFile("forted.proto", fileDescriptor_16a4d244bf92f218) }
 
 var fileDescriptor_16a4d244bf92f218 = []byte{
-	// 238 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xe2, 0x49, 0xcb, 0x2f, 0x2a,
-	0x49, 0x4d, 0xd1, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0xe2, 0x80, 0xf0, 0x0a, 0x92, 0xa4, 0xe4,
-	0xd3, 0xf3, 0xf3, 0xd3, 0x73, 0x52, 0xf5, 0xc1, 0xe2, 0x49, 0xa5, 0x69, 0xfa, 0x25, 0x99, 0xb9,
-	0xa9, 0xc5, 0x25, 0x89, 0xb9, 0x05, 0x10, 0xa5, 0x52, 0xba, 0xe9, 0x99, 0x25, 0x19, 0xa5, 0x49,
-	0x7a, 0xc9, 0xf9, 0xb9, 0xfa, 0xe9, 0xf9, 0xe9, 0xf9, 0x08, 0x95, 0x20, 0x1e, 0x98, 0x03, 0x66,
-	0x41, 0x94, 0x2b, 0xa9, 0x71, 0x09, 0x79, 0xa4, 0xe6, 0xe4, 0xe4, 0xbb, 0x81, 0x2d, 0x08, 0x4a,
-	0x2d, 0x2c, 0x4d, 0x2d, 0x2e, 0x11, 0x12, 0xe0, 0x62, 0xce, 0x2d, 0x4e, 0x97, 0x60, 0x54, 0x60,
-	0xd4, 0xe0, 0x0c, 0x02, 0x31, 0x95, 0xd4, 0xb9, 0x84, 0x51, 0xd4, 0x15, 0x17, 0xe4, 0xe7, 0x15,
-	0xa7, 0x62, 0x2a, 0x34, 0x0a, 0xe5, 0x62, 0x0d, 0x28, 0xca, 0xaf, 0xa8, 0x14, 0xf2, 0xe1, 0xe2,
-	0x46, 0xd2, 0x21, 0x24, 0xa3, 0x07, 0xf3, 0x83, 0x1e, 0xa6, 0x85, 0x52, 0xb2, 0x38, 0x64, 0x21,
-	0xd6, 0x28, 0x31, 0x38, 0x59, 0xdd, 0x78, 0x28, 0xc7, 0xf0, 0xe1, 0xa1, 0x1c, 0xe3, 0x8f, 0x87,
-	0x72, 0x8c, 0x0d, 0x8f, 0xe4, 0x18, 0x57, 0x3c, 0x92, 0x63, 0xdc, 0xf1, 0x48, 0x8e, 0xf1, 0xc4,
-	0x23, 0x39, 0xc6, 0x0b, 0x8f, 0xe4, 0x18, 0x1f, 0x3c, 0x92, 0x63, 0x9c, 0xf0, 0x58, 0x8e, 0xe1,
-	0xc2, 0x63, 0x39, 0x86, 0x1b, 0x8f, 0xe5, 0x18, 0xa2, 0xe0, 0x61, 0x96, 0xc4, 0x06, 0xf6, 0xaa,
-	0x31, 0x20, 0x00, 0x00, 0xff, 0xff, 0x0d, 0xc1, 0x06, 0x26, 0x54, 0x01, 0x00, 0x00,
+	// 352 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x74, 0x92, 0xc1, 0x4e, 0xfa, 0x40,
+	0x10, 0xc6, 0xbb, 0x21, 0x81, 0x3f, 0x53, 0xfe, 0x89, 0xae, 0x92, 0x10, 0x22, 0x2b, 0xee, 0x41,
+	0x49, 0x8c, 0xc5, 0xd4, 0xc4, 0x78, 0x96, 0xc4, 0x68, 0x62, 0x3c, 0x94, 0x9b, 0x17, 0x42, 0xe9,
+	0x50, 0x9b, 0x50, 0x16, 0xbb, 0xad, 0x67, 0x1f, 0xc1, 0xe7, 0xf0, 0x49, 0x3c, 0x72, 0xe4, 0x28,
+	0xe5, 0x05, 0x3c, 0x7a, 0x34, 0x6e, 0x5b, 0x01, 0x2b, 0xb7, 0x9d, 0x99, 0xdf, 0xf7, 0x7d, 0x99,
+	0x76, 0xa0, 0x32, 0x14, 0x41, 0x88, 0x8e, 0x31, 0x09, 0x44, 0x28, 0xe8, 0xbf, 0xa4, 0x9a, 0xd8,
+	0xf5, 0x13, 0xd7, 0x0b, 0x1f, 0x22, 0xdb, 0x18, 0x08, 0xbf, 0xed, 0x0a, 0x57, 0xb4, 0x15, 0x60,
+	0x47, 0x43, 0x55, 0xa9, 0x42, 0xbd, 0x12, 0x21, 0xef, 0xc0, 0x6e, 0x27, 0xc0, 0x7e, 0x88, 0xdd,
+	0x28, 0x40, 0x1b, 0x43, 0x0b, 0x1f, 0x23, 0x94, 0x21, 0x3d, 0x86, 0x92, 0x4c, 0x3a, 0x35, 0xd2,
+	0x24, 0x2d, 0xdd, 0xdc, 0x36, 0xb2, 0x08, 0x23, 0x43, 0x33, 0x82, 0x9f, 0x43, 0xf5, 0x97, 0x89,
+	0x9c, 0x88, 0xb1, 0x44, 0xda, 0x00, 0x48, 0x99, 0x9e, 0xe7, 0x28, 0xa3, 0x82, 0x55, 0x4e, 0x3b,
+	0x37, 0x0e, 0xef, 0x40, 0x29, 0x55, 0xd0, 0x0b, 0xa8, 0x64, 0xa4, 0xf4, 0x1c, 0xac, 0x91, 0x66,
+	0xa1, 0xa5, 0x9b, 0xd5, 0x5c, 0x68, 0xd7, 0x73, 0xd0, 0xd2, 0xe5, 0xb2, 0xe0, 0xa7, 0xa0, 0xaf,
+	0xcc, 0xe8, 0x01, 0x54, 0x24, 0x06, 0x4f, 0xde, 0x00, 0x7b, 0xe3, 0xbe, 0x8f, 0x2a, 0xb4, 0x6c,
+	0xe9, 0x69, 0xef, 0xae, 0xef, 0x23, 0x3f, 0x04, 0x7a, 0x8d, 0xa3, 0x91, 0xb8, 0x52, 0xde, 0xd9,
+	0xc6, 0x5b, 0x50, 0xf0, 0xa5, 0x9b, 0xf2, 0xdf, 0x4f, 0x7e, 0x04, 0x3b, 0x6b, 0x5c, 0xba, 0x54,
+	0x0e, 0x34, 0x5f, 0x09, 0x14, 0x13, 0x88, 0xde, 0x82, 0xbe, 0xa2, 0xa1, 0x7b, 0xcb, 0x05, 0xf2,
+	0x91, 0xf5, 0xc6, 0x86, 0x69, 0x12, 0xc4, 0x35, 0x6a, 0xc1, 0xff, 0xb5, 0x0f, 0x4b, 0xd9, 0x52,
+	0xf1, 0xd7, 0x6f, 0xab, 0xef, 0x6f, 0x9c, 0x67, 0x9e, 0x97, 0xe6, 0x6c, 0xce, 0xb4, 0x8f, 0x39,
+	0x23, 0x9f, 0x73, 0x46, 0x9e, 0x63, 0x46, 0xde, 0x62, 0x46, 0xa6, 0x31, 0x23, 0xef, 0x31, 0x23,
+	0x2f, 0x0b, 0xa6, 0x4d, 0x17, 0x4c, 0x9b, 0x2d, 0x98, 0x76, 0xff, 0x73, 0x54, 0x76, 0x51, 0x1d,
+	0xcb, 0xd9, 0x57, 0x00, 0x00, 0x00, 0xff, 0xff, 0x47, 0xae, 0x4f, 0xf1, 0x75, 0x02, 0x00, 0x00,
 }
 
-func (this *HelloFortedRequest) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
+func (this *CreateSurebetRequest) GoString() string {
+	if this == nil {
+		return "nil"
 	}
-
-	that1, ok := that.(*HelloFortedRequest)
-	if !ok {
-		that2, ok := that.(HelloFortedRequest)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
+	s := make([]string, 0, 5)
+	s = append(s, "&fortedpb.CreateSurebetRequest{")
+	if this.Surebet != nil {
+		s = append(s, "Surebet: "+fmt.Sprintf("%#v", this.Surebet)+",\n")
 	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if this.Msg != that1.Msg {
-		return false
-	}
-	return true
+	s = append(s, "}")
+	return strings.Join(s, "")
 }
-func (this *HelloFortedResponse) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
+func (this *CreateSurebetResponse) GoString() string {
+	if this == nil {
+		return "nil"
 	}
-
-	that1, ok := that.(*HelloFortedResponse)
-	if !ok {
-		that2, ok := that.(HelloFortedResponse)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
+	s := make([]string, 0, 5)
+	s = append(s, "&fortedpb.CreateSurebetResponse{")
+	s = append(s, "SurebetId: "+fmt.Sprintf("%#v", this.SurebetId)+",\n")
+	s = append(s, "}")
+	return strings.Join(s, "")
+}
+func (this *Surebet) GoString() string {
+	if this == nil {
+		return "nil"
 	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
+	s := make([]string, 0, 5)
+	s = append(s, "&fortedpb.Surebet{")
+	if this.SurebetSide != nil {
+		s = append(s, "SurebetSide: "+fmt.Sprintf("%#v", this.SurebetSide)+",\n")
 	}
-	if this.Msg != that1.Msg {
-		return false
+	s = append(s, "}")
+	return strings.Join(s, "")
+}
+func (this *SurebetSide) GoString() string {
+	if this == nil {
+		return "nil"
 	}
-	return true
+	s := make([]string, 0, 5)
+	s = append(s, "&fortedpb.SurebetSide{")
+	s = append(s, "ServiceName: "+fmt.Sprintf("%#v", this.ServiceName)+",\n")
+	s = append(s, "}")
+	return strings.Join(s, "")
 }
 func (this *HelloFortedRequest) GoString() string {
 	if this == nil {
@@ -224,76 +405,242 @@ var _ grpc.ClientConn
 // is compatible with the grpc package it is being compiled against.
 const _ = grpc.SupportPackageIsVersion4
 
-// ProxyClient is the client API for Proxy service.
+// FortedClient is the client API for Forted service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
-type ProxyClient interface {
+type FortedClient interface {
 	HelloForted(ctx context.Context, in *HelloFortedRequest, opts ...grpc.CallOption) (*HelloFortedResponse, error)
+	CreateSurebet(ctx context.Context, in *CreateSurebetRequest, opts ...grpc.CallOption) (*CreateSurebetResponse, error)
 }
 
-type proxyClient struct {
+type fortedClient struct {
 	cc *grpc.ClientConn
 }
 
-func NewProxyClient(cc *grpc.ClientConn) ProxyClient {
-	return &proxyClient{cc}
+func NewFortedClient(cc *grpc.ClientConn) FortedClient {
+	return &fortedClient{cc}
 }
 
-func (c *proxyClient) HelloForted(ctx context.Context, in *HelloFortedRequest, opts ...grpc.CallOption) (*HelloFortedResponse, error) {
+func (c *fortedClient) HelloForted(ctx context.Context, in *HelloFortedRequest, opts ...grpc.CallOption) (*HelloFortedResponse, error) {
 	out := new(HelloFortedResponse)
-	err := c.cc.Invoke(ctx, "/fortedpb.Proxy/HelloForted", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/fortedpb.Forted/HelloForted", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// ProxyServer is the server API for Proxy service.
-type ProxyServer interface {
+func (c *fortedClient) CreateSurebet(ctx context.Context, in *CreateSurebetRequest, opts ...grpc.CallOption) (*CreateSurebetResponse, error) {
+	out := new(CreateSurebetResponse)
+	err := c.cc.Invoke(ctx, "/fortedpb.Forted/CreateSurebet", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// FortedServer is the server API for Forted service.
+type FortedServer interface {
 	HelloForted(context.Context, *HelloFortedRequest) (*HelloFortedResponse, error)
+	CreateSurebet(context.Context, *CreateSurebetRequest) (*CreateSurebetResponse, error)
 }
 
-// UnimplementedProxyServer can be embedded to have forward compatible implementations.
-type UnimplementedProxyServer struct {
+// UnimplementedFortedServer can be embedded to have forward compatible implementations.
+type UnimplementedFortedServer struct {
 }
 
-func (*UnimplementedProxyServer) HelloForted(ctx context.Context, req *HelloFortedRequest) (*HelloFortedResponse, error) {
+func (*UnimplementedFortedServer) HelloForted(ctx context.Context, req *HelloFortedRequest) (*HelloFortedResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method HelloForted not implemented")
 }
-
-func RegisterProxyServer(s *grpc.Server, srv ProxyServer) {
-	s.RegisterService(&_Proxy_serviceDesc, srv)
+func (*UnimplementedFortedServer) CreateSurebet(ctx context.Context, req *CreateSurebetRequest) (*CreateSurebetResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateSurebet not implemented")
 }
 
-func _Proxy_HelloForted_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func RegisterFortedServer(s *grpc.Server, srv FortedServer) {
+	s.RegisterService(&_Forted_serviceDesc, srv)
+}
+
+func _Forted_HelloForted_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(HelloFortedRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ProxyServer).HelloForted(ctx, in)
+		return srv.(FortedServer).HelloForted(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/fortedpb.Proxy/HelloForted",
+		FullMethod: "/fortedpb.Forted/HelloForted",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ProxyServer).HelloForted(ctx, req.(*HelloFortedRequest))
+		return srv.(FortedServer).HelloForted(ctx, req.(*HelloFortedRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-var _Proxy_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "fortedpb.Proxy",
-	HandlerType: (*ProxyServer)(nil),
+func _Forted_CreateSurebet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateSurebetRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FortedServer).CreateSurebet(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/fortedpb.Forted/CreateSurebet",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FortedServer).CreateSurebet(ctx, req.(*CreateSurebetRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _Forted_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "fortedpb.Forted",
+	HandlerType: (*FortedServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "HelloForted",
-			Handler:    _Proxy_HelloForted_Handler,
+			Handler:    _Forted_HelloForted_Handler,
+		},
+		{
+			MethodName: "CreateSurebet",
+			Handler:    _Forted_CreateSurebet_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "forted.proto",
+}
+
+func (m *CreateSurebetRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *CreateSurebetRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *CreateSurebetRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Surebet != nil {
+		{
+			size, err := m.Surebet.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintForted(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *CreateSurebetResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *CreateSurebetResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *CreateSurebetResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.SurebetId != 0 {
+		i = encodeVarintForted(dAtA, i, uint64(m.SurebetId))
+		i--
+		dAtA[i] = 0x8
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *Surebet) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *Surebet) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *Surebet) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.SurebetSide) > 0 {
+		for iNdEx := len(m.SurebetSide) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.SurebetSide[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintForted(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0xa
+		}
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *SurebetSide) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *SurebetSide) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *SurebetSide) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.ServiceName) > 0 {
+		i -= len(m.ServiceName)
+		copy(dAtA[i:], m.ServiceName)
+		i = encodeVarintForted(dAtA, i, uint64(len(m.ServiceName)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
 }
 
 func (m *HelloFortedRequest) Marshal() (dAtA []byte, err error) {
@@ -367,6 +714,49 @@ func encodeVarintForted(dAtA []byte, offset int, v uint64) int {
 	dAtA[offset] = uint8(v)
 	return base
 }
+func NewPopulatedCreateSurebetRequest(r randyForted, easy bool) *CreateSurebetRequest {
+	this := &CreateSurebetRequest{}
+	if r.Intn(5) != 0 {
+		this.Surebet = NewPopulatedSurebet(r, easy)
+	}
+	if !easy && r.Intn(10) != 0 {
+	}
+	return this
+}
+
+func NewPopulatedCreateSurebetResponse(r randyForted, easy bool) *CreateSurebetResponse {
+	this := &CreateSurebetResponse{}
+	this.SurebetId = int64(r.Int63())
+	if r.Intn(2) == 0 {
+		this.SurebetId *= -1
+	}
+	if !easy && r.Intn(10) != 0 {
+	}
+	return this
+}
+
+func NewPopulatedSurebet(r randyForted, easy bool) *Surebet {
+	this := &Surebet{}
+	if r.Intn(5) != 0 {
+		v1 := r.Intn(5)
+		this.SurebetSide = make([]*SurebetSide, v1)
+		for i := 0; i < v1; i++ {
+			this.SurebetSide[i] = NewPopulatedSurebetSide(r, easy)
+		}
+	}
+	if !easy && r.Intn(10) != 0 {
+	}
+	return this
+}
+
+func NewPopulatedSurebetSide(r randyForted, easy bool) *SurebetSide {
+	this := &SurebetSide{}
+	this.ServiceName = string(randStringForted(r))
+	if !easy && r.Intn(10) != 0 {
+	}
+	return this
+}
+
 func NewPopulatedHelloFortedRequest(r randyForted, easy bool) *HelloFortedRequest {
 	this := &HelloFortedRequest{}
 	this.Msg = string(randStringForted(r))
@@ -402,9 +792,9 @@ func randUTF8RuneForted(r randyForted) rune {
 	return rune(ru + 61)
 }
 func randStringForted(r randyForted) string {
-	v1 := r.Intn(100)
-	tmps := make([]rune, v1)
-	for i := 0; i < v1; i++ {
+	v2 := r.Intn(100)
+	tmps := make([]rune, v2)
+	for i := 0; i < v2; i++ {
 		tmps[i] = randUTF8RuneForted(r)
 	}
 	return string(tmps)
@@ -426,11 +816,11 @@ func randFieldForted(dAtA []byte, r randyForted, fieldNumber int, wire int) []by
 	switch wire {
 	case 0:
 		dAtA = encodeVarintPopulateForted(dAtA, uint64(key))
-		v2 := r.Int63()
+		v3 := r.Int63()
 		if r.Intn(2) == 0 {
-			v2 *= -1
+			v3 *= -1
 		}
-		dAtA = encodeVarintPopulateForted(dAtA, uint64(v2))
+		dAtA = encodeVarintPopulateForted(dAtA, uint64(v3))
 	case 1:
 		dAtA = encodeVarintPopulateForted(dAtA, uint64(key))
 		dAtA = append(dAtA, byte(r.Intn(256)), byte(r.Intn(256)), byte(r.Intn(256)), byte(r.Intn(256)), byte(r.Intn(256)), byte(r.Intn(256)), byte(r.Intn(256)), byte(r.Intn(256)))
@@ -455,6 +845,59 @@ func encodeVarintPopulateForted(dAtA []byte, v uint64) []byte {
 	dAtA = append(dAtA, uint8(v))
 	return dAtA
 }
+func (m *CreateSurebetRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Surebet != nil {
+		l = m.Surebet.Size()
+		n += 1 + l + sovForted(uint64(l))
+	}
+	return n
+}
+
+func (m *CreateSurebetResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.SurebetId != 0 {
+		n += 1 + sovForted(uint64(m.SurebetId))
+	}
+	return n
+}
+
+func (m *Surebet) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if len(m.SurebetSide) > 0 {
+		for _, e := range m.SurebetSide {
+			l = e.Size()
+			n += 1 + l + sovForted(uint64(l))
+		}
+	}
+	return n
+}
+
+func (m *SurebetSide) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.ServiceName)
+	if l > 0 {
+		n += 1 + l + sovForted(uint64(l))
+	}
+	return n
+}
+
 func (m *HelloFortedRequest) Size() (n int) {
 	if m == nil {
 		return 0
@@ -487,6 +930,51 @@ func sovForted(x uint64) (n int) {
 func sozForted(x uint64) (n int) {
 	return sovForted(uint64((x << 1) ^ uint64((int64(x) >> 63))))
 }
+func (this *CreateSurebetRequest) String() string {
+	if this == nil {
+		return "nil"
+	}
+	s := strings.Join([]string{`&CreateSurebetRequest{`,
+		`Surebet:` + strings.Replace(this.Surebet.String(), "Surebet", "Surebet", 1) + `,`,
+		`}`,
+	}, "")
+	return s
+}
+func (this *CreateSurebetResponse) String() string {
+	if this == nil {
+		return "nil"
+	}
+	s := strings.Join([]string{`&CreateSurebetResponse{`,
+		`SurebetId:` + fmt.Sprintf("%v", this.SurebetId) + `,`,
+		`}`,
+	}, "")
+	return s
+}
+func (this *Surebet) String() string {
+	if this == nil {
+		return "nil"
+	}
+	repeatedStringForSurebetSide := "[]*SurebetSide{"
+	for _, f := range this.SurebetSide {
+		repeatedStringForSurebetSide += strings.Replace(f.String(), "SurebetSide", "SurebetSide", 1) + ","
+	}
+	repeatedStringForSurebetSide += "}"
+	s := strings.Join([]string{`&Surebet{`,
+		`SurebetSide:` + repeatedStringForSurebetSide + `,`,
+		`}`,
+	}, "")
+	return s
+}
+func (this *SurebetSide) String() string {
+	if this == nil {
+		return "nil"
+	}
+	s := strings.Join([]string{`&SurebetSide{`,
+		`ServiceName:` + fmt.Sprintf("%v", this.ServiceName) + `,`,
+		`}`,
+	}, "")
+	return s
+}
 func (this *HelloFortedRequest) String() string {
 	if this == nil {
 		return "nil"
@@ -514,6 +1002,339 @@ func valueToStringForted(v interface{}) string {
 	}
 	pv := reflect.Indirect(rv).Interface()
 	return fmt.Sprintf("*%v", pv)
+}
+func (m *CreateSurebetRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowForted
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: CreateSurebetRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: CreateSurebetRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Surebet", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowForted
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthForted
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthForted
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Surebet == nil {
+				m.Surebet = &Surebet{}
+			}
+			if err := m.Surebet.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipForted(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthForted
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthForted
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *CreateSurebetResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowForted
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: CreateSurebetResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: CreateSurebetResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field SurebetId", wireType)
+			}
+			m.SurebetId = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowForted
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.SurebetId |= int64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		default:
+			iNdEx = preIndex
+			skippy, err := skipForted(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthForted
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthForted
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *Surebet) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowForted
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: Surebet: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: Surebet: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field SurebetSide", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowForted
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthForted
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthForted
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.SurebetSide = append(m.SurebetSide, &SurebetSide{})
+			if err := m.SurebetSide[len(m.SurebetSide)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipForted(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthForted
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthForted
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *SurebetSide) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowForted
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: SurebetSide: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: SurebetSide: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field ServiceName", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowForted
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthForted
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthForted
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.ServiceName = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipForted(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthForted
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthForted
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
 }
 func (m *HelloFortedRequest) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
