@@ -35,7 +35,7 @@ message CreateSurebetResponse {
 message Surebet {
     google.protobuf.Timestamp created_at = 1 [(gogoproto.stdtime) = true];
     string surebet_hash = 2;
-    string starts = 3;
+    google.protobuf.Timestamp starts = 3 [(gogoproto.stdtime) = true];
     string forted_home = 4;
     string forted_away = 5;
     string forted_profit = 6;
@@ -44,12 +44,13 @@ message Surebet {
 message SurebetSide {
     string num = 1;
     string service_name = 2;
+    int64 service_id = 11;
     string sport_name = 3;
     string league_name = 4;
     string home = 5;
     string away = 6;
-    string market = 7;
-    string price = 8;
+    string market_name = 7;
+    double price = 8;
     string url = 9;
     string initiator = 10;
 }

@@ -5,9 +5,12 @@ package fortedpb
 
 import (
 	context "context"
+	encoding_binary "encoding/binary"
 	fmt "fmt"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
+	_ "github.com/gogo/protobuf/types"
+	github_com_gogo_protobuf_types "github.com/gogo/protobuf/types"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -16,12 +19,14 @@ import (
 	math_bits "math/bits"
 	reflect "reflect"
 	strings "strings"
+	time "time"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
 var _ = fmt.Errorf
 var _ = math.Inf
+var _ = time.Kitchen
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the proto package it is being compiled against.
@@ -73,7 +78,8 @@ func (m *CreateSurebetRequest) GetSurebet() *Surebet {
 }
 
 type CreateSurebetResponse struct {
-	SurebetId int64 `protobuf:"varint,1,opt,name=surebet_id,json=surebetId,proto3" json:"surebet_id,omitempty"`
+	SurebetId   int64 `protobuf:"varint,1,opt,name=surebet_id,json=surebetId,proto3" json:"surebet_id,omitempty"`
+	SurebetHash int64 `protobuf:"varint,2,opt,name=surebet_hash,json=surebetHash,proto3" json:"surebet_hash,omitempty"`
 }
 
 func (m *CreateSurebetResponse) Reset()      { *m = CreateSurebetResponse{} }
@@ -115,8 +121,21 @@ func (m *CreateSurebetResponse) GetSurebetId() int64 {
 	return 0
 }
 
+func (m *CreateSurebetResponse) GetSurebetHash() int64 {
+	if m != nil {
+		return m.SurebetHash
+	}
+	return 0
+}
+
 type Surebet struct {
-	SurebetSide []*SurebetSide `protobuf:"bytes,1,rep,name=surebet_side,json=surebetSide,proto3" json:"surebet_side,omitempty"`
+	CreatedAt    *time.Time     `protobuf:"bytes,1,opt,name=created_at,json=createdAt,proto3,stdtime" json:"created_at,omitempty"`
+	SurebetHash  string         `protobuf:"bytes,2,opt,name=surebet_hash,json=surebetHash,proto3" json:"surebet_hash,omitempty"`
+	Starts       *time.Time     `protobuf:"bytes,3,opt,name=starts,proto3,stdtime" json:"starts,omitempty"`
+	FortedHome   string         `protobuf:"bytes,4,opt,name=forted_home,json=fortedHome,proto3" json:"forted_home,omitempty"`
+	FortedAway   string         `protobuf:"bytes,5,opt,name=forted_away,json=fortedAway,proto3" json:"forted_away,omitempty"`
+	FortedProfit string         `protobuf:"bytes,6,opt,name=forted_profit,json=fortedProfit,proto3" json:"forted_profit,omitempty"`
+	Members      []*SurebetSide `protobuf:"bytes,15,rep,name=members,proto3" json:"members,omitempty"`
 }
 
 func (m *Surebet) Reset()      { *m = Surebet{} }
@@ -151,15 +170,67 @@ func (m *Surebet) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_Surebet proto.InternalMessageInfo
 
-func (m *Surebet) GetSurebetSide() []*SurebetSide {
+func (m *Surebet) GetCreatedAt() *time.Time {
 	if m != nil {
-		return m.SurebetSide
+		return m.CreatedAt
+	}
+	return nil
+}
+
+func (m *Surebet) GetSurebetHash() string {
+	if m != nil {
+		return m.SurebetHash
+	}
+	return ""
+}
+
+func (m *Surebet) GetStarts() *time.Time {
+	if m != nil {
+		return m.Starts
+	}
+	return nil
+}
+
+func (m *Surebet) GetFortedHome() string {
+	if m != nil {
+		return m.FortedHome
+	}
+	return ""
+}
+
+func (m *Surebet) GetFortedAway() string {
+	if m != nil {
+		return m.FortedAway
+	}
+	return ""
+}
+
+func (m *Surebet) GetFortedProfit() string {
+	if m != nil {
+		return m.FortedProfit
+	}
+	return ""
+}
+
+func (m *Surebet) GetMembers() []*SurebetSide {
+	if m != nil {
+		return m.Members
 	}
 	return nil
 }
 
 type SurebetSide struct {
-	ServiceName string `protobuf:"bytes,1,opt,name=service_name,json=serviceName,proto3" json:"service_name,omitempty"`
+	Num         string  `protobuf:"bytes,1,opt,name=num,proto3" json:"num,omitempty"`
+	ServiceName string  `protobuf:"bytes,2,opt,name=service_name,json=serviceName,proto3" json:"service_name,omitempty"`
+	ServiceId   int64   `protobuf:"varint,11,opt,name=service_id,json=serviceId,proto3" json:"service_id,omitempty"`
+	SportName   string  `protobuf:"bytes,3,opt,name=sport_name,json=sportName,proto3" json:"sport_name,omitempty"`
+	LeagueName  string  `protobuf:"bytes,4,opt,name=league_name,json=leagueName,proto3" json:"league_name,omitempty"`
+	Home        string  `protobuf:"bytes,5,opt,name=home,proto3" json:"home,omitempty"`
+	Away        string  `protobuf:"bytes,6,opt,name=away,proto3" json:"away,omitempty"`
+	MarketName  string  `protobuf:"bytes,7,opt,name=market_name,json=marketName,proto3" json:"market_name,omitempty"`
+	Price       float64 `protobuf:"fixed64,8,opt,name=price,proto3" json:"price,omitempty"`
+	Url         string  `protobuf:"bytes,9,opt,name=url,proto3" json:"url,omitempty"`
+	Initiator   string  `protobuf:"bytes,10,opt,name=initiator,proto3" json:"initiator,omitempty"`
 }
 
 func (m *SurebetSide) Reset()      { *m = SurebetSide{} }
@@ -194,6 +265,13 @@ func (m *SurebetSide) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_SurebetSide proto.InternalMessageInfo
 
+func (m *SurebetSide) GetNum() string {
+	if m != nil {
+		return m.Num
+	}
+	return ""
+}
+
 func (m *SurebetSide) GetServiceName() string {
 	if m != nil {
 		return m.ServiceName
@@ -201,88 +279,65 @@ func (m *SurebetSide) GetServiceName() string {
 	return ""
 }
 
-type HelloFortedRequest struct {
-	Msg string `protobuf:"bytes,1,opt,name=msg,proto3" json:"msg,omitempty"`
-}
-
-func (m *HelloFortedRequest) Reset()      { *m = HelloFortedRequest{} }
-func (*HelloFortedRequest) ProtoMessage() {}
-func (*HelloFortedRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_16a4d244bf92f218, []int{4}
-}
-func (m *HelloFortedRequest) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *HelloFortedRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_HelloFortedRequest.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *HelloFortedRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_HelloFortedRequest.Merge(m, src)
-}
-func (m *HelloFortedRequest) XXX_Size() int {
-	return m.Size()
-}
-func (m *HelloFortedRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_HelloFortedRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_HelloFortedRequest proto.InternalMessageInfo
-
-func (m *HelloFortedRequest) GetMsg() string {
+func (m *SurebetSide) GetServiceId() int64 {
 	if m != nil {
-		return m.Msg
+		return m.ServiceId
+	}
+	return 0
+}
+
+func (m *SurebetSide) GetSportName() string {
+	if m != nil {
+		return m.SportName
 	}
 	return ""
 }
 
-type HelloFortedResponse struct {
-	Msg string `protobuf:"bytes,1,opt,name=msg,proto3" json:"msg,omitempty"`
-}
-
-func (m *HelloFortedResponse) Reset()      { *m = HelloFortedResponse{} }
-func (*HelloFortedResponse) ProtoMessage() {}
-func (*HelloFortedResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_16a4d244bf92f218, []int{5}
-}
-func (m *HelloFortedResponse) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *HelloFortedResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_HelloFortedResponse.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *HelloFortedResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_HelloFortedResponse.Merge(m, src)
-}
-func (m *HelloFortedResponse) XXX_Size() int {
-	return m.Size()
-}
-func (m *HelloFortedResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_HelloFortedResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_HelloFortedResponse proto.InternalMessageInfo
-
-func (m *HelloFortedResponse) GetMsg() string {
+func (m *SurebetSide) GetLeagueName() string {
 	if m != nil {
-		return m.Msg
+		return m.LeagueName
+	}
+	return ""
+}
+
+func (m *SurebetSide) GetHome() string {
+	if m != nil {
+		return m.Home
+	}
+	return ""
+}
+
+func (m *SurebetSide) GetAway() string {
+	if m != nil {
+		return m.Away
+	}
+	return ""
+}
+
+func (m *SurebetSide) GetMarketName() string {
+	if m != nil {
+		return m.MarketName
+	}
+	return ""
+}
+
+func (m *SurebetSide) GetPrice() float64 {
+	if m != nil {
+		return m.Price
+	}
+	return 0
+}
+
+func (m *SurebetSide) GetUrl() string {
+	if m != nil {
+		return m.Url
+	}
+	return ""
+}
+
+func (m *SurebetSide) GetInitiator() string {
+	if m != nil {
+		return m.Initiator
 	}
 	return ""
 }
@@ -292,36 +347,47 @@ func init() {
 	proto.RegisterType((*CreateSurebetResponse)(nil), "fortedpb.CreateSurebetResponse")
 	proto.RegisterType((*Surebet)(nil), "fortedpb.Surebet")
 	proto.RegisterType((*SurebetSide)(nil), "fortedpb.SurebetSide")
-	proto.RegisterType((*HelloFortedRequest)(nil), "fortedpb.HelloFortedRequest")
-	proto.RegisterType((*HelloFortedResponse)(nil), "fortedpb.HelloFortedResponse")
 }
 
 func init() { proto.RegisterFile("forted.proto", fileDescriptor_16a4d244bf92f218) }
 
 var fileDescriptor_16a4d244bf92f218 = []byte{
-	// 352 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x74, 0x92, 0xc1, 0x4e, 0xfa, 0x40,
-	0x10, 0xc6, 0xbb, 0x21, 0x81, 0x3f, 0x53, 0xfe, 0x89, 0xae, 0x92, 0x10, 0x22, 0x2b, 0xee, 0x41,
-	0x49, 0x8c, 0xc5, 0xd4, 0xc4, 0x78, 0x96, 0xc4, 0x68, 0x62, 0x3c, 0x94, 0x9b, 0x17, 0x42, 0xe9,
-	0x50, 0x9b, 0x50, 0x16, 0xbb, 0xad, 0x67, 0x1f, 0xc1, 0xe7, 0xf0, 0x49, 0x3c, 0x72, 0xe4, 0x28,
-	0xe5, 0x05, 0x3c, 0x7a, 0x34, 0x6e, 0x5b, 0x01, 0x2b, 0xb7, 0x9d, 0x99, 0xdf, 0xf7, 0x7d, 0x99,
-	0x76, 0xa0, 0x32, 0x14, 0x41, 0x88, 0x8e, 0x31, 0x09, 0x44, 0x28, 0xe8, 0xbf, 0xa4, 0x9a, 0xd8,
-	0xf5, 0x13, 0xd7, 0x0b, 0x1f, 0x22, 0xdb, 0x18, 0x08, 0xbf, 0xed, 0x0a, 0x57, 0xb4, 0x15, 0x60,
-	0x47, 0x43, 0x55, 0xa9, 0x42, 0xbd, 0x12, 0x21, 0xef, 0xc0, 0x6e, 0x27, 0xc0, 0x7e, 0x88, 0xdd,
-	0x28, 0x40, 0x1b, 0x43, 0x0b, 0x1f, 0x23, 0x94, 0x21, 0x3d, 0x86, 0x92, 0x4c, 0x3a, 0x35, 0xd2,
-	0x24, 0x2d, 0xdd, 0xdc, 0x36, 0xb2, 0x08, 0x23, 0x43, 0x33, 0x82, 0x9f, 0x43, 0xf5, 0x97, 0x89,
-	0x9c, 0x88, 0xb1, 0x44, 0xda, 0x00, 0x48, 0x99, 0x9e, 0xe7, 0x28, 0xa3, 0x82, 0x55, 0x4e, 0x3b,
-	0x37, 0x0e, 0xef, 0x40, 0x29, 0x55, 0xd0, 0x0b, 0xa8, 0x64, 0xa4, 0xf4, 0x1c, 0xac, 0x91, 0x66,
-	0xa1, 0xa5, 0x9b, 0xd5, 0x5c, 0x68, 0xd7, 0x73, 0xd0, 0xd2, 0xe5, 0xb2, 0xe0, 0xa7, 0xa0, 0xaf,
-	0xcc, 0xe8, 0x01, 0x54, 0x24, 0x06, 0x4f, 0xde, 0x00, 0x7b, 0xe3, 0xbe, 0x8f, 0x2a, 0xb4, 0x6c,
-	0xe9, 0x69, 0xef, 0xae, 0xef, 0x23, 0x3f, 0x04, 0x7a, 0x8d, 0xa3, 0x91, 0xb8, 0x52, 0xde, 0xd9,
-	0xc6, 0x5b, 0x50, 0xf0, 0xa5, 0x9b, 0xf2, 0xdf, 0x4f, 0x7e, 0x04, 0x3b, 0x6b, 0x5c, 0xba, 0x54,
-	0x0e, 0x34, 0x5f, 0x09, 0x14, 0x13, 0x88, 0xde, 0x82, 0xbe, 0xa2, 0xa1, 0x7b, 0xcb, 0x05, 0xf2,
-	0x91, 0xf5, 0xc6, 0x86, 0x69, 0x12, 0xc4, 0x35, 0x6a, 0xc1, 0xff, 0xb5, 0x0f, 0x4b, 0xd9, 0x52,
-	0xf1, 0xd7, 0x6f, 0xab, 0xef, 0x6f, 0x9c, 0x67, 0x9e, 0x97, 0xe6, 0x6c, 0xce, 0xb4, 0x8f, 0x39,
-	0x23, 0x9f, 0x73, 0x46, 0x9e, 0x63, 0x46, 0xde, 0x62, 0x46, 0xa6, 0x31, 0x23, 0xef, 0x31, 0x23,
-	0x2f, 0x0b, 0xa6, 0x4d, 0x17, 0x4c, 0x9b, 0x2d, 0x98, 0x76, 0xff, 0x73, 0x54, 0x76, 0x51, 0x1d,
-	0xcb, 0xd9, 0x57, 0x00, 0x00, 0x00, 0xff, 0xff, 0x47, 0xae, 0x4f, 0xf1, 0x75, 0x02, 0x00, 0x00,
+	// 557 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x8c, 0x93, 0xc1, 0x6e, 0xd3, 0x30,
+	0x18, 0xc7, 0x9b, 0xb6, 0x6b, 0x97, 0x2f, 0x9b, 0x00, 0x6b, 0x93, 0xa2, 0x0a, 0xd2, 0x52, 0x2e,
+	0x95, 0x10, 0xa9, 0x54, 0x2e, 0xdc, 0xd0, 0x36, 0x09, 0x6d, 0x17, 0x84, 0x32, 0x2e, 0x20, 0xa4,
+	0xca, 0x69, 0xdc, 0xd4, 0xa2, 0xae, 0x83, 0xe3, 0x30, 0xed, 0xc6, 0x23, 0xec, 0x51, 0x78, 0x03,
+	0xae, 0x1c, 0x77, 0xdc, 0x0d, 0xda, 0xbe, 0x00, 0x47, 0x8e, 0xa8, 0x9f, 0x9d, 0xae, 0x83, 0x21,
+	0xed, 0x66, 0xff, 0xfd, 0xfb, 0xfe, 0x9f, 0xfd, 0xb7, 0x0d, 0x3b, 0x63, 0xa9, 0x34, 0x4b, 0xc2,
+	0x4c, 0x49, 0x2d, 0xc9, 0xb6, 0x99, 0x65, 0x71, 0xab, 0x9d, 0x4a, 0x99, 0x4e, 0x59, 0x1f, 0xf5,
+	0xb8, 0x18, 0xf7, 0x35, 0x17, 0x2c, 0xd7, 0x54, 0x64, 0x06, 0x6d, 0x3d, 0x4b, 0xb9, 0x9e, 0x14,
+	0x71, 0x38, 0x92, 0xa2, 0x9f, 0xca, 0x54, 0x5e, 0x93, 0xab, 0x19, 0x4e, 0x70, 0x64, 0xf0, 0xee,
+	0x11, 0xec, 0x1d, 0x29, 0x46, 0x35, 0x3b, 0x2d, 0x14, 0x8b, 0x99, 0x8e, 0xd8, 0xa7, 0x82, 0xe5,
+	0x9a, 0x3c, 0x85, 0x66, 0x6e, 0x14, 0xdf, 0xe9, 0x38, 0x3d, 0x6f, 0xf0, 0x20, 0x2c, 0xf7, 0x10,
+	0x96, 0x68, 0x49, 0x74, 0xdf, 0xc1, 0xfe, 0x5f, 0x26, 0x79, 0x26, 0x67, 0x39, 0x23, 0x8f, 0x00,
+	0x2c, 0x33, 0xe4, 0x09, 0x1a, 0xd5, 0x22, 0xd7, 0x2a, 0x27, 0x09, 0x79, 0x0c, 0x3b, 0xe5, 0xf2,
+	0x84, 0xe6, 0x13, 0xbf, 0x8a, 0x80, 0x67, 0xb5, 0x63, 0x9a, 0x4f, 0xba, 0xdf, 0xaa, 0xd0, 0xb4,
+	0xae, 0xe4, 0x25, 0xc0, 0x08, 0xdb, 0x24, 0x43, 0x5a, 0x6e, 0xab, 0x15, 0x9a, 0x40, 0xc2, 0xf2,
+	0x98, 0xe1, 0xdb, 0x32, 0x90, 0xc3, 0xfa, 0xc5, 0x8f, 0xb6, 0x13, 0xb9, 0xb6, 0xe6, 0x40, 0xdf,
+	0xda, 0xcf, 0xbd, 0xd1, 0x8f, 0xbc, 0x80, 0x46, 0xae, 0xa9, 0xd2, 0xb9, 0x5f, 0xbb, 0xa3, 0xbf,
+	0xe5, 0x49, 0x1b, 0x3c, 0x93, 0xd0, 0x70, 0x22, 0x05, 0xf3, 0xeb, 0xe8, 0x0d, 0x46, 0x3a, 0x96,
+	0x82, 0x6d, 0x00, 0xf4, 0x8c, 0x9e, 0xfb, 0x5b, 0x9b, 0xc0, 0xc1, 0x19, 0x3d, 0x27, 0x4f, 0x60,
+	0xd7, 0x02, 0x99, 0x92, 0x63, 0xae, 0xfd, 0x06, 0x22, 0xf6, 0x29, 0xbc, 0x41, 0x8d, 0xf4, 0xa1,
+	0x29, 0x98, 0x88, 0x99, 0xca, 0xfd, 0x7b, 0x9d, 0x5a, 0xcf, 0x1b, 0xec, 0xff, 0x73, 0x31, 0xa7,
+	0x3c, 0x61, 0x51, 0x49, 0x75, 0xbf, 0x56, 0xc1, 0xdb, 0x58, 0x20, 0xf7, 0xa1, 0x36, 0x2b, 0x04,
+	0xc6, 0xe7, 0x46, 0xab, 0x21, 0xc6, 0xc2, 0xd4, 0x67, 0x3e, 0x62, 0xc3, 0x19, 0x15, 0x6c, 0x1d,
+	0x8b, 0xd1, 0x5e, 0x53, 0x61, 0x2e, 0xd2, 0x22, 0x3c, 0xf1, 0x3d, 0x7b, 0x91, 0x46, 0x39, 0x49,
+	0x70, 0x39, 0x93, 0x4a, 0x9b, 0xfa, 0x1a, 0xd6, 0xbb, 0xa8, 0x60, 0x75, 0x1b, 0xbc, 0x29, 0xa3,
+	0x69, 0x61, 0xfd, 0x6d, 0x34, 0x46, 0x42, 0x80, 0x40, 0x1d, 0x43, 0x33, 0x99, 0xe0, 0x78, 0xa5,
+	0x61, 0x4e, 0x26, 0x04, 0x1c, 0xaf, 0x8c, 0x04, 0x55, 0x1f, 0x99, 0x6d, 0xd4, 0x34, 0x46, 0x46,
+	0x42, 0xa3, 0x3d, 0xd8, 0xca, 0x14, 0x1f, 0x31, 0x7f, 0xbb, 0xe3, 0xf4, 0x9c, 0xc8, 0x4c, 0x56,
+	0x47, 0x2e, 0xd4, 0xd4, 0x77, 0xcd, 0x91, 0x0b, 0x35, 0x25, 0x0f, 0xc1, 0xe5, 0x33, 0xae, 0x39,
+	0xd5, 0x52, 0xf9, 0x60, 0xf6, 0xbb, 0x16, 0x06, 0x1f, 0xa0, 0xf1, 0x0a, 0x33, 0x25, 0x11, 0xec,
+	0xde, 0x78, 0xd9, 0x24, 0xb8, 0x4e, 0xfb, 0xb6, 0x7f, 0xd3, 0x6a, 0xff, 0x77, 0xdd, 0x7c, 0x89,
+	0x6e, 0xe5, 0x70, 0x70, 0x35, 0x0f, 0x2a, 0xbf, 0xe6, 0x81, 0xf3, 0x7b, 0x1e, 0x38, 0x5f, 0x16,
+	0x81, 0xf3, 0x7d, 0x11, 0x38, 0x97, 0x8b, 0xc0, 0xf9, 0xb9, 0x08, 0x9c, 0x8b, 0x65, 0x50, 0xb9,
+	0x5c, 0x06, 0x95, 0xab, 0x65, 0x50, 0x79, 0xbf, 0xfe, 0xf6, 0x71, 0x03, 0x9f, 0xdf, 0xf3, 0x3f,
+	0x01, 0x00, 0x00, 0xff, 0xff, 0xb6, 0x3b, 0xe0, 0x51, 0x17, 0x04, 0x00, 0x00,
 }
 
 func (this *CreateSurebetRequest) GoString() string {
@@ -340,9 +406,10 @@ func (this *CreateSurebetResponse) GoString() string {
 	if this == nil {
 		return "nil"
 	}
-	s := make([]string, 0, 5)
+	s := make([]string, 0, 6)
 	s = append(s, "&fortedpb.CreateSurebetResponse{")
 	s = append(s, "SurebetId: "+fmt.Sprintf("%#v", this.SurebetId)+",\n")
+	s = append(s, "SurebetHash: "+fmt.Sprintf("%#v", this.SurebetHash)+",\n")
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
@@ -350,10 +417,16 @@ func (this *Surebet) GoString() string {
 	if this == nil {
 		return "nil"
 	}
-	s := make([]string, 0, 5)
+	s := make([]string, 0, 11)
 	s = append(s, "&fortedpb.Surebet{")
-	if this.SurebetSide != nil {
-		s = append(s, "SurebetSide: "+fmt.Sprintf("%#v", this.SurebetSide)+",\n")
+	s = append(s, "CreatedAt: "+fmt.Sprintf("%#v", this.CreatedAt)+",\n")
+	s = append(s, "SurebetHash: "+fmt.Sprintf("%#v", this.SurebetHash)+",\n")
+	s = append(s, "Starts: "+fmt.Sprintf("%#v", this.Starts)+",\n")
+	s = append(s, "FortedHome: "+fmt.Sprintf("%#v", this.FortedHome)+",\n")
+	s = append(s, "FortedAway: "+fmt.Sprintf("%#v", this.FortedAway)+",\n")
+	s = append(s, "FortedProfit: "+fmt.Sprintf("%#v", this.FortedProfit)+",\n")
+	if this.Members != nil {
+		s = append(s, "Members: "+fmt.Sprintf("%#v", this.Members)+",\n")
 	}
 	s = append(s, "}")
 	return strings.Join(s, "")
@@ -362,29 +435,19 @@ func (this *SurebetSide) GoString() string {
 	if this == nil {
 		return "nil"
 	}
-	s := make([]string, 0, 5)
+	s := make([]string, 0, 15)
 	s = append(s, "&fortedpb.SurebetSide{")
+	s = append(s, "Num: "+fmt.Sprintf("%#v", this.Num)+",\n")
 	s = append(s, "ServiceName: "+fmt.Sprintf("%#v", this.ServiceName)+",\n")
-	s = append(s, "}")
-	return strings.Join(s, "")
-}
-func (this *HelloFortedRequest) GoString() string {
-	if this == nil {
-		return "nil"
-	}
-	s := make([]string, 0, 5)
-	s = append(s, "&fortedpb.HelloFortedRequest{")
-	s = append(s, "Msg: "+fmt.Sprintf("%#v", this.Msg)+",\n")
-	s = append(s, "}")
-	return strings.Join(s, "")
-}
-func (this *HelloFortedResponse) GoString() string {
-	if this == nil {
-		return "nil"
-	}
-	s := make([]string, 0, 5)
-	s = append(s, "&fortedpb.HelloFortedResponse{")
-	s = append(s, "Msg: "+fmt.Sprintf("%#v", this.Msg)+",\n")
+	s = append(s, "ServiceId: "+fmt.Sprintf("%#v", this.ServiceId)+",\n")
+	s = append(s, "SportName: "+fmt.Sprintf("%#v", this.SportName)+",\n")
+	s = append(s, "LeagueName: "+fmt.Sprintf("%#v", this.LeagueName)+",\n")
+	s = append(s, "Home: "+fmt.Sprintf("%#v", this.Home)+",\n")
+	s = append(s, "Away: "+fmt.Sprintf("%#v", this.Away)+",\n")
+	s = append(s, "MarketName: "+fmt.Sprintf("%#v", this.MarketName)+",\n")
+	s = append(s, "Price: "+fmt.Sprintf("%#v", this.Price)+",\n")
+	s = append(s, "Url: "+fmt.Sprintf("%#v", this.Url)+",\n")
+	s = append(s, "Initiator: "+fmt.Sprintf("%#v", this.Initiator)+",\n")
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
@@ -409,7 +472,6 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type FortedClient interface {
-	HelloForted(ctx context.Context, in *HelloFortedRequest, opts ...grpc.CallOption) (*HelloFortedResponse, error)
 	CreateSurebet(ctx context.Context, in *CreateSurebetRequest, opts ...grpc.CallOption) (*CreateSurebetResponse, error)
 }
 
@@ -419,15 +481,6 @@ type fortedClient struct {
 
 func NewFortedClient(cc *grpc.ClientConn) FortedClient {
 	return &fortedClient{cc}
-}
-
-func (c *fortedClient) HelloForted(ctx context.Context, in *HelloFortedRequest, opts ...grpc.CallOption) (*HelloFortedResponse, error) {
-	out := new(HelloFortedResponse)
-	err := c.cc.Invoke(ctx, "/fortedpb.Forted/HelloForted", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *fortedClient) CreateSurebet(ctx context.Context, in *CreateSurebetRequest, opts ...grpc.CallOption) (*CreateSurebetResponse, error) {
@@ -441,7 +494,6 @@ func (c *fortedClient) CreateSurebet(ctx context.Context, in *CreateSurebetReque
 
 // FortedServer is the server API for Forted service.
 type FortedServer interface {
-	HelloForted(context.Context, *HelloFortedRequest) (*HelloFortedResponse, error)
 	CreateSurebet(context.Context, *CreateSurebetRequest) (*CreateSurebetResponse, error)
 }
 
@@ -449,33 +501,12 @@ type FortedServer interface {
 type UnimplementedFortedServer struct {
 }
 
-func (*UnimplementedFortedServer) HelloForted(ctx context.Context, req *HelloFortedRequest) (*HelloFortedResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method HelloForted not implemented")
-}
 func (*UnimplementedFortedServer) CreateSurebet(ctx context.Context, req *CreateSurebetRequest) (*CreateSurebetResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateSurebet not implemented")
 }
 
 func RegisterFortedServer(s *grpc.Server, srv FortedServer) {
 	s.RegisterService(&_Forted_serviceDesc, srv)
-}
-
-func _Forted_HelloForted_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(HelloFortedRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(FortedServer).HelloForted(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/fortedpb.Forted/HelloForted",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FortedServer).HelloForted(ctx, req.(*HelloFortedRequest))
-	}
-	return interceptor(ctx, in, info, handler)
 }
 
 func _Forted_CreateSurebet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -500,10 +531,6 @@ var _Forted_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "fortedpb.Forted",
 	HandlerType: (*FortedServer)(nil),
 	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "HelloForted",
-			Handler:    _Forted_HelloForted_Handler,
-		},
 		{
 			MethodName: "CreateSurebet",
 			Handler:    _Forted_CreateSurebet_Handler,
@@ -568,6 +595,11 @@ func (m *CreateSurebetResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
+	if m.SurebetHash != 0 {
+		i = encodeVarintForted(dAtA, i, uint64(m.SurebetHash))
+		i--
+		dAtA[i] = 0x10
+	}
 	if m.SurebetId != 0 {
 		i = encodeVarintForted(dAtA, i, uint64(m.SurebetId))
 		i--
@@ -596,10 +628,10 @@ func (m *Surebet) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if len(m.SurebetSide) > 0 {
-		for iNdEx := len(m.SurebetSide) - 1; iNdEx >= 0; iNdEx-- {
+	if len(m.Members) > 0 {
+		for iNdEx := len(m.Members) - 1; iNdEx >= 0; iNdEx-- {
 			{
-				size, err := m.SurebetSide[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				size, err := m.Members[iNdEx].MarshalToSizedBuffer(dAtA[:i])
 				if err != nil {
 					return 0, err
 				}
@@ -607,8 +639,56 @@ func (m *Surebet) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 				i = encodeVarintForted(dAtA, i, uint64(size))
 			}
 			i--
-			dAtA[i] = 0xa
+			dAtA[i] = 0x7a
 		}
+	}
+	if len(m.FortedProfit) > 0 {
+		i -= len(m.FortedProfit)
+		copy(dAtA[i:], m.FortedProfit)
+		i = encodeVarintForted(dAtA, i, uint64(len(m.FortedProfit)))
+		i--
+		dAtA[i] = 0x32
+	}
+	if len(m.FortedAway) > 0 {
+		i -= len(m.FortedAway)
+		copy(dAtA[i:], m.FortedAway)
+		i = encodeVarintForted(dAtA, i, uint64(len(m.FortedAway)))
+		i--
+		dAtA[i] = 0x2a
+	}
+	if len(m.FortedHome) > 0 {
+		i -= len(m.FortedHome)
+		copy(dAtA[i:], m.FortedHome)
+		i = encodeVarintForted(dAtA, i, uint64(len(m.FortedHome)))
+		i--
+		dAtA[i] = 0x22
+	}
+	if m.Starts != nil {
+		n2, err2 := github_com_gogo_protobuf_types.StdTimeMarshalTo(*m.Starts, dAtA[i-github_com_gogo_protobuf_types.SizeOfStdTime(*m.Starts):])
+		if err2 != nil {
+			return 0, err2
+		}
+		i -= n2
+		i = encodeVarintForted(dAtA, i, uint64(n2))
+		i--
+		dAtA[i] = 0x1a
+	}
+	if len(m.SurebetHash) > 0 {
+		i -= len(m.SurebetHash)
+		copy(dAtA[i:], m.SurebetHash)
+		i = encodeVarintForted(dAtA, i, uint64(len(m.SurebetHash)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if m.CreatedAt != nil {
+		n3, err3 := github_com_gogo_protobuf_types.StdTimeMarshalTo(*m.CreatedAt, dAtA[i-github_com_gogo_protobuf_types.SizeOfStdTime(*m.CreatedAt):])
+		if err3 != nil {
+			return 0, err3
+		}
+		i -= n3
+		i = encodeVarintForted(dAtA, i, uint64(n3))
+		i--
+		dAtA[i] = 0xa
 	}
 	return len(dAtA) - i, nil
 }
@@ -633,70 +713,77 @@ func (m *SurebetSide) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
+	if m.ServiceId != 0 {
+		i = encodeVarintForted(dAtA, i, uint64(m.ServiceId))
+		i--
+		dAtA[i] = 0x58
+	}
+	if len(m.Initiator) > 0 {
+		i -= len(m.Initiator)
+		copy(dAtA[i:], m.Initiator)
+		i = encodeVarintForted(dAtA, i, uint64(len(m.Initiator)))
+		i--
+		dAtA[i] = 0x52
+	}
+	if len(m.Url) > 0 {
+		i -= len(m.Url)
+		copy(dAtA[i:], m.Url)
+		i = encodeVarintForted(dAtA, i, uint64(len(m.Url)))
+		i--
+		dAtA[i] = 0x4a
+	}
+	if m.Price != 0 {
+		i -= 8
+		encoding_binary.LittleEndian.PutUint64(dAtA[i:], uint64(math.Float64bits(float64(m.Price))))
+		i--
+		dAtA[i] = 0x41
+	}
+	if len(m.MarketName) > 0 {
+		i -= len(m.MarketName)
+		copy(dAtA[i:], m.MarketName)
+		i = encodeVarintForted(dAtA, i, uint64(len(m.MarketName)))
+		i--
+		dAtA[i] = 0x3a
+	}
+	if len(m.Away) > 0 {
+		i -= len(m.Away)
+		copy(dAtA[i:], m.Away)
+		i = encodeVarintForted(dAtA, i, uint64(len(m.Away)))
+		i--
+		dAtA[i] = 0x32
+	}
+	if len(m.Home) > 0 {
+		i -= len(m.Home)
+		copy(dAtA[i:], m.Home)
+		i = encodeVarintForted(dAtA, i, uint64(len(m.Home)))
+		i--
+		dAtA[i] = 0x2a
+	}
+	if len(m.LeagueName) > 0 {
+		i -= len(m.LeagueName)
+		copy(dAtA[i:], m.LeagueName)
+		i = encodeVarintForted(dAtA, i, uint64(len(m.LeagueName)))
+		i--
+		dAtA[i] = 0x22
+	}
+	if len(m.SportName) > 0 {
+		i -= len(m.SportName)
+		copy(dAtA[i:], m.SportName)
+		i = encodeVarintForted(dAtA, i, uint64(len(m.SportName)))
+		i--
+		dAtA[i] = 0x1a
+	}
 	if len(m.ServiceName) > 0 {
 		i -= len(m.ServiceName)
 		copy(dAtA[i:], m.ServiceName)
 		i = encodeVarintForted(dAtA, i, uint64(len(m.ServiceName)))
 		i--
-		dAtA[i] = 0xa
+		dAtA[i] = 0x12
 	}
-	return len(dAtA) - i, nil
-}
-
-func (m *HelloFortedRequest) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *HelloFortedRequest) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *HelloFortedRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	if len(m.Msg) > 0 {
-		i -= len(m.Msg)
-		copy(dAtA[i:], m.Msg)
-		i = encodeVarintForted(dAtA, i, uint64(len(m.Msg)))
-		i--
-		dAtA[i] = 0xa
-	}
-	return len(dAtA) - i, nil
-}
-
-func (m *HelloFortedResponse) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *HelloFortedResponse) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *HelloFortedResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	if len(m.Msg) > 0 {
-		i -= len(m.Msg)
-		copy(dAtA[i:], m.Msg)
-		i = encodeVarintForted(dAtA, i, uint64(len(m.Msg)))
+	if len(m.Num) > 0 {
+		i -= len(m.Num)
+		copy(dAtA[i:], m.Num)
+		i = encodeVarintForted(dAtA, i, uint64(len(m.Num)))
 		i--
 		dAtA[i] = 0xa
 	}
@@ -730,6 +817,10 @@ func NewPopulatedCreateSurebetResponse(r randyForted, easy bool) *CreateSurebetR
 	if r.Intn(2) == 0 {
 		this.SurebetId *= -1
 	}
+	this.SurebetHash = int64(r.Int63())
+	if r.Intn(2) == 0 {
+		this.SurebetHash *= -1
+	}
 	if !easy && r.Intn(10) != 0 {
 	}
 	return this
@@ -738,10 +829,20 @@ func NewPopulatedCreateSurebetResponse(r randyForted, easy bool) *CreateSurebetR
 func NewPopulatedSurebet(r randyForted, easy bool) *Surebet {
 	this := &Surebet{}
 	if r.Intn(5) != 0 {
+		this.CreatedAt = github_com_gogo_protobuf_types.NewPopulatedStdTime(r, easy)
+	}
+	this.SurebetHash = string(randStringForted(r))
+	if r.Intn(5) != 0 {
+		this.Starts = github_com_gogo_protobuf_types.NewPopulatedStdTime(r, easy)
+	}
+	this.FortedHome = string(randStringForted(r))
+	this.FortedAway = string(randStringForted(r))
+	this.FortedProfit = string(randStringForted(r))
+	if r.Intn(5) != 0 {
 		v1 := r.Intn(5)
-		this.SurebetSide = make([]*SurebetSide, v1)
+		this.Members = make([]*SurebetSide, v1)
 		for i := 0; i < v1; i++ {
-			this.SurebetSide[i] = NewPopulatedSurebetSide(r, easy)
+			this.Members[i] = NewPopulatedSurebetSide(r, easy)
 		}
 	}
 	if !easy && r.Intn(10) != 0 {
@@ -751,23 +852,23 @@ func NewPopulatedSurebet(r randyForted, easy bool) *Surebet {
 
 func NewPopulatedSurebetSide(r randyForted, easy bool) *SurebetSide {
 	this := &SurebetSide{}
+	this.Num = string(randStringForted(r))
 	this.ServiceName = string(randStringForted(r))
-	if !easy && r.Intn(10) != 0 {
+	this.SportName = string(randStringForted(r))
+	this.LeagueName = string(randStringForted(r))
+	this.Home = string(randStringForted(r))
+	this.Away = string(randStringForted(r))
+	this.MarketName = string(randStringForted(r))
+	this.Price = float64(r.Float64())
+	if r.Intn(2) == 0 {
+		this.Price *= -1
 	}
-	return this
-}
-
-func NewPopulatedHelloFortedRequest(r randyForted, easy bool) *HelloFortedRequest {
-	this := &HelloFortedRequest{}
-	this.Msg = string(randStringForted(r))
-	if !easy && r.Intn(10) != 0 {
+	this.Url = string(randStringForted(r))
+	this.Initiator = string(randStringForted(r))
+	this.ServiceId = int64(r.Int63())
+	if r.Intn(2) == 0 {
+		this.ServiceId *= -1
 	}
-	return this
-}
-
-func NewPopulatedHelloFortedResponse(r randyForted, easy bool) *HelloFortedResponse {
-	this := &HelloFortedResponse{}
-	this.Msg = string(randStringForted(r))
 	if !easy && r.Intn(10) != 0 {
 	}
 	return this
@@ -867,6 +968,9 @@ func (m *CreateSurebetResponse) Size() (n int) {
 	if m.SurebetId != 0 {
 		n += 1 + sovForted(uint64(m.SurebetId))
 	}
+	if m.SurebetHash != 0 {
+		n += 1 + sovForted(uint64(m.SurebetHash))
+	}
 	return n
 }
 
@@ -876,8 +980,32 @@ func (m *Surebet) Size() (n int) {
 	}
 	var l int
 	_ = l
-	if len(m.SurebetSide) > 0 {
-		for _, e := range m.SurebetSide {
+	if m.CreatedAt != nil {
+		l = github_com_gogo_protobuf_types.SizeOfStdTime(*m.CreatedAt)
+		n += 1 + l + sovForted(uint64(l))
+	}
+	l = len(m.SurebetHash)
+	if l > 0 {
+		n += 1 + l + sovForted(uint64(l))
+	}
+	if m.Starts != nil {
+		l = github_com_gogo_protobuf_types.SizeOfStdTime(*m.Starts)
+		n += 1 + l + sovForted(uint64(l))
+	}
+	l = len(m.FortedHome)
+	if l > 0 {
+		n += 1 + l + sovForted(uint64(l))
+	}
+	l = len(m.FortedAway)
+	if l > 0 {
+		n += 1 + l + sovForted(uint64(l))
+	}
+	l = len(m.FortedProfit)
+	if l > 0 {
+		n += 1 + l + sovForted(uint64(l))
+	}
+	if len(m.Members) > 0 {
+		for _, e := range m.Members {
 			l = e.Size()
 			n += 1 + l + sovForted(uint64(l))
 		}
@@ -891,35 +1019,47 @@ func (m *SurebetSide) Size() (n int) {
 	}
 	var l int
 	_ = l
+	l = len(m.Num)
+	if l > 0 {
+		n += 1 + l + sovForted(uint64(l))
+	}
 	l = len(m.ServiceName)
 	if l > 0 {
 		n += 1 + l + sovForted(uint64(l))
 	}
-	return n
-}
-
-func (m *HelloFortedRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	l = len(m.Msg)
+	l = len(m.SportName)
 	if l > 0 {
 		n += 1 + l + sovForted(uint64(l))
 	}
-	return n
-}
-
-func (m *HelloFortedResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	l = len(m.Msg)
+	l = len(m.LeagueName)
 	if l > 0 {
 		n += 1 + l + sovForted(uint64(l))
+	}
+	l = len(m.Home)
+	if l > 0 {
+		n += 1 + l + sovForted(uint64(l))
+	}
+	l = len(m.Away)
+	if l > 0 {
+		n += 1 + l + sovForted(uint64(l))
+	}
+	l = len(m.MarketName)
+	if l > 0 {
+		n += 1 + l + sovForted(uint64(l))
+	}
+	if m.Price != 0 {
+		n += 9
+	}
+	l = len(m.Url)
+	if l > 0 {
+		n += 1 + l + sovForted(uint64(l))
+	}
+	l = len(m.Initiator)
+	if l > 0 {
+		n += 1 + l + sovForted(uint64(l))
+	}
+	if m.ServiceId != 0 {
+		n += 1 + sovForted(uint64(m.ServiceId))
 	}
 	return n
 }
@@ -946,6 +1086,7 @@ func (this *CreateSurebetResponse) String() string {
 	}
 	s := strings.Join([]string{`&CreateSurebetResponse{`,
 		`SurebetId:` + fmt.Sprintf("%v", this.SurebetId) + `,`,
+		`SurebetHash:` + fmt.Sprintf("%v", this.SurebetHash) + `,`,
 		`}`,
 	}, "")
 	return s
@@ -954,13 +1095,19 @@ func (this *Surebet) String() string {
 	if this == nil {
 		return "nil"
 	}
-	repeatedStringForSurebetSide := "[]*SurebetSide{"
-	for _, f := range this.SurebetSide {
-		repeatedStringForSurebetSide += strings.Replace(f.String(), "SurebetSide", "SurebetSide", 1) + ","
+	repeatedStringForMembers := "[]*SurebetSide{"
+	for _, f := range this.Members {
+		repeatedStringForMembers += strings.Replace(f.String(), "SurebetSide", "SurebetSide", 1) + ","
 	}
-	repeatedStringForSurebetSide += "}"
+	repeatedStringForMembers += "}"
 	s := strings.Join([]string{`&Surebet{`,
-		`SurebetSide:` + repeatedStringForSurebetSide + `,`,
+		`CreatedAt:` + strings.Replace(fmt.Sprintf("%v", this.CreatedAt), "Timestamp", "types.Timestamp", 1) + `,`,
+		`SurebetHash:` + fmt.Sprintf("%v", this.SurebetHash) + `,`,
+		`Starts:` + strings.Replace(fmt.Sprintf("%v", this.Starts), "Timestamp", "types.Timestamp", 1) + `,`,
+		`FortedHome:` + fmt.Sprintf("%v", this.FortedHome) + `,`,
+		`FortedAway:` + fmt.Sprintf("%v", this.FortedAway) + `,`,
+		`FortedProfit:` + fmt.Sprintf("%v", this.FortedProfit) + `,`,
+		`Members:` + repeatedStringForMembers + `,`,
 		`}`,
 	}, "")
 	return s
@@ -970,27 +1117,17 @@ func (this *SurebetSide) String() string {
 		return "nil"
 	}
 	s := strings.Join([]string{`&SurebetSide{`,
+		`Num:` + fmt.Sprintf("%v", this.Num) + `,`,
 		`ServiceName:` + fmt.Sprintf("%v", this.ServiceName) + `,`,
-		`}`,
-	}, "")
-	return s
-}
-func (this *HelloFortedRequest) String() string {
-	if this == nil {
-		return "nil"
-	}
-	s := strings.Join([]string{`&HelloFortedRequest{`,
-		`Msg:` + fmt.Sprintf("%v", this.Msg) + `,`,
-		`}`,
-	}, "")
-	return s
-}
-func (this *HelloFortedResponse) String() string {
-	if this == nil {
-		return "nil"
-	}
-	s := strings.Join([]string{`&HelloFortedResponse{`,
-		`Msg:` + fmt.Sprintf("%v", this.Msg) + `,`,
+		`SportName:` + fmt.Sprintf("%v", this.SportName) + `,`,
+		`LeagueName:` + fmt.Sprintf("%v", this.LeagueName) + `,`,
+		`Home:` + fmt.Sprintf("%v", this.Home) + `,`,
+		`Away:` + fmt.Sprintf("%v", this.Away) + `,`,
+		`MarketName:` + fmt.Sprintf("%v", this.MarketName) + `,`,
+		`Price:` + fmt.Sprintf("%v", this.Price) + `,`,
+		`Url:` + fmt.Sprintf("%v", this.Url) + `,`,
+		`Initiator:` + fmt.Sprintf("%v", this.Initiator) + `,`,
+		`ServiceId:` + fmt.Sprintf("%v", this.ServiceId) + `,`,
 		`}`,
 	}, "")
 	return s
@@ -1140,6 +1277,25 @@ func (m *CreateSurebetResponse) Unmarshal(dAtA []byte) error {
 					break
 				}
 			}
+		case 2:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field SurebetHash", wireType)
+			}
+			m.SurebetHash = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowForted
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.SurebetHash |= int64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
 		default:
 			iNdEx = preIndex
 			skippy, err := skipForted(dAtA[iNdEx:])
@@ -1195,7 +1351,7 @@ func (m *Surebet) Unmarshal(dAtA []byte) error {
 		switch fieldNum {
 		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field SurebetSide", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field CreatedAt", wireType)
 			}
 			var msglen int
 			for shift := uint(0); ; shift += 7 {
@@ -1222,8 +1378,208 @@ func (m *Surebet) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.SurebetSide = append(m.SurebetSide, &SurebetSide{})
-			if err := m.SurebetSide[len(m.SurebetSide)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			if m.CreatedAt == nil {
+				m.CreatedAt = new(time.Time)
+			}
+			if err := github_com_gogo_protobuf_types.StdTimeUnmarshal(m.CreatedAt, dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field SurebetHash", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowForted
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthForted
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthForted
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.SurebetHash = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 3:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Starts", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowForted
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthForted
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthForted
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Starts == nil {
+				m.Starts = new(time.Time)
+			}
+			if err := github_com_gogo_protobuf_types.StdTimeUnmarshal(m.Starts, dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 4:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field FortedHome", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowForted
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthForted
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthForted
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.FortedHome = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 5:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field FortedAway", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowForted
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthForted
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthForted
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.FortedAway = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 6:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field FortedProfit", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowForted
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthForted
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthForted
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.FortedProfit = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 15:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Members", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowForted
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthForted
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthForted
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Members = append(m.Members, &SurebetSide{})
+			if err := m.Members[len(m.Members)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex
@@ -1282,6 +1638,38 @@ func (m *SurebetSide) Unmarshal(dAtA []byte) error {
 		switch fieldNum {
 		case 1:
 			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Num", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowForted
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthForted
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthForted
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Num = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field ServiceName", wireType)
 			}
 			var stringLen uint64
@@ -1312,62 +1700,9 @@ func (m *SurebetSide) Unmarshal(dAtA []byte) error {
 			}
 			m.ServiceName = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
-		default:
-			iNdEx = preIndex
-			skippy, err := skipForted(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if skippy < 0 {
-				return ErrInvalidLengthForted
-			}
-			if (iNdEx + skippy) < 0 {
-				return ErrInvalidLengthForted
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *HelloFortedRequest) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowForted
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: HelloFortedRequest: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: HelloFortedRequest: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
+		case 3:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Msg", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field SportName", wireType)
 			}
 			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
@@ -1395,64 +1730,11 @@ func (m *HelloFortedRequest) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Msg = string(dAtA[iNdEx:postIndex])
+			m.SportName = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
-		default:
-			iNdEx = preIndex
-			skippy, err := skipForted(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if skippy < 0 {
-				return ErrInvalidLengthForted
-			}
-			if (iNdEx + skippy) < 0 {
-				return ErrInvalidLengthForted
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *HelloFortedResponse) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowForted
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: HelloFortedResponse: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: HelloFortedResponse: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
+		case 4:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Msg", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field LeagueName", wireType)
 			}
 			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
@@ -1480,8 +1762,198 @@ func (m *HelloFortedResponse) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Msg = string(dAtA[iNdEx:postIndex])
+			m.LeagueName = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
+		case 5:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Home", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowForted
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthForted
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthForted
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Home = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 6:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Away", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowForted
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthForted
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthForted
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Away = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 7:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field MarketName", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowForted
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthForted
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthForted
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.MarketName = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 8:
+			if wireType != 1 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Price", wireType)
+			}
+			var v uint64
+			if (iNdEx + 8) > l {
+				return io.ErrUnexpectedEOF
+			}
+			v = uint64(encoding_binary.LittleEndian.Uint64(dAtA[iNdEx:]))
+			iNdEx += 8
+			m.Price = float64(math.Float64frombits(v))
+		case 9:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Url", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowForted
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthForted
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthForted
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Url = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 10:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Initiator", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowForted
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthForted
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthForted
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Initiator = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 11:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field ServiceId", wireType)
+			}
+			m.ServiceId = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowForted
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.ServiceId |= int64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
 		default:
 			iNdEx = preIndex
 			skippy, err := skipForted(dAtA[iNdEx:])
