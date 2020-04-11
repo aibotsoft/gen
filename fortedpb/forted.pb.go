@@ -9,8 +9,6 @@ import (
 	fmt "fmt"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
-	_ "github.com/gogo/protobuf/types"
-	github_com_gogo_protobuf_types "github.com/gogo/protobuf/types"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -19,20 +17,104 @@ import (
 	math_bits "math/bits"
 	reflect "reflect"
 	strings "strings"
-	time "time"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
 var _ = fmt.Errorf
 var _ = math.Inf
-var _ = time.Kitchen
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the proto package it is being compiled against.
 // A compilation error at this line likely means your copy of the
 // proto package needs to be updated.
 const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
+
+type CreateSurebetManyRequest struct {
+	Surebet []*Surebet `protobuf:"bytes,1,rep,name=surebet,proto3" json:"surebet,omitempty"`
+}
+
+func (m *CreateSurebetManyRequest) Reset()      { *m = CreateSurebetManyRequest{} }
+func (*CreateSurebetManyRequest) ProtoMessage() {}
+func (*CreateSurebetManyRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_16a4d244bf92f218, []int{0}
+}
+func (m *CreateSurebetManyRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *CreateSurebetManyRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_CreateSurebetManyRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *CreateSurebetManyRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CreateSurebetManyRequest.Merge(m, src)
+}
+func (m *CreateSurebetManyRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *CreateSurebetManyRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_CreateSurebetManyRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CreateSurebetManyRequest proto.InternalMessageInfo
+
+func (m *CreateSurebetManyRequest) GetSurebet() []*Surebet {
+	if m != nil {
+		return m.Surebet
+	}
+	return nil
+}
+
+type CreateSurebetManyResponse struct {
+	SurebetCount int64 `protobuf:"varint,1,opt,name=surebet_count,json=surebetCount,proto3" json:"surebet_count,omitempty"`
+}
+
+func (m *CreateSurebetManyResponse) Reset()      { *m = CreateSurebetManyResponse{} }
+func (*CreateSurebetManyResponse) ProtoMessage() {}
+func (*CreateSurebetManyResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_16a4d244bf92f218, []int{1}
+}
+func (m *CreateSurebetManyResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *CreateSurebetManyResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_CreateSurebetManyResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *CreateSurebetManyResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CreateSurebetManyResponse.Merge(m, src)
+}
+func (m *CreateSurebetManyResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *CreateSurebetManyResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_CreateSurebetManyResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CreateSurebetManyResponse proto.InternalMessageInfo
+
+func (m *CreateSurebetManyResponse) GetSurebetCount() int64 {
+	if m != nil {
+		return m.SurebetCount
+	}
+	return 0
+}
 
 type CreateSurebetRequest struct {
 	Surebet *Surebet `protobuf:"bytes,1,opt,name=surebet,proto3" json:"surebet,omitempty"`
@@ -41,7 +123,7 @@ type CreateSurebetRequest struct {
 func (m *CreateSurebetRequest) Reset()      { *m = CreateSurebetRequest{} }
 func (*CreateSurebetRequest) ProtoMessage() {}
 func (*CreateSurebetRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_16a4d244bf92f218, []int{0}
+	return fileDescriptor_16a4d244bf92f218, []int{2}
 }
 func (m *CreateSurebetRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -85,7 +167,7 @@ type CreateSurebetResponse struct {
 func (m *CreateSurebetResponse) Reset()      { *m = CreateSurebetResponse{} }
 func (*CreateSurebetResponse) ProtoMessage() {}
 func (*CreateSurebetResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_16a4d244bf92f218, []int{1}
+	return fileDescriptor_16a4d244bf92f218, []int{3}
 }
 func (m *CreateSurebetResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -129,19 +211,25 @@ func (m *CreateSurebetResponse) GetSurebetHash() int64 {
 }
 
 type Surebet struct {
-	CreatedAt    *time.Time     `protobuf:"bytes,1,opt,name=created_at,json=createdAt,proto3,stdtime" json:"created_at,omitempty"`
-	SurebetHash  string         `protobuf:"bytes,2,opt,name=surebet_hash,json=surebetHash,proto3" json:"surebet_hash,omitempty"`
-	Starts       *time.Time     `protobuf:"bytes,3,opt,name=starts,proto3,stdtime" json:"starts,omitempty"`
+	//    google.protobuf.Timestamp created_at = 1 [(gogoproto.stdtime) = true];
+	CreatedAt   string `protobuf:"bytes,1,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	SurebetHash string `protobuf:"bytes,2,opt,name=surebet_hash,json=surebetHash,proto3" json:"surebet_hash,omitempty"`
+	//    google.protobuf.Timestamp starts = 3 [(gogoproto.stdtime) = true];
+	Starts       string         `protobuf:"bytes,3,opt,name=starts,proto3" json:"starts,omitempty"`
 	FortedHome   string         `protobuf:"bytes,4,opt,name=forted_home,json=fortedHome,proto3" json:"forted_home,omitempty"`
 	FortedAway   string         `protobuf:"bytes,5,opt,name=forted_away,json=fortedAway,proto3" json:"forted_away,omitempty"`
 	FortedProfit string         `protobuf:"bytes,6,opt,name=forted_profit,json=fortedProfit,proto3" json:"forted_profit,omitempty"`
+	FortedSport  string         `protobuf:"bytes,7,opt,name=forted_sport,json=fortedSport,proto3" json:"forted_sport,omitempty"`
+	FortedLeague string         `protobuf:"bytes,8,opt,name=forted_league,json=fortedLeague,proto3" json:"forted_league,omitempty"`
+	FilterName   string         `protobuf:"bytes,9,opt,name=filter_name,json=filterName,proto3" json:"filter_name,omitempty"`
+	SkynetId     int64          `protobuf:"varint,10,opt,name=skynet_id,json=skynetId,proto3" json:"skynet_id,omitempty"`
 	Members      []*SurebetSide `protobuf:"bytes,15,rep,name=members,proto3" json:"members,omitempty"`
 }
 
 func (m *Surebet) Reset()      { *m = Surebet{} }
 func (*Surebet) ProtoMessage() {}
 func (*Surebet) Descriptor() ([]byte, []int) {
-	return fileDescriptor_16a4d244bf92f218, []int{2}
+	return fileDescriptor_16a4d244bf92f218, []int{4}
 }
 func (m *Surebet) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -170,11 +258,11 @@ func (m *Surebet) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_Surebet proto.InternalMessageInfo
 
-func (m *Surebet) GetCreatedAt() *time.Time {
+func (m *Surebet) GetCreatedAt() string {
 	if m != nil {
 		return m.CreatedAt
 	}
-	return nil
+	return ""
 }
 
 func (m *Surebet) GetSurebetHash() string {
@@ -184,11 +272,11 @@ func (m *Surebet) GetSurebetHash() string {
 	return ""
 }
 
-func (m *Surebet) GetStarts() *time.Time {
+func (m *Surebet) GetStarts() string {
 	if m != nil {
 		return m.Starts
 	}
-	return nil
+	return ""
 }
 
 func (m *Surebet) GetFortedHome() string {
@@ -212,6 +300,34 @@ func (m *Surebet) GetFortedProfit() string {
 	return ""
 }
 
+func (m *Surebet) GetFortedSport() string {
+	if m != nil {
+		return m.FortedSport
+	}
+	return ""
+}
+
+func (m *Surebet) GetFortedLeague() string {
+	if m != nil {
+		return m.FortedLeague
+	}
+	return ""
+}
+
+func (m *Surebet) GetFilterName() string {
+	if m != nil {
+		return m.FilterName
+	}
+	return ""
+}
+
+func (m *Surebet) GetSkynetId() int64 {
+	if m != nil {
+		return m.SkynetId
+	}
+	return 0
+}
+
 func (m *Surebet) GetMembers() []*SurebetSide {
 	if m != nil {
 		return m.Members
@@ -220,7 +336,7 @@ func (m *Surebet) GetMembers() []*SurebetSide {
 }
 
 type SurebetSide struct {
-	Num         string  `protobuf:"bytes,1,opt,name=num,proto3" json:"num,omitempty"`
+	Num         int64   `protobuf:"varint,1,opt,name=num,proto3" json:"num,omitempty"`
 	ServiceName string  `protobuf:"bytes,2,opt,name=service_name,json=serviceName,proto3" json:"service_name,omitempty"`
 	ServiceId   int64   `protobuf:"varint,11,opt,name=service_id,json=serviceId,proto3" json:"service_id,omitempty"`
 	SportName   string  `protobuf:"bytes,3,opt,name=sport_name,json=sportName,proto3" json:"sport_name,omitempty"`
@@ -230,13 +346,13 @@ type SurebetSide struct {
 	MarketName  string  `protobuf:"bytes,7,opt,name=market_name,json=marketName,proto3" json:"market_name,omitempty"`
 	Price       float64 `protobuf:"fixed64,8,opt,name=price,proto3" json:"price,omitempty"`
 	Url         string  `protobuf:"bytes,9,opt,name=url,proto3" json:"url,omitempty"`
-	Initiator   string  `protobuf:"bytes,10,opt,name=initiator,proto3" json:"initiator,omitempty"`
+	Initiator   bool    `protobuf:"varint,10,opt,name=initiator,proto3" json:"initiator,omitempty"`
 }
 
 func (m *SurebetSide) Reset()      { *m = SurebetSide{} }
 func (*SurebetSide) ProtoMessage() {}
 func (*SurebetSide) Descriptor() ([]byte, []int) {
-	return fileDescriptor_16a4d244bf92f218, []int{3}
+	return fileDescriptor_16a4d244bf92f218, []int{5}
 }
 func (m *SurebetSide) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -265,11 +381,11 @@ func (m *SurebetSide) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_SurebetSide proto.InternalMessageInfo
 
-func (m *SurebetSide) GetNum() string {
+func (m *SurebetSide) GetNum() int64 {
 	if m != nil {
 		return m.Num
 	}
-	return ""
+	return 0
 }
 
 func (m *SurebetSide) GetServiceName() string {
@@ -335,14 +451,16 @@ func (m *SurebetSide) GetUrl() string {
 	return ""
 }
 
-func (m *SurebetSide) GetInitiator() string {
+func (m *SurebetSide) GetInitiator() bool {
 	if m != nil {
 		return m.Initiator
 	}
-	return ""
+	return false
 }
 
 func init() {
+	proto.RegisterType((*CreateSurebetManyRequest)(nil), "fortedpb.CreateSurebetManyRequest")
+	proto.RegisterType((*CreateSurebetManyResponse)(nil), "fortedpb.CreateSurebetManyResponse")
 	proto.RegisterType((*CreateSurebetRequest)(nil), "fortedpb.CreateSurebetRequest")
 	proto.RegisterType((*CreateSurebetResponse)(nil), "fortedpb.CreateSurebetResponse")
 	proto.RegisterType((*Surebet)(nil), "fortedpb.Surebet")
@@ -352,44 +470,70 @@ func init() {
 func init() { proto.RegisterFile("forted.proto", fileDescriptor_16a4d244bf92f218) }
 
 var fileDescriptor_16a4d244bf92f218 = []byte{
-	// 557 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x8c, 0x93, 0xc1, 0x6e, 0xd3, 0x30,
-	0x18, 0xc7, 0x9b, 0xb6, 0x6b, 0x97, 0x2f, 0x9b, 0x00, 0x6b, 0x93, 0xa2, 0x0a, 0xd2, 0x52, 0x2e,
-	0x95, 0x10, 0xa9, 0x54, 0x2e, 0xdc, 0xd0, 0x36, 0x09, 0x6d, 0x17, 0x84, 0x32, 0x2e, 0x20, 0xa4,
-	0xca, 0x69, 0xdc, 0xd4, 0xa2, 0xae, 0x83, 0xe3, 0x30, 0xed, 0xc6, 0x23, 0xec, 0x51, 0x78, 0x03,
-	0xae, 0x1c, 0x77, 0xdc, 0x0d, 0xda, 0xbe, 0x00, 0x47, 0x8e, 0xa8, 0x9f, 0x9d, 0xae, 0x83, 0x21,
-	0xed, 0x66, 0xff, 0xfd, 0xfb, 0xfe, 0x9f, 0xfd, 0xb7, 0x0d, 0x3b, 0x63, 0xa9, 0x34, 0x4b, 0xc2,
-	0x4c, 0x49, 0x2d, 0xc9, 0xb6, 0x99, 0x65, 0x71, 0xab, 0x9d, 0x4a, 0x99, 0x4e, 0x59, 0x1f, 0xf5,
-	0xb8, 0x18, 0xf7, 0x35, 0x17, 0x2c, 0xd7, 0x54, 0x64, 0x06, 0x6d, 0x3d, 0x4b, 0xb9, 0x9e, 0x14,
-	0x71, 0x38, 0x92, 0xa2, 0x9f, 0xca, 0x54, 0x5e, 0x93, 0xab, 0x19, 0x4e, 0x70, 0x64, 0xf0, 0xee,
-	0x11, 0xec, 0x1d, 0x29, 0x46, 0x35, 0x3b, 0x2d, 0x14, 0x8b, 0x99, 0x8e, 0xd8, 0xa7, 0x82, 0xe5,
-	0x9a, 0x3c, 0x85, 0x66, 0x6e, 0x14, 0xdf, 0xe9, 0x38, 0x3d, 0x6f, 0xf0, 0x20, 0x2c, 0xf7, 0x10,
-	0x96, 0x68, 0x49, 0x74, 0xdf, 0xc1, 0xfe, 0x5f, 0x26, 0x79, 0x26, 0x67, 0x39, 0x23, 0x8f, 0x00,
-	0x2c, 0x33, 0xe4, 0x09, 0x1a, 0xd5, 0x22, 0xd7, 0x2a, 0x27, 0x09, 0x79, 0x0c, 0x3b, 0xe5, 0xf2,
-	0x84, 0xe6, 0x13, 0xbf, 0x8a, 0x80, 0x67, 0xb5, 0x63, 0x9a, 0x4f, 0xba, 0xdf, 0xaa, 0xd0, 0xb4,
-	0xae, 0xe4, 0x25, 0xc0, 0x08, 0xdb, 0x24, 0x43, 0x5a, 0x6e, 0xab, 0x15, 0x9a, 0x40, 0xc2, 0xf2,
-	0x98, 0xe1, 0xdb, 0x32, 0x90, 0xc3, 0xfa, 0xc5, 0x8f, 0xb6, 0x13, 0xb9, 0xb6, 0xe6, 0x40, 0xdf,
-	0xda, 0xcf, 0xbd, 0xd1, 0x8f, 0xbc, 0x80, 0x46, 0xae, 0xa9, 0xd2, 0xb9, 0x5f, 0xbb, 0xa3, 0xbf,
-	0xe5, 0x49, 0x1b, 0x3c, 0x93, 0xd0, 0x70, 0x22, 0x05, 0xf3, 0xeb, 0xe8, 0x0d, 0x46, 0x3a, 0x96,
-	0x82, 0x6d, 0x00, 0xf4, 0x8c, 0x9e, 0xfb, 0x5b, 0x9b, 0xc0, 0xc1, 0x19, 0x3d, 0x27, 0x4f, 0x60,
-	0xd7, 0x02, 0x99, 0x92, 0x63, 0xae, 0xfd, 0x06, 0x22, 0xf6, 0x29, 0xbc, 0x41, 0x8d, 0xf4, 0xa1,
-	0x29, 0x98, 0x88, 0x99, 0xca, 0xfd, 0x7b, 0x9d, 0x5a, 0xcf, 0x1b, 0xec, 0xff, 0x73, 0x31, 0xa7,
-	0x3c, 0x61, 0x51, 0x49, 0x75, 0xbf, 0x56, 0xc1, 0xdb, 0x58, 0x20, 0xf7, 0xa1, 0x36, 0x2b, 0x04,
-	0xc6, 0xe7, 0x46, 0xab, 0x21, 0xc6, 0xc2, 0xd4, 0x67, 0x3e, 0x62, 0xc3, 0x19, 0x15, 0x6c, 0x1d,
-	0x8b, 0xd1, 0x5e, 0x53, 0x61, 0x2e, 0xd2, 0x22, 0x3c, 0xf1, 0x3d, 0x7b, 0x91, 0x46, 0x39, 0x49,
-	0x70, 0x39, 0x93, 0x4a, 0x9b, 0xfa, 0x1a, 0xd6, 0xbb, 0xa8, 0x60, 0x75, 0x1b, 0xbc, 0x29, 0xa3,
-	0x69, 0x61, 0xfd, 0x6d, 0x34, 0x46, 0x42, 0x80, 0x40, 0x1d, 0x43, 0x33, 0x99, 0xe0, 0x78, 0xa5,
-	0x61, 0x4e, 0x26, 0x04, 0x1c, 0xaf, 0x8c, 0x04, 0x55, 0x1f, 0x99, 0x6d, 0xd4, 0x34, 0x46, 0x46,
-	0x42, 0xa3, 0x3d, 0xd8, 0xca, 0x14, 0x1f, 0x31, 0x7f, 0xbb, 0xe3, 0xf4, 0x9c, 0xc8, 0x4c, 0x56,
-	0x47, 0x2e, 0xd4, 0xd4, 0x77, 0xcd, 0x91, 0x0b, 0x35, 0x25, 0x0f, 0xc1, 0xe5, 0x33, 0xae, 0x39,
-	0xd5, 0x52, 0xf9, 0x60, 0xf6, 0xbb, 0x16, 0x06, 0x1f, 0xa0, 0xf1, 0x0a, 0x33, 0x25, 0x11, 0xec,
-	0xde, 0x78, 0xd9, 0x24, 0xb8, 0x4e, 0xfb, 0xb6, 0x7f, 0xd3, 0x6a, 0xff, 0x77, 0xdd, 0x7c, 0x89,
-	0x6e, 0xe5, 0x70, 0x70, 0x35, 0x0f, 0x2a, 0xbf, 0xe6, 0x81, 0xf3, 0x7b, 0x1e, 0x38, 0x5f, 0x16,
-	0x81, 0xf3, 0x7d, 0x11, 0x38, 0x97, 0x8b, 0xc0, 0xf9, 0xb9, 0x08, 0x9c, 0x8b, 0x65, 0x50, 0xb9,
-	0x5c, 0x06, 0x95, 0xab, 0x65, 0x50, 0x79, 0xbf, 0xfe, 0xf6, 0x71, 0x03, 0x9f, 0xdf, 0xf3, 0x3f,
-	0x01, 0x00, 0x00, 0xff, 0xff, 0xb6, 0x3b, 0xe0, 0x51, 0x17, 0x04, 0x00, 0x00,
+	// 624 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x84, 0x54, 0xc1, 0x4e, 0x14, 0x4b,
+	0x14, 0x9d, 0x66, 0x60, 0x66, 0xfa, 0x0e, 0xe4, 0x3d, 0x2a, 0x60, 0x4a, 0xd4, 0x46, 0x9b, 0x0d,
+	0x89, 0x71, 0x48, 0xf0, 0x07, 0x44, 0x12, 0x85, 0x44, 0x8d, 0x69, 0x56, 0xba, 0x70, 0x52, 0x33,
+	0x5d, 0xcc, 0x74, 0xa0, 0xbb, 0xda, 0xea, 0x6a, 0xc9, 0xec, 0xf4, 0x0f, 0xfc, 0x14, 0x3f, 0xc0,
+	0x0f, 0x70, 0xc9, 0x92, 0xa5, 0x0c, 0x3f, 0xe0, 0xd2, 0xa5, 0xa9, 0x7b, 0xab, 0xa5, 0x91, 0x41,
+	0x77, 0x75, 0xcf, 0x3d, 0x75, 0xea, 0xf4, 0xb9, 0x55, 0x0d, 0x8b, 0x87, 0x4a, 0x1b, 0x19, 0xf7,
+	0x72, 0xad, 0x8c, 0x62, 0x1d, 0xaa, 0xf2, 0xc1, 0xda, 0xa3, 0x51, 0x62, 0xc6, 0xe5, 0xa0, 0x37,
+	0x54, 0xe9, 0xd6, 0x48, 0x8d, 0xd4, 0x16, 0x12, 0x06, 0xe5, 0x21, 0x56, 0x58, 0xe0, 0x8a, 0x36,
+	0x86, 0xcf, 0x81, 0xef, 0x6a, 0x29, 0x8c, 0x3c, 0x28, 0xb5, 0x1c, 0x48, 0xf3, 0x52, 0x64, 0x93,
+	0x48, 0xbe, 0x2f, 0x65, 0x61, 0xd8, 0x43, 0x68, 0x17, 0x84, 0x72, 0xef, 0x7e, 0x73, 0xb3, 0xbb,
+	0xbd, 0xdc, 0xab, 0x8e, 0xe9, 0x39, 0x7a, 0x54, 0x31, 0xc2, 0x27, 0x70, 0x7b, 0x86, 0x50, 0x91,
+	0xab, 0xac, 0x90, 0x6c, 0x03, 0x96, 0x1c, 0xaf, 0x3f, 0x54, 0x65, 0x66, 0xf5, 0xbc, 0xcd, 0x66,
+	0xb4, 0xe8, 0xc0, 0x5d, 0x8b, 0x85, 0xbb, 0xb0, 0x72, 0x45, 0x61, 0xa6, 0x0d, 0xef, 0x1f, 0x36,
+	0xde, 0xc0, 0xea, 0x1f, 0x22, 0xce, 0xc2, 0x3d, 0x80, 0xca, 0x42, 0x12, 0xbb, 0xf3, 0x7d, 0x87,
+	0xec, 0xc7, 0xec, 0x01, 0x54, 0x66, 0xfa, 0x63, 0x51, 0x8c, 0xf9, 0x1c, 0x12, 0xba, 0x0e, 0xdb,
+	0x13, 0xc5, 0x38, 0xfc, 0xd4, 0x84, 0xb6, 0x53, 0xb5, 0x6a, 0x43, 0x3c, 0x26, 0xee, 0x0b, 0xb2,
+	0xe5, 0x47, 0xbe, 0x43, 0x76, 0xcc, 0x4c, 0x35, 0xff, 0x8a, 0x1a, 0xbb, 0x05, 0xad, 0xc2, 0x08,
+	0x6d, 0x0a, 0xde, 0xc4, 0xa6, 0xab, 0xd8, 0x3a, 0x74, 0xe9, 0xeb, 0xfa, 0x63, 0x95, 0x4a, 0x3e,
+	0x8f, 0x4d, 0x20, 0x68, 0x4f, 0xa5, 0xb2, 0x46, 0x10, 0x27, 0x62, 0xc2, 0x17, 0xea, 0x84, 0x9d,
+	0x13, 0x31, 0xb1, 0x61, 0x3b, 0x42, 0xae, 0xd5, 0x61, 0x62, 0x78, 0x0b, 0x29, 0xee, 0xc2, 0xbc,
+	0x46, 0xcc, 0x3a, 0x74, 0xa4, 0x22, 0x57, 0xda, 0xf0, 0x36, 0x39, 0x24, 0xec, 0xc0, 0x42, 0x35,
+	0x9d, 0x63, 0x29, 0x46, 0xa5, 0xe4, 0x9d, 0xba, 0xce, 0x0b, 0xc4, 0xd0, 0x4d, 0x72, 0x6c, 0xa4,
+	0xee, 0x67, 0x22, 0x95, 0xdc, 0x77, 0x6e, 0x10, 0x7a, 0x25, 0x52, 0xc9, 0xee, 0x80, 0x5f, 0x1c,
+	0x4d, 0x32, 0x8a, 0x1d, 0x30, 0xd5, 0x0e, 0x01, 0xfb, 0x31, 0xdb, 0x82, 0x76, 0x2a, 0xd3, 0x81,
+	0xd4, 0x05, 0xff, 0x0f, 0x6f, 0xd8, 0xea, 0xb5, 0xd1, 0x1e, 0x24, 0xb1, 0x8c, 0x2a, 0x56, 0xf8,
+	0x65, 0x0e, 0xba, 0xb5, 0x06, 0xfb, 0x1f, 0x9a, 0x59, 0x99, 0xba, 0x71, 0xda, 0x25, 0x46, 0x2f,
+	0xf5, 0x87, 0x64, 0x28, 0xc9, 0x51, 0x15, 0x3d, 0x61, 0x68, 0xc9, 0x5e, 0x05, 0x47, 0x49, 0x62,
+	0xde, 0x75, 0x57, 0x81, 0x90, 0xfd, 0x18, 0xdb, 0x36, 0x00, 0xda, 0x4f, 0xd3, 0xf1, 0x11, 0xc1,
+	0xdd, 0xeb, 0xd0, 0xa5, 0x3c, 0xa8, 0xef, 0x06, 0x44, 0x10, 0x12, 0x18, 0xcc, 0xe3, 0xe8, 0x68,
+	0x32, 0xb8, 0xb6, 0x18, 0x4e, 0x8b, 0x46, 0x81, 0x6b, 0x2b, 0x94, 0x0a, 0x7d, 0x24, 0xdd, 0x41,
+	0x34, 0x01, 0x20, 0x08, 0x85, 0x56, 0x60, 0x21, 0xd7, 0xc9, 0x90, 0x82, 0xf7, 0x22, 0x2a, 0xec,
+	0x27, 0x97, 0xfa, 0xd8, 0x25, 0x6d, 0x97, 0xec, 0x2e, 0xf8, 0x49, 0x96, 0x98, 0x44, 0x18, 0xa5,
+	0x31, 0xe2, 0x4e, 0x74, 0x09, 0x6c, 0x7f, 0xf5, 0xa0, 0xf5, 0x0c, 0x43, 0x65, 0x11, 0x2c, 0x5d,
+	0x79, 0x1c, 0x2c, 0xb8, 0x8c, 0x7b, 0xd6, 0xd3, 0x5b, 0x5b, 0xbf, 0xb1, 0x4f, 0xaf, 0x2a, 0x6c,
+	0xb0, 0x77, 0xb0, 0x7c, 0xed, 0xdd, 0xb3, 0xf0, 0x86, 0x7d, 0xb5, 0xbf, 0xcb, 0xda, 0xc6, 0x5f,
+	0x39, 0x95, 0xfe, 0xd3, 0xed, 0xb3, 0xf3, 0xa0, 0xf1, 0xe3, 0x3c, 0xf0, 0x7e, 0x9e, 0x07, 0xde,
+	0xc7, 0x69, 0xe0, 0x7d, 0x9b, 0x06, 0xde, 0xe9, 0x34, 0xf0, 0xbe, 0x4f, 0x03, 0xef, 0xf3, 0x45,
+	0xd0, 0x38, 0xbd, 0x08, 0x1a, 0x67, 0x17, 0x41, 0xe3, 0xed, 0xef, 0x7f, 0xe0, 0xa0, 0x85, 0xff,
+	0xb6, 0xc7, 0xbf, 0x02, 0x00, 0x00, 0xff, 0xff, 0xf5, 0x13, 0xe4, 0xe0, 0x24, 0x05, 0x00, 0x00,
 }
 
+func (this *CreateSurebetManyRequest) GoString() string {
+	if this == nil {
+		return "nil"
+	}
+	s := make([]string, 0, 5)
+	s = append(s, "&fortedpb.CreateSurebetManyRequest{")
+	if this.Surebet != nil {
+		s = append(s, "Surebet: "+fmt.Sprintf("%#v", this.Surebet)+",\n")
+	}
+	s = append(s, "}")
+	return strings.Join(s, "")
+}
+func (this *CreateSurebetManyResponse) GoString() string {
+	if this == nil {
+		return "nil"
+	}
+	s := make([]string, 0, 5)
+	s = append(s, "&fortedpb.CreateSurebetManyResponse{")
+	s = append(s, "SurebetCount: "+fmt.Sprintf("%#v", this.SurebetCount)+",\n")
+	s = append(s, "}")
+	return strings.Join(s, "")
+}
 func (this *CreateSurebetRequest) GoString() string {
 	if this == nil {
 		return "nil"
@@ -417,7 +561,7 @@ func (this *Surebet) GoString() string {
 	if this == nil {
 		return "nil"
 	}
-	s := make([]string, 0, 11)
+	s := make([]string, 0, 15)
 	s = append(s, "&fortedpb.Surebet{")
 	s = append(s, "CreatedAt: "+fmt.Sprintf("%#v", this.CreatedAt)+",\n")
 	s = append(s, "SurebetHash: "+fmt.Sprintf("%#v", this.SurebetHash)+",\n")
@@ -425,6 +569,10 @@ func (this *Surebet) GoString() string {
 	s = append(s, "FortedHome: "+fmt.Sprintf("%#v", this.FortedHome)+",\n")
 	s = append(s, "FortedAway: "+fmt.Sprintf("%#v", this.FortedAway)+",\n")
 	s = append(s, "FortedProfit: "+fmt.Sprintf("%#v", this.FortedProfit)+",\n")
+	s = append(s, "FortedSport: "+fmt.Sprintf("%#v", this.FortedSport)+",\n")
+	s = append(s, "FortedLeague: "+fmt.Sprintf("%#v", this.FortedLeague)+",\n")
+	s = append(s, "FilterName: "+fmt.Sprintf("%#v", this.FilterName)+",\n")
+	s = append(s, "SkynetId: "+fmt.Sprintf("%#v", this.SkynetId)+",\n")
 	if this.Members != nil {
 		s = append(s, "Members: "+fmt.Sprintf("%#v", this.Members)+",\n")
 	}
@@ -473,6 +621,7 @@ const _ = grpc.SupportPackageIsVersion4
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type FortedClient interface {
 	CreateSurebet(ctx context.Context, in *CreateSurebetRequest, opts ...grpc.CallOption) (*CreateSurebetResponse, error)
+	CreateSurebetMany(ctx context.Context, in *CreateSurebetManyRequest, opts ...grpc.CallOption) (*CreateSurebetManyResponse, error)
 }
 
 type fortedClient struct {
@@ -492,9 +641,19 @@ func (c *fortedClient) CreateSurebet(ctx context.Context, in *CreateSurebetReque
 	return out, nil
 }
 
+func (c *fortedClient) CreateSurebetMany(ctx context.Context, in *CreateSurebetManyRequest, opts ...grpc.CallOption) (*CreateSurebetManyResponse, error) {
+	out := new(CreateSurebetManyResponse)
+	err := c.cc.Invoke(ctx, "/fortedpb.Forted/CreateSurebetMany", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // FortedServer is the server API for Forted service.
 type FortedServer interface {
 	CreateSurebet(context.Context, *CreateSurebetRequest) (*CreateSurebetResponse, error)
+	CreateSurebetMany(context.Context, *CreateSurebetManyRequest) (*CreateSurebetManyResponse, error)
 }
 
 // UnimplementedFortedServer can be embedded to have forward compatible implementations.
@@ -503,6 +662,9 @@ type UnimplementedFortedServer struct {
 
 func (*UnimplementedFortedServer) CreateSurebet(ctx context.Context, req *CreateSurebetRequest) (*CreateSurebetResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateSurebet not implemented")
+}
+func (*UnimplementedFortedServer) CreateSurebetMany(ctx context.Context, req *CreateSurebetManyRequest) (*CreateSurebetManyResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateSurebetMany not implemented")
 }
 
 func RegisterFortedServer(s *grpc.Server, srv FortedServer) {
@@ -527,6 +689,24 @@ func _Forted_CreateSurebet_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Forted_CreateSurebetMany_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateSurebetManyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FortedServer).CreateSurebetMany(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/fortedpb.Forted/CreateSurebetMany",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FortedServer).CreateSurebetMany(ctx, req.(*CreateSurebetManyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Forted_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "fortedpb.Forted",
 	HandlerType: (*FortedServer)(nil),
@@ -535,9 +715,78 @@ var _Forted_serviceDesc = grpc.ServiceDesc{
 			MethodName: "CreateSurebet",
 			Handler:    _Forted_CreateSurebet_Handler,
 		},
+		{
+			MethodName: "CreateSurebetMany",
+			Handler:    _Forted_CreateSurebetMany_Handler,
+		},
 	},
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "forted.proto",
+}
+
+func (m *CreateSurebetManyRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *CreateSurebetManyRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *CreateSurebetManyRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.Surebet) > 0 {
+		for iNdEx := len(m.Surebet) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.Surebet[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintForted(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0xa
+		}
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *CreateSurebetManyResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *CreateSurebetManyResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *CreateSurebetManyResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.SurebetCount != 0 {
+		i = encodeVarintForted(dAtA, i, uint64(m.SurebetCount))
+		i--
+		dAtA[i] = 0x8
+	}
+	return len(dAtA) - i, nil
 }
 
 func (m *CreateSurebetRequest) Marshal() (dAtA []byte, err error) {
@@ -642,6 +891,32 @@ func (m *Surebet) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 			dAtA[i] = 0x7a
 		}
 	}
+	if m.SkynetId != 0 {
+		i = encodeVarintForted(dAtA, i, uint64(m.SkynetId))
+		i--
+		dAtA[i] = 0x50
+	}
+	if len(m.FilterName) > 0 {
+		i -= len(m.FilterName)
+		copy(dAtA[i:], m.FilterName)
+		i = encodeVarintForted(dAtA, i, uint64(len(m.FilterName)))
+		i--
+		dAtA[i] = 0x4a
+	}
+	if len(m.FortedLeague) > 0 {
+		i -= len(m.FortedLeague)
+		copy(dAtA[i:], m.FortedLeague)
+		i = encodeVarintForted(dAtA, i, uint64(len(m.FortedLeague)))
+		i--
+		dAtA[i] = 0x42
+	}
+	if len(m.FortedSport) > 0 {
+		i -= len(m.FortedSport)
+		copy(dAtA[i:], m.FortedSport)
+		i = encodeVarintForted(dAtA, i, uint64(len(m.FortedSport)))
+		i--
+		dAtA[i] = 0x3a
+	}
 	if len(m.FortedProfit) > 0 {
 		i -= len(m.FortedProfit)
 		copy(dAtA[i:], m.FortedProfit)
@@ -663,13 +938,10 @@ func (m *Surebet) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i--
 		dAtA[i] = 0x22
 	}
-	if m.Starts != nil {
-		n2, err2 := github_com_gogo_protobuf_types.StdTimeMarshalTo(*m.Starts, dAtA[i-github_com_gogo_protobuf_types.SizeOfStdTime(*m.Starts):])
-		if err2 != nil {
-			return 0, err2
-		}
-		i -= n2
-		i = encodeVarintForted(dAtA, i, uint64(n2))
+	if len(m.Starts) > 0 {
+		i -= len(m.Starts)
+		copy(dAtA[i:], m.Starts)
+		i = encodeVarintForted(dAtA, i, uint64(len(m.Starts)))
 		i--
 		dAtA[i] = 0x1a
 	}
@@ -680,13 +952,10 @@ func (m *Surebet) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i--
 		dAtA[i] = 0x12
 	}
-	if m.CreatedAt != nil {
-		n3, err3 := github_com_gogo_protobuf_types.StdTimeMarshalTo(*m.CreatedAt, dAtA[i-github_com_gogo_protobuf_types.SizeOfStdTime(*m.CreatedAt):])
-		if err3 != nil {
-			return 0, err3
-		}
-		i -= n3
-		i = encodeVarintForted(dAtA, i, uint64(n3))
+	if len(m.CreatedAt) > 0 {
+		i -= len(m.CreatedAt)
+		copy(dAtA[i:], m.CreatedAt)
+		i = encodeVarintForted(dAtA, i, uint64(len(m.CreatedAt)))
 		i--
 		dAtA[i] = 0xa
 	}
@@ -718,12 +987,15 @@ func (m *SurebetSide) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i--
 		dAtA[i] = 0x58
 	}
-	if len(m.Initiator) > 0 {
-		i -= len(m.Initiator)
-		copy(dAtA[i:], m.Initiator)
-		i = encodeVarintForted(dAtA, i, uint64(len(m.Initiator)))
+	if m.Initiator {
 		i--
-		dAtA[i] = 0x52
+		if m.Initiator {
+			dAtA[i] = 1
+		} else {
+			dAtA[i] = 0
+		}
+		i--
+		dAtA[i] = 0x50
 	}
 	if len(m.Url) > 0 {
 		i -= len(m.Url)
@@ -780,12 +1052,10 @@ func (m *SurebetSide) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i--
 		dAtA[i] = 0x12
 	}
-	if len(m.Num) > 0 {
-		i -= len(m.Num)
-		copy(dAtA[i:], m.Num)
-		i = encodeVarintForted(dAtA, i, uint64(len(m.Num)))
+	if m.Num != 0 {
+		i = encodeVarintForted(dAtA, i, uint64(m.Num))
 		i--
-		dAtA[i] = 0xa
+		dAtA[i] = 0x8
 	}
 	return len(dAtA) - i, nil
 }
@@ -801,6 +1071,31 @@ func encodeVarintForted(dAtA []byte, offset int, v uint64) int {
 	dAtA[offset] = uint8(v)
 	return base
 }
+func NewPopulatedCreateSurebetManyRequest(r randyForted, easy bool) *CreateSurebetManyRequest {
+	this := &CreateSurebetManyRequest{}
+	if r.Intn(5) != 0 {
+		v1 := r.Intn(5)
+		this.Surebet = make([]*Surebet, v1)
+		for i := 0; i < v1; i++ {
+			this.Surebet[i] = NewPopulatedSurebet(r, easy)
+		}
+	}
+	if !easy && r.Intn(10) != 0 {
+	}
+	return this
+}
+
+func NewPopulatedCreateSurebetManyResponse(r randyForted, easy bool) *CreateSurebetManyResponse {
+	this := &CreateSurebetManyResponse{}
+	this.SurebetCount = int64(r.Int63())
+	if r.Intn(2) == 0 {
+		this.SurebetCount *= -1
+	}
+	if !easy && r.Intn(10) != 0 {
+	}
+	return this
+}
+
 func NewPopulatedCreateSurebetRequest(r randyForted, easy bool) *CreateSurebetRequest {
 	this := &CreateSurebetRequest{}
 	if r.Intn(5) != 0 {
@@ -828,20 +1123,23 @@ func NewPopulatedCreateSurebetResponse(r randyForted, easy bool) *CreateSurebetR
 
 func NewPopulatedSurebet(r randyForted, easy bool) *Surebet {
 	this := &Surebet{}
-	if r.Intn(5) != 0 {
-		this.CreatedAt = github_com_gogo_protobuf_types.NewPopulatedStdTime(r, easy)
-	}
+	this.CreatedAt = string(randStringForted(r))
 	this.SurebetHash = string(randStringForted(r))
-	if r.Intn(5) != 0 {
-		this.Starts = github_com_gogo_protobuf_types.NewPopulatedStdTime(r, easy)
-	}
+	this.Starts = string(randStringForted(r))
 	this.FortedHome = string(randStringForted(r))
 	this.FortedAway = string(randStringForted(r))
 	this.FortedProfit = string(randStringForted(r))
+	this.FortedSport = string(randStringForted(r))
+	this.FortedLeague = string(randStringForted(r))
+	this.FilterName = string(randStringForted(r))
+	this.SkynetId = int64(r.Int63())
+	if r.Intn(2) == 0 {
+		this.SkynetId *= -1
+	}
 	if r.Intn(5) != 0 {
-		v1 := r.Intn(5)
-		this.Members = make([]*SurebetSide, v1)
-		for i := 0; i < v1; i++ {
+		v2 := r.Intn(5)
+		this.Members = make([]*SurebetSide, v2)
+		for i := 0; i < v2; i++ {
 			this.Members[i] = NewPopulatedSurebetSide(r, easy)
 		}
 	}
@@ -852,7 +1150,10 @@ func NewPopulatedSurebet(r randyForted, easy bool) *Surebet {
 
 func NewPopulatedSurebetSide(r randyForted, easy bool) *SurebetSide {
 	this := &SurebetSide{}
-	this.Num = string(randStringForted(r))
+	this.Num = int64(r.Int63())
+	if r.Intn(2) == 0 {
+		this.Num *= -1
+	}
 	this.ServiceName = string(randStringForted(r))
 	this.SportName = string(randStringForted(r))
 	this.LeagueName = string(randStringForted(r))
@@ -864,7 +1165,7 @@ func NewPopulatedSurebetSide(r randyForted, easy bool) *SurebetSide {
 		this.Price *= -1
 	}
 	this.Url = string(randStringForted(r))
-	this.Initiator = string(randStringForted(r))
+	this.Initiator = bool(bool(r.Intn(2) == 0))
 	this.ServiceId = int64(r.Int63())
 	if r.Intn(2) == 0 {
 		this.ServiceId *= -1
@@ -893,9 +1194,9 @@ func randUTF8RuneForted(r randyForted) rune {
 	return rune(ru + 61)
 }
 func randStringForted(r randyForted) string {
-	v2 := r.Intn(100)
-	tmps := make([]rune, v2)
-	for i := 0; i < v2; i++ {
+	v3 := r.Intn(100)
+	tmps := make([]rune, v3)
+	for i := 0; i < v3; i++ {
 		tmps[i] = randUTF8RuneForted(r)
 	}
 	return string(tmps)
@@ -917,11 +1218,11 @@ func randFieldForted(dAtA []byte, r randyForted, fieldNumber int, wire int) []by
 	switch wire {
 	case 0:
 		dAtA = encodeVarintPopulateForted(dAtA, uint64(key))
-		v3 := r.Int63()
+		v4 := r.Int63()
 		if r.Intn(2) == 0 {
-			v3 *= -1
+			v4 *= -1
 		}
-		dAtA = encodeVarintPopulateForted(dAtA, uint64(v3))
+		dAtA = encodeVarintPopulateForted(dAtA, uint64(v4))
 	case 1:
 		dAtA = encodeVarintPopulateForted(dAtA, uint64(key))
 		dAtA = append(dAtA, byte(r.Intn(256)), byte(r.Intn(256)), byte(r.Intn(256)), byte(r.Intn(256)), byte(r.Intn(256)), byte(r.Intn(256)), byte(r.Intn(256)), byte(r.Intn(256)))
@@ -946,6 +1247,33 @@ func encodeVarintPopulateForted(dAtA []byte, v uint64) []byte {
 	dAtA = append(dAtA, uint8(v))
 	return dAtA
 }
+func (m *CreateSurebetManyRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if len(m.Surebet) > 0 {
+		for _, e := range m.Surebet {
+			l = e.Size()
+			n += 1 + l + sovForted(uint64(l))
+		}
+	}
+	return n
+}
+
+func (m *CreateSurebetManyResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.SurebetCount != 0 {
+		n += 1 + sovForted(uint64(m.SurebetCount))
+	}
+	return n
+}
+
 func (m *CreateSurebetRequest) Size() (n int) {
 	if m == nil {
 		return 0
@@ -980,16 +1308,16 @@ func (m *Surebet) Size() (n int) {
 	}
 	var l int
 	_ = l
-	if m.CreatedAt != nil {
-		l = github_com_gogo_protobuf_types.SizeOfStdTime(*m.CreatedAt)
+	l = len(m.CreatedAt)
+	if l > 0 {
 		n += 1 + l + sovForted(uint64(l))
 	}
 	l = len(m.SurebetHash)
 	if l > 0 {
 		n += 1 + l + sovForted(uint64(l))
 	}
-	if m.Starts != nil {
-		l = github_com_gogo_protobuf_types.SizeOfStdTime(*m.Starts)
+	l = len(m.Starts)
+	if l > 0 {
 		n += 1 + l + sovForted(uint64(l))
 	}
 	l = len(m.FortedHome)
@@ -1003,6 +1331,21 @@ func (m *Surebet) Size() (n int) {
 	l = len(m.FortedProfit)
 	if l > 0 {
 		n += 1 + l + sovForted(uint64(l))
+	}
+	l = len(m.FortedSport)
+	if l > 0 {
+		n += 1 + l + sovForted(uint64(l))
+	}
+	l = len(m.FortedLeague)
+	if l > 0 {
+		n += 1 + l + sovForted(uint64(l))
+	}
+	l = len(m.FilterName)
+	if l > 0 {
+		n += 1 + l + sovForted(uint64(l))
+	}
+	if m.SkynetId != 0 {
+		n += 1 + sovForted(uint64(m.SkynetId))
 	}
 	if len(m.Members) > 0 {
 		for _, e := range m.Members {
@@ -1019,9 +1362,8 @@ func (m *SurebetSide) Size() (n int) {
 	}
 	var l int
 	_ = l
-	l = len(m.Num)
-	if l > 0 {
-		n += 1 + l + sovForted(uint64(l))
+	if m.Num != 0 {
+		n += 1 + sovForted(uint64(m.Num))
 	}
 	l = len(m.ServiceName)
 	if l > 0 {
@@ -1054,9 +1396,8 @@ func (m *SurebetSide) Size() (n int) {
 	if l > 0 {
 		n += 1 + l + sovForted(uint64(l))
 	}
-	l = len(m.Initiator)
-	if l > 0 {
-		n += 1 + l + sovForted(uint64(l))
+	if m.Initiator {
+		n += 2
 	}
 	if m.ServiceId != 0 {
 		n += 1 + sovForted(uint64(m.ServiceId))
@@ -1069,6 +1410,31 @@ func sovForted(x uint64) (n int) {
 }
 func sozForted(x uint64) (n int) {
 	return sovForted(uint64((x << 1) ^ uint64((int64(x) >> 63))))
+}
+func (this *CreateSurebetManyRequest) String() string {
+	if this == nil {
+		return "nil"
+	}
+	repeatedStringForSurebet := "[]*Surebet{"
+	for _, f := range this.Surebet {
+		repeatedStringForSurebet += strings.Replace(f.String(), "Surebet", "Surebet", 1) + ","
+	}
+	repeatedStringForSurebet += "}"
+	s := strings.Join([]string{`&CreateSurebetManyRequest{`,
+		`Surebet:` + repeatedStringForSurebet + `,`,
+		`}`,
+	}, "")
+	return s
+}
+func (this *CreateSurebetManyResponse) String() string {
+	if this == nil {
+		return "nil"
+	}
+	s := strings.Join([]string{`&CreateSurebetManyResponse{`,
+		`SurebetCount:` + fmt.Sprintf("%v", this.SurebetCount) + `,`,
+		`}`,
+	}, "")
+	return s
 }
 func (this *CreateSurebetRequest) String() string {
 	if this == nil {
@@ -1101,12 +1467,16 @@ func (this *Surebet) String() string {
 	}
 	repeatedStringForMembers += "}"
 	s := strings.Join([]string{`&Surebet{`,
-		`CreatedAt:` + strings.Replace(fmt.Sprintf("%v", this.CreatedAt), "Timestamp", "types.Timestamp", 1) + `,`,
+		`CreatedAt:` + fmt.Sprintf("%v", this.CreatedAt) + `,`,
 		`SurebetHash:` + fmt.Sprintf("%v", this.SurebetHash) + `,`,
-		`Starts:` + strings.Replace(fmt.Sprintf("%v", this.Starts), "Timestamp", "types.Timestamp", 1) + `,`,
+		`Starts:` + fmt.Sprintf("%v", this.Starts) + `,`,
 		`FortedHome:` + fmt.Sprintf("%v", this.FortedHome) + `,`,
 		`FortedAway:` + fmt.Sprintf("%v", this.FortedAway) + `,`,
 		`FortedProfit:` + fmt.Sprintf("%v", this.FortedProfit) + `,`,
+		`FortedSport:` + fmt.Sprintf("%v", this.FortedSport) + `,`,
+		`FortedLeague:` + fmt.Sprintf("%v", this.FortedLeague) + `,`,
+		`FilterName:` + fmt.Sprintf("%v", this.FilterName) + `,`,
+		`SkynetId:` + fmt.Sprintf("%v", this.SkynetId) + `,`,
 		`Members:` + repeatedStringForMembers + `,`,
 		`}`,
 	}, "")
@@ -1139,6 +1509,165 @@ func valueToStringForted(v interface{}) string {
 	}
 	pv := reflect.Indirect(rv).Interface()
 	return fmt.Sprintf("*%v", pv)
+}
+func (m *CreateSurebetManyRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowForted
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: CreateSurebetManyRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: CreateSurebetManyRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Surebet", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowForted
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthForted
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthForted
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Surebet = append(m.Surebet, &Surebet{})
+			if err := m.Surebet[len(m.Surebet)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipForted(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthForted
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthForted
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *CreateSurebetManyResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowForted
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: CreateSurebetManyResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: CreateSurebetManyResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field SurebetCount", wireType)
+			}
+			m.SurebetCount = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowForted
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.SurebetCount |= int64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		default:
+			iNdEx = preIndex
+			skippy, err := skipForted(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthForted
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthForted
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
 }
 func (m *CreateSurebetRequest) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
@@ -1353,7 +1882,7 @@ func (m *Surebet) Unmarshal(dAtA []byte) error {
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field CreatedAt", wireType)
 			}
-			var msglen int
+			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowForted
@@ -1363,27 +1892,23 @@ func (m *Surebet) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				msglen |= int(b&0x7F) << shift
+				stringLen |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
-			if msglen < 0 {
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
 				return ErrInvalidLengthForted
 			}
-			postIndex := iNdEx + msglen
+			postIndex := iNdEx + intStringLen
 			if postIndex < 0 {
 				return ErrInvalidLengthForted
 			}
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if m.CreatedAt == nil {
-				m.CreatedAt = new(time.Time)
-			}
-			if err := github_com_gogo_protobuf_types.StdTimeUnmarshal(m.CreatedAt, dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
+			m.CreatedAt = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		case 2:
 			if wireType != 2 {
@@ -1421,7 +1946,7 @@ func (m *Surebet) Unmarshal(dAtA []byte) error {
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Starts", wireType)
 			}
-			var msglen int
+			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowForted
@@ -1431,27 +1956,23 @@ func (m *Surebet) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				msglen |= int(b&0x7F) << shift
+				stringLen |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
-			if msglen < 0 {
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
 				return ErrInvalidLengthForted
 			}
-			postIndex := iNdEx + msglen
+			postIndex := iNdEx + intStringLen
 			if postIndex < 0 {
 				return ErrInvalidLengthForted
 			}
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if m.Starts == nil {
-				m.Starts = new(time.Time)
-			}
-			if err := github_com_gogo_protobuf_types.StdTimeUnmarshal(m.Starts, dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
+			m.Starts = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		case 4:
 			if wireType != 2 {
@@ -1549,6 +2070,121 @@ func (m *Surebet) Unmarshal(dAtA []byte) error {
 			}
 			m.FortedProfit = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
+		case 7:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field FortedSport", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowForted
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthForted
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthForted
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.FortedSport = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 8:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field FortedLeague", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowForted
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthForted
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthForted
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.FortedLeague = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 9:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field FilterName", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowForted
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthForted
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthForted
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.FilterName = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 10:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field SkynetId", wireType)
+			}
+			m.SkynetId = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowForted
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.SkynetId |= int64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
 		case 15:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Members", wireType)
@@ -1637,10 +2273,10 @@ func (m *SurebetSide) Unmarshal(dAtA []byte) error {
 		}
 		switch fieldNum {
 		case 1:
-			if wireType != 2 {
+			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Num", wireType)
 			}
-			var stringLen uint64
+			m.Num = 0
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowForted
@@ -1650,24 +2286,11 @@ func (m *SurebetSide) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
+				m.Num |= int64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthForted
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthForted
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Num = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
 		case 2:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field ServiceName", wireType)
@@ -1904,10 +2527,10 @@ func (m *SurebetSide) Unmarshal(dAtA []byte) error {
 			m.Url = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		case 10:
-			if wireType != 2 {
+			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Initiator", wireType)
 			}
-			var stringLen uint64
+			var v int
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowForted
@@ -1917,24 +2540,12 @@ func (m *SurebetSide) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
+				v |= int(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthForted
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthForted
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Initiator = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
+			m.Initiator = bool(v != 0)
 		case 11:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field ServiceId", wireType)
