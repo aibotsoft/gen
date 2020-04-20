@@ -15,11 +15,11 @@ option (gogoproto.populate_all) = true;
 option (gogoproto.goproto_unrecognized_all) = false;
 option (gogoproto.goproto_unkeyed_all) = false;
 option (gogoproto.goproto_sizecache_all) = false;
-//option (gogoproto.equal_all) = true;
+option (gogoproto.equal_all) = true;
 //option (gogoproto.testgen_all) = true;
 
 
-service Forted {
+service Surebet {
     rpc CheckLine (CheckLineRequest) returns (CheckLineResponse) {
     }
 
@@ -29,20 +29,27 @@ message CheckLineRequest {
     Line line = 1;
 }
 message CheckLineResponse {
-    int64 surebet_count = 1;
+    int64 price = 1;
 }
 message Line {
     int64 num = 1;
-//    string service_name = 2;
+    string service_name = 2;
 //    int64 service_id = 11;
-//    string sport_name = 3;
-//    string league_name = 4;
-//    string home = 5;
-//    string away = 6;
-//    string market_name = 7;
-//    double price = 8;
-//    string url = 9;
-//    bool initiator = 10;
+    string sport_name = 3;
+    int64 sport_id = 11;
+
+    string league_name = 4;
+
+    int64 league_id = 12;
+
+    string home = 5;
+    string away = 6;
+    string market_name = 7;
+    double price = 8;
+    string url = 9;
+    bool initiator = 10;
+    string starts = 13;
+    int64 event_id = 14;
 }
 
 

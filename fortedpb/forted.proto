@@ -22,6 +22,8 @@ option (gogoproto.goproto_sizecache_all) = false;
 service Forted {
     rpc CreateSurebet (CreateSurebetRequest) returns (CreateSurebetResponse) {
     }
+    rpc PlaceSurebet (PlaceSurebetRequest) returns (PlaceSurebetResponse) {
+    }
     rpc CreateSurebetMany (CreateSurebetManyRequest) returns (CreateSurebetManyResponse) {
     }
 }
@@ -40,6 +42,13 @@ message CreateSurebetRequest {
 message CreateSurebetResponse {
     int64 surebet_id = 1;
     int64 surebet_hash = 2;
+}
+
+message PlaceSurebetRequest {
+    Surebet surebet = 1;
+}
+message PlaceSurebetResponse {
+    int64 surebet_id = 1;
 }
 
 message Surebet {
