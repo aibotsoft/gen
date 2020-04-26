@@ -31,7 +31,7 @@ var _ = math.Inf
 const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
 type CheckLineRequest struct {
-	Line *Line `protobuf:"bytes,1,opt,name=line,proto3" json:"line,omitempty"`
+	Side *Side `protobuf:"bytes,1,opt,name=side,proto3" json:"side,omitempty"`
 }
 
 func (m *CheckLineRequest) Reset()      { *m = CheckLineRequest{} }
@@ -66,15 +66,15 @@ func (m *CheckLineRequest) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_CheckLineRequest proto.InternalMessageInfo
 
-func (m *CheckLineRequest) GetLine() *Line {
+func (m *CheckLineRequest) GetSide() *Side {
 	if m != nil {
-		return m.Line
+		return m.Side
 	}
 	return nil
 }
 
 type CheckLineResponse struct {
-	Price int64 `protobuf:"varint,1,opt,name=price,proto3" json:"price,omitempty"`
+	Side *Side `protobuf:"bytes,1,opt,name=side,proto3" json:"side,omitempty"`
 }
 
 func (m *CheckLineResponse) Reset()      { *m = CheckLineResponse{} }
@@ -109,42 +109,27 @@ func (m *CheckLineResponse) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_CheckLineResponse proto.InternalMessageInfo
 
-func (m *CheckLineResponse) GetPrice() int64 {
+func (m *CheckLineResponse) GetSide() *Side {
 	if m != nil {
-		return m.Price
+		return m.Side
 	}
-	return 0
+	return nil
 }
 
-type Line struct {
-	Num         int64  `protobuf:"varint,1,opt,name=num,proto3" json:"num,omitempty"`
-	ServiceName string `protobuf:"bytes,2,opt,name=service_name,json=serviceName,proto3" json:"service_name,omitempty"`
-	//    int64 service_id = 11;
-	SportName  string  `protobuf:"bytes,3,opt,name=sport_name,json=sportName,proto3" json:"sport_name,omitempty"`
-	SportId    int64   `protobuf:"varint,11,opt,name=sport_id,json=sportId,proto3" json:"sport_id,omitempty"`
-	LeagueName string  `protobuf:"bytes,4,opt,name=league_name,json=leagueName,proto3" json:"league_name,omitempty"`
-	LeagueId   int64   `protobuf:"varint,12,opt,name=league_id,json=leagueId,proto3" json:"league_id,omitempty"`
-	Home       string  `protobuf:"bytes,5,opt,name=home,proto3" json:"home,omitempty"`
-	Away       string  `protobuf:"bytes,6,opt,name=away,proto3" json:"away,omitempty"`
-	MarketName string  `protobuf:"bytes,7,opt,name=market_name,json=marketName,proto3" json:"market_name,omitempty"`
-	Price      float64 `protobuf:"fixed64,8,opt,name=price,proto3" json:"price,omitempty"`
-	Url        string  `protobuf:"bytes,9,opt,name=url,proto3" json:"url,omitempty"`
-	Initiator  bool    `protobuf:"varint,10,opt,name=initiator,proto3" json:"initiator,omitempty"`
-	Starts     string  `protobuf:"bytes,13,opt,name=starts,proto3" json:"starts,omitempty"`
-	EventId    int64   `protobuf:"varint,14,opt,name=event_id,json=eventId,proto3" json:"event_id,omitempty"`
+type PingRequest struct {
 }
 
-func (m *Line) Reset()      { *m = Line{} }
-func (*Line) ProtoMessage() {}
-func (*Line) Descriptor() ([]byte, []int) {
+func (m *PingRequest) Reset()      { *m = PingRequest{} }
+func (*PingRequest) ProtoMessage() {}
+func (*PingRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_c4fed42b5e3ea230, []int{2}
 }
-func (m *Line) XXX_Unmarshal(b []byte) error {
+func (m *PingRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *Line) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *PingRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_Line.Marshal(b, m, deterministic)
+		return xxx_messageInfo_PingRequest.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -154,110 +139,218 @@ func (m *Line) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 		return b[:n], nil
 	}
 }
-func (m *Line) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Line.Merge(m, src)
+func (m *PingRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_PingRequest.Merge(m, src)
 }
-func (m *Line) XXX_Size() int {
+func (m *PingRequest) XXX_Size() int {
 	return m.Size()
 }
-func (m *Line) XXX_DiscardUnknown() {
-	xxx_messageInfo_Line.DiscardUnknown(m)
+func (m *PingRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_PingRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_Line proto.InternalMessageInfo
+var xxx_messageInfo_PingRequest proto.InternalMessageInfo
 
-func (m *Line) GetNum() int64 {
+type PingResponse struct {
+}
+
+func (m *PingResponse) Reset()      { *m = PingResponse{} }
+func (*PingResponse) ProtoMessage() {}
+func (*PingResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_c4fed42b5e3ea230, []int{3}
+}
+func (m *PingResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *PingResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_PingResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *PingResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_PingResponse.Merge(m, src)
+}
+func (m *PingResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *PingResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_PingResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_PingResponse proto.InternalMessageInfo
+
+type Side struct {
+	Num         int64   `protobuf:"varint,1,opt,name=num,proto3" json:"num,omitempty"`
+	ServiceName string  `protobuf:"bytes,2,opt,name=service_name,json=serviceName,proto3" json:"service_name,omitempty"`
+	ServiceId   int64   `protobuf:"varint,15,opt,name=service_id,json=serviceId,proto3" json:"service_id,omitempty"`
+	SportName   string  `protobuf:"bytes,3,opt,name=sport_name,json=sportName,proto3" json:"sport_name,omitempty"`
+	SportId     int64   `protobuf:"varint,11,opt,name=sport_id,json=sportId,proto3" json:"sport_id,omitempty"`
+	LeagueName  string  `protobuf:"bytes,4,opt,name=league_name,json=leagueName,proto3" json:"league_name,omitempty"`
+	LeagueId    int64   `protobuf:"varint,12,opt,name=league_id,json=leagueId,proto3" json:"league_id,omitempty"`
+	Home        string  `protobuf:"bytes,5,opt,name=home,proto3" json:"home,omitempty"`
+	Away        string  `protobuf:"bytes,6,opt,name=away,proto3" json:"away,omitempty"`
+	MarketName  string  `protobuf:"bytes,7,opt,name=market_name,json=marketName,proto3" json:"market_name,omitempty"`
+	MarketId    int64   `protobuf:"varint,16,opt,name=market_id,json=marketId,proto3" json:"market_id,omitempty"`
+	Price       float64 `protobuf:"fixed64,8,opt,name=price,proto3" json:"price,omitempty"`
+	PriceId     int64   `protobuf:"varint,17,opt,name=price_id,json=priceId,proto3" json:"price_id,omitempty"`
+	Url         string  `protobuf:"bytes,9,opt,name=url,proto3" json:"url,omitempty"`
+	Initiator   bool    `protobuf:"varint,10,opt,name=initiator,proto3" json:"initiator,omitempty"`
+	Starts      string  `protobuf:"bytes,13,opt,name=starts,proto3" json:"starts,omitempty"`
+	EventId     int64   `protobuf:"varint,14,opt,name=event_id,json=eventId,proto3" json:"event_id,omitempty"`
+}
+
+func (m *Side) Reset()      { *m = Side{} }
+func (*Side) ProtoMessage() {}
+func (*Side) Descriptor() ([]byte, []int) {
+	return fileDescriptor_c4fed42b5e3ea230, []int{4}
+}
+func (m *Side) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *Side) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_Side.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *Side) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Side.Merge(m, src)
+}
+func (m *Side) XXX_Size() int {
+	return m.Size()
+}
+func (m *Side) XXX_DiscardUnknown() {
+	xxx_messageInfo_Side.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Side proto.InternalMessageInfo
+
+func (m *Side) GetNum() int64 {
 	if m != nil {
 		return m.Num
 	}
 	return 0
 }
 
-func (m *Line) GetServiceName() string {
+func (m *Side) GetServiceName() string {
 	if m != nil {
 		return m.ServiceName
 	}
 	return ""
 }
 
-func (m *Line) GetSportName() string {
+func (m *Side) GetServiceId() int64 {
+	if m != nil {
+		return m.ServiceId
+	}
+	return 0
+}
+
+func (m *Side) GetSportName() string {
 	if m != nil {
 		return m.SportName
 	}
 	return ""
 }
 
-func (m *Line) GetSportId() int64 {
+func (m *Side) GetSportId() int64 {
 	if m != nil {
 		return m.SportId
 	}
 	return 0
 }
 
-func (m *Line) GetLeagueName() string {
+func (m *Side) GetLeagueName() string {
 	if m != nil {
 		return m.LeagueName
 	}
 	return ""
 }
 
-func (m *Line) GetLeagueId() int64 {
+func (m *Side) GetLeagueId() int64 {
 	if m != nil {
 		return m.LeagueId
 	}
 	return 0
 }
 
-func (m *Line) GetHome() string {
+func (m *Side) GetHome() string {
 	if m != nil {
 		return m.Home
 	}
 	return ""
 }
 
-func (m *Line) GetAway() string {
+func (m *Side) GetAway() string {
 	if m != nil {
 		return m.Away
 	}
 	return ""
 }
 
-func (m *Line) GetMarketName() string {
+func (m *Side) GetMarketName() string {
 	if m != nil {
 		return m.MarketName
 	}
 	return ""
 }
 
-func (m *Line) GetPrice() float64 {
+func (m *Side) GetMarketId() int64 {
+	if m != nil {
+		return m.MarketId
+	}
+	return 0
+}
+
+func (m *Side) GetPrice() float64 {
 	if m != nil {
 		return m.Price
 	}
 	return 0
 }
 
-func (m *Line) GetUrl() string {
+func (m *Side) GetPriceId() int64 {
+	if m != nil {
+		return m.PriceId
+	}
+	return 0
+}
+
+func (m *Side) GetUrl() string {
 	if m != nil {
 		return m.Url
 	}
 	return ""
 }
 
-func (m *Line) GetInitiator() bool {
+func (m *Side) GetInitiator() bool {
 	if m != nil {
 		return m.Initiator
 	}
 	return false
 }
 
-func (m *Line) GetStarts() string {
+func (m *Side) GetStarts() string {
 	if m != nil {
 		return m.Starts
 	}
 	return ""
 }
 
-func (m *Line) GetEventId() int64 {
+func (m *Side) GetEventId() int64 {
 	if m != nil {
 		return m.EventId
 	}
@@ -267,41 +360,47 @@ func (m *Line) GetEventId() int64 {
 func init() {
 	proto.RegisterType((*CheckLineRequest)(nil), "surebetpb.CheckLineRequest")
 	proto.RegisterType((*CheckLineResponse)(nil), "surebetpb.CheckLineResponse")
-	proto.RegisterType((*Line)(nil), "surebetpb.Line")
+	proto.RegisterType((*PingRequest)(nil), "surebetpb.PingRequest")
+	proto.RegisterType((*PingResponse)(nil), "surebetpb.PingResponse")
+	proto.RegisterType((*Side)(nil), "surebetpb.Side")
 }
 
 func init() { proto.RegisterFile("surebet.proto", fileDescriptor_c4fed42b5e3ea230) }
 
 var fileDescriptor_c4fed42b5e3ea230 = []byte{
-	// 438 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x6c, 0x52, 0xb1, 0x6e, 0x13, 0x41,
-	0x10, 0xbd, 0x8d, 0x1d, 0xdb, 0x37, 0x4e, 0x20, 0xac, 0x10, 0x5a, 0x92, 0xb0, 0x18, 0xd3, 0x98,
-	0x02, 0x47, 0x0a, 0x45, 0x7a, 0x68, 0xb0, 0x84, 0x28, 0x9c, 0x8e, 0x06, 0xdd, 0xf9, 0x86, 0xf3,
-	0x2a, 0xbe, 0xdb, 0x63, 0x6f, 0x2f, 0x88, 0x8e, 0x4f, 0xe0, 0x33, 0xf8, 0x14, 0xca, 0x94, 0x29,
-	0xf1, 0xf9, 0x07, 0x68, 0x90, 0x28, 0xd1, 0xce, 0xae, 0x9c, 0x08, 0xa5, 0x9b, 0xf7, 0xe6, 0xbd,
-	0x99, 0x9d, 0x99, 0x85, 0xfd, 0xba, 0x31, 0x98, 0xa2, 0x9d, 0x56, 0x46, 0x5b, 0xcd, 0xe3, 0x00,
-	0xab, 0xf4, 0xf0, 0x65, 0xae, 0xec, 0xb2, 0x49, 0xa7, 0x0b, 0x5d, 0x9c, 0xe4, 0x3a, 0xd7, 0x27,
-	0xa4, 0x48, 0x9b, 0x4f, 0x84, 0x08, 0x50, 0xe4, 0x9d, 0xe3, 0x33, 0x38, 0x78, 0xb3, 0xc4, 0xc5,
-	0xc5, 0x3b, 0x55, 0xe2, 0x1c, 0x3f, 0x37, 0x58, 0x5b, 0xfe, 0x1c, 0xba, 0x2b, 0x55, 0xa2, 0x60,
-	0x23, 0x36, 0x19, 0x9e, 0xde, 0x9f, 0x6e, 0x8b, 0x4f, 0x49, 0x45, 0xc9, 0xf1, 0x0b, 0x78, 0x70,
-	0xcb, 0x58, 0x57, 0xba, 0xac, 0x91, 0x3f, 0x84, 0xdd, 0xca, 0xa8, 0x85, 0xb7, 0x76, 0xe6, 0x1e,
-	0x8c, 0xff, 0xec, 0x40, 0xd7, 0xc9, 0xf8, 0x01, 0x74, 0xca, 0xa6, 0x08, 0x49, 0x17, 0xf2, 0x67,
-	0xb0, 0x57, 0xa3, 0xb9, 0x54, 0x0b, 0xfc, 0x58, 0x26, 0x05, 0x8a, 0x9d, 0x11, 0x9b, 0xc4, 0xf3,
-	0x61, 0xe0, 0xde, 0x27, 0x05, 0xf2, 0x27, 0x00, 0x75, 0xa5, 0x8d, 0xf5, 0x82, 0x0e, 0x09, 0x62,
-	0x62, 0x28, 0xfd, 0x18, 0x06, 0x3e, 0xad, 0x32, 0x31, 0xa4, 0xc2, 0x7d, 0xc2, 0xb3, 0x8c, 0x3f,
-	0x85, 0xe1, 0x0a, 0x93, 0xbc, 0x09, 0xb5, 0xbb, 0x64, 0x05, 0x4f, 0x91, 0xf7, 0x08, 0xe2, 0x20,
-	0x50, 0x99, 0xd8, 0x23, 0xf3, 0xc0, 0x13, 0xb3, 0x8c, 0x73, 0xe8, 0x2e, 0x75, 0x81, 0x62, 0x97,
-	0x6c, 0x14, 0x3b, 0x2e, 0xf9, 0x92, 0x7c, 0x15, 0x3d, 0xcf, 0xb9, 0xd8, 0x75, 0x29, 0x12, 0x73,
-	0x81, 0xe1, 0x81, 0x7d, 0xdf, 0xc5, 0x53, 0xd4, 0x65, 0xbb, 0x94, 0xc1, 0x88, 0x4d, 0x58, 0x58,
-	0x8a, 0xdb, 0x45, 0x63, 0x56, 0x22, 0x26, 0xb9, 0x0b, 0xf9, 0x31, 0xc4, 0xaa, 0x54, 0x56, 0x25,
-	0x56, 0x1b, 0x01, 0x23, 0x36, 0x19, 0xcc, 0x6f, 0x08, 0xfe, 0x08, 0x7a, 0xb5, 0x4d, 0x8c, 0xad,
-	0xc5, 0x3e, 0x59, 0x02, 0x72, 0xf3, 0xe3, 0x25, 0x96, 0x34, 0xff, 0x3d, 0x3f, 0x3f, 0xe1, 0x59,
-	0x76, 0x7a, 0x0e, 0xfd, 0x73, 0x7f, 0x3a, 0xfe, 0x16, 0xe2, 0xed, 0xb5, 0xf8, 0xd1, 0xad, 0x8b,
-	0xfe, 0x7f, 0xfc, 0xc3, 0xe3, 0xbb, 0x93, 0xfe, 0xc0, 0xe3, 0xe8, 0xf5, 0xd9, 0xf5, 0x5a, 0x46,
-	0xbf, 0xd7, 0x92, 0xfd, 0x5d, 0x4b, 0xf6, 0xad, 0x95, 0xec, 0x47, 0x2b, 0xd9, 0xcf, 0x56, 0xb2,
-	0xab, 0x56, 0xb2, 0x5f, 0xad, 0x64, 0xdf, 0x37, 0x32, 0xba, 0xda, 0xc8, 0xe8, 0x7a, 0x23, 0xa3,
-	0x0f, 0x37, 0x1f, 0x33, 0xed, 0xd1, 0x87, 0x7b, 0xf5, 0x2f, 0x00, 0x00, 0xff, 0xff, 0xaf, 0x9c,
-	0x57, 0xc6, 0xbb, 0x02, 0x00, 0x00,
+	// 505 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x8c, 0x93, 0xbf, 0x72, 0xd3, 0x40,
+	0x10, 0xc6, 0x75, 0x58, 0x89, 0xad, 0x95, 0x9d, 0x38, 0x37, 0x4c, 0x38, 0x9c, 0x70, 0x18, 0xd3,
+	0xb8, 0xc1, 0x99, 0x09, 0x45, 0xa0, 0x85, 0x06, 0xcd, 0x30, 0x0c, 0xa3, 0x74, 0x34, 0x8c, 0xe4,
+	0x3b, 0xe4, 0x9b, 0x44, 0x7f, 0xd0, 0x9f, 0x30, 0x74, 0x3c, 0x01, 0xc3, 0x63, 0xf0, 0x28, 0x14,
+	0x14, 0x29, 0x53, 0x62, 0xf9, 0x05, 0x28, 0x29, 0x99, 0xdb, 0x3b, 0x27, 0x1e, 0xa0, 0xa0, 0xdb,
+	0xef, 0xdb, 0xfd, 0xed, 0x27, 0xd9, 0x2b, 0x18, 0x54, 0x4d, 0x29, 0x63, 0x59, 0xcf, 0x8a, 0x32,
+	0xaf, 0x73, 0xea, 0x59, 0x59, 0xc4, 0xa3, 0x47, 0x89, 0xaa, 0x17, 0x4d, 0x3c, 0x9b, 0xe7, 0xe9,
+	0x51, 0x92, 0x27, 0xf9, 0x11, 0x4e, 0xc4, 0xcd, 0x3b, 0x54, 0x28, 0xb0, 0x32, 0xe4, 0xe4, 0x04,
+	0x86, 0xcf, 0x17, 0x72, 0x7e, 0xf6, 0x52, 0x65, 0x32, 0x94, 0xef, 0x1b, 0x59, 0xd5, 0xf4, 0x21,
+	0xb8, 0x95, 0x12, 0x92, 0x91, 0x31, 0x99, 0xfa, 0xc7, 0xbb, 0xb3, 0xeb, 0xe5, 0xb3, 0x53, 0x25,
+	0x64, 0x88, 0xcd, 0xc9, 0x13, 0xd8, 0xdb, 0x00, 0xab, 0x22, 0xcf, 0x2a, 0xf9, 0x7f, 0xe4, 0x00,
+	0xfc, 0xd7, 0x2a, 0x4b, 0x6c, 0xda, 0x64, 0x07, 0xfa, 0x46, 0x9a, 0x1d, 0x93, 0xef, 0x1d, 0x70,
+	0xf5, 0x34, 0x1d, 0x42, 0x27, 0x6b, 0x52, 0xdc, 0xd5, 0x09, 0x75, 0x49, 0x1f, 0x40, 0xbf, 0x92,
+	0xe5, 0x85, 0x9a, 0xcb, 0xb7, 0x59, 0x94, 0x4a, 0x76, 0x6b, 0x4c, 0xa6, 0x5e, 0xe8, 0x5b, 0xef,
+	0x55, 0x94, 0x4a, 0x7a, 0x0f, 0x60, 0x3d, 0xa2, 0x04, 0xdb, 0x45, 0xd6, 0xb3, 0x4e, 0x20, 0xb0,
+	0x5d, 0xe4, 0x65, 0x6d, 0xf8, 0x0e, 0xf2, 0x1e, 0x3a, 0x48, 0xdf, 0x85, 0x9e, 0x69, 0x2b, 0xc1,
+	0x7c, 0x64, 0xbb, 0xa8, 0x03, 0x41, 0xef, 0x83, 0x7f, 0x2e, 0xa3, 0xa4, 0xb1, 0xd1, 0x2e, 0xa2,
+	0x60, 0x2c, 0x64, 0x0f, 0xc0, 0xb3, 0x03, 0x4a, 0xb0, 0x3e, 0xc2, 0x3d, 0x63, 0x04, 0x82, 0x52,
+	0x70, 0x17, 0x79, 0x2a, 0xd9, 0x16, 0x62, 0x58, 0x6b, 0x2f, 0xfa, 0x10, 0x7d, 0x64, 0xdb, 0xc6,
+	0xd3, 0xb5, 0x4e, 0x49, 0xa3, 0xf2, 0x4c, 0xda, 0x07, 0xec, 0x9a, 0x14, 0x63, 0xad, 0x53, 0xec,
+	0x80, 0x12, 0x6c, 0x68, 0x52, 0x8c, 0x11, 0x08, 0x7a, 0x1b, 0xb6, 0x8a, 0x52, 0xcd, 0x25, 0xeb,
+	0x8d, 0xc9, 0x94, 0x84, 0x46, 0xe8, 0x97, 0xc2, 0x42, 0x13, 0x7b, 0xe6, 0xa5, 0x50, 0x07, 0x42,
+	0xff, 0xc4, 0x4d, 0x79, 0xce, 0x3c, 0x8c, 0xd1, 0x25, 0x3d, 0x04, 0x4f, 0x65, 0xaa, 0x56, 0x51,
+	0x9d, 0x97, 0x0c, 0xc6, 0x64, 0xda, 0x0b, 0x6f, 0x0c, 0xba, 0x0f, 0xdb, 0x55, 0x1d, 0x95, 0x75,
+	0xc5, 0x06, 0x88, 0x58, 0xa5, 0x23, 0xe4, 0x85, 0xcc, 0xf0, 0xa1, 0x76, 0x4c, 0x04, 0xea, 0x40,
+	0x1c, 0x7f, 0x26, 0xd0, 0x3d, 0x35, 0x67, 0x40, 0x9f, 0x82, 0xab, 0xff, 0x6a, 0xba, 0xbf, 0x71,
+	0x18, 0x1b, 0xa7, 0x30, 0xba, 0xf3, 0x97, 0x6f, 0x6f, 0xc2, 0xa1, 0x2f, 0xc0, 0xbb, 0x3e, 0x37,
+	0x7a, 0xb0, 0x31, 0xf7, 0xe7, 0xf5, 0x8e, 0x0e, 0xff, 0xdd, 0x5c, 0x6f, 0x7a, 0x76, 0x72, 0xb5,
+	0xe4, 0xce, 0xcf, 0x25, 0x27, 0xbf, 0x96, 0x9c, 0x7c, 0x6a, 0x39, 0xf9, 0xda, 0x72, 0xf2, 0xad,
+	0xe5, 0xe4, 0xb2, 0xe5, 0xe4, 0x47, 0xcb, 0xc9, 0x97, 0x15, 0x77, 0x2e, 0x57, 0xdc, 0xb9, 0x5a,
+	0x71, 0xe7, 0xcd, 0xcd, 0x97, 0x15, 0x6f, 0xe3, 0x17, 0xf3, 0xf8, 0x77, 0x00, 0x00, 0x00, 0xff,
+	0xff, 0x82, 0x55, 0xa0, 0x63, 0x7c, 0x03, 0x00, 0x00,
 }
 
 func (this *CheckLineRequest) Equal(that interface{}) bool {
@@ -323,7 +422,7 @@ func (this *CheckLineRequest) Equal(that interface{}) bool {
 	} else if this == nil {
 		return false
 	}
-	if !this.Line.Equal(that1.Line) {
+	if !this.Side.Equal(that1.Side) {
 		return false
 	}
 	return true
@@ -347,19 +446,61 @@ func (this *CheckLineResponse) Equal(that interface{}) bool {
 	} else if this == nil {
 		return false
 	}
-	if this.Price != that1.Price {
+	if !this.Side.Equal(that1.Side) {
 		return false
 	}
 	return true
 }
-func (this *Line) Equal(that interface{}) bool {
+func (this *PingRequest) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
 	}
 
-	that1, ok := that.(*Line)
+	that1, ok := that.(*PingRequest)
 	if !ok {
-		that2, ok := that.(Line)
+		that2, ok := that.(PingRequest)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	return true
+}
+func (this *PingResponse) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*PingResponse)
+	if !ok {
+		that2, ok := that.(PingResponse)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	return true
+}
+func (this *Side) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*Side)
+	if !ok {
+		that2, ok := that.(Side)
 		if ok {
 			that1 = &that2
 		} else {
@@ -375,6 +516,9 @@ func (this *Line) Equal(that interface{}) bool {
 		return false
 	}
 	if this.ServiceName != that1.ServiceName {
+		return false
+	}
+	if this.ServiceId != that1.ServiceId {
 		return false
 	}
 	if this.SportName != that1.SportName {
@@ -398,7 +542,13 @@ func (this *Line) Equal(that interface{}) bool {
 	if this.MarketName != that1.MarketName {
 		return false
 	}
+	if this.MarketId != that1.MarketId {
+		return false
+	}
 	if this.Price != that1.Price {
+		return false
+	}
+	if this.PriceId != that1.PriceId {
 		return false
 	}
 	if this.Url != that1.Url {
@@ -421,8 +571,8 @@ func (this *CheckLineRequest) GoString() string {
 	}
 	s := make([]string, 0, 5)
 	s = append(s, "&surebetpb.CheckLineRequest{")
-	if this.Line != nil {
-		s = append(s, "Line: "+fmt.Sprintf("%#v", this.Line)+",\n")
+	if this.Side != nil {
+		s = append(s, "Side: "+fmt.Sprintf("%#v", this.Side)+",\n")
 	}
 	s = append(s, "}")
 	return strings.Join(s, "")
@@ -433,18 +583,39 @@ func (this *CheckLineResponse) GoString() string {
 	}
 	s := make([]string, 0, 5)
 	s = append(s, "&surebetpb.CheckLineResponse{")
-	s = append(s, "Price: "+fmt.Sprintf("%#v", this.Price)+",\n")
+	if this.Side != nil {
+		s = append(s, "Side: "+fmt.Sprintf("%#v", this.Side)+",\n")
+	}
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
-func (this *Line) GoString() string {
+func (this *PingRequest) GoString() string {
 	if this == nil {
 		return "nil"
 	}
-	s := make([]string, 0, 18)
-	s = append(s, "&surebetpb.Line{")
+	s := make([]string, 0, 4)
+	s = append(s, "&surebetpb.PingRequest{")
+	s = append(s, "}")
+	return strings.Join(s, "")
+}
+func (this *PingResponse) GoString() string {
+	if this == nil {
+		return "nil"
+	}
+	s := make([]string, 0, 4)
+	s = append(s, "&surebetpb.PingResponse{")
+	s = append(s, "}")
+	return strings.Join(s, "")
+}
+func (this *Side) GoString() string {
+	if this == nil {
+		return "nil"
+	}
+	s := make([]string, 0, 21)
+	s = append(s, "&surebetpb.Side{")
 	s = append(s, "Num: "+fmt.Sprintf("%#v", this.Num)+",\n")
 	s = append(s, "ServiceName: "+fmt.Sprintf("%#v", this.ServiceName)+",\n")
+	s = append(s, "ServiceId: "+fmt.Sprintf("%#v", this.ServiceId)+",\n")
 	s = append(s, "SportName: "+fmt.Sprintf("%#v", this.SportName)+",\n")
 	s = append(s, "SportId: "+fmt.Sprintf("%#v", this.SportId)+",\n")
 	s = append(s, "LeagueName: "+fmt.Sprintf("%#v", this.LeagueName)+",\n")
@@ -452,7 +623,9 @@ func (this *Line) GoString() string {
 	s = append(s, "Home: "+fmt.Sprintf("%#v", this.Home)+",\n")
 	s = append(s, "Away: "+fmt.Sprintf("%#v", this.Away)+",\n")
 	s = append(s, "MarketName: "+fmt.Sprintf("%#v", this.MarketName)+",\n")
+	s = append(s, "MarketId: "+fmt.Sprintf("%#v", this.MarketId)+",\n")
 	s = append(s, "Price: "+fmt.Sprintf("%#v", this.Price)+",\n")
+	s = append(s, "PriceId: "+fmt.Sprintf("%#v", this.PriceId)+",\n")
 	s = append(s, "Url: "+fmt.Sprintf("%#v", this.Url)+",\n")
 	s = append(s, "Initiator: "+fmt.Sprintf("%#v", this.Initiator)+",\n")
 	s = append(s, "Starts: "+fmt.Sprintf("%#v", this.Starts)+",\n")
@@ -481,6 +654,7 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type SurebetClient interface {
+	Ping(ctx context.Context, in *PingRequest, opts ...grpc.CallOption) (*PingResponse, error)
 	CheckLine(ctx context.Context, in *CheckLineRequest, opts ...grpc.CallOption) (*CheckLineResponse, error)
 }
 
@@ -490,6 +664,15 @@ type surebetClient struct {
 
 func NewSurebetClient(cc *grpc.ClientConn) SurebetClient {
 	return &surebetClient{cc}
+}
+
+func (c *surebetClient) Ping(ctx context.Context, in *PingRequest, opts ...grpc.CallOption) (*PingResponse, error) {
+	out := new(PingResponse)
+	err := c.cc.Invoke(ctx, "/surebetpb.Surebet/Ping", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *surebetClient) CheckLine(ctx context.Context, in *CheckLineRequest, opts ...grpc.CallOption) (*CheckLineResponse, error) {
@@ -503,6 +686,7 @@ func (c *surebetClient) CheckLine(ctx context.Context, in *CheckLineRequest, opt
 
 // SurebetServer is the server API for Surebet service.
 type SurebetServer interface {
+	Ping(context.Context, *PingRequest) (*PingResponse, error)
 	CheckLine(context.Context, *CheckLineRequest) (*CheckLineResponse, error)
 }
 
@@ -510,12 +694,33 @@ type SurebetServer interface {
 type UnimplementedSurebetServer struct {
 }
 
+func (*UnimplementedSurebetServer) Ping(ctx context.Context, req *PingRequest) (*PingResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Ping not implemented")
+}
 func (*UnimplementedSurebetServer) CheckLine(ctx context.Context, req *CheckLineRequest) (*CheckLineResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CheckLine not implemented")
 }
 
 func RegisterSurebetServer(s *grpc.Server, srv SurebetServer) {
 	s.RegisterService(&_Surebet_serviceDesc, srv)
+}
+
+func _Surebet_Ping_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PingRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SurebetServer).Ping(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/surebetpb.Surebet/Ping",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SurebetServer).Ping(ctx, req.(*PingRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _Surebet_CheckLine_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -540,6 +745,10 @@ var _Surebet_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "surebetpb.Surebet",
 	HandlerType: (*SurebetServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Ping",
+			Handler:    _Surebet_Ping_Handler,
+		},
 		{
 			MethodName: "CheckLine",
 			Handler:    _Surebet_CheckLine_Handler,
@@ -569,9 +778,9 @@ func (m *CheckLineRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if m.Line != nil {
+	if m.Side != nil {
 		{
-			size, err := m.Line.MarshalToSizedBuffer(dAtA[:i])
+			size, err := m.Side.MarshalToSizedBuffer(dAtA[:i])
 			if err != nil {
 				return 0, err
 			}
@@ -604,15 +813,22 @@ func (m *CheckLineResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if m.Price != 0 {
-		i = encodeVarintSurebet(dAtA, i, uint64(m.Price))
+	if m.Side != nil {
+		{
+			size, err := m.Side.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintSurebet(dAtA, i, uint64(size))
+		}
 		i--
-		dAtA[i] = 0x8
+		dAtA[i] = 0xa
 	}
 	return len(dAtA) - i, nil
 }
 
-func (m *Line) Marshal() (dAtA []byte, err error) {
+func (m *PingRequest) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -622,16 +838,81 @@ func (m *Line) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *Line) MarshalTo(dAtA []byte) (int, error) {
+func (m *PingRequest) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *Line) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *PingRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
+	return len(dAtA) - i, nil
+}
+
+func (m *PingResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *PingResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *PingResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	return len(dAtA) - i, nil
+}
+
+func (m *Side) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *Side) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *Side) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.PriceId != 0 {
+		i = encodeVarintSurebet(dAtA, i, uint64(m.PriceId))
+		i--
+		dAtA[i] = 0x1
+		i--
+		dAtA[i] = 0x88
+	}
+	if m.MarketId != 0 {
+		i = encodeVarintSurebet(dAtA, i, uint64(m.MarketId))
+		i--
+		dAtA[i] = 0x1
+		i--
+		dAtA[i] = 0x80
+	}
+	if m.ServiceId != 0 {
+		i = encodeVarintSurebet(dAtA, i, uint64(m.ServiceId))
+		i--
+		dAtA[i] = 0x78
+	}
 	if m.EventId != 0 {
 		i = encodeVarintSurebet(dAtA, i, uint64(m.EventId))
 		i--
@@ -741,7 +1022,7 @@ func encodeVarintSurebet(dAtA []byte, offset int, v uint64) int {
 func NewPopulatedCheckLineRequest(r randySurebet, easy bool) *CheckLineRequest {
 	this := &CheckLineRequest{}
 	if r.Intn(5) != 0 {
-		this.Line = NewPopulatedLine(r, easy)
+		this.Side = NewPopulatedSide(r, easy)
 	}
 	if !easy && r.Intn(10) != 0 {
 	}
@@ -750,17 +1031,30 @@ func NewPopulatedCheckLineRequest(r randySurebet, easy bool) *CheckLineRequest {
 
 func NewPopulatedCheckLineResponse(r randySurebet, easy bool) *CheckLineResponse {
 	this := &CheckLineResponse{}
-	this.Price = int64(r.Int63())
-	if r.Intn(2) == 0 {
-		this.Price *= -1
+	if r.Intn(5) != 0 {
+		this.Side = NewPopulatedSide(r, easy)
 	}
 	if !easy && r.Intn(10) != 0 {
 	}
 	return this
 }
 
-func NewPopulatedLine(r randySurebet, easy bool) *Line {
-	this := &Line{}
+func NewPopulatedPingRequest(r randySurebet, easy bool) *PingRequest {
+	this := &PingRequest{}
+	if !easy && r.Intn(10) != 0 {
+	}
+	return this
+}
+
+func NewPopulatedPingResponse(r randySurebet, easy bool) *PingResponse {
+	this := &PingResponse{}
+	if !easy && r.Intn(10) != 0 {
+	}
+	return this
+}
+
+func NewPopulatedSide(r randySurebet, easy bool) *Side {
+	this := &Side{}
 	this.Num = int64(r.Int63())
 	if r.Intn(2) == 0 {
 		this.Num *= -1
@@ -789,6 +1083,18 @@ func NewPopulatedLine(r randySurebet, easy bool) *Line {
 	this.EventId = int64(r.Int63())
 	if r.Intn(2) == 0 {
 		this.EventId *= -1
+	}
+	this.ServiceId = int64(r.Int63())
+	if r.Intn(2) == 0 {
+		this.ServiceId *= -1
+	}
+	this.MarketId = int64(r.Int63())
+	if r.Intn(2) == 0 {
+		this.MarketId *= -1
+	}
+	this.PriceId = int64(r.Int63())
+	if r.Intn(2) == 0 {
+		this.PriceId *= -1
 	}
 	if !easy && r.Intn(10) != 0 {
 	}
@@ -873,8 +1179,8 @@ func (m *CheckLineRequest) Size() (n int) {
 	}
 	var l int
 	_ = l
-	if m.Line != nil {
-		l = m.Line.Size()
+	if m.Side != nil {
+		l = m.Side.Size()
 		n += 1 + l + sovSurebet(uint64(l))
 	}
 	return n
@@ -886,13 +1192,32 @@ func (m *CheckLineResponse) Size() (n int) {
 	}
 	var l int
 	_ = l
-	if m.Price != 0 {
-		n += 1 + sovSurebet(uint64(m.Price))
+	if m.Side != nil {
+		l = m.Side.Size()
+		n += 1 + l + sovSurebet(uint64(l))
 	}
 	return n
 }
 
-func (m *Line) Size() (n int) {
+func (m *PingRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	return n
+}
+
+func (m *PingResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	return n
+}
+
+func (m *Side) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -948,6 +1273,15 @@ func (m *Line) Size() (n int) {
 	if m.EventId != 0 {
 		n += 1 + sovSurebet(uint64(m.EventId))
 	}
+	if m.ServiceId != 0 {
+		n += 1 + sovSurebet(uint64(m.ServiceId))
+	}
+	if m.MarketId != 0 {
+		n += 2 + sovSurebet(uint64(m.MarketId))
+	}
+	if m.PriceId != 0 {
+		n += 2 + sovSurebet(uint64(m.PriceId))
+	}
 	return n
 }
 
@@ -962,7 +1296,7 @@ func (this *CheckLineRequest) String() string {
 		return "nil"
 	}
 	s := strings.Join([]string{`&CheckLineRequest{`,
-		`Line:` + strings.Replace(this.Line.String(), "Line", "Line", 1) + `,`,
+		`Side:` + strings.Replace(this.Side.String(), "Side", "Side", 1) + `,`,
 		`}`,
 	}, "")
 	return s
@@ -972,16 +1306,34 @@ func (this *CheckLineResponse) String() string {
 		return "nil"
 	}
 	s := strings.Join([]string{`&CheckLineResponse{`,
-		`Price:` + fmt.Sprintf("%v", this.Price) + `,`,
+		`Side:` + strings.Replace(this.Side.String(), "Side", "Side", 1) + `,`,
 		`}`,
 	}, "")
 	return s
 }
-func (this *Line) String() string {
+func (this *PingRequest) String() string {
 	if this == nil {
 		return "nil"
 	}
-	s := strings.Join([]string{`&Line{`,
+	s := strings.Join([]string{`&PingRequest{`,
+		`}`,
+	}, "")
+	return s
+}
+func (this *PingResponse) String() string {
+	if this == nil {
+		return "nil"
+	}
+	s := strings.Join([]string{`&PingResponse{`,
+		`}`,
+	}, "")
+	return s
+}
+func (this *Side) String() string {
+	if this == nil {
+		return "nil"
+	}
+	s := strings.Join([]string{`&Side{`,
 		`Num:` + fmt.Sprintf("%v", this.Num) + `,`,
 		`ServiceName:` + fmt.Sprintf("%v", this.ServiceName) + `,`,
 		`SportName:` + fmt.Sprintf("%v", this.SportName) + `,`,
@@ -996,6 +1348,9 @@ func (this *Line) String() string {
 		`LeagueId:` + fmt.Sprintf("%v", this.LeagueId) + `,`,
 		`Starts:` + fmt.Sprintf("%v", this.Starts) + `,`,
 		`EventId:` + fmt.Sprintf("%v", this.EventId) + `,`,
+		`ServiceId:` + fmt.Sprintf("%v", this.ServiceId) + `,`,
+		`MarketId:` + fmt.Sprintf("%v", this.MarketId) + `,`,
+		`PriceId:` + fmt.Sprintf("%v", this.PriceId) + `,`,
 		`}`,
 	}, "")
 	return s
@@ -1039,7 +1394,7 @@ func (m *CheckLineRequest) Unmarshal(dAtA []byte) error {
 		switch fieldNum {
 		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Line", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Side", wireType)
 			}
 			var msglen int
 			for shift := uint(0); ; shift += 7 {
@@ -1066,10 +1421,10 @@ func (m *CheckLineRequest) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if m.Line == nil {
-				m.Line = &Line{}
+			if m.Side == nil {
+				m.Side = &Side{}
 			}
-			if err := m.Line.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			if err := m.Side.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex
@@ -1127,10 +1482,10 @@ func (m *CheckLineResponse) Unmarshal(dAtA []byte) error {
 		}
 		switch fieldNum {
 		case 1:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Price", wireType)
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Side", wireType)
 			}
-			m.Price = 0
+			var msglen int
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowSurebet
@@ -1140,11 +1495,28 @@ func (m *CheckLineResponse) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Price |= int64(b&0x7F) << shift
+				msglen |= int(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
+			if msglen < 0 {
+				return ErrInvalidLengthSurebet
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthSurebet
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Side == nil {
+				m.Side = &Side{}
+			}
+			if err := m.Side.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
 			skippy, err := skipSurebet(dAtA[iNdEx:])
@@ -1169,7 +1541,7 @@ func (m *CheckLineResponse) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *Line) Unmarshal(dAtA []byte) error {
+func (m *PingRequest) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1192,10 +1564,116 @@ func (m *Line) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: Line: wiretype end group for non-group")
+			return fmt.Errorf("proto: PingRequest: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: Line: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: PingRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		default:
+			iNdEx = preIndex
+			skippy, err := skipSurebet(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthSurebet
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthSurebet
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *PingResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowSurebet
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: PingResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: PingResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		default:
+			iNdEx = preIndex
+			skippy, err := skipSurebet(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthSurebet
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthSurebet
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *Side) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowSurebet
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: Side: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: Side: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
@@ -1557,6 +2035,63 @@ func (m *Line) Unmarshal(dAtA []byte) error {
 				b := dAtA[iNdEx]
 				iNdEx++
 				m.EventId |= int64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 15:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field ServiceId", wireType)
+			}
+			m.ServiceId = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowSurebet
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.ServiceId |= int64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 16:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field MarketId", wireType)
+			}
+			m.MarketId = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowSurebet
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.MarketId |= int64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 17:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field PriceId", wireType)
+			}
+			m.PriceId = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowSurebet
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.PriceId |= int64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}

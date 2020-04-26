@@ -116,6 +116,194 @@ func (m *CreateSurebetManyResponse) GetSurebetCount() int64 {
 	return 0
 }
 
+type PlaceBetRequest struct {
+	Num     int64    `protobuf:"varint,1,opt,name=num,proto3" json:"num,omitempty"`
+	Surebet *Surebet `protobuf:"bytes,2,opt,name=surebet,proto3" json:"surebet,omitempty"`
+}
+
+func (m *PlaceBetRequest) Reset()      { *m = PlaceBetRequest{} }
+func (*PlaceBetRequest) ProtoMessage() {}
+func (*PlaceBetRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_16a4d244bf92f218, []int{2}
+}
+func (m *PlaceBetRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *PlaceBetRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_PlaceBetRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *PlaceBetRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_PlaceBetRequest.Merge(m, src)
+}
+func (m *PlaceBetRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *PlaceBetRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_PlaceBetRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_PlaceBetRequest proto.InternalMessageInfo
+
+func (m *PlaceBetRequest) GetNum() int64 {
+	if m != nil {
+		return m.Num
+	}
+	return 0
+}
+
+func (m *PlaceBetRequest) GetSurebet() *Surebet {
+	if m != nil {
+		return m.Surebet
+	}
+	return nil
+}
+
+type PlaceBetResponse struct {
+	Side *SurebetSide `protobuf:"bytes,1,opt,name=side,proto3" json:"side,omitempty"`
+}
+
+func (m *PlaceBetResponse) Reset()      { *m = PlaceBetResponse{} }
+func (*PlaceBetResponse) ProtoMessage() {}
+func (*PlaceBetResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_16a4d244bf92f218, []int{3}
+}
+func (m *PlaceBetResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *PlaceBetResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_PlaceBetResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *PlaceBetResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_PlaceBetResponse.Merge(m, src)
+}
+func (m *PlaceBetResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *PlaceBetResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_PlaceBetResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_PlaceBetResponse proto.InternalMessageInfo
+
+func (m *PlaceBetResponse) GetSide() *SurebetSide {
+	if m != nil {
+		return m.Side
+	}
+	return nil
+}
+
+type CheckLineRequest struct {
+	Num     int64    `protobuf:"varint,1,opt,name=num,proto3" json:"num,omitempty"`
+	Surebet *Surebet `protobuf:"bytes,2,opt,name=surebet,proto3" json:"surebet,omitempty"`
+}
+
+func (m *CheckLineRequest) Reset()      { *m = CheckLineRequest{} }
+func (*CheckLineRequest) ProtoMessage() {}
+func (*CheckLineRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_16a4d244bf92f218, []int{4}
+}
+func (m *CheckLineRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *CheckLineRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_CheckLineRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *CheckLineRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CheckLineRequest.Merge(m, src)
+}
+func (m *CheckLineRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *CheckLineRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_CheckLineRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CheckLineRequest proto.InternalMessageInfo
+
+func (m *CheckLineRequest) GetNum() int64 {
+	if m != nil {
+		return m.Num
+	}
+	return 0
+}
+
+func (m *CheckLineRequest) GetSurebet() *Surebet {
+	if m != nil {
+		return m.Surebet
+	}
+	return nil
+}
+
+type CheckLineResponse struct {
+	Side *SurebetSide `protobuf:"bytes,1,opt,name=side,proto3" json:"side,omitempty"`
+}
+
+func (m *CheckLineResponse) Reset()      { *m = CheckLineResponse{} }
+func (*CheckLineResponse) ProtoMessage() {}
+func (*CheckLineResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_16a4d244bf92f218, []int{5}
+}
+func (m *CheckLineResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *CheckLineResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_CheckLineResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *CheckLineResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CheckLineResponse.Merge(m, src)
+}
+func (m *CheckLineResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *CheckLineResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_CheckLineResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CheckLineResponse proto.InternalMessageInfo
+
+func (m *CheckLineResponse) GetSide() *SurebetSide {
+	if m != nil {
+		return m.Side
+	}
+	return nil
+}
+
 type CreateSurebetRequest struct {
 	Surebet *Surebet `protobuf:"bytes,1,opt,name=surebet,proto3" json:"surebet,omitempty"`
 }
@@ -123,7 +311,7 @@ type CreateSurebetRequest struct {
 func (m *CreateSurebetRequest) Reset()      { *m = CreateSurebetRequest{} }
 func (*CreateSurebetRequest) ProtoMessage() {}
 func (*CreateSurebetRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_16a4d244bf92f218, []int{2}
+	return fileDescriptor_16a4d244bf92f218, []int{6}
 }
 func (m *CreateSurebetRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -167,7 +355,7 @@ type CreateSurebetResponse struct {
 func (m *CreateSurebetResponse) Reset()      { *m = CreateSurebetResponse{} }
 func (*CreateSurebetResponse) ProtoMessage() {}
 func (*CreateSurebetResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_16a4d244bf92f218, []int{3}
+	return fileDescriptor_16a4d244bf92f218, []int{7}
 }
 func (m *CreateSurebetResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -217,7 +405,7 @@ type PlaceSurebetRequest struct {
 func (m *PlaceSurebetRequest) Reset()      { *m = PlaceSurebetRequest{} }
 func (*PlaceSurebetRequest) ProtoMessage() {}
 func (*PlaceSurebetRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_16a4d244bf92f218, []int{4}
+	return fileDescriptor_16a4d244bf92f218, []int{8}
 }
 func (m *PlaceSurebetRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -260,7 +448,7 @@ type PlaceSurebetResponse struct {
 func (m *PlaceSurebetResponse) Reset()      { *m = PlaceSurebetResponse{} }
 func (*PlaceSurebetResponse) ProtoMessage() {}
 func (*PlaceSurebetResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_16a4d244bf92f218, []int{5}
+	return fileDescriptor_16a4d244bf92f218, []int{9}
 }
 func (m *PlaceSurebetResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -297,10 +485,8 @@ func (m *PlaceSurebetResponse) GetSurebetId() int64 {
 }
 
 type Surebet struct {
-	//    google.protobuf.Timestamp created_at = 1 [(gogoproto.stdtime) = true];
-	CreatedAt   string `protobuf:"bytes,1,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	SurebetHash string `protobuf:"bytes,2,opt,name=surebet_hash,json=surebetHash,proto3" json:"surebet_hash,omitempty"`
-	//    google.protobuf.Timestamp starts = 3 [(gogoproto.stdtime) = true];
+	CreatedAt    string         `protobuf:"bytes,1,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	SurebetHash  string         `protobuf:"bytes,2,opt,name=surebet_hash,json=surebetHash,proto3" json:"surebet_hash,omitempty"`
 	Starts       string         `protobuf:"bytes,3,opt,name=starts,proto3" json:"starts,omitempty"`
 	FortedHome   string         `protobuf:"bytes,4,opt,name=forted_home,json=fortedHome,proto3" json:"forted_home,omitempty"`
 	FortedAway   string         `protobuf:"bytes,5,opt,name=forted_away,json=fortedAway,proto3" json:"forted_away,omitempty"`
@@ -311,13 +497,14 @@ type Surebet struct {
 	SkynetId     int64          `protobuf:"varint,10,opt,name=skynet_id,json=skynetId,proto3" json:"skynet_id,omitempty"`
 	SurebetId    int64          `protobuf:"varint,11,opt,name=surebet_id,json=surebetId,proto3" json:"surebet_id,omitempty"`
 	LogId        int64          `protobuf:"varint,12,opt,name=log_id,json=logId,proto3" json:"log_id,omitempty"`
+	Calc         *Calc          `protobuf:"bytes,13,opt,name=calc,proto3" json:"calc,omitempty"`
 	Members      []*SurebetSide `protobuf:"bytes,15,rep,name=members,proto3" json:"members,omitempty"`
 }
 
 func (m *Surebet) Reset()      { *m = Surebet{} }
 func (*Surebet) ProtoMessage() {}
 func (*Surebet) Descriptor() ([]byte, []int) {
-	return fileDescriptor_16a4d244bf92f218, []int{6}
+	return fileDescriptor_16a4d244bf92f218, []int{10}
 }
 func (m *Surebet) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -430,6 +617,13 @@ func (m *Surebet) GetLogId() int64 {
 	return 0
 }
 
+func (m *Surebet) GetCalc() *Calc {
+	if m != nil {
+		return m.Calc
+	}
+	return nil
+}
+
 func (m *Surebet) GetMembers() []*SurebetSide {
 	if m != nil {
 		return m.Members
@@ -438,30 +632,35 @@ func (m *Surebet) GetMembers() []*SurebetSide {
 }
 
 type SurebetSide struct {
-	Num         int64   `protobuf:"varint,1,opt,name=num,proto3" json:"num,omitempty"`
-	ServiceName string  `protobuf:"bytes,2,opt,name=service_name,json=serviceName,proto3" json:"service_name,omitempty"`
-	ServiceId   int64   `protobuf:"varint,11,opt,name=service_id,json=serviceId,proto3" json:"service_id,omitempty"`
-	SportName   string  `protobuf:"bytes,3,opt,name=sport_name,json=sportName,proto3" json:"sport_name,omitempty"`
-	SportId     int64   `protobuf:"varint,12,opt,name=sport_id,json=sportId,proto3" json:"sport_id,omitempty"`
-	LeagueName  string  `protobuf:"bytes,4,opt,name=league_name,json=leagueName,proto3" json:"league_name,omitempty"`
-	LeagueId    int64   `protobuf:"varint,13,opt,name=league_id,json=leagueId,proto3" json:"league_id,omitempty"`
-	Home        string  `protobuf:"bytes,5,opt,name=home,proto3" json:"home,omitempty"`
-	HomeId      int64   `protobuf:"varint,14,opt,name=home_id,json=homeId,proto3" json:"home_id,omitempty"`
-	Away        string  `protobuf:"bytes,6,opt,name=away,proto3" json:"away,omitempty"`
-	AwayId      int64   `protobuf:"varint,15,opt,name=away_id,json=awayId,proto3" json:"away_id,omitempty"`
-	MarketName  string  `protobuf:"bytes,7,opt,name=market_name,json=marketName,proto3" json:"market_name,omitempty"`
-	MarketId    int64   `protobuf:"varint,16,opt,name=market_id,json=marketId,proto3" json:"market_id,omitempty"`
-	Price       float64 `protobuf:"fixed64,8,opt,name=price,proto3" json:"price,omitempty"`
-	PriceId     int64   `protobuf:"varint,17,opt,name=price_id,json=priceId,proto3" json:"price_id,omitempty"`
-	Url         string  `protobuf:"bytes,9,opt,name=url,proto3" json:"url,omitempty"`
-	Initiator   bool    `protobuf:"varint,10,opt,name=initiator,proto3" json:"initiator,omitempty"`
-	EventId     int64   `protobuf:"varint,18,opt,name=event_id,json=eventId,proto3" json:"event_id,omitempty"`
+	Num         int64      `protobuf:"varint,1,opt,name=num,proto3" json:"num,omitempty"`
+	ServiceName string     `protobuf:"bytes,2,opt,name=service_name,json=serviceName,proto3" json:"service_name,omitempty"`
+	ServiceId   int64      `protobuf:"varint,11,opt,name=service_id,json=serviceId,proto3" json:"service_id,omitempty"`
+	SportName   string     `protobuf:"bytes,3,opt,name=sport_name,json=sportName,proto3" json:"sport_name,omitempty"`
+	SportId     int64      `protobuf:"varint,12,opt,name=sport_id,json=sportId,proto3" json:"sport_id,omitempty"`
+	LeagueName  string     `protobuf:"bytes,4,opt,name=league_name,json=leagueName,proto3" json:"league_name,omitempty"`
+	LeagueId    int64      `protobuf:"varint,13,opt,name=league_id,json=leagueId,proto3" json:"league_id,omitempty"`
+	Home        string     `protobuf:"bytes,5,opt,name=home,proto3" json:"home,omitempty"`
+	HomeId      int64      `protobuf:"varint,14,opt,name=home_id,json=homeId,proto3" json:"home_id,omitempty"`
+	Away        string     `protobuf:"bytes,6,opt,name=away,proto3" json:"away,omitempty"`
+	AwayId      int64      `protobuf:"varint,15,opt,name=away_id,json=awayId,proto3" json:"away_id,omitempty"`
+	MarketName  string     `protobuf:"bytes,7,opt,name=market_name,json=marketName,proto3" json:"market_name,omitempty"`
+	MarketId    int64      `protobuf:"varint,16,opt,name=market_id,json=marketId,proto3" json:"market_id,omitempty"`
+	Price       float64    `protobuf:"fixed64,8,opt,name=price,proto3" json:"price,omitempty"`
+	PriceId     int64      `protobuf:"varint,17,opt,name=price_id,json=priceId,proto3" json:"price_id,omitempty"`
+	Url         string     `protobuf:"bytes,9,opt,name=url,proto3" json:"url,omitempty"`
+	Initiator   bool       `protobuf:"varint,10,opt,name=initiator,proto3" json:"initiator,omitempty"`
+	EventId     int64      `protobuf:"varint,18,opt,name=event_id,json=eventId,proto3" json:"event_id,omitempty"`
+	Check       *Check     `protobuf:"bytes,19,opt,name=check,proto3" json:"check,omitempty"`
+	BetConfig   *BetConfig `protobuf:"bytes,20,opt,name=bet_config,json=betConfig,proto3" json:"bet_config,omitempty"`
+	CheckCalc   *CheckCalc `protobuf:"bytes,21,opt,name=check_calc,json=checkCalc,proto3" json:"check_calc,omitempty"`
+	ToBet       *ToBet     `protobuf:"bytes,22,opt,name=to_bet,json=toBet,proto3" json:"to_bet,omitempty"`
+	Bet         *Bet       `protobuf:"bytes,23,opt,name=bet,proto3" json:"bet,omitempty"`
 }
 
 func (m *SurebetSide) Reset()      { *m = SurebetSide{} }
 func (*SurebetSide) ProtoMessage() {}
 func (*SurebetSide) Descriptor() ([]byte, []int) {
-	return fileDescriptor_16a4d244bf92f218, []int{7}
+	return fileDescriptor_16a4d244bf92f218, []int{11}
 }
 func (m *SurebetSide) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -616,71 +815,1521 @@ func (m *SurebetSide) GetEventId() int64 {
 	return 0
 }
 
+func (m *SurebetSide) GetCheck() *Check {
+	if m != nil {
+		return m.Check
+	}
+	return nil
+}
+
+func (m *SurebetSide) GetBetConfig() *BetConfig {
+	if m != nil {
+		return m.BetConfig
+	}
+	return nil
+}
+
+func (m *SurebetSide) GetCheckCalc() *CheckCalc {
+	if m != nil {
+		return m.CheckCalc
+	}
+	return nil
+}
+
+func (m *SurebetSide) GetToBet() *ToBet {
+	if m != nil {
+		return m.ToBet
+	}
+	return nil
+}
+
+func (m *SurebetSide) GetBet() *Bet {
+	if m != nil {
+		return m.Bet
+	}
+	return nil
+}
+
+type BetConfig struct {
+	ServiceName    string  `protobuf:"bytes,8,opt,name=service_name,json=serviceName,proto3" json:"service_name,omitempty"`
+	Regime         string  `protobuf:"bytes,11,opt,name=regime,proto3" json:"regime,omitempty"`
+	Priority       int64   `protobuf:"varint,3,opt,name=priority,proto3" json:"priority,omitempty"`
+	MaxCountLine   int64   `protobuf:"varint,4,opt,name=max_count_line,json=maxCountLine,proto3" json:"max_count_line,omitempty"`
+	MaxCountEvent  int64   `protobuf:"varint,5,opt,name=max_count_event,json=maxCountEvent,proto3" json:"max_count_event,omitempty"`
+	MinStake       float64 `protobuf:"fixed64,9,opt,name=min_stake,json=minStake,proto3" json:"min_stake,omitempty"`
+	MaxStake       float64 `protobuf:"fixed64,10,opt,name=max_stake,json=maxStake,proto3" json:"max_stake,omitempty"`
+	MaxWin         float64 `protobuf:"fixed64,12,opt,name=max_win,json=maxWin,proto3" json:"max_win,omitempty"`
+	MinPercent     float64 `protobuf:"fixed64,1,opt,name=min_percent,json=minPercent,proto3" json:"min_percent,omitempty"`
+	MaxPercent     float64 `protobuf:"fixed64,2,opt,name=max_percent,json=maxPercent,proto3" json:"max_percent,omitempty"`
+	MaxAmountEvent float64 `protobuf:"fixed64,6,opt,name=max_amount_event,json=maxAmountEvent,proto3" json:"max_amount_event,omitempty"`
+	RoundValue     float64 `protobuf:"fixed64,7,opt,name=round_value,json=roundValue,proto3" json:"round_value,omitempty"`
+}
+
+func (m *BetConfig) Reset()      { *m = BetConfig{} }
+func (*BetConfig) ProtoMessage() {}
+func (*BetConfig) Descriptor() ([]byte, []int) {
+	return fileDescriptor_16a4d244bf92f218, []int{12}
+}
+func (m *BetConfig) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *BetConfig) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_BetConfig.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *BetConfig) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_BetConfig.Merge(m, src)
+}
+func (m *BetConfig) XXX_Size() int {
+	return m.Size()
+}
+func (m *BetConfig) XXX_DiscardUnknown() {
+	xxx_messageInfo_BetConfig.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_BetConfig proto.InternalMessageInfo
+
+func (m *BetConfig) GetServiceName() string {
+	if m != nil {
+		return m.ServiceName
+	}
+	return ""
+}
+
+func (m *BetConfig) GetRegime() string {
+	if m != nil {
+		return m.Regime
+	}
+	return ""
+}
+
+func (m *BetConfig) GetPriority() int64 {
+	if m != nil {
+		return m.Priority
+	}
+	return 0
+}
+
+func (m *BetConfig) GetMaxCountLine() int64 {
+	if m != nil {
+		return m.MaxCountLine
+	}
+	return 0
+}
+
+func (m *BetConfig) GetMaxCountEvent() int64 {
+	if m != nil {
+		return m.MaxCountEvent
+	}
+	return 0
+}
+
+func (m *BetConfig) GetMinStake() float64 {
+	if m != nil {
+		return m.MinStake
+	}
+	return 0
+}
+
+func (m *BetConfig) GetMaxStake() float64 {
+	if m != nil {
+		return m.MaxStake
+	}
+	return 0
+}
+
+func (m *BetConfig) GetMaxWin() float64 {
+	if m != nil {
+		return m.MaxWin
+	}
+	return 0
+}
+
+func (m *BetConfig) GetMinPercent() float64 {
+	if m != nil {
+		return m.MinPercent
+	}
+	return 0
+}
+
+func (m *BetConfig) GetMaxPercent() float64 {
+	if m != nil {
+		return m.MaxPercent
+	}
+	return 0
+}
+
+func (m *BetConfig) GetMaxAmountEvent() float64 {
+	if m != nil {
+		return m.MaxAmountEvent
+	}
+	return 0
+}
+
+func (m *BetConfig) GetRoundValue() float64 {
+	if m != nil {
+		return m.RoundValue
+	}
+	return 0
+}
+
+type Calc struct {
+	Profit         float64 `protobuf:"fixed64,1,opt,name=profit,proto3" json:"profit,omitempty"`
+	FirstName      string  `protobuf:"bytes,2,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty"`
+	SecondName     string  `protobuf:"bytes,3,opt,name=second_name,json=secondName,proto3" json:"second_name,omitempty"`
+	LowerWinIndex  int64   `protobuf:"varint,4,opt,name=lower_win_index,json=lowerWinIndex,proto3" json:"lower_win_index,omitempty"`
+	HigherWinIndex int64   `protobuf:"varint,5,opt,name=higher_win_index,json=higherWinIndex,proto3" json:"higher_win_index,omitempty"`
+	FirstIndex     int64   `protobuf:"varint,8,opt,name=first_index,json=firstIndex,proto3" json:"first_index,omitempty"`
+	SecondIndex    int64   `protobuf:"varint,9,opt,name=second_index,json=secondIndex,proto3" json:"second_index,omitempty"`
+	WinDiff        float64 `protobuf:"fixed64,6,opt,name=win_diff,json=winDiff,proto3" json:"win_diff,omitempty"`
+	WinDiffRel     float64 `protobuf:"fixed64,7,opt,name=win_diff_rel,json=winDiffRel,proto3" json:"win_diff_rel,omitempty"`
+}
+
+func (m *Calc) Reset()      { *m = Calc{} }
+func (*Calc) ProtoMessage() {}
+func (*Calc) Descriptor() ([]byte, []int) {
+	return fileDescriptor_16a4d244bf92f218, []int{13}
+}
+func (m *Calc) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *Calc) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_Calc.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *Calc) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Calc.Merge(m, src)
+}
+func (m *Calc) XXX_Size() int {
+	return m.Size()
+}
+func (m *Calc) XXX_DiscardUnknown() {
+	xxx_messageInfo_Calc.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Calc proto.InternalMessageInfo
+
+func (m *Calc) GetProfit() float64 {
+	if m != nil {
+		return m.Profit
+	}
+	return 0
+}
+
+func (m *Calc) GetFirstName() string {
+	if m != nil {
+		return m.FirstName
+	}
+	return ""
+}
+
+func (m *Calc) GetSecondName() string {
+	if m != nil {
+		return m.SecondName
+	}
+	return ""
+}
+
+func (m *Calc) GetLowerWinIndex() int64 {
+	if m != nil {
+		return m.LowerWinIndex
+	}
+	return 0
+}
+
+func (m *Calc) GetHigherWinIndex() int64 {
+	if m != nil {
+		return m.HigherWinIndex
+	}
+	return 0
+}
+
+func (m *Calc) GetFirstIndex() int64 {
+	if m != nil {
+		return m.FirstIndex
+	}
+	return 0
+}
+
+func (m *Calc) GetSecondIndex() int64 {
+	if m != nil {
+		return m.SecondIndex
+	}
+	return 0
+}
+
+func (m *Calc) GetWinDiff() float64 {
+	if m != nil {
+		return m.WinDiff
+	}
+	return 0
+}
+
+func (m *Calc) GetWinDiffRel() float64 {
+	if m != nil {
+		return m.WinDiffRel
+	}
+	return 0
+}
+
+type CheckCalc struct {
+	Status   string  `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
+	MaxStake float64 `protobuf:"fixed64,2,opt,name=max_stake,json=maxStake,proto3" json:"max_stake,omitempty"`
+	MinStake float64 `protobuf:"fixed64,3,opt,name=min_stake,json=minStake,proto3" json:"min_stake,omitempty"`
+	MaxWin   float64 `protobuf:"fixed64,4,opt,name=max_win,json=maxWin,proto3" json:"max_win,omitempty"`
+	Stake    float64 `protobuf:"fixed64,5,opt,name=stake,proto3" json:"stake,omitempty"`
+	Win      float64 `protobuf:"fixed64,6,opt,name=win,proto3" json:"win,omitempty"`
+	IsFirst  bool    `protobuf:"varint,7,opt,name=is_first,json=isFirst,proto3" json:"is_first,omitempty"`
+}
+
+func (m *CheckCalc) Reset()      { *m = CheckCalc{} }
+func (*CheckCalc) ProtoMessage() {}
+func (*CheckCalc) Descriptor() ([]byte, []int) {
+	return fileDescriptor_16a4d244bf92f218, []int{14}
+}
+func (m *CheckCalc) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *CheckCalc) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_CheckCalc.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *CheckCalc) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CheckCalc.Merge(m, src)
+}
+func (m *CheckCalc) XXX_Size() int {
+	return m.Size()
+}
+func (m *CheckCalc) XXX_DiscardUnknown() {
+	xxx_messageInfo_CheckCalc.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CheckCalc proto.InternalMessageInfo
+
+func (m *CheckCalc) GetStatus() string {
+	if m != nil {
+		return m.Status
+	}
+	return ""
+}
+
+func (m *CheckCalc) GetMaxStake() float64 {
+	if m != nil {
+		return m.MaxStake
+	}
+	return 0
+}
+
+func (m *CheckCalc) GetMinStake() float64 {
+	if m != nil {
+		return m.MinStake
+	}
+	return 0
+}
+
+func (m *CheckCalc) GetMaxWin() float64 {
+	if m != nil {
+		return m.MaxWin
+	}
+	return 0
+}
+
+func (m *CheckCalc) GetStake() float64 {
+	if m != nil {
+		return m.Stake
+	}
+	return 0
+}
+
+func (m *CheckCalc) GetWin() float64 {
+	if m != nil {
+		return m.Win
+	}
+	return 0
+}
+
+func (m *CheckCalc) GetIsFirst() bool {
+	if m != nil {
+		return m.IsFirst
+	}
+	return false
+}
+
+type ToBet struct {
+	Stake float64 `protobuf:"fixed64,1,opt,name=stake,proto3" json:"stake,omitempty"`
+}
+
+func (m *ToBet) Reset()      { *m = ToBet{} }
+func (*ToBet) ProtoMessage() {}
+func (*ToBet) Descriptor() ([]byte, []int) {
+	return fileDescriptor_16a4d244bf92f218, []int{15}
+}
+func (m *ToBet) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *ToBet) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_ToBet.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *ToBet) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ToBet.Merge(m, src)
+}
+func (m *ToBet) XXX_Size() int {
+	return m.Size()
+}
+func (m *ToBet) XXX_DiscardUnknown() {
+	xxx_messageInfo_ToBet.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ToBet proto.InternalMessageInfo
+
+func (m *ToBet) GetStake() float64 {
+	if m != nil {
+		return m.Stake
+	}
+	return 0
+}
+
+type Bet struct {
+	Status     string  `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
+	StatusInfo string  `protobuf:"bytes,2,opt,name=status_info,json=statusInfo,proto3" json:"status_info,omitempty"`
+	Time       string  `protobuf:"bytes,3,opt,name=time,proto3" json:"time,omitempty"`
+	Price      float64 `protobuf:"fixed64,4,opt,name=price,proto3" json:"price,omitempty"`
+	Stake      float64 `protobuf:"fixed64,5,opt,name=stake,proto3" json:"stake,omitempty"`
+	TryCount   int64   `protobuf:"varint,6,opt,name=try_count,json=tryCount,proto3" json:"try_count,omitempty"`
+}
+
+func (m *Bet) Reset()      { *m = Bet{} }
+func (*Bet) ProtoMessage() {}
+func (*Bet) Descriptor() ([]byte, []int) {
+	return fileDescriptor_16a4d244bf92f218, []int{16}
+}
+func (m *Bet) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *Bet) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_Bet.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *Bet) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Bet.Merge(m, src)
+}
+func (m *Bet) XXX_Size() int {
+	return m.Size()
+}
+func (m *Bet) XXX_DiscardUnknown() {
+	xxx_messageInfo_Bet.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Bet proto.InternalMessageInfo
+
+func (m *Bet) GetStatus() string {
+	if m != nil {
+		return m.Status
+	}
+	return ""
+}
+
+func (m *Bet) GetStatusInfo() string {
+	if m != nil {
+		return m.StatusInfo
+	}
+	return ""
+}
+
+func (m *Bet) GetTime() string {
+	if m != nil {
+		return m.Time
+	}
+	return ""
+}
+
+func (m *Bet) GetPrice() float64 {
+	if m != nil {
+		return m.Price
+	}
+	return 0
+}
+
+func (m *Bet) GetStake() float64 {
+	if m != nil {
+		return m.Stake
+	}
+	return 0
+}
+
+func (m *Bet) GetTryCount() int64 {
+	if m != nil {
+		return m.TryCount
+	}
+	return 0
+}
+
+type Check struct {
+	Status      string  `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
+	CountLine   int64   `protobuf:"varint,2,opt,name=count_line,json=countLine,proto3" json:"count_line,omitempty"`
+	CountEvent  int64   `protobuf:"varint,3,opt,name=count_event,json=countEvent,proto3" json:"count_event,omitempty"`
+	AmountEvent float64 `protobuf:"fixed64,4,opt,name=amount_event,json=amountEvent,proto3" json:"amount_event,omitempty"`
+	MinBet      float64 `protobuf:"fixed64,5,opt,name=min_bet,json=minBet,proto3" json:"min_bet,omitempty"`
+	MaxBet      float64 `protobuf:"fixed64,6,opt,name=max_bet,json=maxBet,proto3" json:"max_bet,omitempty"`
+	Balance     float64 `protobuf:"fixed64,7,opt,name=balance,proto3" json:"balance,omitempty"`
+	Price       float64 `protobuf:"fixed64,8,opt,name=price,proto3" json:"price,omitempty"`
+	StatusInfo  string  `protobuf:"bytes,9,opt,name=status_info,json=statusInfo,proto3" json:"status_info,omitempty"`
+	Time        string  `protobuf:"bytes,10,opt,name=time,proto3" json:"time,omitempty"`
+}
+
+func (m *Check) Reset()      { *m = Check{} }
+func (*Check) ProtoMessage() {}
+func (*Check) Descriptor() ([]byte, []int) {
+	return fileDescriptor_16a4d244bf92f218, []int{17}
+}
+func (m *Check) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *Check) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_Check.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *Check) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Check.Merge(m, src)
+}
+func (m *Check) XXX_Size() int {
+	return m.Size()
+}
+func (m *Check) XXX_DiscardUnknown() {
+	xxx_messageInfo_Check.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Check proto.InternalMessageInfo
+
+func (m *Check) GetStatus() string {
+	if m != nil {
+		return m.Status
+	}
+	return ""
+}
+
+func (m *Check) GetCountLine() int64 {
+	if m != nil {
+		return m.CountLine
+	}
+	return 0
+}
+
+func (m *Check) GetCountEvent() int64 {
+	if m != nil {
+		return m.CountEvent
+	}
+	return 0
+}
+
+func (m *Check) GetAmountEvent() float64 {
+	if m != nil {
+		return m.AmountEvent
+	}
+	return 0
+}
+
+func (m *Check) GetMinBet() float64 {
+	if m != nil {
+		return m.MinBet
+	}
+	return 0
+}
+
+func (m *Check) GetMaxBet() float64 {
+	if m != nil {
+		return m.MaxBet
+	}
+	return 0
+}
+
+func (m *Check) GetBalance() float64 {
+	if m != nil {
+		return m.Balance
+	}
+	return 0
+}
+
+func (m *Check) GetPrice() float64 {
+	if m != nil {
+		return m.Price
+	}
+	return 0
+}
+
+func (m *Check) GetStatusInfo() string {
+	if m != nil {
+		return m.StatusInfo
+	}
+	return ""
+}
+
+func (m *Check) GetTime() string {
+	if m != nil {
+		return m.Time
+	}
+	return ""
+}
+
+type PingRequest struct {
+}
+
+func (m *PingRequest) Reset()      { *m = PingRequest{} }
+func (*PingRequest) ProtoMessage() {}
+func (*PingRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_16a4d244bf92f218, []int{18}
+}
+func (m *PingRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *PingRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_PingRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *PingRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_PingRequest.Merge(m, src)
+}
+func (m *PingRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *PingRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_PingRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_PingRequest proto.InternalMessageInfo
+
+type PingResponse struct {
+}
+
+func (m *PingResponse) Reset()      { *m = PingResponse{} }
+func (*PingResponse) ProtoMessage() {}
+func (*PingResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_16a4d244bf92f218, []int{19}
+}
+func (m *PingResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *PingResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_PingResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *PingResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_PingResponse.Merge(m, src)
+}
+func (m *PingResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *PingResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_PingResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_PingResponse proto.InternalMessageInfo
+
 func init() {
 	proto.RegisterType((*CreateSurebetManyRequest)(nil), "fortedpb.CreateSurebetManyRequest")
 	proto.RegisterType((*CreateSurebetManyResponse)(nil), "fortedpb.CreateSurebetManyResponse")
+	proto.RegisterType((*PlaceBetRequest)(nil), "fortedpb.PlaceBetRequest")
+	proto.RegisterType((*PlaceBetResponse)(nil), "fortedpb.PlaceBetResponse")
+	proto.RegisterType((*CheckLineRequest)(nil), "fortedpb.CheckLineRequest")
+	proto.RegisterType((*CheckLineResponse)(nil), "fortedpb.CheckLineResponse")
 	proto.RegisterType((*CreateSurebetRequest)(nil), "fortedpb.CreateSurebetRequest")
 	proto.RegisterType((*CreateSurebetResponse)(nil), "fortedpb.CreateSurebetResponse")
 	proto.RegisterType((*PlaceSurebetRequest)(nil), "fortedpb.PlaceSurebetRequest")
 	proto.RegisterType((*PlaceSurebetResponse)(nil), "fortedpb.PlaceSurebetResponse")
 	proto.RegisterType((*Surebet)(nil), "fortedpb.Surebet")
 	proto.RegisterType((*SurebetSide)(nil), "fortedpb.SurebetSide")
+	proto.RegisterType((*BetConfig)(nil), "fortedpb.BetConfig")
+	proto.RegisterType((*Calc)(nil), "fortedpb.Calc")
+	proto.RegisterType((*CheckCalc)(nil), "fortedpb.CheckCalc")
+	proto.RegisterType((*ToBet)(nil), "fortedpb.ToBet")
+	proto.RegisterType((*Bet)(nil), "fortedpb.Bet")
+	proto.RegisterType((*Check)(nil), "fortedpb.Check")
+	proto.RegisterType((*PingRequest)(nil), "fortedpb.PingRequest")
+	proto.RegisterType((*PingResponse)(nil), "fortedpb.PingResponse")
 }
 
 func init() { proto.RegisterFile("forted.proto", fileDescriptor_16a4d244bf92f218) }
 
 var fileDescriptor_16a4d244bf92f218 = []byte{
-	// 754 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xa4, 0x55, 0xcd, 0x4e, 0xdb, 0x4a,
-	0x14, 0x8e, 0x09, 0x24, 0xf1, 0x49, 0xb8, 0xc0, 0x5c, 0xb8, 0xd7, 0xe4, 0x5e, 0x4c, 0x6b, 0x36,
-	0x48, 0x55, 0x83, 0x44, 0xd5, 0x7d, 0x01, 0xa9, 0xc5, 0x52, 0x7f, 0x90, 0x59, 0xb5, 0x8b, 0x46,
-	0x93, 0x78, 0x48, 0x2c, 0x62, 0x4f, 0xea, 0x1f, 0x50, 0x76, 0x7d, 0x81, 0x4a, 0x7d, 0x9b, 0xbe,
-	0x42, 0x97, 0x2c, 0x59, 0x96, 0xb0, 0xae, 0xd4, 0x65, 0x97, 0xd5, 0x9c, 0x33, 0x06, 0x07, 0x42,
-	0x5b, 0xa9, 0xab, 0xcc, 0xf9, 0xce, 0x77, 0xce, 0x7c, 0xe7, 0x27, 0x63, 0x68, 0x1c, 0xc9, 0x38,
-	0x15, 0x7e, 0x6b, 0x18, 0xcb, 0x54, 0xb2, 0x1a, 0x59, 0xc3, 0x4e, 0xf3, 0x61, 0x2f, 0x48, 0xfb,
-	0x59, 0xa7, 0xd5, 0x95, 0xe1, 0x56, 0x4f, 0xf6, 0xe4, 0x16, 0x12, 0x3a, 0xd9, 0x11, 0x5a, 0x68,
-	0xe0, 0x89, 0x02, 0x9d, 0x67, 0x60, 0xed, 0xc5, 0x82, 0xa7, 0xe2, 0x30, 0x8b, 0x45, 0x47, 0xa4,
-	0x2f, 0x78, 0x34, 0xf2, 0xc4, 0xbb, 0x4c, 0x24, 0x29, 0x7b, 0x00, 0xd5, 0x84, 0x50, 0xcb, 0xb8,
-	0x57, 0xde, 0xac, 0x6f, 0x2f, 0xb5, 0xf2, 0x6b, 0x5a, 0x9a, 0xee, 0xe5, 0x0c, 0xe7, 0x09, 0xac,
-	0x4e, 0x49, 0x94, 0x0c, 0x65, 0x94, 0x08, 0xb6, 0x01, 0xf3, 0x9a, 0xd7, 0xee, 0xca, 0x2c, 0x52,
-	0xf9, 0x8c, 0xcd, 0xb2, 0xd7, 0xd0, 0xe0, 0x9e, 0xc2, 0x9c, 0x3d, 0x58, 0x9e, 0xc8, 0x30, 0x55,
-	0x86, 0xf1, 0x0b, 0x19, 0xaf, 0x61, 0xe5, 0x46, 0x12, 0x2d, 0x61, 0x0d, 0x20, 0x97, 0x10, 0xf8,
-	0xfa, 0x7e, 0x53, 0x23, 0xae, 0xcf, 0xee, 0x43, 0x2e, 0xa6, 0xdd, 0xe7, 0x49, 0xdf, 0x9a, 0x41,
-	0x42, 0x5d, 0x63, 0xfb, 0x3c, 0xe9, 0x3b, 0xbb, 0xf0, 0xf7, 0xc1, 0x80, 0x77, 0xff, 0x48, 0xde,
-	0x63, 0x58, 0x9e, 0xcc, 0xf1, 0x5b, 0xea, 0x9c, 0x4f, 0x65, 0xa8, 0xea, 0x10, 0x45, 0xed, 0x62,
-	0x85, 0x7e, 0x9b, 0xd3, 0x95, 0xa6, 0x67, 0x6a, 0x64, 0x27, 0x9d, 0x5a, 0x88, 0x39, 0x51, 0x08,
-	0xfb, 0x07, 0x2a, 0x49, 0xca, 0xe3, 0x34, 0xb1, 0xca, 0xe8, 0xd4, 0x16, 0x5b, 0x87, 0x3a, 0x29,
-	0x6f, 0xf7, 0x65, 0x28, 0xac, 0x59, 0x74, 0x02, 0x41, 0xfb, 0x32, 0x14, 0x05, 0x02, 0x3f, 0xe5,
-	0x23, 0x6b, 0xae, 0x48, 0xd8, 0x39, 0xe5, 0x23, 0x35, 0x67, 0x4d, 0x18, 0xc6, 0xf2, 0x28, 0x48,
-	0xad, 0x0a, 0x52, 0xf4, 0xae, 0x1e, 0x20, 0xa6, 0x14, 0x6a, 0x52, 0x32, 0x94, 0x71, 0x6a, 0x55,
-	0x49, 0x21, 0x61, 0x87, 0x0a, 0x2a, 0xe4, 0x19, 0x08, 0xde, 0xcb, 0x84, 0x55, 0x2b, 0xe6, 0x79,
-	0x8e, 0x18, 0xaa, 0x09, 0x06, 0xa9, 0x88, 0xdb, 0x11, 0x0f, 0x85, 0x65, 0x6a, 0x35, 0x08, 0xbd,
-	0xe4, 0xa1, 0x60, 0xff, 0x81, 0x99, 0x1c, 0x8f, 0x22, 0xea, 0x29, 0x60, 0x4f, 0x6b, 0x04, 0xb8,
-	0xfe, 0x8d, 0x8e, 0xd7, 0x6f, 0xee, 0xc3, 0x0a, 0x54, 0x06, 0xb2, 0xa7, 0x5c, 0x0d, 0x74, 0xcd,
-	0x0d, 0x64, 0xcf, 0xf5, 0xd9, 0x16, 0x54, 0x43, 0x11, 0x76, 0x44, 0x9c, 0x58, 0x0b, 0xf8, 0x97,
-	0x58, 0xb9, 0x35, 0xec, 0xc3, 0xc0, 0x17, 0x5e, 0xce, 0x72, 0xbe, 0x96, 0xa1, 0x5e, 0x70, 0xb0,
-	0x45, 0x28, 0x47, 0x59, 0xa8, 0x27, 0xac, 0x8e, 0x38, 0x30, 0x11, 0x9f, 0x04, 0x5d, 0x41, 0x75,
-	0xe4, 0x03, 0x23, 0x0c, 0x0b, 0x51, 0x5a, 0x35, 0xa5, 0xa0, 0x95, 0x10, 0x5d, 0x8a, 0x6a, 0x1b,
-	0xc5, 0xd3, 0x4c, 0x4d, 0x44, 0x30, 0x7a, 0x15, 0x6a, 0xe4, 0xbe, 0x2a, 0xa6, 0x8a, 0xb6, 0xeb,
-	0xab, 0x16, 0x52, 0x83, 0x29, 0x54, 0x4f, 0x9c, 0xa0, 0xbc, 0x85, 0x9a, 0x10, 0xf8, 0xd6, 0x3c,
-	0xb5, 0x90, 0x00, 0xd7, 0x67, 0x0c, 0x66, 0x71, 0x51, 0x68, 0x0f, 0xf0, 0xcc, 0xfe, 0x85, 0xaa,
-	0xfa, 0x55, 0xf4, 0xbf, 0x90, 0x5e, 0x51, 0x26, 0x91, 0x71, 0x69, 0x68, 0x23, 0xf0, 0xac, 0xc8,
-	0xea, 0x57, 0x91, 0x17, 0x88, 0xac, 0x4c, 0xd2, 0x15, 0xf2, 0xf8, 0x58, 0xe8, 0x92, 0x68, 0x43,
-	0x80, 0xa0, 0x5c, 0x97, 0x26, 0x04, 0xbe, 0xb5, 0x48, 0xba, 0x08, 0x70, 0x7d, 0xb6, 0x0c, 0x73,
-	0xc3, 0x38, 0xe8, 0xd2, 0xd6, 0x18, 0x1e, 0x19, 0xaa, 0x0d, 0x78, 0x50, 0x11, 0x4b, 0xd4, 0x06,
-	0xb4, 0x5d, 0x5f, 0x0d, 0x25, 0x8b, 0x07, 0x7a, 0x83, 0xd4, 0x91, 0xfd, 0x0f, 0x66, 0x10, 0x05,
-	0x69, 0xc0, 0x53, 0x19, 0xe3, 0xea, 0xd4, 0xbc, 0x6b, 0x40, 0xa5, 0x12, 0x27, 0x22, 0xc2, 0xcb,
-	0x19, 0xa5, 0x42, 0xdb, 0xf5, 0xb7, 0x3f, 0xcc, 0x40, 0xe5, 0x29, 0x6e, 0x04, 0xf3, 0x60, 0x7e,
-	0xe2, 0x29, 0x62, 0xf6, 0xf5, 0xae, 0x4c, 0x7b, 0xe8, 0x9a, 0xeb, 0x77, 0xfa, 0xe9, 0x95, 0x70,
-	0x4a, 0xec, 0x15, 0x34, 0x8a, 0xef, 0x07, 0x5b, 0xbb, 0x0e, 0x99, 0xf2, 0x36, 0x35, 0xed, 0xbb,
-	0xdc, 0x57, 0x09, 0xdf, 0xc2, 0xd2, 0xad, 0x67, 0x9b, 0x39, 0x77, 0x08, 0x29, 0x7c, 0x1c, 0x9a,
-	0x1b, 0x3f, 0xe5, 0xe4, 0xf9, 0x77, 0xb7, 0xcf, 0x2f, 0xec, 0xd2, 0xb7, 0x0b, 0xdb, 0xf8, 0x7e,
-	0x61, 0x1b, 0xef, 0xc7, 0xb6, 0xf1, 0x79, 0x6c, 0x1b, 0x67, 0x63, 0xdb, 0xf8, 0x32, 0xb6, 0x8d,
-	0x8f, 0x97, 0x76, 0xe9, 0xec, 0xd2, 0x2e, 0x9d, 0x5f, 0xda, 0xa5, 0x37, 0x57, 0x9f, 0xb0, 0x4e,
-	0x05, 0x3f, 0x4d, 0x8f, 0x7e, 0x04, 0x00, 0x00, 0xff, 0xff, 0x91, 0x0d, 0x8e, 0xc9, 0xe3, 0x06,
-	0x00, 0x00,
+	// 1521 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x57, 0xcd, 0x6e, 0x1b, 0x47,
+	0x12, 0xd6, 0x88, 0xbf, 0x53, 0xa4, 0xfe, 0xda, 0x92, 0x3c, 0xa2, 0xd7, 0x94, 0x3d, 0xde, 0x35,
+	0xbc, 0x58, 0xac, 0x0c, 0x68, 0xb1, 0xd8, 0xd3, 0x2e, 0xd6, 0xd2, 0xae, 0x63, 0x02, 0x4e, 0xa2,
+	0x8c, 0x82, 0x18, 0xc9, 0x21, 0x83, 0xe1, 0x4c, 0x93, 0x6c, 0x88, 0x33, 0xa3, 0xcc, 0x0c, 0x2d,
+	0xea, 0x96, 0x47, 0xf0, 0x35, 0xc8, 0x0b, 0xe4, 0x9a, 0x63, 0x1e, 0x20, 0x40, 0x8e, 0x06, 0x72,
+	0x31, 0x90, 0x4b, 0x2c, 0xbf, 0x40, 0x1e, 0x21, 0xa8, 0xaa, 0x1e, 0x72, 0x48, 0x91, 0x71, 0x82,
+	0xe4, 0xc4, 0xae, 0xaa, 0xaf, 0x8b, 0xf5, 0xf3, 0x75, 0x75, 0x0f, 0x34, 0x7b, 0x71, 0x92, 0xc9,
+	0xe0, 0xe0, 0x3c, 0x89, 0xb3, 0x58, 0xd4, 0x59, 0x3a, 0xef, 0xb6, 0xfe, 0xde, 0x57, 0xd9, 0x60,
+	0xd4, 0x3d, 0xf0, 0xe3, 0xf0, 0x61, 0x3f, 0xee, 0xc7, 0x0f, 0x09, 0xd0, 0x1d, 0xf5, 0x48, 0x22,
+	0x81, 0x56, 0xbc, 0xd1, 0x7e, 0x07, 0xac, 0xe3, 0x44, 0x7a, 0x99, 0x3c, 0x1d, 0x25, 0xb2, 0x2b,
+	0xb3, 0x77, 0xbd, 0xe8, 0xd2, 0x91, 0x9f, 0x8d, 0x64, 0x9a, 0x89, 0xbf, 0x41, 0x2d, 0x65, 0xad,
+	0x65, 0xdc, 0x29, 0x3d, 0x68, 0x1c, 0x6e, 0x1d, 0xe4, 0x7f, 0x73, 0xa0, 0xe1, 0x4e, 0x8e, 0xb0,
+	0xff, 0x0b, 0x7b, 0x0b, 0x1c, 0xa5, 0xe7, 0x71, 0x94, 0x4a, 0x71, 0x0f, 0xd6, 0x34, 0xce, 0xf5,
+	0xe3, 0x51, 0x84, 0xfe, 0x8c, 0x07, 0x25, 0xa7, 0xa9, 0x95, 0xc7, 0xa8, 0xb3, 0x4f, 0x60, 0xe3,
+	0x64, 0xe8, 0xf9, 0xf2, 0x48, 0x66, 0x79, 0x04, 0x9b, 0x50, 0x8a, 0x46, 0xa1, 0x46, 0xe3, 0xb2,
+	0x18, 0xd3, 0xea, 0x1d, 0xe3, 0x2d, 0x31, 0xfd, 0x1b, 0x36, 0xa7, 0x1e, 0x75, 0x28, 0x7f, 0x85,
+	0x72, 0xaa, 0x02, 0x49, 0x3e, 0x1b, 0x87, 0x3b, 0xd7, 0x76, 0x9f, 0xaa, 0x40, 0x3a, 0x04, 0xb1,
+	0x3f, 0x80, 0xcd, 0xe3, 0x81, 0xf4, 0xcf, 0x9e, 0xaa, 0x48, 0xfe, 0x41, 0x11, 0xfd, 0x07, 0xb6,
+	0x0a, 0x2e, 0x7f, 0x7b, 0x48, 0xc7, 0xb0, 0x3d, 0x53, 0xe5, 0x85, 0xad, 0x7a, 0x5b, 0x10, 0x1f,
+	0xc3, 0xce, 0x9c, 0x13, 0x1d, 0xc8, 0x6d, 0x80, 0xbc, 0x4d, 0x2a, 0xd0, 0x39, 0x9a, 0x5a, 0xd3,
+	0x09, 0xc4, 0x5d, 0xc8, 0x1b, 0xe6, 0x0e, 0xbc, 0x74, 0x40, 0xe9, 0x96, 0x9c, 0x86, 0xd6, 0x3d,
+	0xf1, 0xd2, 0x81, 0x7d, 0x04, 0x37, 0xa8, 0xe2, 0xbf, 0x27, 0xbc, 0x7f, 0xc2, 0xf6, 0xac, 0x8f,
+	0x5f, 0x15, 0x9d, 0xfd, 0x43, 0x09, 0x6a, 0x7a, 0x0b, 0x42, 0x7d, 0xca, 0x30, 0x70, 0x3d, 0xfe,
+	0x4b, 0xd3, 0x31, 0xb5, 0xe6, 0x51, 0xb6, 0x30, 0x11, 0x73, 0x26, 0x11, 0xb1, 0x0b, 0xd5, 0x34,
+	0xf3, 0x92, 0x2c, 0xb5, 0x4a, 0x64, 0xd4, 0x92, 0xd8, 0x87, 0x06, 0x47, 0xee, 0x0e, 0xe2, 0x50,
+	0x5a, 0x65, 0x32, 0x02, 0xab, 0x9e, 0xc4, 0xa1, 0x2c, 0x00, 0xbc, 0x0b, 0xef, 0xd2, 0xaa, 0x14,
+	0x01, 0x8f, 0x2e, 0xbc, 0x4b, 0x3c, 0x0b, 0x1a, 0x70, 0x9e, 0xc4, 0x3d, 0x95, 0x59, 0x55, 0x82,
+	0xe8, 0xf3, 0x7c, 0x42, 0x3a, 0x8c, 0x50, 0x83, 0xd2, 0xf3, 0x38, 0xc9, 0xac, 0x1a, 0x47, 0xc8,
+	0xba, 0x53, 0x54, 0x15, 0xfc, 0x0c, 0xa5, 0xd7, 0x1f, 0x49, 0xab, 0x5e, 0xf4, 0xf3, 0x94, 0x74,
+	0x14, 0x8d, 0x1a, 0x66, 0x32, 0x71, 0x23, 0x2f, 0x94, 0x96, 0xa9, 0xa3, 0x21, 0xd5, 0x7b, 0x5e,
+	0x28, 0xc5, 0x2d, 0x30, 0xd3, 0xb3, 0xcb, 0x88, 0x6b, 0x0a, 0x54, 0xd3, 0x3a, 0x2b, 0x3a, 0xc1,
+	0x5c, 0xc5, 0x1b, 0xf3, 0x7c, 0xd8, 0x81, 0xea, 0x30, 0xee, 0xa3, 0xa9, 0x49, 0xa6, 0xca, 0x30,
+	0xee, 0x77, 0x02, 0x61, 0x43, 0xd9, 0xf7, 0x86, 0xbe, 0xb5, 0x46, 0x9d, 0x5e, 0x9f, 0x76, 0xfa,
+	0xd8, 0x1b, 0xfa, 0x0e, 0xd9, 0xc4, 0x43, 0xa8, 0x85, 0x32, 0xec, 0xca, 0x24, 0xb5, 0x36, 0x68,
+	0xb4, 0x2c, 0x61, 0x7d, 0x8e, 0xb2, 0xbf, 0xad, 0x40, 0xa3, 0x60, 0x58, 0x70, 0x0e, 0xb1, 0xa9,
+	0x32, 0x79, 0xae, 0x7c, 0xc9, 0xb9, 0xe6, 0x4d, 0x65, 0x1d, 0x25, 0x8b, 0xf9, 0x68, 0x48, 0x21,
+	0x1f, 0xd6, 0xe8, 0x74, 0xb1, 0xb4, 0xbc, 0x9f, 0xfb, 0x6e, 0x92, 0x86, 0x76, 0xef, 0x41, 0x9d,
+	0xcd, 0x93, 0x84, 0x6b, 0x24, 0x77, 0x02, 0x2c, 0x33, 0x37, 0x81, 0xb7, 0x6a, 0x56, 0xb0, 0x2a,
+	0x2f, 0xb3, 0x06, 0xa8, 0x80, 0x0a, 0x53, 0x72, 0xea, 0xac, 0xe8, 0x04, 0x42, 0x40, 0x99, 0xc8,
+	0xc4, 0x5c, 0xa1, 0xb5, 0xb8, 0x09, 0x35, 0xfc, 0x45, 0xf8, 0x3a, 0xc1, 0xab, 0x28, 0x32, 0x98,
+	0x88, 0xc5, 0xac, 0xa1, 0x35, 0x82, 0xf1, 0x17, 0xc1, 0x1b, 0x0c, 0x46, 0x91, 0xe3, 0x0a, 0xbd,
+	0xe4, 0x4c, 0xea, 0x94, 0x98, 0x45, 0xc0, 0xaa, 0x3c, 0x2e, 0x0d, 0x50, 0x81, 0xb5, 0xc9, 0x71,
+	0xb1, 0xa2, 0x13, 0x88, 0x6d, 0xa8, 0x9c, 0x27, 0xca, 0x67, 0x66, 0x19, 0x0e, 0x0b, 0x58, 0x06,
+	0x5a, 0xe0, 0x8e, 0x2d, 0x2e, 0x03, 0xc9, 0x9d, 0x00, 0x9b, 0x32, 0x4a, 0x86, 0x9a, 0x65, 0xb8,
+	0x14, 0x7f, 0x02, 0x53, 0x45, 0x2a, 0x53, 0x5e, 0x16, 0x27, 0x44, 0xaf, 0xba, 0x33, 0x55, 0xa0,
+	0x2b, 0xf9, 0x5c, 0x46, 0xf4, 0xe7, 0x82, 0x5d, 0x91, 0xdc, 0x09, 0xc4, 0x5f, 0xa0, 0xe2, 0xe3,
+	0xa0, 0xb4, 0x6e, 0x10, 0x8b, 0x36, 0x0a, 0x2c, 0x42, 0xb5, 0xc3, 0x56, 0x71, 0x08, 0xc0, 0x97,
+	0x4a, 0xd4, 0x53, 0x7d, 0x6b, 0x9b, 0xb0, 0x37, 0xa6, 0xd8, 0x23, 0xbc, 0x5b, 0xd0, 0xe4, 0x98,
+	0xdd, 0x7c, 0x89, 0x7b, 0x68, 0xb3, 0x4b, 0x2c, 0xdd, 0x99, 0xdf, 0x43, 0xfe, 0x89, 0xaa, 0xa6,
+	0x9f, 0x2f, 0xc5, 0x7d, 0xa8, 0x66, 0xb1, 0x8b, 0xf3, 0x6b, 0x77, 0x3e, 0x9e, 0x0f, 0x63, 0xbc,
+	0x5e, 0x2a, 0x19, 0xfe, 0x88, 0x7d, 0x28, 0x21, 0xe8, 0x26, 0x81, 0xd6, 0x66, 0x02, 0x71, 0xd0,
+	0x62, 0xbf, 0x28, 0x81, 0x39, 0x89, 0xea, 0x1a, 0x67, 0xeb, 0xd7, 0x39, 0xbb, 0x0b, 0xd5, 0x44,
+	0xf6, 0x55, 0x28, 0x89, 0xaf, 0xa6, 0xa3, 0x25, 0xd1, 0xa2, 0x36, 0xc4, 0x89, 0xca, 0x2e, 0x89,
+	0xaa, 0x25, 0x67, 0x22, 0x8b, 0x3f, 0xc3, 0x7a, 0xe8, 0x8d, 0xf9, 0xaa, 0x75, 0x87, 0x2a, 0x62,
+	0x46, 0x96, 0x9c, 0x66, 0xe8, 0x8d, 0xe9, 0xae, 0xc5, 0xeb, 0x47, 0xdc, 0x87, 0x8d, 0x29, 0x8a,
+	0xea, 0x4e, 0x0c, 0x2c, 0x39, 0x6b, 0x39, 0xec, 0xff, 0xa8, 0x24, 0x8e, 0xa8, 0xc8, 0x4d, 0x33,
+	0xef, 0x8c, 0x27, 0x88, 0xe1, 0xd4, 0x43, 0x15, 0x9d, 0xa2, 0xcc, 0x04, 0x1a, 0x6b, 0x23, 0x68,
+	0xa3, 0x37, 0x66, 0xe3, 0x4d, 0xa8, 0xa1, 0xf1, 0x42, 0x45, 0x74, 0x60, 0x0c, 0xa7, 0x1a, 0x7a,
+	0xe3, 0x67, 0x2a, 0x22, 0x5e, 0xaa, 0xc8, 0x3d, 0x97, 0x89, 0x2f, 0xf5, 0x6b, 0xc0, 0x70, 0x20,
+	0x54, 0xd1, 0x09, 0x6b, 0x98, 0xb8, 0xe3, 0x09, 0x60, 0x55, 0x03, 0xbc, 0x71, 0x0e, 0x78, 0x00,
+	0x9b, 0x08, 0xf0, 0xc2, 0x42, 0xf4, 0x55, 0x42, 0x61, 0xea, 0x8f, 0xc2, 0x69, 0xf8, 0xfb, 0xd0,
+	0x48, 0xe2, 0x51, 0x14, 0xb8, 0xcf, 0xbd, 0xe1, 0x88, 0xcf, 0x80, 0xe1, 0x00, 0xa9, 0x3e, 0x42,
+	0x8d, 0xfd, 0xf5, 0x2a, 0x94, 0xa9, 0xc9, 0xbb, 0x50, 0xd5, 0x23, 0x99, 0x03, 0xd2, 0x12, 0xce,
+	0x85, 0x9e, 0x4a, 0xd2, 0xac, 0x38, 0x57, 0x4c, 0xd2, 0x50, 0x87, 0xf6, 0xa1, 0x91, 0x4a, 0x3f,
+	0x8e, 0x82, 0xe2, 0xdc, 0x00, 0x56, 0x11, 0xe0, 0x3e, 0x6c, 0x0c, 0xe3, 0x0b, 0x99, 0x60, 0x21,
+	0x5c, 0x15, 0x05, 0x72, 0xac, 0xfb, 0xb1, 0x46, 0xea, 0x67, 0x2a, 0xea, 0xa0, 0x12, 0x73, 0x1a,
+	0xa8, 0xfe, 0x60, 0x06, 0xc8, 0x1d, 0x59, 0x67, 0xfd, 0x04, 0x49, 0x63, 0x1d, 0x23, 0x62, 0x50,
+	0x9d, 0x40, 0x1c, 0x24, 0x03, 0x88, 0x58, 0x14, 0x13, 0x23, 0x4c, 0x7d, 0x55, 0x93, 0x8e, 0x21,
+	0x7b, 0x50, 0xc7, 0xbf, 0x09, 0x54, 0xaf, 0xa7, 0x2b, 0x57, 0xbb, 0x50, 0xd1, 0xff, 0x54, 0xaf,
+	0x27, 0xee, 0x40, 0x33, 0x37, 0xb9, 0x89, 0x1c, 0xe6, 0x35, 0xd3, 0x66, 0x47, 0x0e, 0xed, 0x6f,
+	0x0c, 0x30, 0x27, 0x07, 0x45, 0x5f, 0x96, 0xd9, 0x28, 0xd5, 0x57, 0xad, 0x96, 0x66, 0xc9, 0xb1,
+	0x3a, 0x47, 0x8e, 0x19, 0x5a, 0x95, 0xe6, 0x68, 0x55, 0x60, 0x4e, 0x79, 0x86, 0x39, 0xdb, 0x50,
+	0xe1, 0x1d, 0x15, 0x9e, 0x49, 0x24, 0xe0, 0xe0, 0x41, 0x28, 0xa7, 0x81, 0x4b, 0xcc, 0x4e, 0xa5,
+	0x2e, 0x55, 0x84, 0xc2, 0xaf, 0x3b, 0x35, 0x95, 0x3e, 0x46, 0xd1, 0xbe, 0x0d, 0x15, 0x3a, 0xb3,
+	0x53, 0x5f, 0x46, 0xc1, 0x97, 0xfd, 0xa5, 0x01, 0x25, 0xb4, 0x2e, 0x4b, 0x0a, 0xdb, 0x4d, 0x2b,
+	0x57, 0x45, 0xbd, 0x58, 0xd3, 0x01, 0x58, 0xd5, 0x89, 0x7a, 0x31, 0x4e, 0xe8, 0x4c, 0x4d, 0x88,
+	0x40, 0xeb, 0xe9, 0x28, 0x2d, 0x17, 0x47, 0xe9, 0xe2, 0x64, 0x6e, 0x81, 0x99, 0x25, 0x97, 0xfa,
+	0xa1, 0x5c, 0xe5, 0xa3, 0x9d, 0x25, 0x97, 0xfc, 0x48, 0xfe, 0x62, 0x15, 0x2a, 0x54, 0xf8, 0xa5,
+	0xf1, 0xe1, 0xdb, 0x67, 0x7a, 0xf0, 0xf9, 0x8d, 0x66, 0xfa, 0x93, 0x53, 0xbf, 0x0f, 0x8d, 0xe2,
+	0x89, 0xe7, 0xd1, 0xc1, 0x3b, 0xf8, 0xbc, 0xdc, 0x85, 0xe6, 0xcc, 0xa9, 0xe2, 0x88, 0x1b, 0x5e,
+	0xe1, 0x48, 0x61, 0x77, 0x54, 0x44, 0xe3, 0xb0, 0xa2, 0xbb, 0xa3, 0x22, 0xac, 0x99, 0x6e, 0x1b,
+	0x1a, 0xaa, 0x93, 0xb6, 0xa1, 0xc1, 0x82, 0x5a, 0xd7, 0x1b, 0x7a, 0x91, 0x9f, 0x1f, 0xc0, 0x5c,
+	0x5c, 0x72, 0xc9, 0xcc, 0x15, 0xd9, 0x5c, 0x5a, 0x64, 0x98, 0x16, 0xd9, 0x5e, 0x83, 0xc6, 0x89,
+	0x8a, 0xfa, 0xfa, 0xd1, 0x69, 0xaf, 0x43, 0x93, 0x45, 0x7e, 0x3f, 0x1e, 0x7e, 0x5f, 0x82, 0xea,
+	0x63, 0x1a, 0xc8, 0xc2, 0x81, 0xb5, 0x99, 0x17, 0xb0, 0x68, 0x17, 0xe6, 0xff, 0x82, 0xf7, 0x75,
+	0x6b, 0x7f, 0xa9, 0x9d, 0x9d, 0xdb, 0x2b, 0xe2, 0x7d, 0x68, 0x16, 0x9f, 0xad, 0xe2, 0xf6, 0x74,
+	0xcb, 0x82, 0x27, 0x71, 0xab, 0xbd, 0xcc, 0x3c, 0x71, 0xf8, 0x29, 0x6c, 0x5d, 0xfb, 0xa2, 0x12,
+	0xf6, 0x92, 0x40, 0x0a, 0xdf, 0x6d, 0xad, 0x7b, 0xbf, 0x88, 0x99, 0xf8, 0xff, 0x17, 0x94, 0xb1,
+	0x3e, 0xa2, 0xf0, 0xf4, 0x2a, 0x94, 0xaf, 0xb5, 0x3b, 0xaf, 0x9e, 0x6c, 0x7c, 0xac, 0xcf, 0x3e,
+	0xf1, 0xa9, 0x35, 0x77, 0x73, 0x16, 0x3e, 0x96, 0x5a, 0xb7, 0x16, 0xda, 0x26, 0x7e, 0x8e, 0xa1,
+	0x9e, 0x7f, 0x9e, 0x89, 0xbd, 0xb9, 0x72, 0x4c, 0x3f, 0x02, 0x5b, 0xad, 0x45, 0xa6, 0xdc, 0xc9,
+	0xd1, 0xe1, 0xab, 0xd7, 0xed, 0x95, 0x9f, 0x5e, 0xb7, 0x8d, 0xcf, 0xaf, 0xda, 0xc6, 0x57, 0x57,
+	0x6d, 0xe3, 0xbb, 0xab, 0xb6, 0xf1, 0xf2, 0xaa, 0x6d, 0xfc, 0x78, 0xd5, 0x36, 0x5e, 0xbc, 0x69,
+	0xaf, 0xbc, 0x7c, 0xd3, 0x5e, 0x79, 0xf5, 0xa6, 0xbd, 0xf2, 0xc9, 0xe4, 0x1b, 0xb9, 0x5b, 0xa5,
+	0x6f, 0xdf, 0x7f, 0xfc, 0x1c, 0x00, 0x00, 0xff, 0xff, 0x96, 0x70, 0xc7, 0x4f, 0x44, 0x0f, 0x00,
+	0x00,
 }
 
+func (this *CreateSurebetManyRequest) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*CreateSurebetManyRequest)
+	if !ok {
+		that2, ok := that.(CreateSurebetManyRequest)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if len(this.Surebet) != len(that1.Surebet) {
+		return false
+	}
+	for i := range this.Surebet {
+		if !this.Surebet[i].Equal(that1.Surebet[i]) {
+			return false
+		}
+	}
+	return true
+}
+func (this *CreateSurebetManyResponse) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*CreateSurebetManyResponse)
+	if !ok {
+		that2, ok := that.(CreateSurebetManyResponse)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if this.SurebetCount != that1.SurebetCount {
+		return false
+	}
+	return true
+}
+func (this *PlaceBetRequest) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*PlaceBetRequest)
+	if !ok {
+		that2, ok := that.(PlaceBetRequest)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if this.Num != that1.Num {
+		return false
+	}
+	if !this.Surebet.Equal(that1.Surebet) {
+		return false
+	}
+	return true
+}
+func (this *PlaceBetResponse) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*PlaceBetResponse)
+	if !ok {
+		that2, ok := that.(PlaceBetResponse)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if !this.Side.Equal(that1.Side) {
+		return false
+	}
+	return true
+}
+func (this *CheckLineRequest) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*CheckLineRequest)
+	if !ok {
+		that2, ok := that.(CheckLineRequest)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if this.Num != that1.Num {
+		return false
+	}
+	if !this.Surebet.Equal(that1.Surebet) {
+		return false
+	}
+	return true
+}
+func (this *CheckLineResponse) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*CheckLineResponse)
+	if !ok {
+		that2, ok := that.(CheckLineResponse)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if !this.Side.Equal(that1.Side) {
+		return false
+	}
+	return true
+}
+func (this *CreateSurebetRequest) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*CreateSurebetRequest)
+	if !ok {
+		that2, ok := that.(CreateSurebetRequest)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if !this.Surebet.Equal(that1.Surebet) {
+		return false
+	}
+	return true
+}
+func (this *CreateSurebetResponse) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*CreateSurebetResponse)
+	if !ok {
+		that2, ok := that.(CreateSurebetResponse)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if this.SurebetId != that1.SurebetId {
+		return false
+	}
+	if this.SurebetHash != that1.SurebetHash {
+		return false
+	}
+	return true
+}
+func (this *PlaceSurebetRequest) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*PlaceSurebetRequest)
+	if !ok {
+		that2, ok := that.(PlaceSurebetRequest)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if !this.Surebet.Equal(that1.Surebet) {
+		return false
+	}
+	return true
+}
+func (this *PlaceSurebetResponse) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*PlaceSurebetResponse)
+	if !ok {
+		that2, ok := that.(PlaceSurebetResponse)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if this.SurebetId != that1.SurebetId {
+		return false
+	}
+	return true
+}
+func (this *Surebet) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*Surebet)
+	if !ok {
+		that2, ok := that.(Surebet)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if this.CreatedAt != that1.CreatedAt {
+		return false
+	}
+	if this.SurebetHash != that1.SurebetHash {
+		return false
+	}
+	if this.Starts != that1.Starts {
+		return false
+	}
+	if this.FortedHome != that1.FortedHome {
+		return false
+	}
+	if this.FortedAway != that1.FortedAway {
+		return false
+	}
+	if this.FortedProfit != that1.FortedProfit {
+		return false
+	}
+	if this.FortedSport != that1.FortedSport {
+		return false
+	}
+	if this.FortedLeague != that1.FortedLeague {
+		return false
+	}
+	if this.FilterName != that1.FilterName {
+		return false
+	}
+	if this.SkynetId != that1.SkynetId {
+		return false
+	}
+	if this.SurebetId != that1.SurebetId {
+		return false
+	}
+	if this.LogId != that1.LogId {
+		return false
+	}
+	if !this.Calc.Equal(that1.Calc) {
+		return false
+	}
+	if len(this.Members) != len(that1.Members) {
+		return false
+	}
+	for i := range this.Members {
+		if !this.Members[i].Equal(that1.Members[i]) {
+			return false
+		}
+	}
+	return true
+}
+func (this *SurebetSide) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*SurebetSide)
+	if !ok {
+		that2, ok := that.(SurebetSide)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if this.Num != that1.Num {
+		return false
+	}
+	if this.ServiceName != that1.ServiceName {
+		return false
+	}
+	if this.ServiceId != that1.ServiceId {
+		return false
+	}
+	if this.SportName != that1.SportName {
+		return false
+	}
+	if this.SportId != that1.SportId {
+		return false
+	}
+	if this.LeagueName != that1.LeagueName {
+		return false
+	}
+	if this.LeagueId != that1.LeagueId {
+		return false
+	}
+	if this.Home != that1.Home {
+		return false
+	}
+	if this.HomeId != that1.HomeId {
+		return false
+	}
+	if this.Away != that1.Away {
+		return false
+	}
+	if this.AwayId != that1.AwayId {
+		return false
+	}
+	if this.MarketName != that1.MarketName {
+		return false
+	}
+	if this.MarketId != that1.MarketId {
+		return false
+	}
+	if this.Price != that1.Price {
+		return false
+	}
+	if this.PriceId != that1.PriceId {
+		return false
+	}
+	if this.Url != that1.Url {
+		return false
+	}
+	if this.Initiator != that1.Initiator {
+		return false
+	}
+	if this.EventId != that1.EventId {
+		return false
+	}
+	if !this.Check.Equal(that1.Check) {
+		return false
+	}
+	if !this.BetConfig.Equal(that1.BetConfig) {
+		return false
+	}
+	if !this.CheckCalc.Equal(that1.CheckCalc) {
+		return false
+	}
+	if !this.ToBet.Equal(that1.ToBet) {
+		return false
+	}
+	if !this.Bet.Equal(that1.Bet) {
+		return false
+	}
+	return true
+}
+func (this *BetConfig) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*BetConfig)
+	if !ok {
+		that2, ok := that.(BetConfig)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if this.ServiceName != that1.ServiceName {
+		return false
+	}
+	if this.Regime != that1.Regime {
+		return false
+	}
+	if this.Priority != that1.Priority {
+		return false
+	}
+	if this.MaxCountLine != that1.MaxCountLine {
+		return false
+	}
+	if this.MaxCountEvent != that1.MaxCountEvent {
+		return false
+	}
+	if this.MinStake != that1.MinStake {
+		return false
+	}
+	if this.MaxStake != that1.MaxStake {
+		return false
+	}
+	if this.MaxWin != that1.MaxWin {
+		return false
+	}
+	if this.MinPercent != that1.MinPercent {
+		return false
+	}
+	if this.MaxPercent != that1.MaxPercent {
+		return false
+	}
+	if this.MaxAmountEvent != that1.MaxAmountEvent {
+		return false
+	}
+	if this.RoundValue != that1.RoundValue {
+		return false
+	}
+	return true
+}
+func (this *Calc) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*Calc)
+	if !ok {
+		that2, ok := that.(Calc)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if this.Profit != that1.Profit {
+		return false
+	}
+	if this.FirstName != that1.FirstName {
+		return false
+	}
+	if this.SecondName != that1.SecondName {
+		return false
+	}
+	if this.LowerWinIndex != that1.LowerWinIndex {
+		return false
+	}
+	if this.HigherWinIndex != that1.HigherWinIndex {
+		return false
+	}
+	if this.FirstIndex != that1.FirstIndex {
+		return false
+	}
+	if this.SecondIndex != that1.SecondIndex {
+		return false
+	}
+	if this.WinDiff != that1.WinDiff {
+		return false
+	}
+	if this.WinDiffRel != that1.WinDiffRel {
+		return false
+	}
+	return true
+}
+func (this *CheckCalc) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*CheckCalc)
+	if !ok {
+		that2, ok := that.(CheckCalc)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if this.Status != that1.Status {
+		return false
+	}
+	if this.MaxStake != that1.MaxStake {
+		return false
+	}
+	if this.MinStake != that1.MinStake {
+		return false
+	}
+	if this.MaxWin != that1.MaxWin {
+		return false
+	}
+	if this.Stake != that1.Stake {
+		return false
+	}
+	if this.Win != that1.Win {
+		return false
+	}
+	if this.IsFirst != that1.IsFirst {
+		return false
+	}
+	return true
+}
+func (this *ToBet) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*ToBet)
+	if !ok {
+		that2, ok := that.(ToBet)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if this.Stake != that1.Stake {
+		return false
+	}
+	return true
+}
+func (this *Bet) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*Bet)
+	if !ok {
+		that2, ok := that.(Bet)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if this.Status != that1.Status {
+		return false
+	}
+	if this.StatusInfo != that1.StatusInfo {
+		return false
+	}
+	if this.Time != that1.Time {
+		return false
+	}
+	if this.Price != that1.Price {
+		return false
+	}
+	if this.Stake != that1.Stake {
+		return false
+	}
+	if this.TryCount != that1.TryCount {
+		return false
+	}
+	return true
+}
+func (this *Check) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*Check)
+	if !ok {
+		that2, ok := that.(Check)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if this.Status != that1.Status {
+		return false
+	}
+	if this.CountLine != that1.CountLine {
+		return false
+	}
+	if this.CountEvent != that1.CountEvent {
+		return false
+	}
+	if this.AmountEvent != that1.AmountEvent {
+		return false
+	}
+	if this.MinBet != that1.MinBet {
+		return false
+	}
+	if this.MaxBet != that1.MaxBet {
+		return false
+	}
+	if this.Balance != that1.Balance {
+		return false
+	}
+	if this.Price != that1.Price {
+		return false
+	}
+	if this.StatusInfo != that1.StatusInfo {
+		return false
+	}
+	if this.Time != that1.Time {
+		return false
+	}
+	return true
+}
+func (this *PingRequest) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*PingRequest)
+	if !ok {
+		that2, ok := that.(PingRequest)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	return true
+}
+func (this *PingResponse) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*PingResponse)
+	if !ok {
+		that2, ok := that.(PingResponse)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	return true
+}
 func (this *CreateSurebetManyRequest) GoString() string {
 	if this == nil {
 		return "nil"
@@ -700,6 +2349,56 @@ func (this *CreateSurebetManyResponse) GoString() string {
 	s := make([]string, 0, 5)
 	s = append(s, "&fortedpb.CreateSurebetManyResponse{")
 	s = append(s, "SurebetCount: "+fmt.Sprintf("%#v", this.SurebetCount)+",\n")
+	s = append(s, "}")
+	return strings.Join(s, "")
+}
+func (this *PlaceBetRequest) GoString() string {
+	if this == nil {
+		return "nil"
+	}
+	s := make([]string, 0, 6)
+	s = append(s, "&fortedpb.PlaceBetRequest{")
+	s = append(s, "Num: "+fmt.Sprintf("%#v", this.Num)+",\n")
+	if this.Surebet != nil {
+		s = append(s, "Surebet: "+fmt.Sprintf("%#v", this.Surebet)+",\n")
+	}
+	s = append(s, "}")
+	return strings.Join(s, "")
+}
+func (this *PlaceBetResponse) GoString() string {
+	if this == nil {
+		return "nil"
+	}
+	s := make([]string, 0, 5)
+	s = append(s, "&fortedpb.PlaceBetResponse{")
+	if this.Side != nil {
+		s = append(s, "Side: "+fmt.Sprintf("%#v", this.Side)+",\n")
+	}
+	s = append(s, "}")
+	return strings.Join(s, "")
+}
+func (this *CheckLineRequest) GoString() string {
+	if this == nil {
+		return "nil"
+	}
+	s := make([]string, 0, 6)
+	s = append(s, "&fortedpb.CheckLineRequest{")
+	s = append(s, "Num: "+fmt.Sprintf("%#v", this.Num)+",\n")
+	if this.Surebet != nil {
+		s = append(s, "Surebet: "+fmt.Sprintf("%#v", this.Surebet)+",\n")
+	}
+	s = append(s, "}")
+	return strings.Join(s, "")
+}
+func (this *CheckLineResponse) GoString() string {
+	if this == nil {
+		return "nil"
+	}
+	s := make([]string, 0, 5)
+	s = append(s, "&fortedpb.CheckLineResponse{")
+	if this.Side != nil {
+		s = append(s, "Side: "+fmt.Sprintf("%#v", this.Side)+",\n")
+	}
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
@@ -752,7 +2451,7 @@ func (this *Surebet) GoString() string {
 	if this == nil {
 		return "nil"
 	}
-	s := make([]string, 0, 17)
+	s := make([]string, 0, 18)
 	s = append(s, "&fortedpb.Surebet{")
 	s = append(s, "CreatedAt: "+fmt.Sprintf("%#v", this.CreatedAt)+",\n")
 	s = append(s, "SurebetHash: "+fmt.Sprintf("%#v", this.SurebetHash)+",\n")
@@ -766,6 +2465,9 @@ func (this *Surebet) GoString() string {
 	s = append(s, "SkynetId: "+fmt.Sprintf("%#v", this.SkynetId)+",\n")
 	s = append(s, "SurebetId: "+fmt.Sprintf("%#v", this.SurebetId)+",\n")
 	s = append(s, "LogId: "+fmt.Sprintf("%#v", this.LogId)+",\n")
+	if this.Calc != nil {
+		s = append(s, "Calc: "+fmt.Sprintf("%#v", this.Calc)+",\n")
+	}
 	if this.Members != nil {
 		s = append(s, "Members: "+fmt.Sprintf("%#v", this.Members)+",\n")
 	}
@@ -776,7 +2478,7 @@ func (this *SurebetSide) GoString() string {
 	if this == nil {
 		return "nil"
 	}
-	s := make([]string, 0, 22)
+	s := make([]string, 0, 27)
 	s = append(s, "&fortedpb.SurebetSide{")
 	s = append(s, "Num: "+fmt.Sprintf("%#v", this.Num)+",\n")
 	s = append(s, "ServiceName: "+fmt.Sprintf("%#v", this.ServiceName)+",\n")
@@ -796,6 +2498,138 @@ func (this *SurebetSide) GoString() string {
 	s = append(s, "Url: "+fmt.Sprintf("%#v", this.Url)+",\n")
 	s = append(s, "Initiator: "+fmt.Sprintf("%#v", this.Initiator)+",\n")
 	s = append(s, "EventId: "+fmt.Sprintf("%#v", this.EventId)+",\n")
+	if this.Check != nil {
+		s = append(s, "Check: "+fmt.Sprintf("%#v", this.Check)+",\n")
+	}
+	if this.BetConfig != nil {
+		s = append(s, "BetConfig: "+fmt.Sprintf("%#v", this.BetConfig)+",\n")
+	}
+	if this.CheckCalc != nil {
+		s = append(s, "CheckCalc: "+fmt.Sprintf("%#v", this.CheckCalc)+",\n")
+	}
+	if this.ToBet != nil {
+		s = append(s, "ToBet: "+fmt.Sprintf("%#v", this.ToBet)+",\n")
+	}
+	if this.Bet != nil {
+		s = append(s, "Bet: "+fmt.Sprintf("%#v", this.Bet)+",\n")
+	}
+	s = append(s, "}")
+	return strings.Join(s, "")
+}
+func (this *BetConfig) GoString() string {
+	if this == nil {
+		return "nil"
+	}
+	s := make([]string, 0, 16)
+	s = append(s, "&fortedpb.BetConfig{")
+	s = append(s, "ServiceName: "+fmt.Sprintf("%#v", this.ServiceName)+",\n")
+	s = append(s, "Regime: "+fmt.Sprintf("%#v", this.Regime)+",\n")
+	s = append(s, "Priority: "+fmt.Sprintf("%#v", this.Priority)+",\n")
+	s = append(s, "MaxCountLine: "+fmt.Sprintf("%#v", this.MaxCountLine)+",\n")
+	s = append(s, "MaxCountEvent: "+fmt.Sprintf("%#v", this.MaxCountEvent)+",\n")
+	s = append(s, "MinStake: "+fmt.Sprintf("%#v", this.MinStake)+",\n")
+	s = append(s, "MaxStake: "+fmt.Sprintf("%#v", this.MaxStake)+",\n")
+	s = append(s, "MaxWin: "+fmt.Sprintf("%#v", this.MaxWin)+",\n")
+	s = append(s, "MinPercent: "+fmt.Sprintf("%#v", this.MinPercent)+",\n")
+	s = append(s, "MaxPercent: "+fmt.Sprintf("%#v", this.MaxPercent)+",\n")
+	s = append(s, "MaxAmountEvent: "+fmt.Sprintf("%#v", this.MaxAmountEvent)+",\n")
+	s = append(s, "RoundValue: "+fmt.Sprintf("%#v", this.RoundValue)+",\n")
+	s = append(s, "}")
+	return strings.Join(s, "")
+}
+func (this *Calc) GoString() string {
+	if this == nil {
+		return "nil"
+	}
+	s := make([]string, 0, 13)
+	s = append(s, "&fortedpb.Calc{")
+	s = append(s, "Profit: "+fmt.Sprintf("%#v", this.Profit)+",\n")
+	s = append(s, "FirstName: "+fmt.Sprintf("%#v", this.FirstName)+",\n")
+	s = append(s, "SecondName: "+fmt.Sprintf("%#v", this.SecondName)+",\n")
+	s = append(s, "LowerWinIndex: "+fmt.Sprintf("%#v", this.LowerWinIndex)+",\n")
+	s = append(s, "HigherWinIndex: "+fmt.Sprintf("%#v", this.HigherWinIndex)+",\n")
+	s = append(s, "FirstIndex: "+fmt.Sprintf("%#v", this.FirstIndex)+",\n")
+	s = append(s, "SecondIndex: "+fmt.Sprintf("%#v", this.SecondIndex)+",\n")
+	s = append(s, "WinDiff: "+fmt.Sprintf("%#v", this.WinDiff)+",\n")
+	s = append(s, "WinDiffRel: "+fmt.Sprintf("%#v", this.WinDiffRel)+",\n")
+	s = append(s, "}")
+	return strings.Join(s, "")
+}
+func (this *CheckCalc) GoString() string {
+	if this == nil {
+		return "nil"
+	}
+	s := make([]string, 0, 11)
+	s = append(s, "&fortedpb.CheckCalc{")
+	s = append(s, "Status: "+fmt.Sprintf("%#v", this.Status)+",\n")
+	s = append(s, "MaxStake: "+fmt.Sprintf("%#v", this.MaxStake)+",\n")
+	s = append(s, "MinStake: "+fmt.Sprintf("%#v", this.MinStake)+",\n")
+	s = append(s, "MaxWin: "+fmt.Sprintf("%#v", this.MaxWin)+",\n")
+	s = append(s, "Stake: "+fmt.Sprintf("%#v", this.Stake)+",\n")
+	s = append(s, "Win: "+fmt.Sprintf("%#v", this.Win)+",\n")
+	s = append(s, "IsFirst: "+fmt.Sprintf("%#v", this.IsFirst)+",\n")
+	s = append(s, "}")
+	return strings.Join(s, "")
+}
+func (this *ToBet) GoString() string {
+	if this == nil {
+		return "nil"
+	}
+	s := make([]string, 0, 5)
+	s = append(s, "&fortedpb.ToBet{")
+	s = append(s, "Stake: "+fmt.Sprintf("%#v", this.Stake)+",\n")
+	s = append(s, "}")
+	return strings.Join(s, "")
+}
+func (this *Bet) GoString() string {
+	if this == nil {
+		return "nil"
+	}
+	s := make([]string, 0, 10)
+	s = append(s, "&fortedpb.Bet{")
+	s = append(s, "Status: "+fmt.Sprintf("%#v", this.Status)+",\n")
+	s = append(s, "StatusInfo: "+fmt.Sprintf("%#v", this.StatusInfo)+",\n")
+	s = append(s, "Time: "+fmt.Sprintf("%#v", this.Time)+",\n")
+	s = append(s, "Price: "+fmt.Sprintf("%#v", this.Price)+",\n")
+	s = append(s, "Stake: "+fmt.Sprintf("%#v", this.Stake)+",\n")
+	s = append(s, "TryCount: "+fmt.Sprintf("%#v", this.TryCount)+",\n")
+	s = append(s, "}")
+	return strings.Join(s, "")
+}
+func (this *Check) GoString() string {
+	if this == nil {
+		return "nil"
+	}
+	s := make([]string, 0, 14)
+	s = append(s, "&fortedpb.Check{")
+	s = append(s, "Status: "+fmt.Sprintf("%#v", this.Status)+",\n")
+	s = append(s, "CountLine: "+fmt.Sprintf("%#v", this.CountLine)+",\n")
+	s = append(s, "CountEvent: "+fmt.Sprintf("%#v", this.CountEvent)+",\n")
+	s = append(s, "AmountEvent: "+fmt.Sprintf("%#v", this.AmountEvent)+",\n")
+	s = append(s, "MinBet: "+fmt.Sprintf("%#v", this.MinBet)+",\n")
+	s = append(s, "MaxBet: "+fmt.Sprintf("%#v", this.MaxBet)+",\n")
+	s = append(s, "Balance: "+fmt.Sprintf("%#v", this.Balance)+",\n")
+	s = append(s, "Price: "+fmt.Sprintf("%#v", this.Price)+",\n")
+	s = append(s, "StatusInfo: "+fmt.Sprintf("%#v", this.StatusInfo)+",\n")
+	s = append(s, "Time: "+fmt.Sprintf("%#v", this.Time)+",\n")
+	s = append(s, "}")
+	return strings.Join(s, "")
+}
+func (this *PingRequest) GoString() string {
+	if this == nil {
+		return "nil"
+	}
+	s := make([]string, 0, 4)
+	s = append(s, "&fortedpb.PingRequest{")
+	s = append(s, "}")
+	return strings.Join(s, "")
+}
+func (this *PingResponse) GoString() string {
+	if this == nil {
+		return "nil"
+	}
+	s := make([]string, 0, 4)
+	s = append(s, "&fortedpb.PingResponse{")
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
@@ -823,6 +2657,9 @@ type FortedClient interface {
 	CreateSurebet(ctx context.Context, in *CreateSurebetRequest, opts ...grpc.CallOption) (*CreateSurebetResponse, error)
 	PlaceSurebet(ctx context.Context, in *PlaceSurebetRequest, opts ...grpc.CallOption) (*PlaceSurebetResponse, error)
 	CreateSurebetMany(ctx context.Context, in *CreateSurebetManyRequest, opts ...grpc.CallOption) (*CreateSurebetManyResponse, error)
+	Ping(ctx context.Context, in *PingRequest, opts ...grpc.CallOption) (*PingResponse, error)
+	CheckLine(ctx context.Context, in *CheckLineRequest, opts ...grpc.CallOption) (*CheckLineResponse, error)
+	PlaceBet(ctx context.Context, in *PlaceBetRequest, opts ...grpc.CallOption) (*PlaceBetResponse, error)
 }
 
 type fortedClient struct {
@@ -860,11 +2697,41 @@ func (c *fortedClient) CreateSurebetMany(ctx context.Context, in *CreateSurebetM
 	return out, nil
 }
 
+func (c *fortedClient) Ping(ctx context.Context, in *PingRequest, opts ...grpc.CallOption) (*PingResponse, error) {
+	out := new(PingResponse)
+	err := c.cc.Invoke(ctx, "/fortedpb.Forted/Ping", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *fortedClient) CheckLine(ctx context.Context, in *CheckLineRequest, opts ...grpc.CallOption) (*CheckLineResponse, error) {
+	out := new(CheckLineResponse)
+	err := c.cc.Invoke(ctx, "/fortedpb.Forted/CheckLine", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *fortedClient) PlaceBet(ctx context.Context, in *PlaceBetRequest, opts ...grpc.CallOption) (*PlaceBetResponse, error) {
+	out := new(PlaceBetResponse)
+	err := c.cc.Invoke(ctx, "/fortedpb.Forted/PlaceBet", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // FortedServer is the server API for Forted service.
 type FortedServer interface {
 	CreateSurebet(context.Context, *CreateSurebetRequest) (*CreateSurebetResponse, error)
 	PlaceSurebet(context.Context, *PlaceSurebetRequest) (*PlaceSurebetResponse, error)
 	CreateSurebetMany(context.Context, *CreateSurebetManyRequest) (*CreateSurebetManyResponse, error)
+	Ping(context.Context, *PingRequest) (*PingResponse, error)
+	CheckLine(context.Context, *CheckLineRequest) (*CheckLineResponse, error)
+	PlaceBet(context.Context, *PlaceBetRequest) (*PlaceBetResponse, error)
 }
 
 // UnimplementedFortedServer can be embedded to have forward compatible implementations.
@@ -879,6 +2746,15 @@ func (*UnimplementedFortedServer) PlaceSurebet(ctx context.Context, req *PlaceSu
 }
 func (*UnimplementedFortedServer) CreateSurebetMany(ctx context.Context, req *CreateSurebetManyRequest) (*CreateSurebetManyResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateSurebetMany not implemented")
+}
+func (*UnimplementedFortedServer) Ping(ctx context.Context, req *PingRequest) (*PingResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Ping not implemented")
+}
+func (*UnimplementedFortedServer) CheckLine(ctx context.Context, req *CheckLineRequest) (*CheckLineResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CheckLine not implemented")
+}
+func (*UnimplementedFortedServer) PlaceBet(ctx context.Context, req *PlaceBetRequest) (*PlaceBetResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PlaceBet not implemented")
 }
 
 func RegisterFortedServer(s *grpc.Server, srv FortedServer) {
@@ -939,6 +2815,60 @@ func _Forted_CreateSurebetMany_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Forted_Ping_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PingRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FortedServer).Ping(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/fortedpb.Forted/Ping",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FortedServer).Ping(ctx, req.(*PingRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Forted_CheckLine_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CheckLineRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FortedServer).CheckLine(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/fortedpb.Forted/CheckLine",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FortedServer).CheckLine(ctx, req.(*CheckLineRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Forted_PlaceBet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PlaceBetRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FortedServer).PlaceBet(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/fortedpb.Forted/PlaceBet",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FortedServer).PlaceBet(ctx, req.(*PlaceBetRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Forted_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "fortedpb.Forted",
 	HandlerType: (*FortedServer)(nil),
@@ -954,6 +2884,18 @@ var _Forted_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CreateSurebetMany",
 			Handler:    _Forted_CreateSurebetMany_Handler,
+		},
+		{
+			MethodName: "Ping",
+			Handler:    _Forted_Ping_Handler,
+		},
+		{
+			MethodName: "CheckLine",
+			Handler:    _Forted_CheckLine_Handler,
+		},
+		{
+			MethodName: "PlaceBet",
+			Handler:    _Forted_PlaceBet_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -1021,6 +2963,156 @@ func (m *CreateSurebetManyResponse) MarshalToSizedBuffer(dAtA []byte) (int, erro
 		i = encodeVarintForted(dAtA, i, uint64(m.SurebetCount))
 		i--
 		dAtA[i] = 0x8
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *PlaceBetRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *PlaceBetRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *PlaceBetRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Surebet != nil {
+		{
+			size, err := m.Surebet.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintForted(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x12
+	}
+	if m.Num != 0 {
+		i = encodeVarintForted(dAtA, i, uint64(m.Num))
+		i--
+		dAtA[i] = 0x8
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *PlaceBetResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *PlaceBetResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *PlaceBetResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Side != nil {
+		{
+			size, err := m.Side.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintForted(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *CheckLineRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *CheckLineRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *CheckLineRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Surebet != nil {
+		{
+			size, err := m.Surebet.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintForted(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x12
+	}
+	if m.Num != 0 {
+		i = encodeVarintForted(dAtA, i, uint64(m.Num))
+		i--
+		dAtA[i] = 0x8
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *CheckLineResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *CheckLineResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *CheckLineResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Side != nil {
+		{
+			size, err := m.Side.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintForted(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0xa
 	}
 	return len(dAtA) - i, nil
 }
@@ -1190,6 +3282,18 @@ func (m *Surebet) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 			dAtA[i] = 0x7a
 		}
 	}
+	if m.Calc != nil {
+		{
+			size, err := m.Calc.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintForted(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x6a
+	}
 	if m.LogId != 0 {
 		i = encodeVarintForted(dAtA, i, uint64(m.LogId))
 		i--
@@ -1291,6 +3395,76 @@ func (m *SurebetSide) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
+	if m.Bet != nil {
+		{
+			size, err := m.Bet.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintForted(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x1
+		i--
+		dAtA[i] = 0xba
+	}
+	if m.ToBet != nil {
+		{
+			size, err := m.ToBet.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintForted(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x1
+		i--
+		dAtA[i] = 0xb2
+	}
+	if m.CheckCalc != nil {
+		{
+			size, err := m.CheckCalc.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintForted(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x1
+		i--
+		dAtA[i] = 0xaa
+	}
+	if m.BetConfig != nil {
+		{
+			size, err := m.BetConfig.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintForted(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x1
+		i--
+		dAtA[i] = 0xa2
+	}
+	if m.Check != nil {
+		{
+			size, err := m.Check.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintForted(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x1
+		i--
+		dAtA[i] = 0x9a
+	}
 	if m.EventId != 0 {
 		i = encodeVarintForted(dAtA, i, uint64(m.EventId))
 		i--
@@ -1410,6 +3584,465 @@ func (m *SurebetSide) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
+func (m *BetConfig) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *BetConfig) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *BetConfig) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.MaxWin != 0 {
+		i -= 8
+		encoding_binary.LittleEndian.PutUint64(dAtA[i:], uint64(math.Float64bits(float64(m.MaxWin))))
+		i--
+		dAtA[i] = 0x61
+	}
+	if len(m.Regime) > 0 {
+		i -= len(m.Regime)
+		copy(dAtA[i:], m.Regime)
+		i = encodeVarintForted(dAtA, i, uint64(len(m.Regime)))
+		i--
+		dAtA[i] = 0x5a
+	}
+	if m.MaxStake != 0 {
+		i -= 8
+		encoding_binary.LittleEndian.PutUint64(dAtA[i:], uint64(math.Float64bits(float64(m.MaxStake))))
+		i--
+		dAtA[i] = 0x51
+	}
+	if m.MinStake != 0 {
+		i -= 8
+		encoding_binary.LittleEndian.PutUint64(dAtA[i:], uint64(math.Float64bits(float64(m.MinStake))))
+		i--
+		dAtA[i] = 0x49
+	}
+	if len(m.ServiceName) > 0 {
+		i -= len(m.ServiceName)
+		copy(dAtA[i:], m.ServiceName)
+		i = encodeVarintForted(dAtA, i, uint64(len(m.ServiceName)))
+		i--
+		dAtA[i] = 0x42
+	}
+	if m.RoundValue != 0 {
+		i -= 8
+		encoding_binary.LittleEndian.PutUint64(dAtA[i:], uint64(math.Float64bits(float64(m.RoundValue))))
+		i--
+		dAtA[i] = 0x39
+	}
+	if m.MaxAmountEvent != 0 {
+		i -= 8
+		encoding_binary.LittleEndian.PutUint64(dAtA[i:], uint64(math.Float64bits(float64(m.MaxAmountEvent))))
+		i--
+		dAtA[i] = 0x31
+	}
+	if m.MaxCountEvent != 0 {
+		i = encodeVarintForted(dAtA, i, uint64(m.MaxCountEvent))
+		i--
+		dAtA[i] = 0x28
+	}
+	if m.MaxCountLine != 0 {
+		i = encodeVarintForted(dAtA, i, uint64(m.MaxCountLine))
+		i--
+		dAtA[i] = 0x20
+	}
+	if m.Priority != 0 {
+		i = encodeVarintForted(dAtA, i, uint64(m.Priority))
+		i--
+		dAtA[i] = 0x18
+	}
+	if m.MaxPercent != 0 {
+		i -= 8
+		encoding_binary.LittleEndian.PutUint64(dAtA[i:], uint64(math.Float64bits(float64(m.MaxPercent))))
+		i--
+		dAtA[i] = 0x11
+	}
+	if m.MinPercent != 0 {
+		i -= 8
+		encoding_binary.LittleEndian.PutUint64(dAtA[i:], uint64(math.Float64bits(float64(m.MinPercent))))
+		i--
+		dAtA[i] = 0x9
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *Calc) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *Calc) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *Calc) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.SecondIndex != 0 {
+		i = encodeVarintForted(dAtA, i, uint64(m.SecondIndex))
+		i--
+		dAtA[i] = 0x48
+	}
+	if m.FirstIndex != 0 {
+		i = encodeVarintForted(dAtA, i, uint64(m.FirstIndex))
+		i--
+		dAtA[i] = 0x40
+	}
+	if m.WinDiffRel != 0 {
+		i -= 8
+		encoding_binary.LittleEndian.PutUint64(dAtA[i:], uint64(math.Float64bits(float64(m.WinDiffRel))))
+		i--
+		dAtA[i] = 0x39
+	}
+	if m.WinDiff != 0 {
+		i -= 8
+		encoding_binary.LittleEndian.PutUint64(dAtA[i:], uint64(math.Float64bits(float64(m.WinDiff))))
+		i--
+		dAtA[i] = 0x31
+	}
+	if m.HigherWinIndex != 0 {
+		i = encodeVarintForted(dAtA, i, uint64(m.HigherWinIndex))
+		i--
+		dAtA[i] = 0x28
+	}
+	if m.LowerWinIndex != 0 {
+		i = encodeVarintForted(dAtA, i, uint64(m.LowerWinIndex))
+		i--
+		dAtA[i] = 0x20
+	}
+	if len(m.SecondName) > 0 {
+		i -= len(m.SecondName)
+		copy(dAtA[i:], m.SecondName)
+		i = encodeVarintForted(dAtA, i, uint64(len(m.SecondName)))
+		i--
+		dAtA[i] = 0x1a
+	}
+	if len(m.FirstName) > 0 {
+		i -= len(m.FirstName)
+		copy(dAtA[i:], m.FirstName)
+		i = encodeVarintForted(dAtA, i, uint64(len(m.FirstName)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if m.Profit != 0 {
+		i -= 8
+		encoding_binary.LittleEndian.PutUint64(dAtA[i:], uint64(math.Float64bits(float64(m.Profit))))
+		i--
+		dAtA[i] = 0x9
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *CheckCalc) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *CheckCalc) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *CheckCalc) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.IsFirst {
+		i--
+		if m.IsFirst {
+			dAtA[i] = 1
+		} else {
+			dAtA[i] = 0
+		}
+		i--
+		dAtA[i] = 0x38
+	}
+	if m.Win != 0 {
+		i -= 8
+		encoding_binary.LittleEndian.PutUint64(dAtA[i:], uint64(math.Float64bits(float64(m.Win))))
+		i--
+		dAtA[i] = 0x31
+	}
+	if m.Stake != 0 {
+		i -= 8
+		encoding_binary.LittleEndian.PutUint64(dAtA[i:], uint64(math.Float64bits(float64(m.Stake))))
+		i--
+		dAtA[i] = 0x29
+	}
+	if m.MaxWin != 0 {
+		i -= 8
+		encoding_binary.LittleEndian.PutUint64(dAtA[i:], uint64(math.Float64bits(float64(m.MaxWin))))
+		i--
+		dAtA[i] = 0x21
+	}
+	if m.MinStake != 0 {
+		i -= 8
+		encoding_binary.LittleEndian.PutUint64(dAtA[i:], uint64(math.Float64bits(float64(m.MinStake))))
+		i--
+		dAtA[i] = 0x19
+	}
+	if m.MaxStake != 0 {
+		i -= 8
+		encoding_binary.LittleEndian.PutUint64(dAtA[i:], uint64(math.Float64bits(float64(m.MaxStake))))
+		i--
+		dAtA[i] = 0x11
+	}
+	if len(m.Status) > 0 {
+		i -= len(m.Status)
+		copy(dAtA[i:], m.Status)
+		i = encodeVarintForted(dAtA, i, uint64(len(m.Status)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *ToBet) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *ToBet) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *ToBet) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Stake != 0 {
+		i -= 8
+		encoding_binary.LittleEndian.PutUint64(dAtA[i:], uint64(math.Float64bits(float64(m.Stake))))
+		i--
+		dAtA[i] = 0x9
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *Bet) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *Bet) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *Bet) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.TryCount != 0 {
+		i = encodeVarintForted(dAtA, i, uint64(m.TryCount))
+		i--
+		dAtA[i] = 0x30
+	}
+	if m.Stake != 0 {
+		i -= 8
+		encoding_binary.LittleEndian.PutUint64(dAtA[i:], uint64(math.Float64bits(float64(m.Stake))))
+		i--
+		dAtA[i] = 0x29
+	}
+	if m.Price != 0 {
+		i -= 8
+		encoding_binary.LittleEndian.PutUint64(dAtA[i:], uint64(math.Float64bits(float64(m.Price))))
+		i--
+		dAtA[i] = 0x21
+	}
+	if len(m.Time) > 0 {
+		i -= len(m.Time)
+		copy(dAtA[i:], m.Time)
+		i = encodeVarintForted(dAtA, i, uint64(len(m.Time)))
+		i--
+		dAtA[i] = 0x1a
+	}
+	if len(m.StatusInfo) > 0 {
+		i -= len(m.StatusInfo)
+		copy(dAtA[i:], m.StatusInfo)
+		i = encodeVarintForted(dAtA, i, uint64(len(m.StatusInfo)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.Status) > 0 {
+		i -= len(m.Status)
+		copy(dAtA[i:], m.Status)
+		i = encodeVarintForted(dAtA, i, uint64(len(m.Status)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *Check) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *Check) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *Check) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.Time) > 0 {
+		i -= len(m.Time)
+		copy(dAtA[i:], m.Time)
+		i = encodeVarintForted(dAtA, i, uint64(len(m.Time)))
+		i--
+		dAtA[i] = 0x52
+	}
+	if len(m.StatusInfo) > 0 {
+		i -= len(m.StatusInfo)
+		copy(dAtA[i:], m.StatusInfo)
+		i = encodeVarintForted(dAtA, i, uint64(len(m.StatusInfo)))
+		i--
+		dAtA[i] = 0x4a
+	}
+	if m.Price != 0 {
+		i -= 8
+		encoding_binary.LittleEndian.PutUint64(dAtA[i:], uint64(math.Float64bits(float64(m.Price))))
+		i--
+		dAtA[i] = 0x41
+	}
+	if m.Balance != 0 {
+		i -= 8
+		encoding_binary.LittleEndian.PutUint64(dAtA[i:], uint64(math.Float64bits(float64(m.Balance))))
+		i--
+		dAtA[i] = 0x39
+	}
+	if m.MaxBet != 0 {
+		i -= 8
+		encoding_binary.LittleEndian.PutUint64(dAtA[i:], uint64(math.Float64bits(float64(m.MaxBet))))
+		i--
+		dAtA[i] = 0x31
+	}
+	if m.MinBet != 0 {
+		i -= 8
+		encoding_binary.LittleEndian.PutUint64(dAtA[i:], uint64(math.Float64bits(float64(m.MinBet))))
+		i--
+		dAtA[i] = 0x29
+	}
+	if m.AmountEvent != 0 {
+		i -= 8
+		encoding_binary.LittleEndian.PutUint64(dAtA[i:], uint64(math.Float64bits(float64(m.AmountEvent))))
+		i--
+		dAtA[i] = 0x21
+	}
+	if m.CountEvent != 0 {
+		i = encodeVarintForted(dAtA, i, uint64(m.CountEvent))
+		i--
+		dAtA[i] = 0x18
+	}
+	if m.CountLine != 0 {
+		i = encodeVarintForted(dAtA, i, uint64(m.CountLine))
+		i--
+		dAtA[i] = 0x10
+	}
+	if len(m.Status) > 0 {
+		i -= len(m.Status)
+		copy(dAtA[i:], m.Status)
+		i = encodeVarintForted(dAtA, i, uint64(len(m.Status)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *PingRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *PingRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *PingRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	return len(dAtA) - i, nil
+}
+
+func (m *PingResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *PingResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *PingResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	return len(dAtA) - i, nil
+}
+
 func encodeVarintForted(dAtA []byte, offset int, v uint64) int {
 	offset -= sovForted(v)
 	base := offset
@@ -1420,239 +4053,6 @@ func encodeVarintForted(dAtA []byte, offset int, v uint64) int {
 	}
 	dAtA[offset] = uint8(v)
 	return base
-}
-func NewPopulatedCreateSurebetManyRequest(r randyForted, easy bool) *CreateSurebetManyRequest {
-	this := &CreateSurebetManyRequest{}
-	if r.Intn(5) != 0 {
-		v1 := r.Intn(5)
-		this.Surebet = make([]*Surebet, v1)
-		for i := 0; i < v1; i++ {
-			this.Surebet[i] = NewPopulatedSurebet(r, easy)
-		}
-	}
-	if !easy && r.Intn(10) != 0 {
-	}
-	return this
-}
-
-func NewPopulatedCreateSurebetManyResponse(r randyForted, easy bool) *CreateSurebetManyResponse {
-	this := &CreateSurebetManyResponse{}
-	this.SurebetCount = int64(r.Int63())
-	if r.Intn(2) == 0 {
-		this.SurebetCount *= -1
-	}
-	if !easy && r.Intn(10) != 0 {
-	}
-	return this
-}
-
-func NewPopulatedCreateSurebetRequest(r randyForted, easy bool) *CreateSurebetRequest {
-	this := &CreateSurebetRequest{}
-	if r.Intn(5) != 0 {
-		this.Surebet = NewPopulatedSurebet(r, easy)
-	}
-	if !easy && r.Intn(10) != 0 {
-	}
-	return this
-}
-
-func NewPopulatedCreateSurebetResponse(r randyForted, easy bool) *CreateSurebetResponse {
-	this := &CreateSurebetResponse{}
-	this.SurebetId = int64(r.Int63())
-	if r.Intn(2) == 0 {
-		this.SurebetId *= -1
-	}
-	this.SurebetHash = int64(r.Int63())
-	if r.Intn(2) == 0 {
-		this.SurebetHash *= -1
-	}
-	if !easy && r.Intn(10) != 0 {
-	}
-	return this
-}
-
-func NewPopulatedPlaceSurebetRequest(r randyForted, easy bool) *PlaceSurebetRequest {
-	this := &PlaceSurebetRequest{}
-	if r.Intn(5) != 0 {
-		this.Surebet = NewPopulatedSurebet(r, easy)
-	}
-	if !easy && r.Intn(10) != 0 {
-	}
-	return this
-}
-
-func NewPopulatedPlaceSurebetResponse(r randyForted, easy bool) *PlaceSurebetResponse {
-	this := &PlaceSurebetResponse{}
-	this.SurebetId = int64(r.Int63())
-	if r.Intn(2) == 0 {
-		this.SurebetId *= -1
-	}
-	if !easy && r.Intn(10) != 0 {
-	}
-	return this
-}
-
-func NewPopulatedSurebet(r randyForted, easy bool) *Surebet {
-	this := &Surebet{}
-	this.CreatedAt = string(randStringForted(r))
-	this.SurebetHash = string(randStringForted(r))
-	this.Starts = string(randStringForted(r))
-	this.FortedHome = string(randStringForted(r))
-	this.FortedAway = string(randStringForted(r))
-	this.FortedProfit = string(randStringForted(r))
-	this.FortedSport = string(randStringForted(r))
-	this.FortedLeague = string(randStringForted(r))
-	this.FilterName = string(randStringForted(r))
-	this.SkynetId = int64(r.Int63())
-	if r.Intn(2) == 0 {
-		this.SkynetId *= -1
-	}
-	this.SurebetId = int64(r.Int63())
-	if r.Intn(2) == 0 {
-		this.SurebetId *= -1
-	}
-	this.LogId = int64(r.Int63())
-	if r.Intn(2) == 0 {
-		this.LogId *= -1
-	}
-	if r.Intn(5) != 0 {
-		v2 := r.Intn(5)
-		this.Members = make([]*SurebetSide, v2)
-		for i := 0; i < v2; i++ {
-			this.Members[i] = NewPopulatedSurebetSide(r, easy)
-		}
-	}
-	if !easy && r.Intn(10) != 0 {
-	}
-	return this
-}
-
-func NewPopulatedSurebetSide(r randyForted, easy bool) *SurebetSide {
-	this := &SurebetSide{}
-	this.Num = int64(r.Int63())
-	if r.Intn(2) == 0 {
-		this.Num *= -1
-	}
-	this.ServiceName = string(randStringForted(r))
-	this.SportName = string(randStringForted(r))
-	this.LeagueName = string(randStringForted(r))
-	this.Home = string(randStringForted(r))
-	this.Away = string(randStringForted(r))
-	this.MarketName = string(randStringForted(r))
-	this.Price = float64(r.Float64())
-	if r.Intn(2) == 0 {
-		this.Price *= -1
-	}
-	this.Url = string(randStringForted(r))
-	this.Initiator = bool(bool(r.Intn(2) == 0))
-	this.ServiceId = int64(r.Int63())
-	if r.Intn(2) == 0 {
-		this.ServiceId *= -1
-	}
-	this.SportId = int64(r.Int63())
-	if r.Intn(2) == 0 {
-		this.SportId *= -1
-	}
-	this.LeagueId = int64(r.Int63())
-	if r.Intn(2) == 0 {
-		this.LeagueId *= -1
-	}
-	this.HomeId = int64(r.Int63())
-	if r.Intn(2) == 0 {
-		this.HomeId *= -1
-	}
-	this.AwayId = int64(r.Int63())
-	if r.Intn(2) == 0 {
-		this.AwayId *= -1
-	}
-	this.MarketId = int64(r.Int63())
-	if r.Intn(2) == 0 {
-		this.MarketId *= -1
-	}
-	this.PriceId = int64(r.Int63())
-	if r.Intn(2) == 0 {
-		this.PriceId *= -1
-	}
-	this.EventId = int64(r.Int63())
-	if r.Intn(2) == 0 {
-		this.EventId *= -1
-	}
-	if !easy && r.Intn(10) != 0 {
-	}
-	return this
-}
-
-type randyForted interface {
-	Float32() float32
-	Float64() float64
-	Int63() int64
-	Int31() int32
-	Uint32() uint32
-	Intn(n int) int
-}
-
-func randUTF8RuneForted(r randyForted) rune {
-	ru := r.Intn(62)
-	if ru < 10 {
-		return rune(ru + 48)
-	} else if ru < 36 {
-		return rune(ru + 55)
-	}
-	return rune(ru + 61)
-}
-func randStringForted(r randyForted) string {
-	v3 := r.Intn(100)
-	tmps := make([]rune, v3)
-	for i := 0; i < v3; i++ {
-		tmps[i] = randUTF8RuneForted(r)
-	}
-	return string(tmps)
-}
-func randUnrecognizedForted(r randyForted, maxFieldNumber int) (dAtA []byte) {
-	l := r.Intn(5)
-	for i := 0; i < l; i++ {
-		wire := r.Intn(4)
-		if wire == 3 {
-			wire = 5
-		}
-		fieldNumber := maxFieldNumber + r.Intn(100)
-		dAtA = randFieldForted(dAtA, r, fieldNumber, wire)
-	}
-	return dAtA
-}
-func randFieldForted(dAtA []byte, r randyForted, fieldNumber int, wire int) []byte {
-	key := uint32(fieldNumber)<<3 | uint32(wire)
-	switch wire {
-	case 0:
-		dAtA = encodeVarintPopulateForted(dAtA, uint64(key))
-		v4 := r.Int63()
-		if r.Intn(2) == 0 {
-			v4 *= -1
-		}
-		dAtA = encodeVarintPopulateForted(dAtA, uint64(v4))
-	case 1:
-		dAtA = encodeVarintPopulateForted(dAtA, uint64(key))
-		dAtA = append(dAtA, byte(r.Intn(256)), byte(r.Intn(256)), byte(r.Intn(256)), byte(r.Intn(256)), byte(r.Intn(256)), byte(r.Intn(256)), byte(r.Intn(256)), byte(r.Intn(256)))
-	case 2:
-		dAtA = encodeVarintPopulateForted(dAtA, uint64(key))
-		ll := r.Intn(100)
-		dAtA = encodeVarintPopulateForted(dAtA, uint64(ll))
-		for j := 0; j < ll; j++ {
-			dAtA = append(dAtA, byte(r.Intn(256)))
-		}
-	default:
-		dAtA = encodeVarintPopulateForted(dAtA, uint64(key))
-		dAtA = append(dAtA, byte(r.Intn(256)), byte(r.Intn(256)), byte(r.Intn(256)), byte(r.Intn(256)))
-	}
-	return dAtA
-}
-func encodeVarintPopulateForted(dAtA []byte, v uint64) []byte {
-	for v >= 1<<7 {
-		dAtA = append(dAtA, uint8(uint64(v)&0x7f|0x80))
-		v >>= 7
-	}
-	dAtA = append(dAtA, uint8(v))
-	return dAtA
 }
 func (m *CreateSurebetManyRequest) Size() (n int) {
 	if m == nil {
@@ -1677,6 +4077,64 @@ func (m *CreateSurebetManyResponse) Size() (n int) {
 	_ = l
 	if m.SurebetCount != 0 {
 		n += 1 + sovForted(uint64(m.SurebetCount))
+	}
+	return n
+}
+
+func (m *PlaceBetRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Num != 0 {
+		n += 1 + sovForted(uint64(m.Num))
+	}
+	if m.Surebet != nil {
+		l = m.Surebet.Size()
+		n += 1 + l + sovForted(uint64(l))
+	}
+	return n
+}
+
+func (m *PlaceBetResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Side != nil {
+		l = m.Side.Size()
+		n += 1 + l + sovForted(uint64(l))
+	}
+	return n
+}
+
+func (m *CheckLineRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Num != 0 {
+		n += 1 + sovForted(uint64(m.Num))
+	}
+	if m.Surebet != nil {
+		l = m.Surebet.Size()
+		n += 1 + l + sovForted(uint64(l))
+	}
+	return n
+}
+
+func (m *CheckLineResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Side != nil {
+		l = m.Side.Size()
+		n += 1 + l + sovForted(uint64(l))
 	}
 	return n
 }
@@ -1785,6 +4243,10 @@ func (m *Surebet) Size() (n int) {
 	if m.LogId != 0 {
 		n += 1 + sovForted(uint64(m.LogId))
 	}
+	if m.Calc != nil {
+		l = m.Calc.Size()
+		n += 1 + l + sovForted(uint64(l))
+	}
 	if len(m.Members) > 0 {
 		for _, e := range m.Members {
 			l = e.Size()
@@ -1861,6 +4323,244 @@ func (m *SurebetSide) Size() (n int) {
 	if m.EventId != 0 {
 		n += 2 + sovForted(uint64(m.EventId))
 	}
+	if m.Check != nil {
+		l = m.Check.Size()
+		n += 2 + l + sovForted(uint64(l))
+	}
+	if m.BetConfig != nil {
+		l = m.BetConfig.Size()
+		n += 2 + l + sovForted(uint64(l))
+	}
+	if m.CheckCalc != nil {
+		l = m.CheckCalc.Size()
+		n += 2 + l + sovForted(uint64(l))
+	}
+	if m.ToBet != nil {
+		l = m.ToBet.Size()
+		n += 2 + l + sovForted(uint64(l))
+	}
+	if m.Bet != nil {
+		l = m.Bet.Size()
+		n += 2 + l + sovForted(uint64(l))
+	}
+	return n
+}
+
+func (m *BetConfig) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.MinPercent != 0 {
+		n += 9
+	}
+	if m.MaxPercent != 0 {
+		n += 9
+	}
+	if m.Priority != 0 {
+		n += 1 + sovForted(uint64(m.Priority))
+	}
+	if m.MaxCountLine != 0 {
+		n += 1 + sovForted(uint64(m.MaxCountLine))
+	}
+	if m.MaxCountEvent != 0 {
+		n += 1 + sovForted(uint64(m.MaxCountEvent))
+	}
+	if m.MaxAmountEvent != 0 {
+		n += 9
+	}
+	if m.RoundValue != 0 {
+		n += 9
+	}
+	l = len(m.ServiceName)
+	if l > 0 {
+		n += 1 + l + sovForted(uint64(l))
+	}
+	if m.MinStake != 0 {
+		n += 9
+	}
+	if m.MaxStake != 0 {
+		n += 9
+	}
+	l = len(m.Regime)
+	if l > 0 {
+		n += 1 + l + sovForted(uint64(l))
+	}
+	if m.MaxWin != 0 {
+		n += 9
+	}
+	return n
+}
+
+func (m *Calc) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Profit != 0 {
+		n += 9
+	}
+	l = len(m.FirstName)
+	if l > 0 {
+		n += 1 + l + sovForted(uint64(l))
+	}
+	l = len(m.SecondName)
+	if l > 0 {
+		n += 1 + l + sovForted(uint64(l))
+	}
+	if m.LowerWinIndex != 0 {
+		n += 1 + sovForted(uint64(m.LowerWinIndex))
+	}
+	if m.HigherWinIndex != 0 {
+		n += 1 + sovForted(uint64(m.HigherWinIndex))
+	}
+	if m.WinDiff != 0 {
+		n += 9
+	}
+	if m.WinDiffRel != 0 {
+		n += 9
+	}
+	if m.FirstIndex != 0 {
+		n += 1 + sovForted(uint64(m.FirstIndex))
+	}
+	if m.SecondIndex != 0 {
+		n += 1 + sovForted(uint64(m.SecondIndex))
+	}
+	return n
+}
+
+func (m *CheckCalc) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Status)
+	if l > 0 {
+		n += 1 + l + sovForted(uint64(l))
+	}
+	if m.MaxStake != 0 {
+		n += 9
+	}
+	if m.MinStake != 0 {
+		n += 9
+	}
+	if m.MaxWin != 0 {
+		n += 9
+	}
+	if m.Stake != 0 {
+		n += 9
+	}
+	if m.Win != 0 {
+		n += 9
+	}
+	if m.IsFirst {
+		n += 2
+	}
+	return n
+}
+
+func (m *ToBet) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Stake != 0 {
+		n += 9
+	}
+	return n
+}
+
+func (m *Bet) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Status)
+	if l > 0 {
+		n += 1 + l + sovForted(uint64(l))
+	}
+	l = len(m.StatusInfo)
+	if l > 0 {
+		n += 1 + l + sovForted(uint64(l))
+	}
+	l = len(m.Time)
+	if l > 0 {
+		n += 1 + l + sovForted(uint64(l))
+	}
+	if m.Price != 0 {
+		n += 9
+	}
+	if m.Stake != 0 {
+		n += 9
+	}
+	if m.TryCount != 0 {
+		n += 1 + sovForted(uint64(m.TryCount))
+	}
+	return n
+}
+
+func (m *Check) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Status)
+	if l > 0 {
+		n += 1 + l + sovForted(uint64(l))
+	}
+	if m.CountLine != 0 {
+		n += 1 + sovForted(uint64(m.CountLine))
+	}
+	if m.CountEvent != 0 {
+		n += 1 + sovForted(uint64(m.CountEvent))
+	}
+	if m.AmountEvent != 0 {
+		n += 9
+	}
+	if m.MinBet != 0 {
+		n += 9
+	}
+	if m.MaxBet != 0 {
+		n += 9
+	}
+	if m.Balance != 0 {
+		n += 9
+	}
+	if m.Price != 0 {
+		n += 9
+	}
+	l = len(m.StatusInfo)
+	if l > 0 {
+		n += 1 + l + sovForted(uint64(l))
+	}
+	l = len(m.Time)
+	if l > 0 {
+		n += 1 + l + sovForted(uint64(l))
+	}
+	return n
+}
+
+func (m *PingRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	return n
+}
+
+func (m *PingResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
 	return n
 }
 
@@ -1891,6 +4591,48 @@ func (this *CreateSurebetManyResponse) String() string {
 	}
 	s := strings.Join([]string{`&CreateSurebetManyResponse{`,
 		`SurebetCount:` + fmt.Sprintf("%v", this.SurebetCount) + `,`,
+		`}`,
+	}, "")
+	return s
+}
+func (this *PlaceBetRequest) String() string {
+	if this == nil {
+		return "nil"
+	}
+	s := strings.Join([]string{`&PlaceBetRequest{`,
+		`Num:` + fmt.Sprintf("%v", this.Num) + `,`,
+		`Surebet:` + strings.Replace(this.Surebet.String(), "Surebet", "Surebet", 1) + `,`,
+		`}`,
+	}, "")
+	return s
+}
+func (this *PlaceBetResponse) String() string {
+	if this == nil {
+		return "nil"
+	}
+	s := strings.Join([]string{`&PlaceBetResponse{`,
+		`Side:` + strings.Replace(this.Side.String(), "SurebetSide", "SurebetSide", 1) + `,`,
+		`}`,
+	}, "")
+	return s
+}
+func (this *CheckLineRequest) String() string {
+	if this == nil {
+		return "nil"
+	}
+	s := strings.Join([]string{`&CheckLineRequest{`,
+		`Num:` + fmt.Sprintf("%v", this.Num) + `,`,
+		`Surebet:` + strings.Replace(this.Surebet.String(), "Surebet", "Surebet", 1) + `,`,
+		`}`,
+	}, "")
+	return s
+}
+func (this *CheckLineResponse) String() string {
+	if this == nil {
+		return "nil"
+	}
+	s := strings.Join([]string{`&CheckLineResponse{`,
+		`Side:` + strings.Replace(this.Side.String(), "SurebetSide", "SurebetSide", 1) + `,`,
 		`}`,
 	}, "")
 	return s
@@ -1958,6 +4700,7 @@ func (this *Surebet) String() string {
 		`SkynetId:` + fmt.Sprintf("%v", this.SkynetId) + `,`,
 		`SurebetId:` + fmt.Sprintf("%v", this.SurebetId) + `,`,
 		`LogId:` + fmt.Sprintf("%v", this.LogId) + `,`,
+		`Calc:` + strings.Replace(this.Calc.String(), "Calc", "Calc", 1) + `,`,
 		`Members:` + repeatedStringForMembers + `,`,
 		`}`,
 	}, "")
@@ -1986,6 +4729,128 @@ func (this *SurebetSide) String() string {
 		`MarketId:` + fmt.Sprintf("%v", this.MarketId) + `,`,
 		`PriceId:` + fmt.Sprintf("%v", this.PriceId) + `,`,
 		`EventId:` + fmt.Sprintf("%v", this.EventId) + `,`,
+		`Check:` + strings.Replace(this.Check.String(), "Check", "Check", 1) + `,`,
+		`BetConfig:` + strings.Replace(this.BetConfig.String(), "BetConfig", "BetConfig", 1) + `,`,
+		`CheckCalc:` + strings.Replace(this.CheckCalc.String(), "CheckCalc", "CheckCalc", 1) + `,`,
+		`ToBet:` + strings.Replace(this.ToBet.String(), "ToBet", "ToBet", 1) + `,`,
+		`Bet:` + strings.Replace(this.Bet.String(), "Bet", "Bet", 1) + `,`,
+		`}`,
+	}, "")
+	return s
+}
+func (this *BetConfig) String() string {
+	if this == nil {
+		return "nil"
+	}
+	s := strings.Join([]string{`&BetConfig{`,
+		`MinPercent:` + fmt.Sprintf("%v", this.MinPercent) + `,`,
+		`MaxPercent:` + fmt.Sprintf("%v", this.MaxPercent) + `,`,
+		`Priority:` + fmt.Sprintf("%v", this.Priority) + `,`,
+		`MaxCountLine:` + fmt.Sprintf("%v", this.MaxCountLine) + `,`,
+		`MaxCountEvent:` + fmt.Sprintf("%v", this.MaxCountEvent) + `,`,
+		`MaxAmountEvent:` + fmt.Sprintf("%v", this.MaxAmountEvent) + `,`,
+		`RoundValue:` + fmt.Sprintf("%v", this.RoundValue) + `,`,
+		`ServiceName:` + fmt.Sprintf("%v", this.ServiceName) + `,`,
+		`MinStake:` + fmt.Sprintf("%v", this.MinStake) + `,`,
+		`MaxStake:` + fmt.Sprintf("%v", this.MaxStake) + `,`,
+		`Regime:` + fmt.Sprintf("%v", this.Regime) + `,`,
+		`MaxWin:` + fmt.Sprintf("%v", this.MaxWin) + `,`,
+		`}`,
+	}, "")
+	return s
+}
+func (this *Calc) String() string {
+	if this == nil {
+		return "nil"
+	}
+	s := strings.Join([]string{`&Calc{`,
+		`Profit:` + fmt.Sprintf("%v", this.Profit) + `,`,
+		`FirstName:` + fmt.Sprintf("%v", this.FirstName) + `,`,
+		`SecondName:` + fmt.Sprintf("%v", this.SecondName) + `,`,
+		`LowerWinIndex:` + fmt.Sprintf("%v", this.LowerWinIndex) + `,`,
+		`HigherWinIndex:` + fmt.Sprintf("%v", this.HigherWinIndex) + `,`,
+		`WinDiff:` + fmt.Sprintf("%v", this.WinDiff) + `,`,
+		`WinDiffRel:` + fmt.Sprintf("%v", this.WinDiffRel) + `,`,
+		`FirstIndex:` + fmt.Sprintf("%v", this.FirstIndex) + `,`,
+		`SecondIndex:` + fmt.Sprintf("%v", this.SecondIndex) + `,`,
+		`}`,
+	}, "")
+	return s
+}
+func (this *CheckCalc) String() string {
+	if this == nil {
+		return "nil"
+	}
+	s := strings.Join([]string{`&CheckCalc{`,
+		`Status:` + fmt.Sprintf("%v", this.Status) + `,`,
+		`MaxStake:` + fmt.Sprintf("%v", this.MaxStake) + `,`,
+		`MinStake:` + fmt.Sprintf("%v", this.MinStake) + `,`,
+		`MaxWin:` + fmt.Sprintf("%v", this.MaxWin) + `,`,
+		`Stake:` + fmt.Sprintf("%v", this.Stake) + `,`,
+		`Win:` + fmt.Sprintf("%v", this.Win) + `,`,
+		`IsFirst:` + fmt.Sprintf("%v", this.IsFirst) + `,`,
+		`}`,
+	}, "")
+	return s
+}
+func (this *ToBet) String() string {
+	if this == nil {
+		return "nil"
+	}
+	s := strings.Join([]string{`&ToBet{`,
+		`Stake:` + fmt.Sprintf("%v", this.Stake) + `,`,
+		`}`,
+	}, "")
+	return s
+}
+func (this *Bet) String() string {
+	if this == nil {
+		return "nil"
+	}
+	s := strings.Join([]string{`&Bet{`,
+		`Status:` + fmt.Sprintf("%v", this.Status) + `,`,
+		`StatusInfo:` + fmt.Sprintf("%v", this.StatusInfo) + `,`,
+		`Time:` + fmt.Sprintf("%v", this.Time) + `,`,
+		`Price:` + fmt.Sprintf("%v", this.Price) + `,`,
+		`Stake:` + fmt.Sprintf("%v", this.Stake) + `,`,
+		`TryCount:` + fmt.Sprintf("%v", this.TryCount) + `,`,
+		`}`,
+	}, "")
+	return s
+}
+func (this *Check) String() string {
+	if this == nil {
+		return "nil"
+	}
+	s := strings.Join([]string{`&Check{`,
+		`Status:` + fmt.Sprintf("%v", this.Status) + `,`,
+		`CountLine:` + fmt.Sprintf("%v", this.CountLine) + `,`,
+		`CountEvent:` + fmt.Sprintf("%v", this.CountEvent) + `,`,
+		`AmountEvent:` + fmt.Sprintf("%v", this.AmountEvent) + `,`,
+		`MinBet:` + fmt.Sprintf("%v", this.MinBet) + `,`,
+		`MaxBet:` + fmt.Sprintf("%v", this.MaxBet) + `,`,
+		`Balance:` + fmt.Sprintf("%v", this.Balance) + `,`,
+		`Price:` + fmt.Sprintf("%v", this.Price) + `,`,
+		`StatusInfo:` + fmt.Sprintf("%v", this.StatusInfo) + `,`,
+		`Time:` + fmt.Sprintf("%v", this.Time) + `,`,
+		`}`,
+	}, "")
+	return s
+}
+func (this *PingRequest) String() string {
+	if this == nil {
+		return "nil"
+	}
+	s := strings.Join([]string{`&PingRequest{`,
+		`}`,
+	}, "")
+	return s
+}
+func (this *PingResponse) String() string {
+	if this == nil {
+		return "nil"
+	}
+	s := strings.Join([]string{`&PingResponse{`,
 		`}`,
 	}, "")
 	return s
@@ -2133,6 +4998,400 @@ func (m *CreateSurebetManyResponse) Unmarshal(dAtA []byte) error {
 					break
 				}
 			}
+		default:
+			iNdEx = preIndex
+			skippy, err := skipForted(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthForted
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthForted
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *PlaceBetRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowForted
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: PlaceBetRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: PlaceBetRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Num", wireType)
+			}
+			m.Num = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowForted
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Num |= int64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Surebet", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowForted
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthForted
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthForted
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Surebet == nil {
+				m.Surebet = &Surebet{}
+			}
+			if err := m.Surebet.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipForted(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthForted
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthForted
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *PlaceBetResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowForted
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: PlaceBetResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: PlaceBetResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Side", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowForted
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthForted
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthForted
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Side == nil {
+				m.Side = &SurebetSide{}
+			}
+			if err := m.Side.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipForted(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthForted
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthForted
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *CheckLineRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowForted
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: CheckLineRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: CheckLineRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Num", wireType)
+			}
+			m.Num = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowForted
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Num |= int64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Surebet", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowForted
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthForted
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthForted
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Surebet == nil {
+				m.Surebet = &Surebet{}
+			}
+			if err := m.Surebet.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipForted(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthForted
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthForted
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *CheckLineResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowForted
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: CheckLineResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: CheckLineResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Side", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowForted
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthForted
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthForted
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Side == nil {
+				m.Side = &SurebetSide{}
+			}
+			if err := m.Side.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
 			skippy, err := skipForted(dAtA[iNdEx:])
@@ -2872,6 +6131,42 @@ func (m *Surebet) Unmarshal(dAtA []byte) error {
 					break
 				}
 			}
+		case 13:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Calc", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowForted
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthForted
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthForted
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Calc == nil {
+				m.Calc = &Calc{}
+			}
+			if err := m.Calc.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
 		case 15:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Members", wireType)
@@ -3385,6 +6680,1425 @@ func (m *SurebetSide) Unmarshal(dAtA []byte) error {
 					break
 				}
 			}
+		case 19:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Check", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowForted
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthForted
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthForted
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Check == nil {
+				m.Check = &Check{}
+			}
+			if err := m.Check.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 20:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field BetConfig", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowForted
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthForted
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthForted
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.BetConfig == nil {
+				m.BetConfig = &BetConfig{}
+			}
+			if err := m.BetConfig.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 21:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field CheckCalc", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowForted
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthForted
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthForted
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.CheckCalc == nil {
+				m.CheckCalc = &CheckCalc{}
+			}
+			if err := m.CheckCalc.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 22:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field ToBet", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowForted
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthForted
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthForted
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.ToBet == nil {
+				m.ToBet = &ToBet{}
+			}
+			if err := m.ToBet.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 23:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Bet", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowForted
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthForted
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthForted
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Bet == nil {
+				m.Bet = &Bet{}
+			}
+			if err := m.Bet.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipForted(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthForted
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthForted
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *BetConfig) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowForted
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: BetConfig: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: BetConfig: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 1 {
+				return fmt.Errorf("proto: wrong wireType = %d for field MinPercent", wireType)
+			}
+			var v uint64
+			if (iNdEx + 8) > l {
+				return io.ErrUnexpectedEOF
+			}
+			v = uint64(encoding_binary.LittleEndian.Uint64(dAtA[iNdEx:]))
+			iNdEx += 8
+			m.MinPercent = float64(math.Float64frombits(v))
+		case 2:
+			if wireType != 1 {
+				return fmt.Errorf("proto: wrong wireType = %d for field MaxPercent", wireType)
+			}
+			var v uint64
+			if (iNdEx + 8) > l {
+				return io.ErrUnexpectedEOF
+			}
+			v = uint64(encoding_binary.LittleEndian.Uint64(dAtA[iNdEx:]))
+			iNdEx += 8
+			m.MaxPercent = float64(math.Float64frombits(v))
+		case 3:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Priority", wireType)
+			}
+			m.Priority = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowForted
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Priority |= int64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 4:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field MaxCountLine", wireType)
+			}
+			m.MaxCountLine = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowForted
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.MaxCountLine |= int64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 5:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field MaxCountEvent", wireType)
+			}
+			m.MaxCountEvent = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowForted
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.MaxCountEvent |= int64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 6:
+			if wireType != 1 {
+				return fmt.Errorf("proto: wrong wireType = %d for field MaxAmountEvent", wireType)
+			}
+			var v uint64
+			if (iNdEx + 8) > l {
+				return io.ErrUnexpectedEOF
+			}
+			v = uint64(encoding_binary.LittleEndian.Uint64(dAtA[iNdEx:]))
+			iNdEx += 8
+			m.MaxAmountEvent = float64(math.Float64frombits(v))
+		case 7:
+			if wireType != 1 {
+				return fmt.Errorf("proto: wrong wireType = %d for field RoundValue", wireType)
+			}
+			var v uint64
+			if (iNdEx + 8) > l {
+				return io.ErrUnexpectedEOF
+			}
+			v = uint64(encoding_binary.LittleEndian.Uint64(dAtA[iNdEx:]))
+			iNdEx += 8
+			m.RoundValue = float64(math.Float64frombits(v))
+		case 8:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field ServiceName", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowForted
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthForted
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthForted
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.ServiceName = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 9:
+			if wireType != 1 {
+				return fmt.Errorf("proto: wrong wireType = %d for field MinStake", wireType)
+			}
+			var v uint64
+			if (iNdEx + 8) > l {
+				return io.ErrUnexpectedEOF
+			}
+			v = uint64(encoding_binary.LittleEndian.Uint64(dAtA[iNdEx:]))
+			iNdEx += 8
+			m.MinStake = float64(math.Float64frombits(v))
+		case 10:
+			if wireType != 1 {
+				return fmt.Errorf("proto: wrong wireType = %d for field MaxStake", wireType)
+			}
+			var v uint64
+			if (iNdEx + 8) > l {
+				return io.ErrUnexpectedEOF
+			}
+			v = uint64(encoding_binary.LittleEndian.Uint64(dAtA[iNdEx:]))
+			iNdEx += 8
+			m.MaxStake = float64(math.Float64frombits(v))
+		case 11:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Regime", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowForted
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthForted
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthForted
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Regime = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 12:
+			if wireType != 1 {
+				return fmt.Errorf("proto: wrong wireType = %d for field MaxWin", wireType)
+			}
+			var v uint64
+			if (iNdEx + 8) > l {
+				return io.ErrUnexpectedEOF
+			}
+			v = uint64(encoding_binary.LittleEndian.Uint64(dAtA[iNdEx:]))
+			iNdEx += 8
+			m.MaxWin = float64(math.Float64frombits(v))
+		default:
+			iNdEx = preIndex
+			skippy, err := skipForted(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthForted
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthForted
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *Calc) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowForted
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: Calc: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: Calc: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 1 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Profit", wireType)
+			}
+			var v uint64
+			if (iNdEx + 8) > l {
+				return io.ErrUnexpectedEOF
+			}
+			v = uint64(encoding_binary.LittleEndian.Uint64(dAtA[iNdEx:]))
+			iNdEx += 8
+			m.Profit = float64(math.Float64frombits(v))
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field FirstName", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowForted
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthForted
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthForted
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.FirstName = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 3:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field SecondName", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowForted
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthForted
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthForted
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.SecondName = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 4:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field LowerWinIndex", wireType)
+			}
+			m.LowerWinIndex = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowForted
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.LowerWinIndex |= int64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 5:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field HigherWinIndex", wireType)
+			}
+			m.HigherWinIndex = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowForted
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.HigherWinIndex |= int64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 6:
+			if wireType != 1 {
+				return fmt.Errorf("proto: wrong wireType = %d for field WinDiff", wireType)
+			}
+			var v uint64
+			if (iNdEx + 8) > l {
+				return io.ErrUnexpectedEOF
+			}
+			v = uint64(encoding_binary.LittleEndian.Uint64(dAtA[iNdEx:]))
+			iNdEx += 8
+			m.WinDiff = float64(math.Float64frombits(v))
+		case 7:
+			if wireType != 1 {
+				return fmt.Errorf("proto: wrong wireType = %d for field WinDiffRel", wireType)
+			}
+			var v uint64
+			if (iNdEx + 8) > l {
+				return io.ErrUnexpectedEOF
+			}
+			v = uint64(encoding_binary.LittleEndian.Uint64(dAtA[iNdEx:]))
+			iNdEx += 8
+			m.WinDiffRel = float64(math.Float64frombits(v))
+		case 8:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field FirstIndex", wireType)
+			}
+			m.FirstIndex = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowForted
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.FirstIndex |= int64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 9:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field SecondIndex", wireType)
+			}
+			m.SecondIndex = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowForted
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.SecondIndex |= int64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		default:
+			iNdEx = preIndex
+			skippy, err := skipForted(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthForted
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthForted
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *CheckCalc) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowForted
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: CheckCalc: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: CheckCalc: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Status", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowForted
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthForted
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthForted
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Status = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 1 {
+				return fmt.Errorf("proto: wrong wireType = %d for field MaxStake", wireType)
+			}
+			var v uint64
+			if (iNdEx + 8) > l {
+				return io.ErrUnexpectedEOF
+			}
+			v = uint64(encoding_binary.LittleEndian.Uint64(dAtA[iNdEx:]))
+			iNdEx += 8
+			m.MaxStake = float64(math.Float64frombits(v))
+		case 3:
+			if wireType != 1 {
+				return fmt.Errorf("proto: wrong wireType = %d for field MinStake", wireType)
+			}
+			var v uint64
+			if (iNdEx + 8) > l {
+				return io.ErrUnexpectedEOF
+			}
+			v = uint64(encoding_binary.LittleEndian.Uint64(dAtA[iNdEx:]))
+			iNdEx += 8
+			m.MinStake = float64(math.Float64frombits(v))
+		case 4:
+			if wireType != 1 {
+				return fmt.Errorf("proto: wrong wireType = %d for field MaxWin", wireType)
+			}
+			var v uint64
+			if (iNdEx + 8) > l {
+				return io.ErrUnexpectedEOF
+			}
+			v = uint64(encoding_binary.LittleEndian.Uint64(dAtA[iNdEx:]))
+			iNdEx += 8
+			m.MaxWin = float64(math.Float64frombits(v))
+		case 5:
+			if wireType != 1 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Stake", wireType)
+			}
+			var v uint64
+			if (iNdEx + 8) > l {
+				return io.ErrUnexpectedEOF
+			}
+			v = uint64(encoding_binary.LittleEndian.Uint64(dAtA[iNdEx:]))
+			iNdEx += 8
+			m.Stake = float64(math.Float64frombits(v))
+		case 6:
+			if wireType != 1 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Win", wireType)
+			}
+			var v uint64
+			if (iNdEx + 8) > l {
+				return io.ErrUnexpectedEOF
+			}
+			v = uint64(encoding_binary.LittleEndian.Uint64(dAtA[iNdEx:]))
+			iNdEx += 8
+			m.Win = float64(math.Float64frombits(v))
+		case 7:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field IsFirst", wireType)
+			}
+			var v int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowForted
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				v |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			m.IsFirst = bool(v != 0)
+		default:
+			iNdEx = preIndex
+			skippy, err := skipForted(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthForted
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthForted
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *ToBet) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowForted
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: ToBet: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: ToBet: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 1 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Stake", wireType)
+			}
+			var v uint64
+			if (iNdEx + 8) > l {
+				return io.ErrUnexpectedEOF
+			}
+			v = uint64(encoding_binary.LittleEndian.Uint64(dAtA[iNdEx:]))
+			iNdEx += 8
+			m.Stake = float64(math.Float64frombits(v))
+		default:
+			iNdEx = preIndex
+			skippy, err := skipForted(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthForted
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthForted
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *Bet) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowForted
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: Bet: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: Bet: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Status", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowForted
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthForted
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthForted
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Status = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field StatusInfo", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowForted
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthForted
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthForted
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.StatusInfo = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 3:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Time", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowForted
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthForted
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthForted
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Time = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 4:
+			if wireType != 1 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Price", wireType)
+			}
+			var v uint64
+			if (iNdEx + 8) > l {
+				return io.ErrUnexpectedEOF
+			}
+			v = uint64(encoding_binary.LittleEndian.Uint64(dAtA[iNdEx:]))
+			iNdEx += 8
+			m.Price = float64(math.Float64frombits(v))
+		case 5:
+			if wireType != 1 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Stake", wireType)
+			}
+			var v uint64
+			if (iNdEx + 8) > l {
+				return io.ErrUnexpectedEOF
+			}
+			v = uint64(encoding_binary.LittleEndian.Uint64(dAtA[iNdEx:]))
+			iNdEx += 8
+			m.Stake = float64(math.Float64frombits(v))
+		case 6:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field TryCount", wireType)
+			}
+			m.TryCount = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowForted
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.TryCount |= int64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		default:
+			iNdEx = preIndex
+			skippy, err := skipForted(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthForted
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthForted
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *Check) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowForted
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: Check: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: Check: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Status", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowForted
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthForted
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthForted
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Status = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field CountLine", wireType)
+			}
+			m.CountLine = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowForted
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.CountLine |= int64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 3:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field CountEvent", wireType)
+			}
+			m.CountEvent = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowForted
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.CountEvent |= int64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 4:
+			if wireType != 1 {
+				return fmt.Errorf("proto: wrong wireType = %d for field AmountEvent", wireType)
+			}
+			var v uint64
+			if (iNdEx + 8) > l {
+				return io.ErrUnexpectedEOF
+			}
+			v = uint64(encoding_binary.LittleEndian.Uint64(dAtA[iNdEx:]))
+			iNdEx += 8
+			m.AmountEvent = float64(math.Float64frombits(v))
+		case 5:
+			if wireType != 1 {
+				return fmt.Errorf("proto: wrong wireType = %d for field MinBet", wireType)
+			}
+			var v uint64
+			if (iNdEx + 8) > l {
+				return io.ErrUnexpectedEOF
+			}
+			v = uint64(encoding_binary.LittleEndian.Uint64(dAtA[iNdEx:]))
+			iNdEx += 8
+			m.MinBet = float64(math.Float64frombits(v))
+		case 6:
+			if wireType != 1 {
+				return fmt.Errorf("proto: wrong wireType = %d for field MaxBet", wireType)
+			}
+			var v uint64
+			if (iNdEx + 8) > l {
+				return io.ErrUnexpectedEOF
+			}
+			v = uint64(encoding_binary.LittleEndian.Uint64(dAtA[iNdEx:]))
+			iNdEx += 8
+			m.MaxBet = float64(math.Float64frombits(v))
+		case 7:
+			if wireType != 1 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Balance", wireType)
+			}
+			var v uint64
+			if (iNdEx + 8) > l {
+				return io.ErrUnexpectedEOF
+			}
+			v = uint64(encoding_binary.LittleEndian.Uint64(dAtA[iNdEx:]))
+			iNdEx += 8
+			m.Balance = float64(math.Float64frombits(v))
+		case 8:
+			if wireType != 1 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Price", wireType)
+			}
+			var v uint64
+			if (iNdEx + 8) > l {
+				return io.ErrUnexpectedEOF
+			}
+			v = uint64(encoding_binary.LittleEndian.Uint64(dAtA[iNdEx:]))
+			iNdEx += 8
+			m.Price = float64(math.Float64frombits(v))
+		case 9:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field StatusInfo", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowForted
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthForted
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthForted
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.StatusInfo = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 10:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Time", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowForted
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthForted
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthForted
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Time = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipForted(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthForted
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthForted
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *PingRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowForted
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: PingRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: PingRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		default:
+			iNdEx = preIndex
+			skippy, err := skipForted(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthForted
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthForted
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *PingResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowForted
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: PingResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: PingResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
 		default:
 			iNdEx = preIndex
 			skippy, err := skipForted(dAtA[iNdEx:])

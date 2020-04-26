@@ -1,5 +1,4 @@
 syntax = "proto3";
-//import "google/protobuf/timestamp.proto";
 import "github.com/gogo/protobuf/gogoproto/gogo.proto";
 
 package fortedpb;
@@ -8,14 +7,15 @@ option go_package = "fortedpb";
 option (gogoproto.marshaler_all) = true;
 option (gogoproto.unmarshaler_all) = true;
 option (gogoproto.sizer_all) = true;
-option (gogoproto.gostring_all) = true;
 option (gogoproto.goproto_stringer_all) = false;
 option (gogoproto.stringer_all) = true;
-option (gogoproto.populate_all) = true;
+option (gogoproto.gostring_all) = true;
 option (gogoproto.goproto_unrecognized_all) = false;
 option (gogoproto.goproto_unkeyed_all) = false;
 option (gogoproto.goproto_sizecache_all) = false;
-//option (gogoproto.equal_all) = true;
+option (gogoproto.equal_all) = true;
+
+//option (gogoproto.populate_all) = true;
 //option (gogoproto.testgen_all) = true;
 
 
@@ -26,6 +26,12 @@ service Forted {
     }
     rpc CreateSurebetMany (CreateSurebetManyRequest) returns (CreateSurebetManyResponse) {
     }
+    rpc Ping (PingRequest) returns (PingResponse) {
+    }
+    rpc CheckLine (CheckLineRequest) returns (CheckLineResponse) {
+    }
+    rpc PlaceBet (PlaceBetRequest) returns (PlaceBetResponse) {
+    }
 }
 
 message CreateSurebetManyRequest {
@@ -35,6 +41,22 @@ message CreateSurebetManyResponse {
     int64 surebet_count = 1;
 }
 
+
+message PlaceBetRequest {
+    int64 num = 1;
+    Surebet surebet = 2;
+}
+message PlaceBetResponse {
+    SurebetSide side = 1;
+}
+
+message CheckLineRequest {
+    int64 num = 1;
+    Surebet surebet = 2;
+}
+message CheckLineResponse {
+    SurebetSide side = 1;
+}
 
 message CreateSurebetRequest {
     Surebet surebet = 1;
@@ -52,10 +74,8 @@ message PlaceSurebetResponse {
 }
 
 message Surebet {
-    //    google.protobuf.Timestamp created_at = 1 [(gogoproto.stdtime) = true];
     string created_at = 1;
     string surebet_hash = 2;
-    //    google.protobuf.Timestamp starts = 3 [(gogoproto.stdtime) = true];
     string starts = 3;
     string forted_home = 4;
     string forted_away = 5;
@@ -66,6 +86,7 @@ message Surebet {
     int64 skynet_id = 10;
     int64 surebet_id = 11;
     int64 log_id = 12;
+    Calc calc = 13;
     repeated SurebetSide members = 15;
 }
 message SurebetSide {
@@ -93,6 +114,82 @@ message SurebetSide {
     string url = 9;
     bool initiator = 10;
     int64 event_id = 18;
+    Check check = 19;
+    BetConfig bet_config = 20;
+    CheckCalc check_calc = 21;
+    ToBet to_bet = 22;
+    Bet bet = 23;
+}
+
+message BetConfig {
+    string service_name = 8;
+    string regime = 11;
+
+    int64 priority = 3;
+    int64 max_count_line = 4;
+    int64 max_count_event = 5;
+
+    double min_stake = 9 ;
+    double max_stake = 10 ;
+
+    double max_win = 12 ;
+
+    double min_percent = 1 ;
+    double max_percent = 2 ;
+    double max_amount_event = 6 ;
+    double round_value = 7 ;
+}
+
+message Calc {
+    double profit = 1 ;
+    string first_name = 2;
+    string second_name = 3;
+    int64 lower_win_index = 4;
+    int64 higher_win_index = 5;
+    int64 first_index = 8;
+    int64 second_index = 9;
+    double win_diff = 6 ;
+    double win_diff_rel = 7 ;
+
+}
+message CheckCalc {
+    string status = 1;
+    double max_stake = 2 ;
+    double min_stake = 3 ;
+    double max_win = 4 ;
+    double stake = 5 ;
+    double win = 6 ;
+    bool is_first = 7;
+}
+
+message ToBet {
+    double stake = 1 ;
+}
+message Bet {
+    string status = 1;
+    string status_info = 2;
+    string time = 3;
+    double price = 4 ;
+    double stake = 5 ;
+    int64 try_count = 6;
+}
+
+message Check {
+    string status = 1;
+    int64 count_line = 2;
+    int64 count_event = 3;
+    double amount_event = 4 ;
+    double min_bet = 5 ;
+    double max_bet = 6 ;
+    double balance = 7 ;
+    double price = 8 ;
+
+    string status_info = 9;
+    string time = 10;
 }
 
 
+message PingRequest {
+}
+message PingResponse {
+}
