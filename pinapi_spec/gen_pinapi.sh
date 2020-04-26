@@ -5,6 +5,7 @@ echo "# START SCRIPT: $SCRIPT"
 
 executable="./../openapi-generator-cli.jar"
 
+PACKAGE_NAME="pinapi"
 SPEC="./spec/merged/pinapi.yaml"
 GENERATOR="go-experimental"
 #GENERATOR="go"
@@ -14,7 +15,7 @@ USER_AGENT="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
 echo "Removing files and folders under $STUB_DIR"
 rm -rf $STUB_DIR/{*.go,*.sh,*.md,*.mod,*.sum}
 
-java -jar $executable generate -i $SPEC -g $GENERATOR -o $STUB_DIR --type-mappings integer=int  --http-user-agent "$USER_AGENT"
+java -jar $executable generate -i $SPEC -g $GENERATOR -o $STUB_DIR --package-name $PACKAGE_NAME --type-mappings integer=int  --http-user-agent "$USER_AGENT"
 
 # --additional-properties --generate-alias-as-model true
 echo "Removing mod files"
