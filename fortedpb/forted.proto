@@ -43,7 +43,6 @@ message CreateSurebetManyResponse {
 
 
 message PlaceBetRequest {
-    int64 num = 1;
     Surebet surebet = 2;
 }
 message PlaceBetResponse {
@@ -51,7 +50,6 @@ message PlaceBetResponse {
 }
 
 message CheckLineRequest {
-    int64 num = 1;
     Surebet surebet = 2;
 }
 message CheckLineResponse {
@@ -70,24 +68,29 @@ message PlaceSurebetRequest {
     Surebet surebet = 1;
 }
 message PlaceSurebetResponse {
-    int64 surebet_id = 1;
 }
 
 message Surebet {
     string created_at = 1;
-    string surebet_hash = 2;
     string starts = 3;
     string forted_home = 4;
     string forted_away = 5;
-    string forted_profit = 6;
+    double forted_profit = 6;
     string forted_sport = 7;
     string forted_league = 8;
     string filter_name = 9;
     int64 skynet_id = 10;
+
+    int64 forted_surebet_id = 2;
     int64 surebet_id = 11;
     int64 log_id = 12;
     Calc calc = 13;
+    repeated Currency currency = 14 [(gogoproto.nullable) = false];
     repeated SurebetSide members = 15;
+}
+message Currency {
+    string code = 1;
+    double value = 2;
 }
 message SurebetSide {
     int64 num = 1;
@@ -128,64 +131,70 @@ message BetConfig {
     int64 priority = 3;
     int64 max_count_line = 4;
     int64 max_count_event = 5;
+    int64 min_stake = 9;
+    int64 max_stake = 10;
+    int64 max_win = 12;
 
-    double min_stake = 9 ;
-    double max_stake = 10 ;
-
-    double max_win = 12 ;
-
-    double min_percent = 1 ;
-    double max_percent = 2 ;
-    double max_amount_event = 6 ;
-    double round_value = 7 ;
+    double min_percent = 1;
+    int64 max_percent = 2;
+    int64 max_amount_event = 6;
+    int64 max_amount_line = 13;
+    double round_value = 7;
 }
 
 message Calc {
-    double profit = 1 ;
+    double profit = 1;
     string first_name = 2;
     string second_name = 3;
     int64 lower_win_index = 4;
     int64 higher_win_index = 5;
     int64 first_index = 8;
     int64 second_index = 9;
-    double win_diff = 6 ;
-    double win_diff_rel = 7 ;
-
+    double win_diff = 6;
+    double win_diff_rel = 7;
 }
 message CheckCalc {
     string status = 1;
-    double max_stake = 2 ;
-    double min_stake = 3 ;
-    double max_win = 4 ;
-    double stake = 5 ;
-    double win = 6 ;
+    double max_stake = 2;
+    double min_stake = 3;
+    double max_win = 4;
+    double stake = 5;
+    double win = 6;
     bool is_first = 7;
 }
 
 message ToBet {
-    double stake = 1 ;
+    int64 id = 3;
+    int64 try_count = 6;
 }
 message Bet {
     string status = 1;
     string status_info = 2;
-    string time = 3;
-    double price = 4 ;
-    double stake = 5 ;
-    int64 try_count = 6;
+
+    int64 start = 3;
+    int64 done = 6;
+    double price = 4;
+    double stake = 5;
+    string api_bet_id = 7;
 }
 
 message Check {
+    int64 id = 11;
+    int64 account_id = 13;
+    string account_login = 14;
     string status = 1;
+    string status_info = 9;
     int64 count_line = 2;
     int64 count_event = 3;
-    double amount_event = 4 ;
-    double min_bet = 5 ;
-    double max_bet = 6 ;
-    double balance = 7 ;
-    double price = 8 ;
+    int64 amount_event = 4;
+    int64 amount_line = 15;
+    double min_bet = 5;
+    double max_bet = 6;
+    int64 balance = 7;
+    double price = 8;
+    double currency = 12;
 
-    string status_info = 9;
-    string time = 10;
+    int64 done = 10;
 }
 
 

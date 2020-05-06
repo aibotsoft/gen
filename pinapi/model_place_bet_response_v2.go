@@ -15,21 +15,20 @@ import (
 
 // PlaceBetResponseV2 struct for PlaceBetResponseV2
 type PlaceBetResponseV2 struct {
-	// Status of the response.
-	Status *string `json:"status,omitempty"`
-	// If Status is PROCESSED_WITH_ERROR, errorCode will be in the response.   ALL_BETTING_CLOSED = Betting is not allowed at this moment. This may happen during system maintenance,   ALL_LIVE_BETTING_CLOSED = Live betting is not allowed at this moment. This may happen during system maintenance,   ABOVE_EVENT_MAX = Bet cannot be placed because client exceeded allowed maximum of risk on a line,   ABOVE_MAX_BET_AMOUNT = Stake is above allowed maximum amount,    BELOW_MIN_BET_AMOUNT = Stake is below allowed minimum amount,   BLOCKED_BETTING = Betting is suspended for the client,   BLOCKED_CLIENT = Client is no longer active,    INSUFFICIENT_FUNDS = Bet is submitted by a client with insufficient funds,   INVALID_COUNTRY = Client country is not allowed for betting,   INVALID_EVENT = Invalid eventid,   INVALID_ODDS_FORMAT = If a bet was submitted with the odds format that is not allowed for the client,   LINE_CHANGED = Bet is submitted on a line that has changed,   LISTED_PITCHERS_SELECTION_ERROR = If bet was submitted with pitcher1MustStart and/or pitcher2MustStart parameters in Place Bet request with values that are not allowed,   OFFLINE_EVENT = Bet is submitted on an event that is offline or the submitted line is not offered at the moment due to points/handicap change or the submitted bet type is just not offered at the moment,   PAST_CUTOFFTIME = Bet is submitted on a game after the betting cutoff time,   RED_CARDS_CHANGED = Bet is submitted on a live soccer event with changed red card count,   SCORE_CHANGED = Bet is submitted on a live soccer event with changed score,   TIME_RESTRICTION = Bet is submitted within too short of a period from the same bet previously placed by a client,   DUPLICATE_UNIQUE_REQUEST_ID = Request with the same uniqueRequestId was already processed. Please set the new value if you still want the request to be processed,   INCOMPLETE_CUSTOMER_BETTING_PROFILE = System configuration issue,   INVALID_CUSTOMER_PROFILE = System configuration issue,   LIMITS_CONFIGURATION_ISSUE = System configuration issue,   RESPONSIBLE_BETTING_LOSS_LIMIT_EXCEEDED = Client has reached his total loss limit,   RESPONSIBLE_BETTING_RISK_LIMIT_EXCEEDED = Client has reached his total risk limit,   SYSTEM_ERROR_3 = Unexpected error,   LICENCE_RESTRICTION_LIVE_BETTING_BLOCKED - Live betting blocked due to licence restrictions 
-	ErrorCode NullableString `json:"errorCode,omitempty"`
+	Status Status `json:"status"`
+	ErrorCode NullableErrorCode `json:"errorCode,omitempty"`
 	// Echo of the uniqueRequestId from the request.
 	UniqueRequestId *string `json:"uniqueRequestId,omitempty"`
-	StraightBet *StraightBet `json:"straightBet,omitempty"`
+	StraightBet *StraightBetV3 `json:"straightBet,omitempty"`
 }
 
 // NewPlaceBetResponseV2 instantiates a new PlaceBetResponseV2 object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPlaceBetResponseV2() *PlaceBetResponseV2 {
+func NewPlaceBetResponseV2(status Status, ) *PlaceBetResponseV2 {
 	this := PlaceBetResponseV2{}
+	this.Status = status
 	return &this
 }
 
@@ -41,42 +40,34 @@ func NewPlaceBetResponseV2WithDefaults() *PlaceBetResponseV2 {
 	return &this
 }
 
-// GetStatus returns the Status field value if set, zero value otherwise.
-func (o *PlaceBetResponseV2) GetStatus() string {
-	if o == nil || o.Status == nil {
-		var ret string
+// GetStatus returns the Status field value
+func (o *PlaceBetResponseV2) GetStatus() Status {
+	if o == nil  {
+		var ret Status
 		return ret
 	}
-	return *o.Status
+
+	return o.Status
 }
 
-// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
+// GetStatusOk returns a tuple with the Status field value
 // and a boolean to check if the value has been set.
-func (o *PlaceBetResponseV2) GetStatusOk() (*string, bool) {
-	if o == nil || o.Status == nil {
+func (o *PlaceBetResponseV2) GetStatusOk() (*Status, bool) {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Status, true
+	return &o.Status, true
 }
 
-// HasStatus returns a boolean if a field has been set.
-func (o *PlaceBetResponseV2) HasStatus() bool {
-	if o != nil && o.Status != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetStatus gets a reference to the given string and assigns it to the Status field.
-func (o *PlaceBetResponseV2) SetStatus(v string) {
-	o.Status = &v
+// SetStatus sets field value
+func (o *PlaceBetResponseV2) SetStatus(v Status) {
+	o.Status = v
 }
 
 // GetErrorCode returns the ErrorCode field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PlaceBetResponseV2) GetErrorCode() string {
+func (o *PlaceBetResponseV2) GetErrorCode() ErrorCode {
 	if o == nil || o.ErrorCode.Get() == nil {
-		var ret string
+		var ret ErrorCode
 		return ret
 	}
 	return *o.ErrorCode.Get()
@@ -85,7 +76,7 @@ func (o *PlaceBetResponseV2) GetErrorCode() string {
 // GetErrorCodeOk returns a tuple with the ErrorCode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PlaceBetResponseV2) GetErrorCodeOk() (*string, bool) {
+func (o *PlaceBetResponseV2) GetErrorCodeOk() (*ErrorCode, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -101,8 +92,8 @@ func (o *PlaceBetResponseV2) HasErrorCode() bool {
 	return false
 }
 
-// SetErrorCode gets a reference to the given NullableString and assigns it to the ErrorCode field.
-func (o *PlaceBetResponseV2) SetErrorCode(v string) {
+// SetErrorCode gets a reference to the given NullableErrorCode and assigns it to the ErrorCode field.
+func (o *PlaceBetResponseV2) SetErrorCode(v ErrorCode) {
 	o.ErrorCode.Set(&v)
 }
 // SetErrorCodeNil sets the value for ErrorCode to be an explicit nil
@@ -148,9 +139,9 @@ func (o *PlaceBetResponseV2) SetUniqueRequestId(v string) {
 }
 
 // GetStraightBet returns the StraightBet field value if set, zero value otherwise.
-func (o *PlaceBetResponseV2) GetStraightBet() StraightBet {
+func (o *PlaceBetResponseV2) GetStraightBet() StraightBetV3 {
 	if o == nil || o.StraightBet == nil {
-		var ret StraightBet
+		var ret StraightBetV3
 		return ret
 	}
 	return *o.StraightBet
@@ -158,7 +149,7 @@ func (o *PlaceBetResponseV2) GetStraightBet() StraightBet {
 
 // GetStraightBetOk returns a tuple with the StraightBet field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PlaceBetResponseV2) GetStraightBetOk() (*StraightBet, bool) {
+func (o *PlaceBetResponseV2) GetStraightBetOk() (*StraightBetV3, bool) {
 	if o == nil || o.StraightBet == nil {
 		return nil, false
 	}
@@ -174,14 +165,14 @@ func (o *PlaceBetResponseV2) HasStraightBet() bool {
 	return false
 }
 
-// SetStraightBet gets a reference to the given StraightBet and assigns it to the StraightBet field.
-func (o *PlaceBetResponseV2) SetStraightBet(v StraightBet) {
+// SetStraightBet gets a reference to the given StraightBetV3 and assigns it to the StraightBet field.
+func (o *PlaceBetResponseV2) SetStraightBet(v StraightBetV3) {
 	o.StraightBet = &v
 }
 
 func (o PlaceBetResponseV2) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Status != nil {
+	if true {
 		toSerialize["status"] = o.Status
 	}
 	if o.ErrorCode.IsSet() {

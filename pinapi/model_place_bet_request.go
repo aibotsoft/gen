@@ -15,30 +15,28 @@ import (
 
 // PlaceBetRequest Request to place a bet.
 type PlaceBetRequest struct {
-	OddsFormat *OddsFormat `json:"oddsFormat,omitempty"`
+	OddsFormat OddsFormat `json:"oddsFormat"`
 	// This is a Unique ID for PlaceBet requests. This is to support idempotent requests.
-	UniqueRequestId *string `json:"uniqueRequestId,omitempty"`
+	UniqueRequestId string `json:"uniqueRequestId"`
 	// Whether or not to accept a bet when there is a line change in favor of the client.
-	AcceptBetterLine *bool `json:"acceptBetterLine,omitempty"`
+	AcceptBetterLine bool `json:"acceptBetterLine"`
 	// amount in client’s currency.
-	Stake *float64 `json:"stake,omitempty"`
-	// Whether the stake amount is risk or win amount.
-	WinRiskStake *string `json:"winRiskStake,omitempty"`
+	Stake float64 `json:"stake"`
+	WinRiskStake WinRiskStake `json:"winRiskStake"`
 	// Line identification.
-	LineId *int64 `json:"lineId,omitempty"`
+	LineId int64 `json:"lineId"`
 	// Alternate line identification.
 	AltLineId NullableInt64 `json:"altLineId,omitempty"`
 	// Baseball only. Refers to the pitcher for Team1. This applicable only for MONEYLINE bet type, for all other bet types this has to be TRUE.
 	Pitcher1MustStart *bool `json:"pitcher1MustStart,omitempty"`
 	// Baseball only. Refers to the pitcher for Team2. This applicable only for MONEYLINE bet type, for all other bet types this has to be TRUE.
 	Pitcher2MustStart *bool `json:"pitcher2MustStart,omitempty"`
-	// NORMAL - bet will be placed on specified stake.   FILLANDKILL - If the stake is over the max limit, bet will be placed on max limit, otherwise it will be placed on specified stake.   FILLMAXLIMIT - bet will be places on max limit, stake amount will be ignored. Please note that maximum limits can change at any moment, which may result in risking more than anticipated. This option is replacement of isMaxStakeBet from v1/bets/place' 
-	FillType *string `json:"fillType,omitempty"`
-	SportId *int `json:"sportId,omitempty"`
-	EventId *int64 `json:"eventId,omitempty"`
-	PeriodNumber *int `json:"periodNumber,omitempty"`
+	FillType FillType `json:"fillType"`
+	SportId int64 `json:"sportId"`
+	EventId int64 `json:"eventId"`
+	PeriodNumber int `json:"periodNumber"`
 	// Bet type.
-	BetType *string `json:"betType,omitempty"`
+	BetType string `json:"betType"`
 	// Team type.
 	Team *string `json:"team,omitempty"`
 	// Side type.
@@ -49,10 +47,19 @@ type PlaceBetRequest struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPlaceBetRequest() *PlaceBetRequest {
+func NewPlaceBetRequest(oddsFormat OddsFormat, uniqueRequestId string, acceptBetterLine bool, stake float64, winRiskStake WinRiskStake, lineId int64, fillType FillType, sportId int64, eventId int64, periodNumber int, betType string, ) *PlaceBetRequest {
 	this := PlaceBetRequest{}
-	var fillType string = "NORMAL"
-	this.FillType = &fillType
+	this.OddsFormat = oddsFormat
+	this.UniqueRequestId = uniqueRequestId
+	this.AcceptBetterLine = acceptBetterLine
+	this.Stake = stake
+	this.WinRiskStake = winRiskStake
+	this.LineId = lineId
+	this.FillType = fillType
+	this.SportId = sportId
+	this.EventId = eventId
+	this.PeriodNumber = periodNumber
+	this.BetType = betType
 	return &this
 }
 
@@ -61,201 +68,153 @@ func NewPlaceBetRequest() *PlaceBetRequest {
 // but it doesn't guarantee that properties required by API are set
 func NewPlaceBetRequestWithDefaults() *PlaceBetRequest {
 	this := PlaceBetRequest{}
-	var fillType string = "NORMAL"
-	this.FillType = &fillType
+	var fillType FillType = "NORMAL"
+	this.FillType = fillType
 	return &this
 }
 
-// GetOddsFormat returns the OddsFormat field value if set, zero value otherwise.
+// GetOddsFormat returns the OddsFormat field value
 func (o *PlaceBetRequest) GetOddsFormat() OddsFormat {
-	if o == nil || o.OddsFormat == nil {
+	if o == nil  {
 		var ret OddsFormat
 		return ret
 	}
-	return *o.OddsFormat
+
+	return o.OddsFormat
 }
 
-// GetOddsFormatOk returns a tuple with the OddsFormat field value if set, nil otherwise
+// GetOddsFormatOk returns a tuple with the OddsFormat field value
 // and a boolean to check if the value has been set.
 func (o *PlaceBetRequest) GetOddsFormatOk() (*OddsFormat, bool) {
-	if o == nil || o.OddsFormat == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.OddsFormat, true
+	return &o.OddsFormat, true
 }
 
-// HasOddsFormat returns a boolean if a field has been set.
-func (o *PlaceBetRequest) HasOddsFormat() bool {
-	if o != nil && o.OddsFormat != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetOddsFormat gets a reference to the given OddsFormat and assigns it to the OddsFormat field.
+// SetOddsFormat sets field value
 func (o *PlaceBetRequest) SetOddsFormat(v OddsFormat) {
-	o.OddsFormat = &v
+	o.OddsFormat = v
 }
 
-// GetUniqueRequestId returns the UniqueRequestId field value if set, zero value otherwise.
+// GetUniqueRequestId returns the UniqueRequestId field value
 func (o *PlaceBetRequest) GetUniqueRequestId() string {
-	if o == nil || o.UniqueRequestId == nil {
+	if o == nil  {
 		var ret string
 		return ret
 	}
-	return *o.UniqueRequestId
+
+	return o.UniqueRequestId
 }
 
-// GetUniqueRequestIdOk returns a tuple with the UniqueRequestId field value if set, nil otherwise
+// GetUniqueRequestIdOk returns a tuple with the UniqueRequestId field value
 // and a boolean to check if the value has been set.
 func (o *PlaceBetRequest) GetUniqueRequestIdOk() (*string, bool) {
-	if o == nil || o.UniqueRequestId == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.UniqueRequestId, true
+	return &o.UniqueRequestId, true
 }
 
-// HasUniqueRequestId returns a boolean if a field has been set.
-func (o *PlaceBetRequest) HasUniqueRequestId() bool {
-	if o != nil && o.UniqueRequestId != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetUniqueRequestId gets a reference to the given string and assigns it to the UniqueRequestId field.
+// SetUniqueRequestId sets field value
 func (o *PlaceBetRequest) SetUniqueRequestId(v string) {
-	o.UniqueRequestId = &v
+	o.UniqueRequestId = v
 }
 
-// GetAcceptBetterLine returns the AcceptBetterLine field value if set, zero value otherwise.
+// GetAcceptBetterLine returns the AcceptBetterLine field value
 func (o *PlaceBetRequest) GetAcceptBetterLine() bool {
-	if o == nil || o.AcceptBetterLine == nil {
+	if o == nil  {
 		var ret bool
 		return ret
 	}
-	return *o.AcceptBetterLine
+
+	return o.AcceptBetterLine
 }
 
-// GetAcceptBetterLineOk returns a tuple with the AcceptBetterLine field value if set, nil otherwise
+// GetAcceptBetterLineOk returns a tuple with the AcceptBetterLine field value
 // and a boolean to check if the value has been set.
 func (o *PlaceBetRequest) GetAcceptBetterLineOk() (*bool, bool) {
-	if o == nil || o.AcceptBetterLine == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.AcceptBetterLine, true
+	return &o.AcceptBetterLine, true
 }
 
-// HasAcceptBetterLine returns a boolean if a field has been set.
-func (o *PlaceBetRequest) HasAcceptBetterLine() bool {
-	if o != nil && o.AcceptBetterLine != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetAcceptBetterLine gets a reference to the given bool and assigns it to the AcceptBetterLine field.
+// SetAcceptBetterLine sets field value
 func (o *PlaceBetRequest) SetAcceptBetterLine(v bool) {
-	o.AcceptBetterLine = &v
+	o.AcceptBetterLine = v
 }
 
-// GetStake returns the Stake field value if set, zero value otherwise.
+// GetStake returns the Stake field value
 func (o *PlaceBetRequest) GetStake() float64 {
-	if o == nil || o.Stake == nil {
+	if o == nil  {
 		var ret float64
 		return ret
 	}
-	return *o.Stake
+
+	return o.Stake
 }
 
-// GetStakeOk returns a tuple with the Stake field value if set, nil otherwise
+// GetStakeOk returns a tuple with the Stake field value
 // and a boolean to check if the value has been set.
 func (o *PlaceBetRequest) GetStakeOk() (*float64, bool) {
-	if o == nil || o.Stake == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Stake, true
+	return &o.Stake, true
 }
 
-// HasStake returns a boolean if a field has been set.
-func (o *PlaceBetRequest) HasStake() bool {
-	if o != nil && o.Stake != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetStake gets a reference to the given float64 and assigns it to the Stake field.
+// SetStake sets field value
 func (o *PlaceBetRequest) SetStake(v float64) {
-	o.Stake = &v
+	o.Stake = v
 }
 
-// GetWinRiskStake returns the WinRiskStake field value if set, zero value otherwise.
-func (o *PlaceBetRequest) GetWinRiskStake() string {
-	if o == nil || o.WinRiskStake == nil {
-		var ret string
+// GetWinRiskStake returns the WinRiskStake field value
+func (o *PlaceBetRequest) GetWinRiskStake() WinRiskStake {
+	if o == nil  {
+		var ret WinRiskStake
 		return ret
 	}
-	return *o.WinRiskStake
+
+	return o.WinRiskStake
 }
 
-// GetWinRiskStakeOk returns a tuple with the WinRiskStake field value if set, nil otherwise
+// GetWinRiskStakeOk returns a tuple with the WinRiskStake field value
 // and a boolean to check if the value has been set.
-func (o *PlaceBetRequest) GetWinRiskStakeOk() (*string, bool) {
-	if o == nil || o.WinRiskStake == nil {
+func (o *PlaceBetRequest) GetWinRiskStakeOk() (*WinRiskStake, bool) {
+	if o == nil  {
 		return nil, false
 	}
-	return o.WinRiskStake, true
+	return &o.WinRiskStake, true
 }
 
-// HasWinRiskStake returns a boolean if a field has been set.
-func (o *PlaceBetRequest) HasWinRiskStake() bool {
-	if o != nil && o.WinRiskStake != nil {
-		return true
-	}
-
-	return false
+// SetWinRiskStake sets field value
+func (o *PlaceBetRequest) SetWinRiskStake(v WinRiskStake) {
+	o.WinRiskStake = v
 }
 
-// SetWinRiskStake gets a reference to the given string and assigns it to the WinRiskStake field.
-func (o *PlaceBetRequest) SetWinRiskStake(v string) {
-	o.WinRiskStake = &v
-}
-
-// GetLineId returns the LineId field value if set, zero value otherwise.
+// GetLineId returns the LineId field value
 func (o *PlaceBetRequest) GetLineId() int64 {
-	if o == nil || o.LineId == nil {
+	if o == nil  {
 		var ret int64
 		return ret
 	}
-	return *o.LineId
+
+	return o.LineId
 }
 
-// GetLineIdOk returns a tuple with the LineId field value if set, nil otherwise
+// GetLineIdOk returns a tuple with the LineId field value
 // and a boolean to check if the value has been set.
 func (o *PlaceBetRequest) GetLineIdOk() (*int64, bool) {
-	if o == nil || o.LineId == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.LineId, true
+	return &o.LineId, true
 }
 
-// HasLineId returns a boolean if a field has been set.
-func (o *PlaceBetRequest) HasLineId() bool {
-	if o != nil && o.LineId != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetLineId gets a reference to the given int64 and assigns it to the LineId field.
+// SetLineId sets field value
 func (o *PlaceBetRequest) SetLineId(v int64) {
-	o.LineId = &v
+	o.LineId = v
 }
 
 // GetAltLineId returns the AltLineId field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -364,164 +323,124 @@ func (o *PlaceBetRequest) SetPitcher2MustStart(v bool) {
 	o.Pitcher2MustStart = &v
 }
 
-// GetFillType returns the FillType field value if set, zero value otherwise.
-func (o *PlaceBetRequest) GetFillType() string {
-	if o == nil || o.FillType == nil {
-		var ret string
+// GetFillType returns the FillType field value
+func (o *PlaceBetRequest) GetFillType() FillType {
+	if o == nil  {
+		var ret FillType
 		return ret
 	}
-	return *o.FillType
+
+	return o.FillType
 }
 
-// GetFillTypeOk returns a tuple with the FillType field value if set, nil otherwise
+// GetFillTypeOk returns a tuple with the FillType field value
 // and a boolean to check if the value has been set.
-func (o *PlaceBetRequest) GetFillTypeOk() (*string, bool) {
-	if o == nil || o.FillType == nil {
+func (o *PlaceBetRequest) GetFillTypeOk() (*FillType, bool) {
+	if o == nil  {
 		return nil, false
 	}
-	return o.FillType, true
+	return &o.FillType, true
 }
 
-// HasFillType returns a boolean if a field has been set.
-func (o *PlaceBetRequest) HasFillType() bool {
-	if o != nil && o.FillType != nil {
-		return true
-	}
-
-	return false
+// SetFillType sets field value
+func (o *PlaceBetRequest) SetFillType(v FillType) {
+	o.FillType = v
 }
 
-// SetFillType gets a reference to the given string and assigns it to the FillType field.
-func (o *PlaceBetRequest) SetFillType(v string) {
-	o.FillType = &v
-}
-
-// GetSportId returns the SportId field value if set, zero value otherwise.
-func (o *PlaceBetRequest) GetSportId() int {
-	if o == nil || o.SportId == nil {
-		var ret int
-		return ret
-	}
-	return *o.SportId
-}
-
-// GetSportIdOk returns a tuple with the SportId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PlaceBetRequest) GetSportIdOk() (*int, bool) {
-	if o == nil || o.SportId == nil {
-		return nil, false
-	}
-	return o.SportId, true
-}
-
-// HasSportId returns a boolean if a field has been set.
-func (o *PlaceBetRequest) HasSportId() bool {
-	if o != nil && o.SportId != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetSportId gets a reference to the given int and assigns it to the SportId field.
-func (o *PlaceBetRequest) SetSportId(v int) {
-	o.SportId = &v
-}
-
-// GetEventId returns the EventId field value if set, zero value otherwise.
-func (o *PlaceBetRequest) GetEventId() int64 {
-	if o == nil || o.EventId == nil {
+// GetSportId returns the SportId field value
+func (o *PlaceBetRequest) GetSportId() int64 {
+	if o == nil  {
 		var ret int64
 		return ret
 	}
-	return *o.EventId
+
+	return o.SportId
 }
 
-// GetEventIdOk returns a tuple with the EventId field value if set, nil otherwise
+// GetSportIdOk returns a tuple with the SportId field value
 // and a boolean to check if the value has been set.
-func (o *PlaceBetRequest) GetEventIdOk() (*int64, bool) {
-	if o == nil || o.EventId == nil {
+func (o *PlaceBetRequest) GetSportIdOk() (*int64, bool) {
+	if o == nil  {
 		return nil, false
 	}
-	return o.EventId, true
+	return &o.SportId, true
 }
 
-// HasEventId returns a boolean if a field has been set.
-func (o *PlaceBetRequest) HasEventId() bool {
-	if o != nil && o.EventId != nil {
-		return true
+// SetSportId sets field value
+func (o *PlaceBetRequest) SetSportId(v int64) {
+	o.SportId = v
+}
+
+// GetEventId returns the EventId field value
+func (o *PlaceBetRequest) GetEventId() int64 {
+	if o == nil  {
+		var ret int64
+		return ret
 	}
 
-	return false
+	return o.EventId
 }
 
-// SetEventId gets a reference to the given int64 and assigns it to the EventId field.
+// GetEventIdOk returns a tuple with the EventId field value
+// and a boolean to check if the value has been set.
+func (o *PlaceBetRequest) GetEventIdOk() (*int64, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.EventId, true
+}
+
+// SetEventId sets field value
 func (o *PlaceBetRequest) SetEventId(v int64) {
-	o.EventId = &v
+	o.EventId = v
 }
 
-// GetPeriodNumber returns the PeriodNumber field value if set, zero value otherwise.
+// GetPeriodNumber returns the PeriodNumber field value
 func (o *PlaceBetRequest) GetPeriodNumber() int {
-	if o == nil || o.PeriodNumber == nil {
+	if o == nil  {
 		var ret int
 		return ret
 	}
-	return *o.PeriodNumber
+
+	return o.PeriodNumber
 }
 
-// GetPeriodNumberOk returns a tuple with the PeriodNumber field value if set, nil otherwise
+// GetPeriodNumberOk returns a tuple with the PeriodNumber field value
 // and a boolean to check if the value has been set.
 func (o *PlaceBetRequest) GetPeriodNumberOk() (*int, bool) {
-	if o == nil || o.PeriodNumber == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.PeriodNumber, true
+	return &o.PeriodNumber, true
 }
 
-// HasPeriodNumber returns a boolean if a field has been set.
-func (o *PlaceBetRequest) HasPeriodNumber() bool {
-	if o != nil && o.PeriodNumber != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetPeriodNumber gets a reference to the given int and assigns it to the PeriodNumber field.
+// SetPeriodNumber sets field value
 func (o *PlaceBetRequest) SetPeriodNumber(v int) {
-	o.PeriodNumber = &v
+	o.PeriodNumber = v
 }
 
-// GetBetType returns the BetType field value if set, zero value otherwise.
+// GetBetType returns the BetType field value
 func (o *PlaceBetRequest) GetBetType() string {
-	if o == nil || o.BetType == nil {
+	if o == nil  {
 		var ret string
 		return ret
 	}
-	return *o.BetType
+
+	return o.BetType
 }
 
-// GetBetTypeOk returns a tuple with the BetType field value if set, nil otherwise
+// GetBetTypeOk returns a tuple with the BetType field value
 // and a boolean to check if the value has been set.
 func (o *PlaceBetRequest) GetBetTypeOk() (*string, bool) {
-	if o == nil || o.BetType == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.BetType, true
+	return &o.BetType, true
 }
 
-// HasBetType returns a boolean if a field has been set.
-func (o *PlaceBetRequest) HasBetType() bool {
-	if o != nil && o.BetType != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetBetType gets a reference to the given string and assigns it to the BetType field.
+// SetBetType sets field value
 func (o *PlaceBetRequest) SetBetType(v string) {
-	o.BetType = &v
+	o.BetType = v
 }
 
 // GetTeam returns the Team field value if set, zero value otherwise.
@@ -600,22 +519,22 @@ func (o *PlaceBetRequest) UnsetSide() {
 
 func (o PlaceBetRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.OddsFormat != nil {
+	if true {
 		toSerialize["oddsFormat"] = o.OddsFormat
 	}
-	if o.UniqueRequestId != nil {
+	if true {
 		toSerialize["uniqueRequestId"] = o.UniqueRequestId
 	}
-	if o.AcceptBetterLine != nil {
+	if true {
 		toSerialize["acceptBetterLine"] = o.AcceptBetterLine
 	}
-	if o.Stake != nil {
+	if true {
 		toSerialize["stake"] = o.Stake
 	}
-	if o.WinRiskStake != nil {
+	if true {
 		toSerialize["winRiskStake"] = o.WinRiskStake
 	}
-	if o.LineId != nil {
+	if true {
 		toSerialize["lineId"] = o.LineId
 	}
 	if o.AltLineId.IsSet() {
@@ -627,19 +546,19 @@ func (o PlaceBetRequest) MarshalJSON() ([]byte, error) {
 	if o.Pitcher2MustStart != nil {
 		toSerialize["pitcher2MustStart"] = o.Pitcher2MustStart
 	}
-	if o.FillType != nil {
+	if true {
 		toSerialize["fillType"] = o.FillType
 	}
-	if o.SportId != nil {
+	if true {
 		toSerialize["sportId"] = o.SportId
 	}
-	if o.EventId != nil {
+	if true {
 		toSerialize["eventId"] = o.EventId
 	}
-	if o.PeriodNumber != nil {
+	if true {
 		toSerialize["periodNumber"] = o.PeriodNumber
 	}
-	if o.BetType != nil {
+	if true {
 		toSerialize["betType"] = o.BetType
 	}
 	if o.Team != nil {

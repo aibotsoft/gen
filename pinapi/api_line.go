@@ -215,12 +215,12 @@ type apiLineStraightV1GetRequest struct {
 	ctx _context.Context
 	apiService *LineApiService
 	leagueId *int
-	handicap *float64
 	oddsFormat *string
 	sportId *int
 	eventId *int64
 	periodNumber *int
 	betType *string
+	handicap *float64
 	team *string
 	side *string
 }
@@ -228,11 +228,6 @@ type apiLineStraightV1GetRequest struct {
 
 func (r apiLineStraightV1GetRequest) LeagueId(leagueId int) apiLineStraightV1GetRequest {
 	r.leagueId = &leagueId
-	return r
-}
-
-func (r apiLineStraightV1GetRequest) Handicap(handicap float64) apiLineStraightV1GetRequest {
-	r.handicap = &handicap
 	return r
 }
 
@@ -258,6 +253,11 @@ func (r apiLineStraightV1GetRequest) PeriodNumber(periodNumber int) apiLineStrai
 
 func (r apiLineStraightV1GetRequest) BetType(betType string) apiLineStraightV1GetRequest {
 	r.betType = &betType
+	return r
+}
+
+func (r apiLineStraightV1GetRequest) Handicap(handicap float64) apiLineStraightV1GetRequest {
+	r.handicap = &handicap
 	return r
 }
 
@@ -313,10 +313,6 @@ func (r apiLineStraightV1GetRequest) Execute() (LineResponse, *_nethttp.Response
 		return localVarReturnValue, nil, reportError("leagueId is required and must be specified")
 	}
 	
-	if r.handicap == nil {
-		return localVarReturnValue, nil, reportError("handicap is required and must be specified")
-	}
-	
 	if r.oddsFormat == nil {
 		return localVarReturnValue, nil, reportError("oddsFormat is required and must be specified")
 	}
@@ -336,9 +332,11 @@ func (r apiLineStraightV1GetRequest) Execute() (LineResponse, *_nethttp.Response
 	if r.betType == nil {
 		return localVarReturnValue, nil, reportError("betType is required and must be specified")
 	}
-		
+			
 	localVarQueryParams.Add("leagueId", parameterToString(*r.leagueId, ""))
-	localVarQueryParams.Add("handicap", parameterToString(*r.handicap, ""))
+	if r.handicap != nil {
+		localVarQueryParams.Add("handicap", parameterToString(*r.handicap, ""))
+	}
 	localVarQueryParams.Add("oddsFormat", parameterToString(*r.oddsFormat, ""))
 	localVarQueryParams.Add("sportId", parameterToString(*r.sportId, ""))
 	localVarQueryParams.Add("eventId", parameterToString(*r.eventId, ""))

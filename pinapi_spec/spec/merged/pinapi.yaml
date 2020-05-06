@@ -72,16 +72,12 @@ paths:
       summary: Get Translations - v1
       description: >
         Returns language translations.  
-
-
         Example to translate `football` and `soccer` to German and French
         language: 
 
           ```
-          
           https://api.pinnacle.com/v1/translations?cultureCodes=de-DE|fr-FR&baseTexts=Football|Soccer
           
-
           ```
           ## Supported languages 
           
@@ -108,8 +104,6 @@ paths:
           | Vietnamese | vi-VN   |
           | Indonesian | id-ID   |
           | Czech      | cs-CZ   |
-          
-          
       operationId: Translations_V1_Get
       parameters:
         - name: cultureCodes
@@ -277,29 +271,16 @@ paths:
       summary: Get Bets - v3
       description: >
         Returns bets. 
-
-
-
         ### Get running bets by time range:
-
         ```
-
         https://api.pinnacle.com/v3/bets?betlist=RUNNING&fromDate=2017-11-21T00:00:00Z&toDate=2017-11-29T00:00:00Z
-
         ```
-
         Running bets are queried by *placedAt* date time
-
-
-
         ### Get settled bets by time range:
-          
         ```
-
         https://api.pinnacle.com/v3/bets?betlist=SETTLED&fromDate=2015-12-28T00:00:00Z&toDate=2015-12-29T00:00:00Z
 
         ```
-
         Settled bets are queried by *settledAt* date time
 
         https://api.pinnacle.com/v3/bets?betlist=SETTLED&fromDate=2017-11-20T00:00:00Z&toDate=2017-11-23T00:00:00Z
@@ -314,10 +295,7 @@ paths:
 
         ```
 
-
-
         ### Get bets by bet ids:
-
 
         ```
 
@@ -1430,9 +1408,8 @@ paths:
         - name: handicap
           in: query
           description: >-
-            This is needed for SPREAD, TOTAL_POINTS and TEAM_TOTAL_POINTS bet
-            types
-          required: true
+            This is needed for SPREAD, TOTAL_POINTS and TEAM_TOTAL_POINTS bet types
+          required: false
           schema:
             type: number
             format: double
@@ -2065,7 +2042,27 @@ components:
           type: string
           description: Translation text.
           example: Football américain
+
+
+
+
+
+
+
+
     PlaceBetRequest:
+      required:
+        - oddsFormat
+        - acceptBetterLine
+        - sportId
+        - eventId
+        - periodNumber
+        - fillType
+        - betType
+        - stake
+        - winRiskStake
+        - lineId
+        - uniqueRequestId
       type: object
       properties:
         oddsFormat:
@@ -2089,12 +2086,7 @@ components:
           format: double
           example: 10.5
         winRiskStake:
-          type: string
-          description: Whether the stake amount is risk or win amount.
-          example: RISK
-          enum:
-            - WIN
-            - RISK
+          $ref: '#/components/schemas/WinRiskStake'
         lineId:
           type: integer
           description: Line identification.
@@ -2116,26 +2108,12 @@ components:
             Baseball only. Refers to the pitcher for Team2. This applicable only
             for MONEYLINE bet type, for all other bet types this has to be TRUE.
         fillType:
-          type: string
-          description: >
-            NORMAL - bet will be placed on specified stake.  
+          $ref: '#/components/schemas/FillType'
 
-            FILLANDKILL - If the stake is over the max limit, bet will be placed
-            on max limit, otherwise it will be placed on specified stake.  
 
-            FILLMAXLIMIT - bet will be places on max limit, stake amount will be
-            ignored. Please note that maximum limits can change at any moment,
-            which may result in risking more than anticipated. This option is
-            replacement of isMaxStakeBet from v1/bets/place'
-          example: NORMAL
-          default: NORMAL
-          enum:
-            - NORMAL
-            - FILLANDKILL
-            - FILLMAXLIMIT
         sportId:
           type: integer
-          
+          format: int64
           example: 29
         eventId:
           type: integer
@@ -2171,130 +2149,139 @@ components:
             - OVER
             - UNDER
       description: Request to place a bet.
+
+
+
+
+
+
+    Status:
+      type: string
+      description: Status of the response.
+      example: ACCEPTED
+      enum:
+        - ACCEPTED
+        - PENDING_ACCEPTANCE
+        - PROCESSED_WITH_ERROR
+
+    ErrorCode:
+      type: string
+      description: >
+        If Status is PROCESSED_WITH_ERROR, errorCode will be in the response.
+        ALL_BETTING_CLOSED = Betting is not allowed at this moment. This may
+        happen during system maintenance,
+
+        ALL_LIVE_BETTING_CLOSED = Live betting is not allowed at this
+        moment. This may happen during system maintenance,
+
+        ABOVE_EVENT_MAX = Bet cannot be placed because client exceeded
+        allowed maximum of risk on a line,
+
+        ABOVE_MAX_BET_AMOUNT = Stake is above allowed maximum amount,
+
+        BELOW_MIN_BET_AMOUNT = Stake is below allowed minimum amount,
+
+        BLOCKED_BETTING = Betting is suspended for the client,
+
+        BLOCKED_CLIENT = Client is no longer active,
+
+        INSUFFICIENT_FUNDS = Bet is submitted by a client with insufficient
+        funds,
+
+        INVALID_COUNTRY = Client country is not allowed for betting,
+
+        INVALID_EVENT = Invalid eventid,
+
+        INVALID_ODDS_FORMAT = If a bet was submitted with the odds format
+        that is not allowed for the client,
+
+        LINE_CHANGED = Bet is submitted on a line that has changed,
+
+        LISTED_PITCHERS_SELECTION_ERROR = If bet was submitted with
+        pitcher1MustStart and/or pitcher2MustStart parameters in Place Bet
+        request with values that are not allowed,
+
+        OFFLINE_EVENT = Bet is submitted on an event that is offline or the
+        submitted line is not offered at the moment due to points/handicap
+        change or the submitted bet type is just not offered at the
+        moment,
+
+        PAST_CUTOFFTIME = Bet is submitted on a game after the betting
+        cutoff time,
+
+        RED_CARDS_CHANGED = Bet is submitted on a live soccer event with
+        changed red card count,
+
+        SCORE_CHANGED = Bet is submitted on a live soccer event with changed
+        score,
+
+        TIME_RESTRICTION = Bet is submitted within too short of a period
+        from the same bet previously placed by a client,
+
+        DUPLICATE_UNIQUE_REQUEST_ID = Request with the same uniqueRequestId
+        was already processed. Please set the new value if you still want
+        the request to be processed,
+
+        INCOMPLETE_CUSTOMER_BETTING_PROFILE = System configuration issue,
+
+        INVALID_CUSTOMER_PROFILE = System configuration issue,
+
+        LIMITS_CONFIGURATION_ISSUE = System configuration issue,
+
+        RESPONSIBLE_BETTING_LOSS_LIMIT_EXCEEDED = Client has reached his
+        total loss limit,
+
+        RESPONSIBLE_BETTING_RISK_LIMIT_EXCEEDED = Client has reached his
+        total risk limit,
+
+        SYSTEM_ERROR_3 = Unexpected error,
+
+        LICENCE_RESTRICTION_LIVE_BETTING_BLOCKED - Live betting blocked due
+        to licence restrictions
+      nullable: true
+      example: null
+      enum:
+        - ALL_BETTING_CLOSED
+        - ALL_LIVE_BETTING_CLOSED
+        - ABOVE_EVENT_MAX
+        - ABOVE_MAX_BET_AMOUNT
+        - BELOW_MIN_BET_AMOUNT
+        - BLOCKED_BETTING
+        - BLOCKED_CLIENT
+        - INSUFFICIENT_FUNDS
+        - INVALID_COUNTRY
+        - INVALID_EVENT
+        - INVALID_ODDS_FORMAT
+        - LINE_CHANGED
+        - LISTED_PITCHERS_SELECTION_ERROR
+        - OFFLINE_EVENT
+        - PAST_CUTOFFTIME
+        - RED_CARDS_CHANGED
+        - SCORE_CHANGED
+        - TIME_RESTRICTION
+        - DUPLICATE_UNIQUE_REQUEST_ID
+        - INCOMPLETE_CUSTOMER_BETTING_PROFILE
+        - INVALID_CUSTOMER_PROFILE
+        - LIMITS_CONFIGURATION_ISSUE
+        - RESPONSIBLE_BETTING_LOSS_LIMIT_EXCEEDED
+        - RESPONSIBLE_BETTING_RISK_LIMIT_EXCEEDED
+        - SYSTEM_ERROR_3
+        - LICENCE_RESTRICTION_LIVE_BETTING_BLOCKED
+
     PlaceBetResponseV2:
+      required:
+        - status
       type: object
       properties:
         status:
-          type: string
-          description: Status of the response.
-          example: ACCEPTED
-          enum:
-            - ACCEPTED
-            - PENDING_ACCEPTANCE
-            - PROCESSED_WITH_ERROR
+          $ref: '#/components/schemas/Status'
         errorCode:
-          type: string
-          description: >
-            If Status is PROCESSED_WITH_ERROR, errorCode will be in the
-            response. 
-
-
-            ALL_BETTING_CLOSED = Betting is not allowed at this moment. This may
-            happen during system maintenance,  
-
-            ALL_LIVE_BETTING_CLOSED = Live betting is not allowed at this
-            moment. This may happen during system maintenance,  
-
-            ABOVE_EVENT_MAX = Bet cannot be placed because client exceeded
-            allowed maximum of risk on a line,  
-
-            ABOVE_MAX_BET_AMOUNT = Stake is above allowed maximum amount,   
-
-            BELOW_MIN_BET_AMOUNT = Stake is below allowed minimum amount,  
-
-            BLOCKED_BETTING = Betting is suspended for the client,  
-
-            BLOCKED_CLIENT = Client is no longer active,   
-
-            INSUFFICIENT_FUNDS = Bet is submitted by a client with insufficient
-            funds,  
-
-            INVALID_COUNTRY = Client country is not allowed for betting,  
-
-            INVALID_EVENT = Invalid eventid,  
-
-            INVALID_ODDS_FORMAT = If a bet was submitted with the odds format
-            that is not allowed for the client,  
-
-            LINE_CHANGED = Bet is submitted on a line that has changed,  
-
-            LISTED_PITCHERS_SELECTION_ERROR = If bet was submitted with
-            pitcher1MustStart and/or pitcher2MustStart parameters in Place Bet
-            request with values that are not allowed,  
-
-            OFFLINE_EVENT = Bet is submitted on an event that is offline or the
-            submitted line is not offered at the moment due to points/handicap
-            change or the submitted bet type is just not offered at the
-            moment,  
-
-            PAST_CUTOFFTIME = Bet is submitted on a game after the betting
-            cutoff time,  
-
-            RED_CARDS_CHANGED = Bet is submitted on a live soccer event with
-            changed red card count,  
-
-            SCORE_CHANGED = Bet is submitted on a live soccer event with changed
-            score,  
-
-            TIME_RESTRICTION = Bet is submitted within too short of a period
-            from the same bet previously placed by a client,  
-
-            DUPLICATE_UNIQUE_REQUEST_ID = Request with the same uniqueRequestId
-            was already processed. Please set the new value if you still want
-            the request to be processed,  
-
-            INCOMPLETE_CUSTOMER_BETTING_PROFILE = System configuration issue,  
-
-            INVALID_CUSTOMER_PROFILE = System configuration issue,  
-
-            LIMITS_CONFIGURATION_ISSUE = System configuration issue,  
-
-            RESPONSIBLE_BETTING_LOSS_LIMIT_EXCEEDED = Client has reached his
-            total loss limit,  
-
-            RESPONSIBLE_BETTING_RISK_LIMIT_EXCEEDED = Client has reached his
-            total risk limit,  
-
-            SYSTEM_ERROR_3 = Unexpected error,  
-
-            LICENCE_RESTRICTION_LIVE_BETTING_BLOCKED - Live betting blocked due
-            to licence restrictions
-          nullable: true
-          example: null
-          enum:
-            - ALL_BETTING_CLOSED
-            - ALL_LIVE_BETTING_CLOSED
-            - ABOVE_EVENT_MAX
-            - ABOVE_MAX_BET_AMOUNT
-            - BELOW_MIN_BET_AMOUNT
-            - BLOCKED_BETTING
-            - BLOCKED_CLIENT
-            - INSUFFICIENT_FUNDS
-            - INVALID_COUNTRY
-            - INVALID_EVENT
-            - INVALID_ODDS_FORMAT
-            - LINE_CHANGED
-            - LISTED_PITCHERS_SELECTION_ERROR
-            - OFFLINE_EVENT
-            - PAST_CUTOFFTIME
-            - RED_CARDS_CHANGED
-            - SCORE_CHANGED
-            - TIME_RESTRICTION
-            - DUPLICATE_UNIQUE_REQUEST_ID
-            - INCOMPLETE_CUSTOMER_BETTING_PROFILE
-            - INVALID_CUSTOMER_PROFILE
-            - LIMITS_CONFIGURATION_ISSUE
-            - RESPONSIBLE_BETTING_LOSS_LIMIT_EXCEEDED
-            - RESPONSIBLE_BETTING_RISK_LIMIT_EXCEEDED
-            - SYSTEM_ERROR_3
-            - LICENCE_RESTRICTION_LIVE_BETTING_BLOCKED
+          $ref: '#/components/schemas/ErrorCode'
         uniqueRequestId:
           type: string
           description: Echo of the uniqueRequestId from the request.
-          example: D5CC50E4-284D-4D50-8D49-429BDC4F2A4
         straightBet:
-          $ref: '#/components/schemas/StraightBet'
-      description: ''
+          $ref: '#/components/schemas/StraightBetV3'
     StraightBet:
       required:
         - betId
@@ -3702,8 +3689,11 @@ components:
           description: ''
           
       description: ''
+
+
     OddsFormat:
       type: string
+
       description: |
         Bet odds format.  
         AMERICAN = American odds format,  
@@ -3718,6 +3708,15 @@ components:
         - HONGKONG
         - INDONESIAN
         - MALAY
+
+    WinRiskStake:
+      type: string
+      description: Whether the stake amount is risk or win amount.
+      example: RISK
+      enum:
+        - WIN
+        - RISK
+
     BettingStatusResponse:
       required:
         - status
@@ -4904,6 +4903,26 @@ components:
           format: double
           description: 'A number indicating the spread, over/under etc.'
           type: number
+    FillType:
+      type: string
+      description: >
+        NORMAL - bet will be placed on specified stake.
+
+        FILLANDKILL - If the stake is over the max limit, bet will be placed
+        on max limit, otherwise it will be placed on specified stake.
+
+        FILLMAXLIMIT - bet will be places on max limit, stake amount will be
+        ignored. Please note that maximum limits can change at any moment,
+        which may result in risking more than anticipated. This option is
+        replacement of isMaxStakeBet from v1/bets/place'
+      example: NORMAL
+      default: NORMAL
+      enum:
+        - NORMAL
+        - FILLANDKILL
+        - FILLMAXLIMIT
+
+
   securitySchemes:
     basicAuth:
       type: http

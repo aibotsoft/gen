@@ -44,15 +44,11 @@ func (r apiTranslationsV1GetRequest) BaseTexts(baseTexts []string) apiTranslatio
 
 /*
 TranslationsV1Get Get Translations - v1
-Returns language translations.  
-
-Example to translate `football` and `soccer` to German and French language: 
+Returns language translations.   Example to translate `football` and `soccer` to German and French language: 
 
   ```
-  
   https://api.pinnacle.com/v1/translations?cultureCodes=de-DE|fr-FR&baseTexts=Football|Soccer
   
-
   ```
   ## Supported languages 
   
@@ -79,8 +75,6 @@ Example to translate `football` and `soccer` to German and French language:
   | Vietnamese | vi-VN   |
   | Indonesian | id-ID   |
   | Czech      | cs-CZ   |
-  
-  
 
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiTranslationsV1GetRequest

@@ -86,22 +86,8 @@ func (r apiBetsGetBetsByTypeV3Request) UniqueRequestIds(uniqueRequestIds []strin
 
 /*
 BetsGetBetsByTypeV3 Get Bets - v3
-Returns bets. 
-
-
-### Get running bets by time range:
-```
-https://api.pinnacle.com/v3/bets?betlist=RUNNING&fromDate=2017-11-21T00:00:00Z&toDate=2017-11-29T00:00:00Z
-```
-Running bets are queried by *placedAt* date time
-
-
-### Get settled bets by time range:
-  
-```
-https://api.pinnacle.com/v3/bets?betlist=SETTLED&fromDate=2015-12-28T00:00:00Z&toDate=2015-12-29T00:00:00Z
-```
-Settled bets are queried by *settledAt* date time
+Returns bets.  ### Get running bets by time range: ``` https://api.pinnacle.com/v3/bets?betlist=RUNNING&fromDate=2017-11-21T00:00:00Z&toDate=2017-11-29T00:00:00Z ``` Running bets are queried by *placedAt* date time ### Get settled bets by time range: ``` https://api.pinnacle.com/v3/bets?betlist=SETTLED&fromDate=2015-12-28T00:00:00Z&toDate=2015-12-29T00:00:00Z
+``` Settled bets are queried by *settledAt* date time
 https://api.pinnacle.com/v3/bets?betlist=SETTLED&fromDate=2017-11-20T00:00:00Z&toDate=2017-11-23T00:00:00Z
 
 
@@ -110,10 +96,7 @@ https://api.pinnacle.com/v3/bets?betlist=SETTLED&fromDate=2017-11-20T00:00:00Z&t
 ```
 https://api.pinnacle.com/v3/bets?betList=SETTLED&fromDate=2018-03-01&toDate=2018-03-28&betStatuses=CANCELLED
 ```
-
-
 ### Get bets by bet ids:
-
 ```
 https://api.pinnacle.com/v3/bets?betIds=775856112,775856113,775856114
 ```
