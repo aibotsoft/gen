@@ -34,19 +34,19 @@ service Forted {
     }
     rpc GetResults (GetResultsRequest) returns (GetResultsResponse) {
     }
-    rpc GetConfig (GetConfigRequest) returns (GetConfigResponse) {
-    }
+//    rpc GetConfig (GetConfigRequest) returns (GetConfigResponse) {
+//    }
 }
 
-message GetConfigRequest {
-    string service_name = 1;
-}
-message GetConfigResponse {
-    ServiceConfig service_config = 1[(gogoproto.nullable) = false];
-}
-message ServiceConfig {
-    int64 grpc_port = 1;
-}
+//message GetConfigRequest {
+//    string service_name = 1;
+//}
+//message GetConfigResponse {
+//    ServiceConfig service_config = 1[(gogoproto.nullable) = false];
+//}
+//message ServiceConfig {
+//    int64 grpc_port = 1;
+//}
 message GetResultsRequest {
 }
 message GetResultsResponse {
