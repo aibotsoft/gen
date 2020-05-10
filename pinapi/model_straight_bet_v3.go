@@ -31,46 +31,45 @@ type StraightBetV3 struct {
 	// Risk amount.
 	Risk float64 `json:"risk"`
 	// Win-Loss for settled bets.
-	WinLoss NullableFloat64 `json:"winLoss,omitempty"`
+	WinLoss *float64 `json:"winLoss,omitempty"`
 	OddsFormat OddsFormat `json:"oddsFormat"`
 	// Client’s commission on the bet.
-	CustomerCommission NullableFloat64 `json:"customerCommission,omitempty"`
-	CancellationReason *CancellationReason `json:"cancellationReason,omitempty"`
+	CustomerCommission *float64 `json:"customerCommission,omitempty"`
+	// временная замена
+	CancellationReason *string `json:"cancellationReason,omitempty"`
 	// Update Sequence
 	UpdateSequence int64 `json:"updateSequence"`
 	SportId *int `json:"sportId,omitempty"`
 	LeagueId *int `json:"leagueId,omitempty"`
 	EventId *int64 `json:"eventId,omitempty"`
-	Handicap NullableFloat64 `json:"handicap,omitempty"`
+	Handicap *float64 `json:"handicap,omitempty"`
 	Price *float64 `json:"price,omitempty"`
 	TeamName *string `json:"teamName,omitempty"`
 	// Side type.
-	Side NullableString `json:"side,omitempty"`
+	Side *string `json:"side,omitempty"`
 	// Pitcher name of team1. Only for bets on baseball.
-	Pitcher1 NullableString `json:"pitcher1,omitempty"`
+	Pitcher1 *string `json:"pitcher1,omitempty"`
 	// Pitcher name of team2. Only for bets on baseball.
-	Pitcher2 NullableString `json:"pitcher2,omitempty"`
+	Pitcher2 *string `json:"pitcher2,omitempty"`
 	// Baseball only. Refers to the pitcher for Team1.  This applicable only for MONEYLINE bet type, for all other bet types this has to be TRUE.
-	Pitcher1MustStart NullableBool `json:"pitcher1MustStart,omitempty"`
+	Pitcher1MustStart *bool `json:"pitcher1MustStart,omitempty"`
 	// Baseball only. Refers to the pitcher for Team2.  This applicable only for MONEYLINE bet type, for all other bet types this has to be TRUE.
-	Pitcher2MustStart NullableBool `json:"pitcher2MustStart,omitempty"`
+	Pitcher2MustStart *bool `json:"pitcher2MustStart,omitempty"`
 	Team1 *string `json:"team1,omitempty"`
 	Team2 *string `json:"team2,omitempty"`
 	PeriodNumber *int `json:"periodNumber,omitempty"`
 	// Team 1 score that the bet was placed on, only for live bets.
-	Team1Score NullableFloat64 `json:"team1Score,omitempty"`
+	Team1Score *float64 `json:"team1Score,omitempty"`
 	// Team 2 score that the bet was placed, only for live bets.
-	Team2Score NullableFloat64 `json:"team2Score,omitempty"`
+	Team2Score *float64 `json:"team2Score,omitempty"`
 	// Full time team 1 score, only for settled bets.
-	FtTeam1Score NullableFloat64 `json:"ftTeam1Score,omitempty"`
+	FtTeam1Score *float64 `json:"ftTeam1Score,omitempty"`
 	// Full time team 2 score, only for settled bets.
-	FtTeam2Score NullableFloat64 `json:"ftTeam2Score,omitempty"`
+	FtTeam2Score *float64 `json:"ftTeam2Score,omitempty"`
 	// .End of period team 1 score, only for settled bets. If the bet was placed on Game period (periodNumber =0), this will be null . 
-	PTeam1Score NullableFloat64 `json:"pTeam1Score,omitempty"`
+	PTeam1Score *float64 `json:"pTeam1Score,omitempty"`
 	// End of period team 2 score, only for settled bets. If the bet was placed on Game period (periodNumber =0), this will be null
-	PTeam2Score NullableFloat64 `json:"pTeam2Score,omitempty"`
-	// Whether the bet is on live event
-	IsLive *bool `json:"isLive,omitempty"`
+	PTeam2Score *float64 `json:"pTeam2Score,omitempty"`
 	// Date time when the event starts.
 	EventStartTime *time.Time `json:"eventStartTime,omitempty"`
 }
@@ -269,46 +268,36 @@ func (o *StraightBetV3) SetRisk(v float64) {
 	o.Risk = v
 }
 
-// GetWinLoss returns the WinLoss field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetWinLoss returns the WinLoss field value if set, zero value otherwise.
 func (o *StraightBetV3) GetWinLoss() float64 {
-	if o == nil || o.WinLoss.Get() == nil {
+	if o == nil || o.WinLoss == nil {
 		var ret float64
 		return ret
 	}
-	return *o.WinLoss.Get()
+	return *o.WinLoss
 }
 
 // GetWinLossOk returns a tuple with the WinLoss field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *StraightBetV3) GetWinLossOk() (*float64, bool) {
-	if o == nil  {
+	if o == nil || o.WinLoss == nil {
 		return nil, false
 	}
-	return o.WinLoss.Get(), o.WinLoss.IsSet()
+	return o.WinLoss, true
 }
 
 // HasWinLoss returns a boolean if a field has been set.
 func (o *StraightBetV3) HasWinLoss() bool {
-	if o != nil && o.WinLoss.IsSet() {
+	if o != nil && o.WinLoss != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetWinLoss gets a reference to the given NullableFloat64 and assigns it to the WinLoss field.
+// SetWinLoss gets a reference to the given float64 and assigns it to the WinLoss field.
 func (o *StraightBetV3) SetWinLoss(v float64) {
-	o.WinLoss.Set(&v)
-}
-// SetWinLossNil sets the value for WinLoss to be an explicit nil
-func (o *StraightBetV3) SetWinLossNil() {
-	o.WinLoss.Set(nil)
-}
-
-// UnsetWinLoss ensures that no value is present for WinLoss, not even an explicit nil
-func (o *StraightBetV3) UnsetWinLoss() {
-	o.WinLoss.Unset()
+	o.WinLoss = &v
 }
 
 // GetOddsFormat returns the OddsFormat field value
@@ -335,52 +324,42 @@ func (o *StraightBetV3) SetOddsFormat(v OddsFormat) {
 	o.OddsFormat = v
 }
 
-// GetCustomerCommission returns the CustomerCommission field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetCustomerCommission returns the CustomerCommission field value if set, zero value otherwise.
 func (o *StraightBetV3) GetCustomerCommission() float64 {
-	if o == nil || o.CustomerCommission.Get() == nil {
+	if o == nil || o.CustomerCommission == nil {
 		var ret float64
 		return ret
 	}
-	return *o.CustomerCommission.Get()
+	return *o.CustomerCommission
 }
 
 // GetCustomerCommissionOk returns a tuple with the CustomerCommission field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *StraightBetV3) GetCustomerCommissionOk() (*float64, bool) {
-	if o == nil  {
+	if o == nil || o.CustomerCommission == nil {
 		return nil, false
 	}
-	return o.CustomerCommission.Get(), o.CustomerCommission.IsSet()
+	return o.CustomerCommission, true
 }
 
 // HasCustomerCommission returns a boolean if a field has been set.
 func (o *StraightBetV3) HasCustomerCommission() bool {
-	if o != nil && o.CustomerCommission.IsSet() {
+	if o != nil && o.CustomerCommission != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetCustomerCommission gets a reference to the given NullableFloat64 and assigns it to the CustomerCommission field.
+// SetCustomerCommission gets a reference to the given float64 and assigns it to the CustomerCommission field.
 func (o *StraightBetV3) SetCustomerCommission(v float64) {
-	o.CustomerCommission.Set(&v)
-}
-// SetCustomerCommissionNil sets the value for CustomerCommission to be an explicit nil
-func (o *StraightBetV3) SetCustomerCommissionNil() {
-	o.CustomerCommission.Set(nil)
-}
-
-// UnsetCustomerCommission ensures that no value is present for CustomerCommission, not even an explicit nil
-func (o *StraightBetV3) UnsetCustomerCommission() {
-	o.CustomerCommission.Unset()
+	o.CustomerCommission = &v
 }
 
 // GetCancellationReason returns the CancellationReason field value if set, zero value otherwise.
-func (o *StraightBetV3) GetCancellationReason() CancellationReason {
+func (o *StraightBetV3) GetCancellationReason() string {
 	if o == nil || o.CancellationReason == nil {
-		var ret CancellationReason
+		var ret string
 		return ret
 	}
 	return *o.CancellationReason
@@ -388,7 +367,7 @@ func (o *StraightBetV3) GetCancellationReason() CancellationReason {
 
 // GetCancellationReasonOk returns a tuple with the CancellationReason field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *StraightBetV3) GetCancellationReasonOk() (*CancellationReason, bool) {
+func (o *StraightBetV3) GetCancellationReasonOk() (*string, bool) {
 	if o == nil || o.CancellationReason == nil {
 		return nil, false
 	}
@@ -404,8 +383,8 @@ func (o *StraightBetV3) HasCancellationReason() bool {
 	return false
 }
 
-// SetCancellationReason gets a reference to the given CancellationReason and assigns it to the CancellationReason field.
-func (o *StraightBetV3) SetCancellationReason(v CancellationReason) {
+// SetCancellationReason gets a reference to the given string and assigns it to the CancellationReason field.
+func (o *StraightBetV3) SetCancellationReason(v string) {
 	o.CancellationReason = &v
 }
 
@@ -529,46 +508,36 @@ func (o *StraightBetV3) SetEventId(v int64) {
 	o.EventId = &v
 }
 
-// GetHandicap returns the Handicap field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetHandicap returns the Handicap field value if set, zero value otherwise.
 func (o *StraightBetV3) GetHandicap() float64 {
-	if o == nil || o.Handicap.Get() == nil {
+	if o == nil || o.Handicap == nil {
 		var ret float64
 		return ret
 	}
-	return *o.Handicap.Get()
+	return *o.Handicap
 }
 
 // GetHandicapOk returns a tuple with the Handicap field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *StraightBetV3) GetHandicapOk() (*float64, bool) {
-	if o == nil  {
+	if o == nil || o.Handicap == nil {
 		return nil, false
 	}
-	return o.Handicap.Get(), o.Handicap.IsSet()
+	return o.Handicap, true
 }
 
 // HasHandicap returns a boolean if a field has been set.
 func (o *StraightBetV3) HasHandicap() bool {
-	if o != nil && o.Handicap.IsSet() {
+	if o != nil && o.Handicap != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetHandicap gets a reference to the given NullableFloat64 and assigns it to the Handicap field.
+// SetHandicap gets a reference to the given float64 and assigns it to the Handicap field.
 func (o *StraightBetV3) SetHandicap(v float64) {
-	o.Handicap.Set(&v)
-}
-// SetHandicapNil sets the value for Handicap to be an explicit nil
-func (o *StraightBetV3) SetHandicapNil() {
-	o.Handicap.Set(nil)
-}
-
-// UnsetHandicap ensures that no value is present for Handicap, not even an explicit nil
-func (o *StraightBetV3) UnsetHandicap() {
-	o.Handicap.Unset()
+	o.Handicap = &v
 }
 
 // GetPrice returns the Price field value if set, zero value otherwise.
@@ -635,214 +604,164 @@ func (o *StraightBetV3) SetTeamName(v string) {
 	o.TeamName = &v
 }
 
-// GetSide returns the Side field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetSide returns the Side field value if set, zero value otherwise.
 func (o *StraightBetV3) GetSide() string {
-	if o == nil || o.Side.Get() == nil {
+	if o == nil || o.Side == nil {
 		var ret string
 		return ret
 	}
-	return *o.Side.Get()
+	return *o.Side
 }
 
 // GetSideOk returns a tuple with the Side field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *StraightBetV3) GetSideOk() (*string, bool) {
-	if o == nil  {
+	if o == nil || o.Side == nil {
 		return nil, false
 	}
-	return o.Side.Get(), o.Side.IsSet()
+	return o.Side, true
 }
 
 // HasSide returns a boolean if a field has been set.
 func (o *StraightBetV3) HasSide() bool {
-	if o != nil && o.Side.IsSet() {
+	if o != nil && o.Side != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetSide gets a reference to the given NullableString and assigns it to the Side field.
+// SetSide gets a reference to the given string and assigns it to the Side field.
 func (o *StraightBetV3) SetSide(v string) {
-	o.Side.Set(&v)
-}
-// SetSideNil sets the value for Side to be an explicit nil
-func (o *StraightBetV3) SetSideNil() {
-	o.Side.Set(nil)
+	o.Side = &v
 }
 
-// UnsetSide ensures that no value is present for Side, not even an explicit nil
-func (o *StraightBetV3) UnsetSide() {
-	o.Side.Unset()
-}
-
-// GetPitcher1 returns the Pitcher1 field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetPitcher1 returns the Pitcher1 field value if set, zero value otherwise.
 func (o *StraightBetV3) GetPitcher1() string {
-	if o == nil || o.Pitcher1.Get() == nil {
+	if o == nil || o.Pitcher1 == nil {
 		var ret string
 		return ret
 	}
-	return *o.Pitcher1.Get()
+	return *o.Pitcher1
 }
 
 // GetPitcher1Ok returns a tuple with the Pitcher1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *StraightBetV3) GetPitcher1Ok() (*string, bool) {
-	if o == nil  {
+	if o == nil || o.Pitcher1 == nil {
 		return nil, false
 	}
-	return o.Pitcher1.Get(), o.Pitcher1.IsSet()
+	return o.Pitcher1, true
 }
 
 // HasPitcher1 returns a boolean if a field has been set.
 func (o *StraightBetV3) HasPitcher1() bool {
-	if o != nil && o.Pitcher1.IsSet() {
+	if o != nil && o.Pitcher1 != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetPitcher1 gets a reference to the given NullableString and assigns it to the Pitcher1 field.
+// SetPitcher1 gets a reference to the given string and assigns it to the Pitcher1 field.
 func (o *StraightBetV3) SetPitcher1(v string) {
-	o.Pitcher1.Set(&v)
-}
-// SetPitcher1Nil sets the value for Pitcher1 to be an explicit nil
-func (o *StraightBetV3) SetPitcher1Nil() {
-	o.Pitcher1.Set(nil)
+	o.Pitcher1 = &v
 }
 
-// UnsetPitcher1 ensures that no value is present for Pitcher1, not even an explicit nil
-func (o *StraightBetV3) UnsetPitcher1() {
-	o.Pitcher1.Unset()
-}
-
-// GetPitcher2 returns the Pitcher2 field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetPitcher2 returns the Pitcher2 field value if set, zero value otherwise.
 func (o *StraightBetV3) GetPitcher2() string {
-	if o == nil || o.Pitcher2.Get() == nil {
+	if o == nil || o.Pitcher2 == nil {
 		var ret string
 		return ret
 	}
-	return *o.Pitcher2.Get()
+	return *o.Pitcher2
 }
 
 // GetPitcher2Ok returns a tuple with the Pitcher2 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *StraightBetV3) GetPitcher2Ok() (*string, bool) {
-	if o == nil  {
+	if o == nil || o.Pitcher2 == nil {
 		return nil, false
 	}
-	return o.Pitcher2.Get(), o.Pitcher2.IsSet()
+	return o.Pitcher2, true
 }
 
 // HasPitcher2 returns a boolean if a field has been set.
 func (o *StraightBetV3) HasPitcher2() bool {
-	if o != nil && o.Pitcher2.IsSet() {
+	if o != nil && o.Pitcher2 != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetPitcher2 gets a reference to the given NullableString and assigns it to the Pitcher2 field.
+// SetPitcher2 gets a reference to the given string and assigns it to the Pitcher2 field.
 func (o *StraightBetV3) SetPitcher2(v string) {
-	o.Pitcher2.Set(&v)
-}
-// SetPitcher2Nil sets the value for Pitcher2 to be an explicit nil
-func (o *StraightBetV3) SetPitcher2Nil() {
-	o.Pitcher2.Set(nil)
+	o.Pitcher2 = &v
 }
 
-// UnsetPitcher2 ensures that no value is present for Pitcher2, not even an explicit nil
-func (o *StraightBetV3) UnsetPitcher2() {
-	o.Pitcher2.Unset()
-}
-
-// GetPitcher1MustStart returns the Pitcher1MustStart field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetPitcher1MustStart returns the Pitcher1MustStart field value if set, zero value otherwise.
 func (o *StraightBetV3) GetPitcher1MustStart() bool {
-	if o == nil || o.Pitcher1MustStart.Get() == nil {
+	if o == nil || o.Pitcher1MustStart == nil {
 		var ret bool
 		return ret
 	}
-	return *o.Pitcher1MustStart.Get()
+	return *o.Pitcher1MustStart
 }
 
 // GetPitcher1MustStartOk returns a tuple with the Pitcher1MustStart field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *StraightBetV3) GetPitcher1MustStartOk() (*bool, bool) {
-	if o == nil  {
+	if o == nil || o.Pitcher1MustStart == nil {
 		return nil, false
 	}
-	return o.Pitcher1MustStart.Get(), o.Pitcher1MustStart.IsSet()
+	return o.Pitcher1MustStart, true
 }
 
 // HasPitcher1MustStart returns a boolean if a field has been set.
 func (o *StraightBetV3) HasPitcher1MustStart() bool {
-	if o != nil && o.Pitcher1MustStart.IsSet() {
+	if o != nil && o.Pitcher1MustStart != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetPitcher1MustStart gets a reference to the given NullableBool and assigns it to the Pitcher1MustStart field.
+// SetPitcher1MustStart gets a reference to the given bool and assigns it to the Pitcher1MustStart field.
 func (o *StraightBetV3) SetPitcher1MustStart(v bool) {
-	o.Pitcher1MustStart.Set(&v)
-}
-// SetPitcher1MustStartNil sets the value for Pitcher1MustStart to be an explicit nil
-func (o *StraightBetV3) SetPitcher1MustStartNil() {
-	o.Pitcher1MustStart.Set(nil)
+	o.Pitcher1MustStart = &v
 }
 
-// UnsetPitcher1MustStart ensures that no value is present for Pitcher1MustStart, not even an explicit nil
-func (o *StraightBetV3) UnsetPitcher1MustStart() {
-	o.Pitcher1MustStart.Unset()
-}
-
-// GetPitcher2MustStart returns the Pitcher2MustStart field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetPitcher2MustStart returns the Pitcher2MustStart field value if set, zero value otherwise.
 func (o *StraightBetV3) GetPitcher2MustStart() bool {
-	if o == nil || o.Pitcher2MustStart.Get() == nil {
+	if o == nil || o.Pitcher2MustStart == nil {
 		var ret bool
 		return ret
 	}
-	return *o.Pitcher2MustStart.Get()
+	return *o.Pitcher2MustStart
 }
 
 // GetPitcher2MustStartOk returns a tuple with the Pitcher2MustStart field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *StraightBetV3) GetPitcher2MustStartOk() (*bool, bool) {
-	if o == nil  {
+	if o == nil || o.Pitcher2MustStart == nil {
 		return nil, false
 	}
-	return o.Pitcher2MustStart.Get(), o.Pitcher2MustStart.IsSet()
+	return o.Pitcher2MustStart, true
 }
 
 // HasPitcher2MustStart returns a boolean if a field has been set.
 func (o *StraightBetV3) HasPitcher2MustStart() bool {
-	if o != nil && o.Pitcher2MustStart.IsSet() {
+	if o != nil && o.Pitcher2MustStart != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetPitcher2MustStart gets a reference to the given NullableBool and assigns it to the Pitcher2MustStart field.
+// SetPitcher2MustStart gets a reference to the given bool and assigns it to the Pitcher2MustStart field.
 func (o *StraightBetV3) SetPitcher2MustStart(v bool) {
-	o.Pitcher2MustStart.Set(&v)
-}
-// SetPitcher2MustStartNil sets the value for Pitcher2MustStart to be an explicit nil
-func (o *StraightBetV3) SetPitcher2MustStartNil() {
-	o.Pitcher2MustStart.Set(nil)
-}
-
-// UnsetPitcher2MustStart ensures that no value is present for Pitcher2MustStart, not even an explicit nil
-func (o *StraightBetV3) UnsetPitcher2MustStart() {
-	o.Pitcher2MustStart.Unset()
+	o.Pitcher2MustStart = &v
 }
 
 // GetTeam1 returns the Team1 field value if set, zero value otherwise.
@@ -941,288 +860,196 @@ func (o *StraightBetV3) SetPeriodNumber(v int) {
 	o.PeriodNumber = &v
 }
 
-// GetTeam1Score returns the Team1Score field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetTeam1Score returns the Team1Score field value if set, zero value otherwise.
 func (o *StraightBetV3) GetTeam1Score() float64 {
-	if o == nil || o.Team1Score.Get() == nil {
+	if o == nil || o.Team1Score == nil {
 		var ret float64
 		return ret
 	}
-	return *o.Team1Score.Get()
+	return *o.Team1Score
 }
 
 // GetTeam1ScoreOk returns a tuple with the Team1Score field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *StraightBetV3) GetTeam1ScoreOk() (*float64, bool) {
-	if o == nil  {
+	if o == nil || o.Team1Score == nil {
 		return nil, false
 	}
-	return o.Team1Score.Get(), o.Team1Score.IsSet()
+	return o.Team1Score, true
 }
 
 // HasTeam1Score returns a boolean if a field has been set.
 func (o *StraightBetV3) HasTeam1Score() bool {
-	if o != nil && o.Team1Score.IsSet() {
+	if o != nil && o.Team1Score != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetTeam1Score gets a reference to the given NullableFloat64 and assigns it to the Team1Score field.
+// SetTeam1Score gets a reference to the given float64 and assigns it to the Team1Score field.
 func (o *StraightBetV3) SetTeam1Score(v float64) {
-	o.Team1Score.Set(&v)
-}
-// SetTeam1ScoreNil sets the value for Team1Score to be an explicit nil
-func (o *StraightBetV3) SetTeam1ScoreNil() {
-	o.Team1Score.Set(nil)
+	o.Team1Score = &v
 }
 
-// UnsetTeam1Score ensures that no value is present for Team1Score, not even an explicit nil
-func (o *StraightBetV3) UnsetTeam1Score() {
-	o.Team1Score.Unset()
-}
-
-// GetTeam2Score returns the Team2Score field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetTeam2Score returns the Team2Score field value if set, zero value otherwise.
 func (o *StraightBetV3) GetTeam2Score() float64 {
-	if o == nil || o.Team2Score.Get() == nil {
+	if o == nil || o.Team2Score == nil {
 		var ret float64
 		return ret
 	}
-	return *o.Team2Score.Get()
+	return *o.Team2Score
 }
 
 // GetTeam2ScoreOk returns a tuple with the Team2Score field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *StraightBetV3) GetTeam2ScoreOk() (*float64, bool) {
-	if o == nil  {
+	if o == nil || o.Team2Score == nil {
 		return nil, false
 	}
-	return o.Team2Score.Get(), o.Team2Score.IsSet()
+	return o.Team2Score, true
 }
 
 // HasTeam2Score returns a boolean if a field has been set.
 func (o *StraightBetV3) HasTeam2Score() bool {
-	if o != nil && o.Team2Score.IsSet() {
+	if o != nil && o.Team2Score != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetTeam2Score gets a reference to the given NullableFloat64 and assigns it to the Team2Score field.
+// SetTeam2Score gets a reference to the given float64 and assigns it to the Team2Score field.
 func (o *StraightBetV3) SetTeam2Score(v float64) {
-	o.Team2Score.Set(&v)
-}
-// SetTeam2ScoreNil sets the value for Team2Score to be an explicit nil
-func (o *StraightBetV3) SetTeam2ScoreNil() {
-	o.Team2Score.Set(nil)
+	o.Team2Score = &v
 }
 
-// UnsetTeam2Score ensures that no value is present for Team2Score, not even an explicit nil
-func (o *StraightBetV3) UnsetTeam2Score() {
-	o.Team2Score.Unset()
-}
-
-// GetFtTeam1Score returns the FtTeam1Score field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetFtTeam1Score returns the FtTeam1Score field value if set, zero value otherwise.
 func (o *StraightBetV3) GetFtTeam1Score() float64 {
-	if o == nil || o.FtTeam1Score.Get() == nil {
+	if o == nil || o.FtTeam1Score == nil {
 		var ret float64
 		return ret
 	}
-	return *o.FtTeam1Score.Get()
+	return *o.FtTeam1Score
 }
 
 // GetFtTeam1ScoreOk returns a tuple with the FtTeam1Score field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *StraightBetV3) GetFtTeam1ScoreOk() (*float64, bool) {
-	if o == nil  {
+	if o == nil || o.FtTeam1Score == nil {
 		return nil, false
 	}
-	return o.FtTeam1Score.Get(), o.FtTeam1Score.IsSet()
+	return o.FtTeam1Score, true
 }
 
 // HasFtTeam1Score returns a boolean if a field has been set.
 func (o *StraightBetV3) HasFtTeam1Score() bool {
-	if o != nil && o.FtTeam1Score.IsSet() {
+	if o != nil && o.FtTeam1Score != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetFtTeam1Score gets a reference to the given NullableFloat64 and assigns it to the FtTeam1Score field.
+// SetFtTeam1Score gets a reference to the given float64 and assigns it to the FtTeam1Score field.
 func (o *StraightBetV3) SetFtTeam1Score(v float64) {
-	o.FtTeam1Score.Set(&v)
-}
-// SetFtTeam1ScoreNil sets the value for FtTeam1Score to be an explicit nil
-func (o *StraightBetV3) SetFtTeam1ScoreNil() {
-	o.FtTeam1Score.Set(nil)
+	o.FtTeam1Score = &v
 }
 
-// UnsetFtTeam1Score ensures that no value is present for FtTeam1Score, not even an explicit nil
-func (o *StraightBetV3) UnsetFtTeam1Score() {
-	o.FtTeam1Score.Unset()
-}
-
-// GetFtTeam2Score returns the FtTeam2Score field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetFtTeam2Score returns the FtTeam2Score field value if set, zero value otherwise.
 func (o *StraightBetV3) GetFtTeam2Score() float64 {
-	if o == nil || o.FtTeam2Score.Get() == nil {
+	if o == nil || o.FtTeam2Score == nil {
 		var ret float64
 		return ret
 	}
-	return *o.FtTeam2Score.Get()
+	return *o.FtTeam2Score
 }
 
 // GetFtTeam2ScoreOk returns a tuple with the FtTeam2Score field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *StraightBetV3) GetFtTeam2ScoreOk() (*float64, bool) {
-	if o == nil  {
+	if o == nil || o.FtTeam2Score == nil {
 		return nil, false
 	}
-	return o.FtTeam2Score.Get(), o.FtTeam2Score.IsSet()
+	return o.FtTeam2Score, true
 }
 
 // HasFtTeam2Score returns a boolean if a field has been set.
 func (o *StraightBetV3) HasFtTeam2Score() bool {
-	if o != nil && o.FtTeam2Score.IsSet() {
+	if o != nil && o.FtTeam2Score != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetFtTeam2Score gets a reference to the given NullableFloat64 and assigns it to the FtTeam2Score field.
+// SetFtTeam2Score gets a reference to the given float64 and assigns it to the FtTeam2Score field.
 func (o *StraightBetV3) SetFtTeam2Score(v float64) {
-	o.FtTeam2Score.Set(&v)
-}
-// SetFtTeam2ScoreNil sets the value for FtTeam2Score to be an explicit nil
-func (o *StraightBetV3) SetFtTeam2ScoreNil() {
-	o.FtTeam2Score.Set(nil)
+	o.FtTeam2Score = &v
 }
 
-// UnsetFtTeam2Score ensures that no value is present for FtTeam2Score, not even an explicit nil
-func (o *StraightBetV3) UnsetFtTeam2Score() {
-	o.FtTeam2Score.Unset()
-}
-
-// GetPTeam1Score returns the PTeam1Score field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetPTeam1Score returns the PTeam1Score field value if set, zero value otherwise.
 func (o *StraightBetV3) GetPTeam1Score() float64 {
-	if o == nil || o.PTeam1Score.Get() == nil {
+	if o == nil || o.PTeam1Score == nil {
 		var ret float64
 		return ret
 	}
-	return *o.PTeam1Score.Get()
+	return *o.PTeam1Score
 }
 
 // GetPTeam1ScoreOk returns a tuple with the PTeam1Score field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *StraightBetV3) GetPTeam1ScoreOk() (*float64, bool) {
-	if o == nil  {
+	if o == nil || o.PTeam1Score == nil {
 		return nil, false
 	}
-	return o.PTeam1Score.Get(), o.PTeam1Score.IsSet()
+	return o.PTeam1Score, true
 }
 
 // HasPTeam1Score returns a boolean if a field has been set.
 func (o *StraightBetV3) HasPTeam1Score() bool {
-	if o != nil && o.PTeam1Score.IsSet() {
+	if o != nil && o.PTeam1Score != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetPTeam1Score gets a reference to the given NullableFloat64 and assigns it to the PTeam1Score field.
+// SetPTeam1Score gets a reference to the given float64 and assigns it to the PTeam1Score field.
 func (o *StraightBetV3) SetPTeam1Score(v float64) {
-	o.PTeam1Score.Set(&v)
-}
-// SetPTeam1ScoreNil sets the value for PTeam1Score to be an explicit nil
-func (o *StraightBetV3) SetPTeam1ScoreNil() {
-	o.PTeam1Score.Set(nil)
+	o.PTeam1Score = &v
 }
 
-// UnsetPTeam1Score ensures that no value is present for PTeam1Score, not even an explicit nil
-func (o *StraightBetV3) UnsetPTeam1Score() {
-	o.PTeam1Score.Unset()
-}
-
-// GetPTeam2Score returns the PTeam2Score field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetPTeam2Score returns the PTeam2Score field value if set, zero value otherwise.
 func (o *StraightBetV3) GetPTeam2Score() float64 {
-	if o == nil || o.PTeam2Score.Get() == nil {
+	if o == nil || o.PTeam2Score == nil {
 		var ret float64
 		return ret
 	}
-	return *o.PTeam2Score.Get()
+	return *o.PTeam2Score
 }
 
 // GetPTeam2ScoreOk returns a tuple with the PTeam2Score field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *StraightBetV3) GetPTeam2ScoreOk() (*float64, bool) {
-	if o == nil  {
+	if o == nil || o.PTeam2Score == nil {
 		return nil, false
 	}
-	return o.PTeam2Score.Get(), o.PTeam2Score.IsSet()
+	return o.PTeam2Score, true
 }
 
 // HasPTeam2Score returns a boolean if a field has been set.
 func (o *StraightBetV3) HasPTeam2Score() bool {
-	if o != nil && o.PTeam2Score.IsSet() {
+	if o != nil && o.PTeam2Score != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetPTeam2Score gets a reference to the given NullableFloat64 and assigns it to the PTeam2Score field.
+// SetPTeam2Score gets a reference to the given float64 and assigns it to the PTeam2Score field.
 func (o *StraightBetV3) SetPTeam2Score(v float64) {
-	o.PTeam2Score.Set(&v)
-}
-// SetPTeam2ScoreNil sets the value for PTeam2Score to be an explicit nil
-func (o *StraightBetV3) SetPTeam2ScoreNil() {
-	o.PTeam2Score.Set(nil)
-}
-
-// UnsetPTeam2Score ensures that no value is present for PTeam2Score, not even an explicit nil
-func (o *StraightBetV3) UnsetPTeam2Score() {
-	o.PTeam2Score.Unset()
-}
-
-// GetIsLive returns the IsLive field value if set, zero value otherwise.
-func (o *StraightBetV3) GetIsLive() bool {
-	if o == nil || o.IsLive == nil {
-		var ret bool
-		return ret
-	}
-	return *o.IsLive
-}
-
-// GetIsLiveOk returns a tuple with the IsLive field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *StraightBetV3) GetIsLiveOk() (*bool, bool) {
-	if o == nil || o.IsLive == nil {
-		return nil, false
-	}
-	return o.IsLive, true
-}
-
-// HasIsLive returns a boolean if a field has been set.
-func (o *StraightBetV3) HasIsLive() bool {
-	if o != nil && o.IsLive != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetIsLive gets a reference to the given bool and assigns it to the IsLive field.
-func (o *StraightBetV3) SetIsLive(v bool) {
-	o.IsLive = &v
+	o.PTeam2Score = &v
 }
 
 // GetEventStartTime returns the EventStartTime field value if set, zero value otherwise.
@@ -1280,14 +1107,14 @@ func (o StraightBetV3) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["risk"] = o.Risk
 	}
-	if o.WinLoss.IsSet() {
-		toSerialize["winLoss"] = o.WinLoss.Get()
+	if o.WinLoss != nil {
+		toSerialize["winLoss"] = o.WinLoss
 	}
 	if true {
 		toSerialize["oddsFormat"] = o.OddsFormat
 	}
-	if o.CustomerCommission.IsSet() {
-		toSerialize["customerCommission"] = o.CustomerCommission.Get()
+	if o.CustomerCommission != nil {
+		toSerialize["customerCommission"] = o.CustomerCommission
 	}
 	if o.CancellationReason != nil {
 		toSerialize["cancellationReason"] = o.CancellationReason
@@ -1304,8 +1131,8 @@ func (o StraightBetV3) MarshalJSON() ([]byte, error) {
 	if o.EventId != nil {
 		toSerialize["eventId"] = o.EventId
 	}
-	if o.Handicap.IsSet() {
-		toSerialize["handicap"] = o.Handicap.Get()
+	if o.Handicap != nil {
+		toSerialize["handicap"] = o.Handicap
 	}
 	if o.Price != nil {
 		toSerialize["price"] = o.Price
@@ -1313,20 +1140,20 @@ func (o StraightBetV3) MarshalJSON() ([]byte, error) {
 	if o.TeamName != nil {
 		toSerialize["teamName"] = o.TeamName
 	}
-	if o.Side.IsSet() {
-		toSerialize["side"] = o.Side.Get()
+	if o.Side != nil {
+		toSerialize["side"] = o.Side
 	}
-	if o.Pitcher1.IsSet() {
-		toSerialize["pitcher1"] = o.Pitcher1.Get()
+	if o.Pitcher1 != nil {
+		toSerialize["pitcher1"] = o.Pitcher1
 	}
-	if o.Pitcher2.IsSet() {
-		toSerialize["pitcher2"] = o.Pitcher2.Get()
+	if o.Pitcher2 != nil {
+		toSerialize["pitcher2"] = o.Pitcher2
 	}
-	if o.Pitcher1MustStart.IsSet() {
-		toSerialize["pitcher1MustStart"] = o.Pitcher1MustStart.Get()
+	if o.Pitcher1MustStart != nil {
+		toSerialize["pitcher1MustStart"] = o.Pitcher1MustStart
 	}
-	if o.Pitcher2MustStart.IsSet() {
-		toSerialize["pitcher2MustStart"] = o.Pitcher2MustStart.Get()
+	if o.Pitcher2MustStart != nil {
+		toSerialize["pitcher2MustStart"] = o.Pitcher2MustStart
 	}
 	if o.Team1 != nil {
 		toSerialize["team1"] = o.Team1
@@ -1337,26 +1164,23 @@ func (o StraightBetV3) MarshalJSON() ([]byte, error) {
 	if o.PeriodNumber != nil {
 		toSerialize["periodNumber"] = o.PeriodNumber
 	}
-	if o.Team1Score.IsSet() {
-		toSerialize["team1Score"] = o.Team1Score.Get()
+	if o.Team1Score != nil {
+		toSerialize["team1Score"] = o.Team1Score
 	}
-	if o.Team2Score.IsSet() {
-		toSerialize["team2Score"] = o.Team2Score.Get()
+	if o.Team2Score != nil {
+		toSerialize["team2Score"] = o.Team2Score
 	}
-	if o.FtTeam1Score.IsSet() {
-		toSerialize["ftTeam1Score"] = o.FtTeam1Score.Get()
+	if o.FtTeam1Score != nil {
+		toSerialize["ftTeam1Score"] = o.FtTeam1Score
 	}
-	if o.FtTeam2Score.IsSet() {
-		toSerialize["ftTeam2Score"] = o.FtTeam2Score.Get()
+	if o.FtTeam2Score != nil {
+		toSerialize["ftTeam2Score"] = o.FtTeam2Score
 	}
-	if o.PTeam1Score.IsSet() {
-		toSerialize["pTeam1Score"] = o.PTeam1Score.Get()
+	if o.PTeam1Score != nil {
+		toSerialize["pTeam1Score"] = o.PTeam1Score
 	}
-	if o.PTeam2Score.IsSet() {
-		toSerialize["pTeam2Score"] = o.PTeam2Score.Get()
-	}
-	if o.IsLive != nil {
-		toSerialize["isLive"] = o.IsLive
+	if o.PTeam2Score != nil {
+		toSerialize["pTeam2Score"] = o.PTeam2Score
 	}
 	if o.EventStartTime != nil {
 		toSerialize["eventStartTime"] = o.EventStartTime

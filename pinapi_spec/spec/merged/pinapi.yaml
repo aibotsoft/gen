@@ -264,6 +264,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseWithErrorRef'
       x-codegen-request-body-name: request
+
+
   /v3/bets:
     get:
       tags:
@@ -284,31 +286,19 @@ paths:
         Settled bets are queried by *settledAt* date time
 
         https://api.pinnacle.com/v3/bets?betlist=SETTLED&fromDate=2017-11-20T00:00:00Z&toDate=2017-11-23T00:00:00Z
-
-
-
         ### Get settled cancelled bets by time range:
-          
         ```
-
         https://api.pinnacle.com/v3/bets?betList=SETTLED&fromDate=2018-03-01&toDate=2018-03-28&betStatuses=CANCELLED
-
         ```
-
         ### Get bets by bet ids:
 
         ```
-
         https://api.pinnacle.com/v3/bets?betIds=775856112,775856113,775856114
 
         ```
-
-
         ### Get bets by uniqueRequestIds:
 
-
         ```
-
         https://api.pinnacle.com/v3/bets?uniqueRequestIds=62335222-dae4-479a-8c05-46440ccdd3bb,42335222-dae4-479a-8c05-46440ccdd3bb
 
         ```
@@ -2282,222 +2272,7 @@ components:
           description: Echo of the uniqueRequestId from the request.
         straightBet:
           $ref: '#/components/schemas/StraightBetV3'
-    StraightBet:
-      required:
-        - betId
-        - betStatus
-        - betType
-        - oddsFormat
-        - placedAt
-        - risk
-        - updateSequence
-        - wagerNumber
-        - win
-      type: object
-      properties:
-        betId:
-          type: integer
-          description: Bet identification
-          format: int64
-          example: 759629245
-        wagerNumber:
-          type: integer
-          description: >-
-            Wager identification. All bets placed thru the API will have value
-            1. Website Classic view supports multiple contest(special) bets
-            placement in the same bet slip in that case the bet would have
-            appropriate wager number, as well as all round robin parlay bets.
-          
-          example: 1
-        placedAt:
-          type: string
-          description: Date time when the bet was placed.
-          format: date-time
-          example: 2017-09-05T01:32:59.000Z
-        betStatus:
-          type: string
-          description: >
-            Bet Status.  
 
-
-            ACCEPTED = Bet was accepted,  
-
-            CANCELLED = Bet is cancelled as per Pinnacle betting rules,  
-
-            LOSE = The bet is settled as lose,  
-
-            PENDING_ACCEPTANCE = This status is reserved only for live bets. If
-            a live bet is placed during danger zone or live delay is applied, it
-            will be in PENDING_ACCEPTANCE , otherwise in ACCEPTED status. From
-            this status bet can go to ACCEPTED or NOT_ACCEPTED status,  
-
-            REFUNDED = When an event is cancelled or when the bet is settled as
-            push, the bet will have REFUNDED status,  
-
-            NOT_ACCEPTED = Bet was not accepted. Bet can be in this status only
-            if it was previously in PENDING_ACCEPTANCE status,  
-
-            WON = The bet is settled as won 
-          example: ACCEPTED
-          enum:
-            - ACCEPTED
-            - CANCELLED
-            - LOSE
-            - PENDING_ACCEPTANCE
-            - REFUNDED
-            - NOT_ACCEPTED
-            - WON
-        betType:
-          type: string
-          description: Bet type.
-          example: MONEYLINE
-          enum:
-            - MONEYLINE
-            - TEAM_TOTAL_POINTS
-            - SPREAD
-            - TOTAL_POINTS
-            - SPECIAL
-            - PARLAY
-            - TEASER
-            - MANUAL
-        win:
-          type: number
-          description: Win amount.
-          format: double
-          example: 1
-        risk:
-          type: number
-          description: Risk amount.
-          format: double
-          example: 1.5
-        winLoss:
-          type: number
-          description: Win-Loss for settled bets.
-          format: double
-          nullable: true
-        oddsFormat:
-          $ref: '#/components/schemas/OddsFormat'
-        customerCommission:
-          type: number
-          description: Client’s commission on the bet.
-          format: double
-          nullable: true
-        cancellationReason:
-          $ref: '#/components/schemas/CancellationReason'
-        updateSequence:
-          type: integer
-          description: Update Sequence
-          format: int64
-          example: 111548915
-        sportId:
-          type: integer
-          description: ''
-          
-          example: 29
-        leagueId:
-          type: integer
-          description: ''
-          
-          example: 2462
-        eventId:
-          type: integer
-          description: ''
-          format: int64
-          example: 757064557
-        handicap:
-          type: number
-          description: ''
-          format: double
-          nullable: true
-        price:
-          type: number
-          description: ''
-          format: double
-          example: -155
-        teamName:
-          type: string
-          description: ''
-          example: Crvena Zvezda
-        side:
-          type: string
-          description: Side type.
-          nullable: true
-          example: null
-          enum:
-            - OVER
-            - UNDER
-        pitcher1:
-          type: string
-          description: Pitcher name of team1. Only for bets on baseball.
-          nullable: true
-          example: null
-        pitcher2:
-          type: string
-          description: Pitcher name of team2. Only for bets on baseball.
-          nullable: true
-          example: null
-        pitcher1MustStart:
-          type: string
-          description: Whether the team1 pitcher must start. Only for bets on baseball.
-          nullable: true
-          example: null
-        pitcher2MustStart:
-          type: string
-          description: Whether the team1 pitcher must start. Only for bets on baseball.
-          nullable: true
-          example: null
-        team1:
-          type: string
-          description: ''
-          example: Crvena Zvezda
-        team2:
-          type: string
-          description: ''
-          example: Partizan
-        periodNumber:
-          type: integer
-          description: ''
-          
-          example: 0
-        team1Score:
-          type: number
-          description: 'Team 1 score that the bet was placed on, only for live bets.'
-          format: double
-          nullable: true
-        team2Score:
-          type: number
-          description: 'Team 2 score that the bet was placed, only for live bets.'
-          format: double
-          nullable: true
-        ftTeam1Score:
-          type: number
-          description: 'Full time team 1 score, only for settled bets.'
-          format: double
-          nullable: true
-        ftTeam2Score:
-          type: number
-          description: 'Full time team 2 score, only for settled bets.'
-          format: double
-          nullable: true
-        pTeam1Score:
-          type: number
-          description: >-
-            .End of period team 1 score, only for settled bets. If the bet was
-            placed on Game period (periodNumber =0) , this will be null . 
-          format: double
-          nullable: true
-        pTeam2Score:
-          type: number
-          description: >-
-            End of period team 2 score, only for settled bets. If the bet was
-            placed on Game period (periodNumber =0), this will be null
-          format: double
-          nullable: true
-        isLive:
-          type: string
-          description: Whether the bet is on live event
-          example: 'false'
-      description: ''
     StraightBetV3:
       required:
         - betId
@@ -2590,16 +2365,18 @@ components:
           type: number
           description: Win-Loss for settled bets.
           format: double
-          nullable: true
+#          nullable: true
         oddsFormat:
           $ref: '#/components/schemas/OddsFormat'
         customerCommission:
           type: number
           description: Client’s commission on the bet.
           format: double
-          nullable: true
+#          nullable: true
         cancellationReason:
-          $ref: '#/components/schemas/CancellationReason'
+#          $ref: '#/components/schemas/CancellationReason'
+          type: string
+          description: временная замена
         updateSequence:
           type: integer
           description: Update Sequence
@@ -2624,7 +2401,7 @@ components:
           type: number
           description: ''
           format: double
-          nullable: true
+#          nullable: true
         price:
           type: number
           description: ''
@@ -2637,7 +2414,7 @@ components:
         side:
           type: string
           description: Side type.
-          nullable: true
+#          nullable: true
           example: null
           enum:
             - OVER
@@ -2645,12 +2422,12 @@ components:
         pitcher1:
           type: string
           description: Pitcher name of team1. Only for bets on baseball.
-          nullable: true
+#          nullable: true
           example: null
         pitcher2:
           type: string
           description: Pitcher name of team2. Only for bets on baseball.
-          nullable: true
+#          nullable: true
           example: null
         pitcher1MustStart:
           type: boolean
@@ -2658,7 +2435,7 @@ components:
             Baseball only. Refers to the pitcher for Team1.  This applicable
             only for MONEYLINE bet type, for all other bet types this has to be
             TRUE.
-          nullable: true
+#          nullable: true
           example: false
         pitcher2MustStart:
           type: boolean
@@ -2666,65 +2443,63 @@ components:
             Baseball only. Refers to the pitcher for Team2.  This applicable
             only for MONEYLINE bet type, for all other bet types this has to be
             TRUE.
-          nullable: true
+#          nullable: true
           example: false
         team1:
           type: string
-          description: ''
           example: Crvena Zvezda
         team2:
           type: string
-          description: ''
           example: Partizan
         periodNumber:
           type: integer
-          description: ''
-          
           example: 0
         team1Score:
           type: number
           description: 'Team 1 score that the bet was placed on, only for live bets.'
           format: double
-          nullable: true
+#          nullable: true
         team2Score:
           type: number
           description: 'Team 2 score that the bet was placed, only for live bets.'
           format: double
-          nullable: true
+#          nullable: true
         ftTeam1Score:
           type: number
           description: 'Full time team 1 score, only for settled bets.'
           format: double
-          nullable: true
+#          nullable: true
         ftTeam2Score:
           type: number
           description: 'Full time team 2 score, only for settled bets.'
           format: double
-          nullable: true
+#          nullable: true
         pTeam1Score:
           type: number
           description: >-
             .End of period team 1 score, only for settled bets. If the bet was
             placed on Game period (periodNumber =0), this will be null . 
           format: double
-          nullable: true
+#          nullable: true
         pTeam2Score:
           type: number
           description: >-
             End of period team 2 score, only for settled bets. If the bet was
             placed on Game period (periodNumber =0), this will be null
           format: double
-          nullable: true
-        isLive:
-          type: boolean
-          description: Whether the bet is on live event
-          example: false
+#          nullable: true
+
+#        isLive:
+#          type: string
+#          description: Whether the bet is on live event
+#          example: false
+
         eventStartTime:
           type: string
           description: Date time when the event starts.
           format: date-time
           example: 2017-10-05T01:32:59.000Z
-      description: ''
+
     CancellationReason:
       required:
         - code
@@ -4921,7 +4696,6 @@ components:
         - NORMAL
         - FILLANDKILL
         - FILLMAXLIMIT
-
 
   securitySchemes:
     basicAuth:
