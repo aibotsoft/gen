@@ -135,7 +135,7 @@ func (o *StraightBet) SetBetStatus(v string) {
 	o.BetStatus = v
 }
 
-// GetBetType returns the BetType field value
+// GetBetType returns the BetTypeId field value
 func (o *StraightBet) GetBetType() string {
 	if o == nil {
 		var ret string

@@ -476,7 +476,7 @@ func (o *PlaceBetRequest) SetPeriodNumber(v int32) {
 	o.PeriodNumber = &v
 }
 
-// GetBetType returns the BetType field value if set, zero value otherwise.
+// GetBetType returns the BetTypeId field value if set, zero value otherwise.
 func (o *PlaceBetRequest) GetBetType() string {
 	if o == nil || o.BetType == nil {
 		var ret string
@@ -485,7 +485,7 @@ func (o *PlaceBetRequest) GetBetType() string {
 	return *o.BetType
 }
 
-// GetBetTypeOk returns a tuple with the BetType field value if set, zero value otherwise
+// GetBetTypeOk returns a tuple with the BetTypeId field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
 func (o *PlaceBetRequest) GetBetTypeOk() (string, bool) {
 	if o == nil || o.BetType == nil {
@@ -504,7 +504,7 @@ func (o *PlaceBetRequest) HasBetType() bool {
 	return false
 }
 
-// SetBetType gets a reference to the given string and assigns it to the BetType field.
+// SetBetType gets a reference to the given string and assigns it to the BetTypeId field.
 func (o *PlaceBetRequest) SetBetType(v string) {
 	o.BetType = &v
 }

@@ -140,7 +140,7 @@ func (o *ParlayBet) SetBetStatus(v string) {
 	o.BetStatus = v
 }
 
-// GetBetType returns the BetType field value
+// GetBetType returns the BetTypeId field value
 func (o *ParlayBet) GetBetType() string {
 	if o == nil {
 		var ret string

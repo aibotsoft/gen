@@ -23,14 +23,61 @@ service Conf {
     }
     rpc GetConfig (GetConfigRequest) returns (GetConfigResponse) {
     }
+    rpc GetAccount (GetAccountRequest) returns (GetAccountResponse) {
+    }
+    rpc GetCurrency (GetCurrencyRequest) returns (GetCurrencyResponse) {
+    }
+    rpc GetServices (GetServicesRequest) returns (GetServicesResponse) {
+    }
 }
 
+message GetServicesRequest {
+}
+message GetServicesResponse {
+    repeated BetService services = 1 [(gogoproto.nullable) = false];
+}
+message BetService {
+    int64 id = 1;
+    string forted_name = 2;
+    string service_name = 3;
+    int64 grpc_port = 4;
+}
+//-------------------------------------------------------
+message GetCurrencyRequest {
+}
+message GetCurrencyResponse {
+    repeated Currency currency_list = 1 [(gogoproto.nullable) = false];
+}
+message Currency {
+    int64 id = 1;
+    string code = 2;
+    double value = 3;
+}
+//--------------------------------------------------------
+message GetAccountRequest {
+    string service_name = 1;
+}
+message GetAccountResponse {
+    Account account = 1 [(gogoproto.nullable) = false];
+}
+message Account {
+    int64 id = 1;
+    string account_type = 2;
+    string currency_code = 3;
+    string service_name = 4;
+    string username = 5;
+    string password = 6;
+    double commission = 7;
+    double share = 8;
+}
+//---------------------------------------------------------------
 message GetConfigRequest {
     string service_name = 1;
 }
 message GetConfigResponse {
-    ServiceConfig service_config = 1[(gogoproto.nullable) = false];
+    ServiceConfig service_config = 1 [(gogoproto.nullable) = false];
 }
+
 message ServiceConfig {
     int64 grpc_port = 1;
 }

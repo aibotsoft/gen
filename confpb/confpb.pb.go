@@ -5,6 +5,7 @@ package confpb
 
 import (
 	context "context"
+	encoding_binary "encoding/binary"
 	fmt "fmt"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
@@ -29,6 +30,476 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
+type GetServicesRequest struct {
+}
+
+func (m *GetServicesRequest) Reset()      { *m = GetServicesRequest{} }
+func (*GetServicesRequest) ProtoMessage() {}
+func (*GetServicesRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_f6496e5986da89ef, []int{0}
+}
+func (m *GetServicesRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *GetServicesRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_GetServicesRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *GetServicesRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetServicesRequest.Merge(m, src)
+}
+func (m *GetServicesRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *GetServicesRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetServicesRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GetServicesRequest proto.InternalMessageInfo
+
+type GetServicesResponse struct {
+	Services []BetService `protobuf:"bytes,1,rep,name=services,proto3" json:"services"`
+}
+
+func (m *GetServicesResponse) Reset()      { *m = GetServicesResponse{} }
+func (*GetServicesResponse) ProtoMessage() {}
+func (*GetServicesResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_f6496e5986da89ef, []int{1}
+}
+func (m *GetServicesResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *GetServicesResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_GetServicesResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *GetServicesResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetServicesResponse.Merge(m, src)
+}
+func (m *GetServicesResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *GetServicesResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetServicesResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GetServicesResponse proto.InternalMessageInfo
+
+func (m *GetServicesResponse) GetServices() []BetService {
+	if m != nil {
+		return m.Services
+	}
+	return nil
+}
+
+type BetService struct {
+	Id          int64  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	FortedName  string `protobuf:"bytes,2,opt,name=forted_name,json=fortedName,proto3" json:"forted_name,omitempty"`
+	ServiceName string `protobuf:"bytes,3,opt,name=service_name,json=serviceName,proto3" json:"service_name,omitempty"`
+	GrpcPort    int64  `protobuf:"varint,4,opt,name=grpc_port,json=grpcPort,proto3" json:"grpc_port,omitempty"`
+}
+
+func (m *BetService) Reset()      { *m = BetService{} }
+func (*BetService) ProtoMessage() {}
+func (*BetService) Descriptor() ([]byte, []int) {
+	return fileDescriptor_f6496e5986da89ef, []int{2}
+}
+func (m *BetService) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *BetService) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_BetService.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *BetService) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_BetService.Merge(m, src)
+}
+func (m *BetService) XXX_Size() int {
+	return m.Size()
+}
+func (m *BetService) XXX_DiscardUnknown() {
+	xxx_messageInfo_BetService.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_BetService proto.InternalMessageInfo
+
+func (m *BetService) GetId() int64 {
+	if m != nil {
+		return m.Id
+	}
+	return 0
+}
+
+func (m *BetService) GetFortedName() string {
+	if m != nil {
+		return m.FortedName
+	}
+	return ""
+}
+
+func (m *BetService) GetServiceName() string {
+	if m != nil {
+		return m.ServiceName
+	}
+	return ""
+}
+
+func (m *BetService) GetGrpcPort() int64 {
+	if m != nil {
+		return m.GrpcPort
+	}
+	return 0
+}
+
+//-------------------------------------------------------
+type GetCurrencyRequest struct {
+}
+
+func (m *GetCurrencyRequest) Reset()      { *m = GetCurrencyRequest{} }
+func (*GetCurrencyRequest) ProtoMessage() {}
+func (*GetCurrencyRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_f6496e5986da89ef, []int{3}
+}
+func (m *GetCurrencyRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *GetCurrencyRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_GetCurrencyRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *GetCurrencyRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetCurrencyRequest.Merge(m, src)
+}
+func (m *GetCurrencyRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *GetCurrencyRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetCurrencyRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GetCurrencyRequest proto.InternalMessageInfo
+
+type GetCurrencyResponse struct {
+	CurrencyList []Currency `protobuf:"bytes,1,rep,name=currency_list,json=currencyList,proto3" json:"currency_list"`
+}
+
+func (m *GetCurrencyResponse) Reset()      { *m = GetCurrencyResponse{} }
+func (*GetCurrencyResponse) ProtoMessage() {}
+func (*GetCurrencyResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_f6496e5986da89ef, []int{4}
+}
+func (m *GetCurrencyResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *GetCurrencyResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_GetCurrencyResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *GetCurrencyResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetCurrencyResponse.Merge(m, src)
+}
+func (m *GetCurrencyResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *GetCurrencyResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetCurrencyResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GetCurrencyResponse proto.InternalMessageInfo
+
+func (m *GetCurrencyResponse) GetCurrencyList() []Currency {
+	if m != nil {
+		return m.CurrencyList
+	}
+	return nil
+}
+
+type Currency struct {
+	Id    int64   `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Code  string  `protobuf:"bytes,2,opt,name=code,proto3" json:"code,omitempty"`
+	Value float64 `protobuf:"fixed64,3,opt,name=value,proto3" json:"value,omitempty"`
+}
+
+func (m *Currency) Reset()      { *m = Currency{} }
+func (*Currency) ProtoMessage() {}
+func (*Currency) Descriptor() ([]byte, []int) {
+	return fileDescriptor_f6496e5986da89ef, []int{5}
+}
+func (m *Currency) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *Currency) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_Currency.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *Currency) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Currency.Merge(m, src)
+}
+func (m *Currency) XXX_Size() int {
+	return m.Size()
+}
+func (m *Currency) XXX_DiscardUnknown() {
+	xxx_messageInfo_Currency.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Currency proto.InternalMessageInfo
+
+func (m *Currency) GetId() int64 {
+	if m != nil {
+		return m.Id
+	}
+	return 0
+}
+
+func (m *Currency) GetCode() string {
+	if m != nil {
+		return m.Code
+	}
+	return ""
+}
+
+func (m *Currency) GetValue() float64 {
+	if m != nil {
+		return m.Value
+	}
+	return 0
+}
+
+//--------------------------------------------------------
+type GetAccountRequest struct {
+	ServiceName string `protobuf:"bytes,1,opt,name=service_name,json=serviceName,proto3" json:"service_name,omitempty"`
+}
+
+func (m *GetAccountRequest) Reset()      { *m = GetAccountRequest{} }
+func (*GetAccountRequest) ProtoMessage() {}
+func (*GetAccountRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_f6496e5986da89ef, []int{6}
+}
+func (m *GetAccountRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *GetAccountRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_GetAccountRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *GetAccountRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetAccountRequest.Merge(m, src)
+}
+func (m *GetAccountRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *GetAccountRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetAccountRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GetAccountRequest proto.InternalMessageInfo
+
+func (m *GetAccountRequest) GetServiceName() string {
+	if m != nil {
+		return m.ServiceName
+	}
+	return ""
+}
+
+type GetAccountResponse struct {
+	Account Account `protobuf:"bytes,1,opt,name=account,proto3" json:"account"`
+}
+
+func (m *GetAccountResponse) Reset()      { *m = GetAccountResponse{} }
+func (*GetAccountResponse) ProtoMessage() {}
+func (*GetAccountResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_f6496e5986da89ef, []int{7}
+}
+func (m *GetAccountResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *GetAccountResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_GetAccountResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *GetAccountResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetAccountResponse.Merge(m, src)
+}
+func (m *GetAccountResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *GetAccountResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetAccountResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GetAccountResponse proto.InternalMessageInfo
+
+func (m *GetAccountResponse) GetAccount() Account {
+	if m != nil {
+		return m.Account
+	}
+	return Account{}
+}
+
+type Account struct {
+	Id           int64   `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	AccountType  string  `protobuf:"bytes,2,opt,name=account_type,json=accountType,proto3" json:"account_type,omitempty"`
+	CurrencyCode string  `protobuf:"bytes,3,opt,name=currency_code,json=currencyCode,proto3" json:"currency_code,omitempty"`
+	ServiceName  string  `protobuf:"bytes,4,opt,name=service_name,json=serviceName,proto3" json:"service_name,omitempty"`
+	Username     string  `protobuf:"bytes,5,opt,name=username,proto3" json:"username,omitempty"`
+	Password     string  `protobuf:"bytes,6,opt,name=password,proto3" json:"password,omitempty"`
+	Commission   float64 `protobuf:"fixed64,7,opt,name=commission,proto3" json:"commission,omitempty"`
+	Share        float64 `protobuf:"fixed64,8,opt,name=share,proto3" json:"share,omitempty"`
+}
+
+func (m *Account) Reset()      { *m = Account{} }
+func (*Account) ProtoMessage() {}
+func (*Account) Descriptor() ([]byte, []int) {
+	return fileDescriptor_f6496e5986da89ef, []int{8}
+}
+func (m *Account) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *Account) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_Account.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *Account) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Account.Merge(m, src)
+}
+func (m *Account) XXX_Size() int {
+	return m.Size()
+}
+func (m *Account) XXX_DiscardUnknown() {
+	xxx_messageInfo_Account.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Account proto.InternalMessageInfo
+
+func (m *Account) GetId() int64 {
+	if m != nil {
+		return m.Id
+	}
+	return 0
+}
+
+func (m *Account) GetAccountType() string {
+	if m != nil {
+		return m.AccountType
+	}
+	return ""
+}
+
+func (m *Account) GetCurrencyCode() string {
+	if m != nil {
+		return m.CurrencyCode
+	}
+	return ""
+}
+
+func (m *Account) GetServiceName() string {
+	if m != nil {
+		return m.ServiceName
+	}
+	return ""
+}
+
+func (m *Account) GetUsername() string {
+	if m != nil {
+		return m.Username
+	}
+	return ""
+}
+
+func (m *Account) GetPassword() string {
+	if m != nil {
+		return m.Password
+	}
+	return ""
+}
+
+func (m *Account) GetCommission() float64 {
+	if m != nil {
+		return m.Commission
+	}
+	return 0
+}
+
+func (m *Account) GetShare() float64 {
+	if m != nil {
+		return m.Share
+	}
+	return 0
+}
+
+//---------------------------------------------------------------
 type GetConfigRequest struct {
 	ServiceName string `protobuf:"bytes,1,opt,name=service_name,json=serviceName,proto3" json:"service_name,omitempty"`
 }
@@ -36,7 +507,7 @@ type GetConfigRequest struct {
 func (m *GetConfigRequest) Reset()      { *m = GetConfigRequest{} }
 func (*GetConfigRequest) ProtoMessage() {}
 func (*GetConfigRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_f6496e5986da89ef, []int{0}
+	return fileDescriptor_f6496e5986da89ef, []int{9}
 }
 func (m *GetConfigRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -79,7 +550,7 @@ type GetConfigResponse struct {
 func (m *GetConfigResponse) Reset()      { *m = GetConfigResponse{} }
 func (*GetConfigResponse) ProtoMessage() {}
 func (*GetConfigResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_f6496e5986da89ef, []int{1}
+	return fileDescriptor_f6496e5986da89ef, []int{10}
 }
 func (m *GetConfigResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -122,7 +593,7 @@ type ServiceConfig struct {
 func (m *ServiceConfig) Reset()      { *m = ServiceConfig{} }
 func (*ServiceConfig) ProtoMessage() {}
 func (*ServiceConfig) Descriptor() ([]byte, []int) {
-	return fileDescriptor_f6496e5986da89ef, []int{2}
+	return fileDescriptor_f6496e5986da89ef, []int{11}
 }
 func (m *ServiceConfig) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -164,7 +635,7 @@ type PingRequest struct {
 func (m *PingRequest) Reset()      { *m = PingRequest{} }
 func (*PingRequest) ProtoMessage() {}
 func (*PingRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_f6496e5986da89ef, []int{3}
+	return fileDescriptor_f6496e5986da89ef, []int{12}
 }
 func (m *PingRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -199,7 +670,7 @@ type PingResponse struct {
 func (m *PingResponse) Reset()      { *m = PingResponse{} }
 func (*PingResponse) ProtoMessage() {}
 func (*PingResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_f6496e5986da89ef, []int{4}
+	return fileDescriptor_f6496e5986da89ef, []int{13}
 }
 func (m *PingResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -229,6 +700,15 @@ func (m *PingResponse) XXX_DiscardUnknown() {
 var xxx_messageInfo_PingResponse proto.InternalMessageInfo
 
 func init() {
+	proto.RegisterType((*GetServicesRequest)(nil), "confpb.GetServicesRequest")
+	proto.RegisterType((*GetServicesResponse)(nil), "confpb.GetServicesResponse")
+	proto.RegisterType((*BetService)(nil), "confpb.BetService")
+	proto.RegisterType((*GetCurrencyRequest)(nil), "confpb.GetCurrencyRequest")
+	proto.RegisterType((*GetCurrencyResponse)(nil), "confpb.GetCurrencyResponse")
+	proto.RegisterType((*Currency)(nil), "confpb.Currency")
+	proto.RegisterType((*GetAccountRequest)(nil), "confpb.GetAccountRequest")
+	proto.RegisterType((*GetAccountResponse)(nil), "confpb.GetAccountResponse")
+	proto.RegisterType((*Account)(nil), "confpb.Account")
 	proto.RegisterType((*GetConfigRequest)(nil), "confpb.GetConfigRequest")
 	proto.RegisterType((*GetConfigResponse)(nil), "confpb.GetConfigResponse")
 	proto.RegisterType((*ServiceConfig)(nil), "confpb.ServiceConfig")
@@ -239,29 +719,306 @@ func init() {
 func init() { proto.RegisterFile("confpb.proto", fileDescriptor_f6496e5986da89ef) }
 
 var fileDescriptor_f6496e5986da89ef = []byte{
-	// 313 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xe2, 0x49, 0xce, 0xcf, 0x4b,
-	0x2b, 0x48, 0xd2, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x62, 0x83, 0xf0, 0xa4, 0x74, 0xd3, 0x33,
-	0x4b, 0x32, 0x4a, 0x93, 0xf4, 0x92, 0xf3, 0x73, 0xf5, 0xd3, 0xf3, 0xd3, 0xf3, 0xf5, 0xc1, 0xd2,
-	0x49, 0xa5, 0x69, 0x60, 0x1e, 0x98, 0x03, 0x66, 0x41, 0xb4, 0x29, 0x99, 0x72, 0x09, 0xb8, 0xa7,
-	0x96, 0x38, 0xe7, 0xe7, 0xa5, 0x65, 0xa6, 0x07, 0xa5, 0x16, 0x96, 0xa6, 0x16, 0x97, 0x08, 0x29,
-	0x72, 0xf1, 0x14, 0xa7, 0x16, 0x95, 0x65, 0x26, 0xa7, 0xc6, 0xe7, 0x25, 0xe6, 0xa6, 0x4a, 0x30,
-	0x2a, 0x30, 0x6a, 0x70, 0x06, 0x71, 0x43, 0xc5, 0xfc, 0x12, 0x73, 0x53, 0x95, 0xc2, 0xb9, 0x04,
-	0x91, 0xb4, 0x15, 0x17, 0xe4, 0xe7, 0x15, 0xa7, 0x0a, 0x39, 0x71, 0xf1, 0xc1, 0xf4, 0x25, 0x83,
-	0x65, 0xc0, 0x3a, 0xb9, 0x8d, 0x44, 0xf5, 0xa0, 0x2e, 0x0d, 0x86, 0xc8, 0x42, 0xb4, 0x39, 0xb1,
-	0x9c, 0xb8, 0x27, 0xcf, 0x10, 0xc4, 0x5b, 0x8c, 0x2c, 0xa8, 0xa4, 0xc3, 0xc5, 0x8b, 0xa2, 0x4a,
-	0x48, 0x9a, 0x8b, 0x33, 0xbd, 0xa8, 0x20, 0x39, 0xbe, 0x20, 0xbf, 0xa8, 0x04, 0x6c, 0x1e, 0x73,
-	0x10, 0x07, 0x48, 0x20, 0x20, 0xbf, 0xa8, 0x44, 0x89, 0x97, 0x8b, 0x3b, 0x20, 0x33, 0x0f, 0xe6,
-	0x70, 0x25, 0x3e, 0x2e, 0x1e, 0x08, 0x17, 0xe2, 0x20, 0xa3, 0x7a, 0x2e, 0x16, 0x90, 0x29, 0x42,
-	0xc6, 0x5c, 0x2c, 0x20, 0x71, 0x21, 0x61, 0x98, 0x43, 0x90, 0x34, 0x49, 0x89, 0xa0, 0x0a, 0x42,
-	0xb4, 0x2a, 0x31, 0x08, 0x39, 0x71, 0x71, 0xc2, 0xbd, 0x28, 0x24, 0x01, 0x53, 0x84, 0x1e, 0x58,
-	0x52, 0x92, 0x58, 0x64, 0x60, 0x66, 0x38, 0x19, 0xdc, 0x78, 0x28, 0xc7, 0xf0, 0xe1, 0xa1, 0x1c,
-	0x63, 0xc3, 0x23, 0x39, 0xc6, 0x15, 0x8f, 0xe4, 0x18, 0x4f, 0x3c, 0x92, 0x63, 0xbc, 0xf0, 0x48,
-	0x8e, 0xf1, 0xc1, 0x23, 0x39, 0xc6, 0x09, 0x8f, 0xe5, 0x18, 0x2e, 0x3c, 0x96, 0x63, 0xb8, 0xf1,
-	0x58, 0x8e, 0x21, 0x0a, 0x1a, 0x7d, 0x49, 0x6c, 0xe0, 0x68, 0x31, 0x06, 0x04, 0x00, 0x00, 0xff,
-	0xff, 0x8f, 0x4f, 0x80, 0xff, 0xdd, 0x01, 0x00, 0x00,
+	// 644 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x94, 0x54, 0x4f, 0x4f, 0xd4, 0x4e,
+	0x18, 0xee, 0x2c, 0x05, 0x96, 0xb7, 0xbb, 0xfc, 0xf8, 0x0d, 0x98, 0xd4, 0x92, 0x14, 0x18, 0x2f,
+	0x1c, 0x14, 0x0c, 0xa8, 0x17, 0x4f, 0x2e, 0x12, 0x4c, 0x34, 0x86, 0x54, 0x13, 0x13, 0x2f, 0x9b,
+	0x6e, 0x77, 0x76, 0x69, 0xc2, 0x76, 0x6a, 0x67, 0x8a, 0xe1, 0x60, 0xe2, 0x47, 0xf0, 0x63, 0xf8,
+	0x51, 0x38, 0x72, 0x24, 0x1e, 0x8c, 0x2c, 0x5f, 0xc0, 0xf8, 0x09, 0x4c, 0xe7, 0x4f, 0x69, 0xbb,
+	0x5c, 0xbc, 0xf5, 0x7d, 0x9e, 0xe7, 0x7d, 0x33, 0xcf, 0xd3, 0x99, 0x17, 0x3a, 0x11, 0x4b, 0x46,
+	0xe9, 0x60, 0x27, 0xcd, 0x98, 0x60, 0x78, 0x41, 0x55, 0xde, 0xa3, 0x71, 0x2c, 0x4e, 0xf2, 0xc1,
+	0x4e, 0xc4, 0x26, 0xbb, 0x63, 0x36, 0x66, 0xbb, 0x92, 0x1e, 0xe4, 0x23, 0x59, 0xc9, 0x42, 0x7e,
+	0xa9, 0x36, 0xb2, 0x06, 0xf8, 0x88, 0x8a, 0x77, 0x34, 0x3b, 0x8b, 0x23, 0xca, 0x03, 0xfa, 0x29,
+	0xa7, 0x5c, 0x90, 0xd7, 0xb0, 0x5a, 0x43, 0x79, 0xca, 0x12, 0x4e, 0xf1, 0x13, 0x68, 0x73, 0x8d,
+	0xb9, 0x68, 0x73, 0x6e, 0xdb, 0xd9, 0xc3, 0x3b, 0xfa, 0x10, 0xbd, 0x52, 0xde, 0xb3, 0x2f, 0x7e,
+	0x6e, 0x58, 0x41, 0xa9, 0x24, 0x5f, 0x00, 0x6e, 0x59, 0xbc, 0x0c, 0xad, 0x78, 0xe8, 0xa2, 0x4d,
+	0xb4, 0x3d, 0x17, 0xb4, 0xe2, 0x21, 0xde, 0x00, 0x67, 0xc4, 0x32, 0x41, 0x87, 0xfd, 0x24, 0x9c,
+	0x50, 0xb7, 0xb5, 0x89, 0xb6, 0x97, 0x02, 0x50, 0xd0, 0xdb, 0x70, 0x42, 0xf1, 0x16, 0x74, 0xf4,
+	0x28, 0xa5, 0x98, 0x93, 0x0a, 0x47, 0x63, 0x52, 0xb2, 0x0e, 0x4b, 0xe3, 0x2c, 0x8d, 0xfa, 0x29,
+	0xcb, 0x84, 0x6b, 0xcb, 0xd1, 0xed, 0x02, 0x38, 0x66, 0x99, 0xd0, 0x0e, 0x0f, 0xf2, 0x2c, 0xa3,
+	0x49, 0x74, 0x6e, 0x1c, 0x06, 0xd2, 0xe1, 0x2d, 0xaa, 0x1d, 0x3e, 0x87, 0x6e, 0xa4, 0xb1, 0xfe,
+	0x69, 0xcc, 0x85, 0xb6, 0xb9, 0x62, 0x6c, 0x9a, 0x06, 0x6d, 0xb2, 0x63, 0xc4, 0x6f, 0x62, 0x2e,
+	0xc8, 0x4b, 0x68, 0x1b, 0x7e, 0xc6, 0x26, 0x06, 0x3b, 0x62, 0x43, 0xe3, 0x4f, 0x7e, 0xe3, 0x35,
+	0x98, 0x3f, 0x0b, 0x4f, 0x73, 0x65, 0x09, 0x05, 0xaa, 0x20, 0xcf, 0xe0, 0xff, 0x23, 0x2a, 0x5e,
+	0x44, 0x11, 0xcb, 0x13, 0xa1, 0x8f, 0x3b, 0x13, 0x02, 0x9a, 0x09, 0x81, 0x1c, 0x4a, 0x9f, 0x65,
+	0x9f, 0x36, 0xb4, 0x0b, 0x8b, 0xa1, 0x82, 0x64, 0x8f, 0xb3, 0xf7, 0x9f, 0xb1, 0xa2, 0x95, 0xda,
+	0x89, 0x51, 0x91, 0x3f, 0x08, 0x16, 0x35, 0x35, 0x63, 0x62, 0x0b, 0x3a, 0x5a, 0xd6, 0x17, 0xe7,
+	0xa9, 0x31, 0xe3, 0x68, 0xec, 0xfd, 0x79, 0x4a, 0xf1, 0x83, 0x4a, 0x80, 0xd2, 0xb0, 0xfa, 0x5d,
+	0x65, 0x50, 0x07, 0x85, 0xf1, 0xa6, 0x1b, 0x7b, 0xf6, 0x97, 0x7a, 0xd0, 0xce, 0x39, 0xcd, 0x24,
+	0x3d, 0x2f, 0xe9, 0xb2, 0x2e, 0xb8, 0x34, 0xe4, 0xfc, 0x33, 0xcb, 0x86, 0xee, 0x82, 0xe2, 0x4c,
+	0x8d, 0x7d, 0x80, 0x88, 0x4d, 0x26, 0x31, 0xe7, 0x31, 0x4b, 0xdc, 0x45, 0x19, 0x6c, 0x05, 0x29,
+	0x32, 0xe7, 0x27, 0x61, 0x46, 0xdd, 0xb6, 0xca, 0x5c, 0x16, 0xe4, 0x29, 0xac, 0x14, 0xb7, 0x81,
+	0x25, 0xa3, 0x78, 0xfc, 0x0f, 0x91, 0x7f, 0x90, 0xbf, 0xca, 0xb4, 0xe9, 0xc4, 0x7b, 0xb0, 0x6c,
+	0xfa, 0x22, 0xc9, 0xe8, 0xe0, 0xef, 0x99, 0xe0, 0xf5, 0x4b, 0x50, 0x6d, 0x3a, 0xfe, 0x2e, 0xaf,
+	0x82, 0xe4, 0x21, 0x74, 0x6b, 0xaa, 0xfa, 0x0d, 0x47, 0x8d, 0x1b, 0xde, 0x05, 0xe7, 0x38, 0x4e,
+	0xcc, 0xc1, 0xc9, 0x32, 0x74, 0x54, 0xa9, 0x0e, 0xb4, 0xf7, 0xa3, 0x05, 0x76, 0x31, 0x06, 0xef,
+	0x83, 0x5d, 0x10, 0x78, 0xd5, 0x9c, 0xa4, 0xd2, 0xe5, 0xad, 0xd5, 0x41, 0xd5, 0x4b, 0x2c, 0xdc,
+	0x83, 0xa5, 0xd2, 0x23, 0x76, 0x8d, 0xa8, 0x99, 0x96, 0x77, 0xff, 0x0e, 0xa6, 0x9c, 0x71, 0x08,
+	0x70, 0x7b, 0x35, 0x71, 0x55, 0x5a, 0xbf, 0xe6, 0x9e, 0x77, 0x17, 0x55, 0x8e, 0x79, 0x05, 0x4e,
+	0xe5, 0xcd, 0xe2, 0xaa, 0xb8, 0xf1, 0xbc, 0xbd, 0xf5, 0x3b, 0xb9, 0xc6, 0x24, 0xb3, 0xdf, 0x6a,
+	0x93, 0x1a, 0xab, 0xb0, 0x36, 0xa9, 0xb9, 0x10, 0x89, 0xd5, 0x7b, 0x7c, 0x75, 0xed, 0x5b, 0xbf,
+	0xaf, 0x7d, 0xf4, 0x75, 0xea, 0xa3, 0xef, 0x53, 0x1f, 0x5d, 0x4c, 0x7d, 0x74, 0x39, 0xf5, 0xd1,
+	0xaf, 0xa9, 0x8f, 0xbe, 0xdd, 0xf8, 0xd6, 0xe5, 0x8d, 0x6f, 0x5d, 0xdd, 0xf8, 0xd6, 0x47, 0xbd,
+	0xa0, 0x07, 0x0b, 0x72, 0xf1, 0xee, 0xff, 0x0d, 0x00, 0x00, 0xff, 0xff, 0x95, 0x38, 0x61, 0x6f,
+	0xbf, 0x05, 0x00, 0x00,
 }
 
+func (this *GetServicesRequest) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*GetServicesRequest)
+	if !ok {
+		that2, ok := that.(GetServicesRequest)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	return true
+}
+func (this *GetServicesResponse) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*GetServicesResponse)
+	if !ok {
+		that2, ok := that.(GetServicesResponse)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if len(this.Services) != len(that1.Services) {
+		return false
+	}
+	for i := range this.Services {
+		if !this.Services[i].Equal(&that1.Services[i]) {
+			return false
+		}
+	}
+	return true
+}
+func (this *BetService) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*BetService)
+	if !ok {
+		that2, ok := that.(BetService)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if this.Id != that1.Id {
+		return false
+	}
+	if this.FortedName != that1.FortedName {
+		return false
+	}
+	if this.ServiceName != that1.ServiceName {
+		return false
+	}
+	if this.GrpcPort != that1.GrpcPort {
+		return false
+	}
+	return true
+}
+func (this *GetCurrencyRequest) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*GetCurrencyRequest)
+	if !ok {
+		that2, ok := that.(GetCurrencyRequest)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	return true
+}
+func (this *GetCurrencyResponse) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*GetCurrencyResponse)
+	if !ok {
+		that2, ok := that.(GetCurrencyResponse)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if len(this.CurrencyList) != len(that1.CurrencyList) {
+		return false
+	}
+	for i := range this.CurrencyList {
+		if !this.CurrencyList[i].Equal(&that1.CurrencyList[i]) {
+			return false
+		}
+	}
+	return true
+}
+func (this *Currency) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*Currency)
+	if !ok {
+		that2, ok := that.(Currency)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if this.Id != that1.Id {
+		return false
+	}
+	if this.Code != that1.Code {
+		return false
+	}
+	if this.Value != that1.Value {
+		return false
+	}
+	return true
+}
+func (this *GetAccountRequest) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*GetAccountRequest)
+	if !ok {
+		that2, ok := that.(GetAccountRequest)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if this.ServiceName != that1.ServiceName {
+		return false
+	}
+	return true
+}
+func (this *GetAccountResponse) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*GetAccountResponse)
+	if !ok {
+		that2, ok := that.(GetAccountResponse)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if !this.Account.Equal(&that1.Account) {
+		return false
+	}
+	return true
+}
+func (this *Account) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*Account)
+	if !ok {
+		that2, ok := that.(Account)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if this.Id != that1.Id {
+		return false
+	}
+	if this.AccountType != that1.AccountType {
+		return false
+	}
+	if this.CurrencyCode != that1.CurrencyCode {
+		return false
+	}
+	if this.ServiceName != that1.ServiceName {
+		return false
+	}
+	if this.Username != that1.Username {
+		return false
+	}
+	if this.Password != that1.Password {
+		return false
+	}
+	if this.Commission != that1.Commission {
+		return false
+	}
+	if this.Share != that1.Share {
+		return false
+	}
+	return true
+}
 func (this *GetConfigRequest) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
@@ -376,6 +1133,118 @@ func (this *PingResponse) Equal(that interface{}) bool {
 	}
 	return true
 }
+func (this *GetServicesRequest) GoString() string {
+	if this == nil {
+		return "nil"
+	}
+	s := make([]string, 0, 4)
+	s = append(s, "&confpb.GetServicesRequest{")
+	s = append(s, "}")
+	return strings.Join(s, "")
+}
+func (this *GetServicesResponse) GoString() string {
+	if this == nil {
+		return "nil"
+	}
+	s := make([]string, 0, 5)
+	s = append(s, "&confpb.GetServicesResponse{")
+	if this.Services != nil {
+		vs := make([]BetService, len(this.Services))
+		for i := range vs {
+			vs[i] = this.Services[i]
+		}
+		s = append(s, "Services: "+fmt.Sprintf("%#v", vs)+",\n")
+	}
+	s = append(s, "}")
+	return strings.Join(s, "")
+}
+func (this *BetService) GoString() string {
+	if this == nil {
+		return "nil"
+	}
+	s := make([]string, 0, 8)
+	s = append(s, "&confpb.BetService{")
+	s = append(s, "Id: "+fmt.Sprintf("%#v", this.Id)+",\n")
+	s = append(s, "FortedName: "+fmt.Sprintf("%#v", this.FortedName)+",\n")
+	s = append(s, "ServiceName: "+fmt.Sprintf("%#v", this.ServiceName)+",\n")
+	s = append(s, "GrpcPort: "+fmt.Sprintf("%#v", this.GrpcPort)+",\n")
+	s = append(s, "}")
+	return strings.Join(s, "")
+}
+func (this *GetCurrencyRequest) GoString() string {
+	if this == nil {
+		return "nil"
+	}
+	s := make([]string, 0, 4)
+	s = append(s, "&confpb.GetCurrencyRequest{")
+	s = append(s, "}")
+	return strings.Join(s, "")
+}
+func (this *GetCurrencyResponse) GoString() string {
+	if this == nil {
+		return "nil"
+	}
+	s := make([]string, 0, 5)
+	s = append(s, "&confpb.GetCurrencyResponse{")
+	if this.CurrencyList != nil {
+		vs := make([]Currency, len(this.CurrencyList))
+		for i := range vs {
+			vs[i] = this.CurrencyList[i]
+		}
+		s = append(s, "CurrencyList: "+fmt.Sprintf("%#v", vs)+",\n")
+	}
+	s = append(s, "}")
+	return strings.Join(s, "")
+}
+func (this *Currency) GoString() string {
+	if this == nil {
+		return "nil"
+	}
+	s := make([]string, 0, 7)
+	s = append(s, "&confpb.Currency{")
+	s = append(s, "Id: "+fmt.Sprintf("%#v", this.Id)+",\n")
+	s = append(s, "Code: "+fmt.Sprintf("%#v", this.Code)+",\n")
+	s = append(s, "Value: "+fmt.Sprintf("%#v", this.Value)+",\n")
+	s = append(s, "}")
+	return strings.Join(s, "")
+}
+func (this *GetAccountRequest) GoString() string {
+	if this == nil {
+		return "nil"
+	}
+	s := make([]string, 0, 5)
+	s = append(s, "&confpb.GetAccountRequest{")
+	s = append(s, "ServiceName: "+fmt.Sprintf("%#v", this.ServiceName)+",\n")
+	s = append(s, "}")
+	return strings.Join(s, "")
+}
+func (this *GetAccountResponse) GoString() string {
+	if this == nil {
+		return "nil"
+	}
+	s := make([]string, 0, 5)
+	s = append(s, "&confpb.GetAccountResponse{")
+	s = append(s, "Account: "+strings.Replace(this.Account.GoString(), `&`, ``, 1)+",\n")
+	s = append(s, "}")
+	return strings.Join(s, "")
+}
+func (this *Account) GoString() string {
+	if this == nil {
+		return "nil"
+	}
+	s := make([]string, 0, 12)
+	s = append(s, "&confpb.Account{")
+	s = append(s, "Id: "+fmt.Sprintf("%#v", this.Id)+",\n")
+	s = append(s, "AccountType: "+fmt.Sprintf("%#v", this.AccountType)+",\n")
+	s = append(s, "CurrencyCode: "+fmt.Sprintf("%#v", this.CurrencyCode)+",\n")
+	s = append(s, "ServiceName: "+fmt.Sprintf("%#v", this.ServiceName)+",\n")
+	s = append(s, "Username: "+fmt.Sprintf("%#v", this.Username)+",\n")
+	s = append(s, "Password: "+fmt.Sprintf("%#v", this.Password)+",\n")
+	s = append(s, "Commission: "+fmt.Sprintf("%#v", this.Commission)+",\n")
+	s = append(s, "Share: "+fmt.Sprintf("%#v", this.Share)+",\n")
+	s = append(s, "}")
+	return strings.Join(s, "")
+}
 func (this *GetConfigRequest) GoString() string {
 	if this == nil {
 		return "nil"
@@ -447,6 +1316,9 @@ const _ = grpc.SupportPackageIsVersion4
 type ConfClient interface {
 	Ping(ctx context.Context, in *PingRequest, opts ...grpc.CallOption) (*PingResponse, error)
 	GetConfig(ctx context.Context, in *GetConfigRequest, opts ...grpc.CallOption) (*GetConfigResponse, error)
+	GetAccount(ctx context.Context, in *GetAccountRequest, opts ...grpc.CallOption) (*GetAccountResponse, error)
+	GetCurrency(ctx context.Context, in *GetCurrencyRequest, opts ...grpc.CallOption) (*GetCurrencyResponse, error)
+	GetServices(ctx context.Context, in *GetServicesRequest, opts ...grpc.CallOption) (*GetServicesResponse, error)
 }
 
 type confClient struct {
@@ -475,10 +1347,40 @@ func (c *confClient) GetConfig(ctx context.Context, in *GetConfigRequest, opts .
 	return out, nil
 }
 
+func (c *confClient) GetAccount(ctx context.Context, in *GetAccountRequest, opts ...grpc.CallOption) (*GetAccountResponse, error) {
+	out := new(GetAccountResponse)
+	err := c.cc.Invoke(ctx, "/confpb.Conf/GetAccount", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *confClient) GetCurrency(ctx context.Context, in *GetCurrencyRequest, opts ...grpc.CallOption) (*GetCurrencyResponse, error) {
+	out := new(GetCurrencyResponse)
+	err := c.cc.Invoke(ctx, "/confpb.Conf/GetCurrency", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *confClient) GetServices(ctx context.Context, in *GetServicesRequest, opts ...grpc.CallOption) (*GetServicesResponse, error) {
+	out := new(GetServicesResponse)
+	err := c.cc.Invoke(ctx, "/confpb.Conf/GetServices", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ConfServer is the server API for Conf service.
 type ConfServer interface {
 	Ping(context.Context, *PingRequest) (*PingResponse, error)
 	GetConfig(context.Context, *GetConfigRequest) (*GetConfigResponse, error)
+	GetAccount(context.Context, *GetAccountRequest) (*GetAccountResponse, error)
+	GetCurrency(context.Context, *GetCurrencyRequest) (*GetCurrencyResponse, error)
+	GetServices(context.Context, *GetServicesRequest) (*GetServicesResponse, error)
 }
 
 // UnimplementedConfServer can be embedded to have forward compatible implementations.
@@ -490,6 +1392,15 @@ func (*UnimplementedConfServer) Ping(ctx context.Context, req *PingRequest) (*Pi
 }
 func (*UnimplementedConfServer) GetConfig(ctx context.Context, req *GetConfigRequest) (*GetConfigResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetConfig not implemented")
+}
+func (*UnimplementedConfServer) GetAccount(ctx context.Context, req *GetAccountRequest) (*GetAccountResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAccount not implemented")
+}
+func (*UnimplementedConfServer) GetCurrency(ctx context.Context, req *GetCurrencyRequest) (*GetCurrencyResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCurrency not implemented")
+}
+func (*UnimplementedConfServer) GetServices(ctx context.Context, req *GetServicesRequest) (*GetServicesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetServices not implemented")
 }
 
 func RegisterConfServer(s *grpc.Server, srv ConfServer) {
@@ -532,6 +1443,60 @@ func _Conf_GetConfig_Handler(srv interface{}, ctx context.Context, dec func(inte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Conf_GetAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAccountRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ConfServer).GetAccount(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/confpb.Conf/GetAccount",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ConfServer).GetAccount(ctx, req.(*GetAccountRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Conf_GetCurrency_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCurrencyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ConfServer).GetCurrency(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/confpb.Conf/GetCurrency",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ConfServer).GetCurrency(ctx, req.(*GetCurrencyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Conf_GetServices_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetServicesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ConfServer).GetServices(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/confpb.Conf/GetServices",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ConfServer).GetServices(ctx, req.(*GetServicesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Conf_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "confpb.Conf",
 	HandlerType: (*ConfServer)(nil),
@@ -544,9 +1509,367 @@ var _Conf_serviceDesc = grpc.ServiceDesc{
 			MethodName: "GetConfig",
 			Handler:    _Conf_GetConfig_Handler,
 		},
+		{
+			MethodName: "GetAccount",
+			Handler:    _Conf_GetAccount_Handler,
+		},
+		{
+			MethodName: "GetCurrency",
+			Handler:    _Conf_GetCurrency_Handler,
+		},
+		{
+			MethodName: "GetServices",
+			Handler:    _Conf_GetServices_Handler,
+		},
 	},
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "confpb.proto",
+}
+
+func (m *GetServicesRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *GetServicesRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *GetServicesRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	return len(dAtA) - i, nil
+}
+
+func (m *GetServicesResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *GetServicesResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *GetServicesResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.Services) > 0 {
+		for iNdEx := len(m.Services) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.Services[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintConfpb(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0xa
+		}
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *BetService) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *BetService) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *BetService) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.GrpcPort != 0 {
+		i = encodeVarintConfpb(dAtA, i, uint64(m.GrpcPort))
+		i--
+		dAtA[i] = 0x20
+	}
+	if len(m.ServiceName) > 0 {
+		i -= len(m.ServiceName)
+		copy(dAtA[i:], m.ServiceName)
+		i = encodeVarintConfpb(dAtA, i, uint64(len(m.ServiceName)))
+		i--
+		dAtA[i] = 0x1a
+	}
+	if len(m.FortedName) > 0 {
+		i -= len(m.FortedName)
+		copy(dAtA[i:], m.FortedName)
+		i = encodeVarintConfpb(dAtA, i, uint64(len(m.FortedName)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if m.Id != 0 {
+		i = encodeVarintConfpb(dAtA, i, uint64(m.Id))
+		i--
+		dAtA[i] = 0x8
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *GetCurrencyRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *GetCurrencyRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *GetCurrencyRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	return len(dAtA) - i, nil
+}
+
+func (m *GetCurrencyResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *GetCurrencyResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *GetCurrencyResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.CurrencyList) > 0 {
+		for iNdEx := len(m.CurrencyList) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.CurrencyList[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintConfpb(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0xa
+		}
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *Currency) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *Currency) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *Currency) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Value != 0 {
+		i -= 8
+		encoding_binary.LittleEndian.PutUint64(dAtA[i:], uint64(math.Float64bits(float64(m.Value))))
+		i--
+		dAtA[i] = 0x19
+	}
+	if len(m.Code) > 0 {
+		i -= len(m.Code)
+		copy(dAtA[i:], m.Code)
+		i = encodeVarintConfpb(dAtA, i, uint64(len(m.Code)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if m.Id != 0 {
+		i = encodeVarintConfpb(dAtA, i, uint64(m.Id))
+		i--
+		dAtA[i] = 0x8
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *GetAccountRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *GetAccountRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *GetAccountRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.ServiceName) > 0 {
+		i -= len(m.ServiceName)
+		copy(dAtA[i:], m.ServiceName)
+		i = encodeVarintConfpb(dAtA, i, uint64(len(m.ServiceName)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *GetAccountResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *GetAccountResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *GetAccountResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	{
+		size, err := m.Account.MarshalToSizedBuffer(dAtA[:i])
+		if err != nil {
+			return 0, err
+		}
+		i -= size
+		i = encodeVarintConfpb(dAtA, i, uint64(size))
+	}
+	i--
+	dAtA[i] = 0xa
+	return len(dAtA) - i, nil
+}
+
+func (m *Account) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *Account) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *Account) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Share != 0 {
+		i -= 8
+		encoding_binary.LittleEndian.PutUint64(dAtA[i:], uint64(math.Float64bits(float64(m.Share))))
+		i--
+		dAtA[i] = 0x41
+	}
+	if m.Commission != 0 {
+		i -= 8
+		encoding_binary.LittleEndian.PutUint64(dAtA[i:], uint64(math.Float64bits(float64(m.Commission))))
+		i--
+		dAtA[i] = 0x39
+	}
+	if len(m.Password) > 0 {
+		i -= len(m.Password)
+		copy(dAtA[i:], m.Password)
+		i = encodeVarintConfpb(dAtA, i, uint64(len(m.Password)))
+		i--
+		dAtA[i] = 0x32
+	}
+	if len(m.Username) > 0 {
+		i -= len(m.Username)
+		copy(dAtA[i:], m.Username)
+		i = encodeVarintConfpb(dAtA, i, uint64(len(m.Username)))
+		i--
+		dAtA[i] = 0x2a
+	}
+	if len(m.ServiceName) > 0 {
+		i -= len(m.ServiceName)
+		copy(dAtA[i:], m.ServiceName)
+		i = encodeVarintConfpb(dAtA, i, uint64(len(m.ServiceName)))
+		i--
+		dAtA[i] = 0x22
+	}
+	if len(m.CurrencyCode) > 0 {
+		i -= len(m.CurrencyCode)
+		copy(dAtA[i:], m.CurrencyCode)
+		i = encodeVarintConfpb(dAtA, i, uint64(len(m.CurrencyCode)))
+		i--
+		dAtA[i] = 0x1a
+	}
+	if len(m.AccountType) > 0 {
+		i -= len(m.AccountType)
+		copy(dAtA[i:], m.AccountType)
+		i = encodeVarintConfpb(dAtA, i, uint64(len(m.AccountType)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if m.Id != 0 {
+		i = encodeVarintConfpb(dAtA, i, uint64(m.Id))
+		i--
+		dAtA[i] = 0x8
+	}
+	return len(dAtA) - i, nil
 }
 
 func (m *GetConfigRequest) Marshal() (dAtA []byte, err error) {
@@ -697,6 +2020,158 @@ func encodeVarintConfpb(dAtA []byte, offset int, v uint64) int {
 	dAtA[offset] = uint8(v)
 	return base
 }
+func (m *GetServicesRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	return n
+}
+
+func (m *GetServicesResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if len(m.Services) > 0 {
+		for _, e := range m.Services {
+			l = e.Size()
+			n += 1 + l + sovConfpb(uint64(l))
+		}
+	}
+	return n
+}
+
+func (m *BetService) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Id != 0 {
+		n += 1 + sovConfpb(uint64(m.Id))
+	}
+	l = len(m.FortedName)
+	if l > 0 {
+		n += 1 + l + sovConfpb(uint64(l))
+	}
+	l = len(m.ServiceName)
+	if l > 0 {
+		n += 1 + l + sovConfpb(uint64(l))
+	}
+	if m.GrpcPort != 0 {
+		n += 1 + sovConfpb(uint64(m.GrpcPort))
+	}
+	return n
+}
+
+func (m *GetCurrencyRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	return n
+}
+
+func (m *GetCurrencyResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if len(m.CurrencyList) > 0 {
+		for _, e := range m.CurrencyList {
+			l = e.Size()
+			n += 1 + l + sovConfpb(uint64(l))
+		}
+	}
+	return n
+}
+
+func (m *Currency) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Id != 0 {
+		n += 1 + sovConfpb(uint64(m.Id))
+	}
+	l = len(m.Code)
+	if l > 0 {
+		n += 1 + l + sovConfpb(uint64(l))
+	}
+	if m.Value != 0 {
+		n += 9
+	}
+	return n
+}
+
+func (m *GetAccountRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.ServiceName)
+	if l > 0 {
+		n += 1 + l + sovConfpb(uint64(l))
+	}
+	return n
+}
+
+func (m *GetAccountResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = m.Account.Size()
+	n += 1 + l + sovConfpb(uint64(l))
+	return n
+}
+
+func (m *Account) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Id != 0 {
+		n += 1 + sovConfpb(uint64(m.Id))
+	}
+	l = len(m.AccountType)
+	if l > 0 {
+		n += 1 + l + sovConfpb(uint64(l))
+	}
+	l = len(m.CurrencyCode)
+	if l > 0 {
+		n += 1 + l + sovConfpb(uint64(l))
+	}
+	l = len(m.ServiceName)
+	if l > 0 {
+		n += 1 + l + sovConfpb(uint64(l))
+	}
+	l = len(m.Username)
+	if l > 0 {
+		n += 1 + l + sovConfpb(uint64(l))
+	}
+	l = len(m.Password)
+	if l > 0 {
+		n += 1 + l + sovConfpb(uint64(l))
+	}
+	if m.Commission != 0 {
+		n += 9
+	}
+	if m.Share != 0 {
+		n += 9
+	}
+	return n
+}
+
 func (m *GetConfigRequest) Size() (n int) {
 	if m == nil {
 		return 0
@@ -757,6 +2232,116 @@ func sovConfpb(x uint64) (n int) {
 func sozConfpb(x uint64) (n int) {
 	return sovConfpb(uint64((x << 1) ^ uint64((int64(x) >> 63))))
 }
+func (this *GetServicesRequest) String() string {
+	if this == nil {
+		return "nil"
+	}
+	s := strings.Join([]string{`&GetServicesRequest{`,
+		`}`,
+	}, "")
+	return s
+}
+func (this *GetServicesResponse) String() string {
+	if this == nil {
+		return "nil"
+	}
+	repeatedStringForServices := "[]BetService{"
+	for _, f := range this.Services {
+		repeatedStringForServices += strings.Replace(strings.Replace(f.String(), "BetService", "BetService", 1), `&`, ``, 1) + ","
+	}
+	repeatedStringForServices += "}"
+	s := strings.Join([]string{`&GetServicesResponse{`,
+		`Services:` + repeatedStringForServices + `,`,
+		`}`,
+	}, "")
+	return s
+}
+func (this *BetService) String() string {
+	if this == nil {
+		return "nil"
+	}
+	s := strings.Join([]string{`&BetService{`,
+		`Id:` + fmt.Sprintf("%v", this.Id) + `,`,
+		`FortedName:` + fmt.Sprintf("%v", this.FortedName) + `,`,
+		`ServiceName:` + fmt.Sprintf("%v", this.ServiceName) + `,`,
+		`GrpcPort:` + fmt.Sprintf("%v", this.GrpcPort) + `,`,
+		`}`,
+	}, "")
+	return s
+}
+func (this *GetCurrencyRequest) String() string {
+	if this == nil {
+		return "nil"
+	}
+	s := strings.Join([]string{`&GetCurrencyRequest{`,
+		`}`,
+	}, "")
+	return s
+}
+func (this *GetCurrencyResponse) String() string {
+	if this == nil {
+		return "nil"
+	}
+	repeatedStringForCurrencyList := "[]Currency{"
+	for _, f := range this.CurrencyList {
+		repeatedStringForCurrencyList += strings.Replace(strings.Replace(f.String(), "Currency", "Currency", 1), `&`, ``, 1) + ","
+	}
+	repeatedStringForCurrencyList += "}"
+	s := strings.Join([]string{`&GetCurrencyResponse{`,
+		`CurrencyList:` + repeatedStringForCurrencyList + `,`,
+		`}`,
+	}, "")
+	return s
+}
+func (this *Currency) String() string {
+	if this == nil {
+		return "nil"
+	}
+	s := strings.Join([]string{`&Currency{`,
+		`Id:` + fmt.Sprintf("%v", this.Id) + `,`,
+		`Code:` + fmt.Sprintf("%v", this.Code) + `,`,
+		`Value:` + fmt.Sprintf("%v", this.Value) + `,`,
+		`}`,
+	}, "")
+	return s
+}
+func (this *GetAccountRequest) String() string {
+	if this == nil {
+		return "nil"
+	}
+	s := strings.Join([]string{`&GetAccountRequest{`,
+		`ServiceName:` + fmt.Sprintf("%v", this.ServiceName) + `,`,
+		`}`,
+	}, "")
+	return s
+}
+func (this *GetAccountResponse) String() string {
+	if this == nil {
+		return "nil"
+	}
+	s := strings.Join([]string{`&GetAccountResponse{`,
+		`Account:` + strings.Replace(strings.Replace(this.Account.String(), "Account", "Account", 1), `&`, ``, 1) + `,`,
+		`}`,
+	}, "")
+	return s
+}
+func (this *Account) String() string {
+	if this == nil {
+		return "nil"
+	}
+	s := strings.Join([]string{`&Account{`,
+		`Id:` + fmt.Sprintf("%v", this.Id) + `,`,
+		`AccountType:` + fmt.Sprintf("%v", this.AccountType) + `,`,
+		`CurrencyCode:` + fmt.Sprintf("%v", this.CurrencyCode) + `,`,
+		`ServiceName:` + fmt.Sprintf("%v", this.ServiceName) + `,`,
+		`Username:` + fmt.Sprintf("%v", this.Username) + `,`,
+		`Password:` + fmt.Sprintf("%v", this.Password) + `,`,
+		`Commission:` + fmt.Sprintf("%v", this.Commission) + `,`,
+		`Share:` + fmt.Sprintf("%v", this.Share) + `,`,
+		`}`,
+	}, "")
+	return s
+}
 func (this *GetConfigRequest) String() string {
 	if this == nil {
 		return "nil"
@@ -812,6 +2397,981 @@ func valueToStringConfpb(v interface{}) string {
 	}
 	pv := reflect.Indirect(rv).Interface()
 	return fmt.Sprintf("*%v", pv)
+}
+func (m *GetServicesRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowConfpb
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: GetServicesRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: GetServicesRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		default:
+			iNdEx = preIndex
+			skippy, err := skipConfpb(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthConfpb
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthConfpb
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *GetServicesResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowConfpb
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: GetServicesResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: GetServicesResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Services", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowConfpb
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthConfpb
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthConfpb
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Services = append(m.Services, BetService{})
+			if err := m.Services[len(m.Services)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipConfpb(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthConfpb
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthConfpb
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *BetService) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowConfpb
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: BetService: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: BetService: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
+			}
+			m.Id = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowConfpb
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Id |= int64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field FortedName", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowConfpb
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthConfpb
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthConfpb
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.FortedName = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 3:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field ServiceName", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowConfpb
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthConfpb
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthConfpb
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.ServiceName = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 4:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field GrpcPort", wireType)
+			}
+			m.GrpcPort = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowConfpb
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.GrpcPort |= int64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		default:
+			iNdEx = preIndex
+			skippy, err := skipConfpb(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthConfpb
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthConfpb
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *GetCurrencyRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowConfpb
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: GetCurrencyRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: GetCurrencyRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		default:
+			iNdEx = preIndex
+			skippy, err := skipConfpb(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthConfpb
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthConfpb
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *GetCurrencyResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowConfpb
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: GetCurrencyResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: GetCurrencyResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field CurrencyList", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowConfpb
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthConfpb
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthConfpb
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.CurrencyList = append(m.CurrencyList, Currency{})
+			if err := m.CurrencyList[len(m.CurrencyList)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipConfpb(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthConfpb
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthConfpb
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *Currency) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowConfpb
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: Currency: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: Currency: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
+			}
+			m.Id = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowConfpb
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Id |= int64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Code", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowConfpb
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthConfpb
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthConfpb
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Code = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 3:
+			if wireType != 1 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Value", wireType)
+			}
+			var v uint64
+			if (iNdEx + 8) > l {
+				return io.ErrUnexpectedEOF
+			}
+			v = uint64(encoding_binary.LittleEndian.Uint64(dAtA[iNdEx:]))
+			iNdEx += 8
+			m.Value = float64(math.Float64frombits(v))
+		default:
+			iNdEx = preIndex
+			skippy, err := skipConfpb(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthConfpb
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthConfpb
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *GetAccountRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowConfpb
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: GetAccountRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: GetAccountRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field ServiceName", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowConfpb
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthConfpb
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthConfpb
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.ServiceName = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipConfpb(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthConfpb
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthConfpb
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *GetAccountResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowConfpb
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: GetAccountResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: GetAccountResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Account", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowConfpb
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthConfpb
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthConfpb
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if err := m.Account.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipConfpb(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthConfpb
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthConfpb
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *Account) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowConfpb
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: Account: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: Account: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
+			}
+			m.Id = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowConfpb
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Id |= int64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field AccountType", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowConfpb
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthConfpb
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthConfpb
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.AccountType = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 3:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field CurrencyCode", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowConfpb
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthConfpb
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthConfpb
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.CurrencyCode = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 4:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field ServiceName", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowConfpb
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthConfpb
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthConfpb
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.ServiceName = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 5:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Username", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowConfpb
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthConfpb
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthConfpb
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Username = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 6:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Password", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowConfpb
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthConfpb
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthConfpb
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Password = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 7:
+			if wireType != 1 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Commission", wireType)
+			}
+			var v uint64
+			if (iNdEx + 8) > l {
+				return io.ErrUnexpectedEOF
+			}
+			v = uint64(encoding_binary.LittleEndian.Uint64(dAtA[iNdEx:]))
+			iNdEx += 8
+			m.Commission = float64(math.Float64frombits(v))
+		case 8:
+			if wireType != 1 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Share", wireType)
+			}
+			var v uint64
+			if (iNdEx + 8) > l {
+				return io.ErrUnexpectedEOF
+			}
+			v = uint64(encoding_binary.LittleEndian.Uint64(dAtA[iNdEx:]))
+			iNdEx += 8
+			m.Share = float64(math.Float64frombits(v))
+		default:
+			iNdEx = preIndex
+			skippy, err := skipConfpb(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthConfpb
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthConfpb
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
 }
 func (m *GetConfigRequest) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)

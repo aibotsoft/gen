@@ -146,6 +146,7 @@ message SurebetSide {
     string url = 9;
     bool initiator = 10;
     int64 event_id = 18;
+    FortedIds forted = 24[(gogoproto.nullable) = false];
     Check check = 19;
     BetConfig bet_config = 20;
     CheckCalc check_calc = 21;
@@ -153,6 +154,16 @@ message SurebetSide {
     Bet bet = 23;
 }
 
+message FortedIds {
+    int64 service_id = 1;
+    int64 sport_id = 2;
+    int64 league_id = 3;
+    int64 home_id = 4;
+    int64 away_id = 5;
+    int64 event_id = 18;
+    int64 market_id = 16;
+    int64 price_id = 17;
+}
 message BetConfig {
     string service_name = 8;
     string regime = 11;

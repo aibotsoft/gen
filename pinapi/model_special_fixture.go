@@ -88,7 +88,7 @@ func (o *SpecialFixture) SetId(v int64) {
 	o.Id = &v
 }
 
-// GetBetType returns the BetType field value if set, zero value otherwise.
+// GetBetType returns the BetTypeId field value if set, zero value otherwise.
 func (o *SpecialFixture) GetBetType() string {
 	if o == nil || o.BetType == nil {
 		var ret string
@@ -97,7 +97,7 @@ func (o *SpecialFixture) GetBetType() string {
 	return *o.BetType
 }
 
-// GetBetTypeOk returns a tuple with the BetType field value if set, nil otherwise
+// GetBetTypeOk returns a tuple with the BetTypeId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpecialFixture) GetBetTypeOk() (*string, bool) {
 	if o == nil || o.BetType == nil {
@@ -115,7 +115,7 @@ func (o *SpecialFixture) HasBetType() bool {
 	return false
 }
 
-// SetBetType gets a reference to the given string and assigns it to the BetType field.
+// SetBetType gets a reference to the given string and assigns it to the BetTypeId field.
 func (o *SpecialFixture) SetBetType(v string) {
 	o.BetType = &v
 }
@@ -312,7 +312,7 @@ func (o *SpecialFixture) SetStatus(v string) {
 	o.Status = &v
 }
 
-// GetEvent returns the Event field value if set, zero value otherwise.
+// GetMarkets returns the Event field value if set, zero value otherwise.
 func (o *SpecialFixture) GetEvent() SpecialsFixturesEvent {
 	if o == nil || o.Event == nil {
 		var ret SpecialsFixturesEvent

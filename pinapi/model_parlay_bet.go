@@ -202,7 +202,7 @@ func (o *ParlayBet) SetBetStatus(v string) {
 	o.BetStatus = v
 }
 
-// GetBetType returns the BetType field value
+// GetBetType returns the BetTypeId field value
 func (o *ParlayBet) GetBetType() string {
 	if o == nil  {
 		var ret string
@@ -212,7 +212,7 @@ func (o *ParlayBet) GetBetType() string {
 	return o.BetType
 }
 
-// GetBetTypeOk returns a tuple with the BetType field value
+// GetBetTypeOk returns a tuple with the BetTypeId field value
 // and a boolean to check if the value has been set.
 func (o *ParlayBet) GetBetTypeOk() (*string, bool) {
 	if o == nil  {
