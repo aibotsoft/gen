@@ -1,19 +1,1165 @@
-swagger: "2.0"
+openapi: 3.0.1
 info:
   title: Sample API
-  description: API description in Markdown.
   version: 1.0.0
-host: api.example.com
-schemes:
-  - https
+servers:
+  - url: https://ismart.dafabet.com
+security:
+  - x-session: []
 paths:
-  /users:
-    get:
-      summary: Returns a list of users.
-      description: Optional extended description in Markdown.
-      produces:
-        - application/json
+  /statement/GetStatusByTransid:
+    post:
+      tags:
+        - BetList
+      operationId: GetBetStatus
+      parameters:
+        - in: query
+          name: transid
+          required: true
+          schema:
+            type: integer
+
       responses:
         200:
-          description: OK
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BetStatusResponse'
 
+  /Running/GetEarly_ch:
+    post:
+      tags:
+        - BetList
+      operationId: GetRunningBetList
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                datatype:
+                  type: integer
+                  example: 0
+      responses:
+        200:
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RunningBetListResponse'
+
+  /Statement/GetDBetList_ch:
+    post:
+      tags:
+        - BetList
+      operationId: GetSettledBetList
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded; charset=UTF-8:
+            schema:
+              type: object
+              properties:
+                fdate:
+                  type: string
+                  example: 05/17/2020
+                datatype:
+                  type: integer
+                  example: 8
+      responses:
+        200:
+          description: Ok
+          content:
+            text/html:
+              schema:
+                type: string
+
+  /CashOut/Token:
+    get:
+      tags:
+        - Login
+      operationId: CheckToken
+      responses:
+        200:
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckTokenResponse'
+
+  /Deposit_ProcessLogin.aspx:
+    get:
+      tags:
+        - Login
+      operationId: ProcessLogin
+      parameters:
+        - required: true
+          in: query
+          name: lang
+          schema:
+            type: string
+          example: en
+        - required: true
+          in: query
+          name: st
+          schema:
+            type: string
+          example: 111111111-1111-1111-1111-f7a3b65c1111
+
+        - required: true
+          in: query
+          name: homeURL
+          schema:
+            type: string
+          example: https://m.dafabet.com/en
+          description: https://m.dafabet.com/en
+
+        - required: true
+          in: query
+          name: extendSessionURL
+          schema:
+            type: string
+          example: https://m.dafabet.com/en&OType=01&oddstype=1
+          description: https://m.dafabet.com/en&OType=01&oddstype=1
+
+      responses:
+        200:
+          description: Ok
+          content:
+            text/html:
+              schema:
+                type: string
+
+
+  /en/api/plugins/component/route/header_login/authenticate:
+    post:
+      servers:
+        - url: https://m.dafabet.com
+      tags:
+        - Login
+      operationId: Authenticate
+      #      parameters:
+      #        - in: header
+      #          required: true
+      #          name: Origin
+      #          schema:
+      #            type: string
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AuthenticateRequest'
+
+      responses:
+        200:
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticateResponse'
+
+
+  /{auth_path}Odds/GetMarket:
+    post:
+      tags:
+        - Odds
+      operationId: GetMarkets
+      parameters:
+        - required: true
+          name: auth_path
+          in: path
+          example: BF
+          description: if user logins, there is no BF
+          schema:
+            type: string
+            example: BF
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ShowAllOddsRequest'
+
+      responses:
+        200:
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetMarketsResponse'
+
+
+  /GetReferenceData/GetBettypeName:
+    get:
+      tags:
+        - Odds
+      operationId: GetBetTypes
+      parameters:
+        - required: true
+          in: query
+          name: lang
+          schema:
+            type: string
+            default: en-US
+          example: en-US
+      responses:
+        200:
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+
+
+
+
+  /BetV2/ProcessBet:
+    post:
+      tags:
+        - Tickets
+      operationId: PlaceBet
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TicketsRequest'
+
+      responses:
+        200:
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlaceBetRequest'
+
+
+  /BetV2/GetTickets:
+    post:
+      tags:
+        - Tickets
+      operationId: GetTickets
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TicketsRequest'
+
+      responses:
+        200:
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TicketsResponse'
+
+  /balance/UpdateBalance:
+    post:
+      tags:
+        - Balance
+      operationId: GetBalance
+      responses:
+        200:
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BalanceResponse'
+
+  /{auth_path}Odds/ShowAllOdds:
+    post:
+      tags:
+        - Odds
+      operationId: GetOdds
+      parameters:
+        - required: true
+          name: auth_path
+          in: path
+          example: BF
+          description: if user logins, there is no BF
+          schema:
+            type: string
+            example: BF
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ShowAllOddsRequest'
+
+      responses:
+        200:
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShowAllOddsResponse'
+
+  /{auth_path}main/GetContributor:
+    post:
+      tags:
+        - Odds
+      operationId: GetSports
+      parameters:
+        - required: true
+          name: auth_path
+          in: path
+          example: BF
+          description: if user logins, there is no BF
+          schema:
+            type: string
+            example: BF
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContributorRequest'
+
+      responses:
+        200:
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContributorResponse'
+
+components:
+  securitySchemes:
+    x-session:
+      type: apiKey
+      in: header
+      name: Cookie
+
+  schemas:
+    ContributorResponse:
+      type: object
+      example:
+        {"ErrorCode":0,
+         "ErrorMsg":"",
+         "Data":[{"GameId":43,"M0":{"E":4,"T":49,"L":3,"Days":{"0515":2,"0516":2},"Group":{"0":{"Days":{"0515":2,"0516":2},"E":4,"T":49,"L":3},"1":{"Days":{},"T":14,"L":2},"3":{"Days":{},"T":28},"4":{"Days":{"0515":2,"0516":2},"E":4,"T":7,"L":1}}},"Name":"E-Sports"},
+                 {"GameId":1,"M0":{"E":154,"T":86,"L":4,"Days":{"0515":48,"0516":48,"0517":14,"0518":1}},"Name":"Soccer"},
+                 {"GameId":2,"M0":{"E":0,"T":26,"L":2,"Days":{}},"Name":"Basketball"},
+                 {"GameId":8,"M0":{"E":1,"T":6,"L":0,"Days":{"0516":1}},"Name":"Baseball"},
+                 {"GameId":5,"M0":{"E":0,"T":17,"L":0,"Days":{}},"Name":"Tennis"},
+                 {"GameId":18,"M0":{"E":0,"T":22,"L":0,"Days":{}},"Name":"Table Tennis"}]}
+      required:
+        - ErrorCode
+        - ErrorMsg
+        - Data
+      properties:
+        ErrorCode:
+          type: integer
+        ErrorMsg:
+          type: string
+        Data:
+          type: array
+          items:
+            $ref: '#/components/schemas/SportItem'
+    ContributorRequest:
+      type: object
+      required:
+        - both
+        - isParlay
+      properties:
+        isParlay:
+          type: boolean
+        both:
+          type: boolean
+    SportItem:
+      type: object
+      example:
+        {"GameId":2,"M0":{"E":0,"T":26,"L":2,"Days":{"0515":2,"0516":2}},"Name":"Basketball"}
+      required:
+        - GameId
+        - M0
+        - Name
+      properties:
+        GameId:
+          type: integer
+        Name:
+          type: string
+        M0:
+          type: object
+          required:
+            - E
+            - T
+            - L
+          properties:
+            E:
+              type: integer
+            T:
+              type: integer
+            L:
+              type: integer
+            Days:
+              type: object
+              additionalProperties:
+                type: integer
+
+    ShowAllOddsRequest:
+      type: object
+      required:
+        - GameId
+        - BetTypeClass
+        - DateType
+      properties:
+        GameId:
+          type: integer
+        DateType:
+          $ref: '#/components/schemas/DateTypeEnum'
+        BetTypeClass:
+          $ref: '#/components/schemas/BetTypeClassEnum'
+        Matchid:
+          type: integer
+
+    ShowAllOddsResponse:
+      type: object
+      required:
+        - ErrorMsg
+        - ErrorCode
+      properties:
+        ErrorCode:
+          type: integer
+        ErrorMsg:
+          type: string
+        Syt:
+          type: string
+          format: 'date-time'
+        Data:
+          type: object
+          properties:
+            LeagueN:
+              type: object
+              additionalProperties:
+                type: string
+            TeamN:
+              type: object
+              additionalProperties:
+                type: string
+            NewMatch:
+              type: array
+              items:
+                $ref: '#/components/schemas/EventItem'
+    EventItem:
+      type: object
+      example:
+        {"MatchId":36063550,
+         "Markets":[{"MarketId":250495469,"MatchId":36063550,"BetTypeId":1,"Line":-0.25,"Cat":0,"Pty":0,"Pim":false,"Pfm":2,"Paj":0,"EXSP":6.0,"LEXSP":0.0,"sort":1,"Selections":{"h":{"SelId":"h","Price":0.88,"Seq":0},"a":{"SelId":"a","Price":0.88,"Seq":1}}},
+                    {"MarketId":250769395,"MatchId":36063550,"BetTypeId":3,"Line":5.25,"Cat":0,"Pty":0,"Pim":false,"Pfm":3,"Paj":0,"EXSP":4.0,"LEXSP":0.0,"sort":2,"Selections":{"h":{"SelId":"h","Price":0.75,"Seq":0},"a":{"SelId":"a","Price":-0.99,"Seq":1}}}],
+         "MatchCode":"001484",
+         "GameID":1,
+         "Ktm":"2020-05-14T08:59:00",
+         "ShowTime":"Ref_htime",
+         "Etm":"2020-05-14T09:00:00",
+         "LeagueId":89943,
+         "TeamId1":675223,
+         "TeamId2":675221,
+         "IsLive":true,
+         "hasLive":true,
+         "GameTime":"2020-05-14T09:00:00",
+         "T1V":0,
+         "T2V":4,
+         "Neu":false,
+         "Moc":0,
+         "Rc1":0,
+         "Rc2":0,
+         "Tsp":false,
+         "LDM":0,
+         "HLS":0,
+         "Sup":false,
+         "GV":true,
+         "Sid":"0",
+         "Src":0,
+         "MaT":"l",
+         "GST":0,
+         "CCode":"others",
+         "Sid2":"0",
+         "Src2":0,
+         "FtCount":2,
+         "HtCount":2}
+      properties:
+        GameID:
+          type: integer
+        LeagueId:
+          type: integer
+        MatchId:
+          type: integer
+        TeamId1:
+          type: integer
+        TeamId2:
+          type: integer
+        IsLive:
+          type: boolean
+        hasLive:
+          type: boolean
+        MatchCode:
+          type: string
+        GameTime:
+          type: string
+        Ktm:
+          type: string
+        ShowTime:
+          type: string
+        Etm:
+          type: string
+        T1V:
+          type: integer
+        T2V:
+          type: integer
+        Neu:
+          type: boolean
+        Moc:
+          type: integer
+        Rc1:
+          type: integer
+        Rc2:
+          type: integer
+        Tsp:
+          type: boolean
+        LDM:
+          type: integer
+        HLS:
+          type: integer
+        Sup:
+          type: boolean
+        GV:
+          type: boolean
+        Sid:
+          type: string
+        Sid2:
+          type: string
+        Src:
+          type: integer
+        Src2:
+          type: integer
+        MaT:
+          $ref: '#/components/schemas/DateTypeEnum'
+        GST:
+          type: integer
+        CCode:
+          type: string
+        FtCount:
+          type: integer
+        HtCount:
+          type: integer
+        Markets:
+          type: array
+          items:
+            $ref: '#/components/schemas/MarketItem'
+    MarketItem:
+      type: object
+      example:
+        {"MarketId":250495469,
+         "MatchId":36063550,
+         "BetTypeId":1,
+         "Line":-0.25,
+         "Cat":0,
+         "Pty":0,
+         "Pim":false,
+         "Pfm":2,
+         "Paj":0,
+         "EXSP":6.0,
+         "LEXSP":0.0,
+         "sort":1,
+         "Selections":{"h":{"SelId":"h","Price":0.88,"Seq":0},
+                       "a":{"SelId":"a","Price":0.88,"Seq":1}}}
+      properties:
+        MarketId:
+          type: integer
+        MatchId:
+          type: integer
+        BetTypeId:
+          type: integer
+        Line:
+          type: number
+          format: double
+        Cat:
+          type: integer
+        Pty:
+          type: integer
+        Pim:
+          type: boolean
+        Pfm:
+          type: integer
+        Paj:
+          type: integer
+        EXSP:
+          type: number
+        LEXSP:
+          type: number
+        sort:
+          type: integer
+        IsCP:
+          type: boolean
+        Selections:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/SelectionItem'
+
+    SelectionItem:
+      type: object
+      example:
+        {"SelId":"h","Price":0.88,"Seq":0}
+      properties:
+        SelId:
+          type: string
+        Price:
+          type: number
+        Seq:
+          type: integer
+
+    DateTypeEnum:
+      type: string
+      enum:
+        - l
+        - t
+        - e
+    BalanceResponse:
+      type: object
+      example:
+        {"ErrorCode":0,
+         "ErrorMsg":"",
+         "Data":{"Name":"asdfasdf",
+                 "Niname":"asdfasdfasdf",
+                 "Bal":"200.10",
+                 "OutSd":"0.00",
+                 "NP":"0.00",
+                 "BCredit":"200.10",
+                 "GCredit":"0.00",
+                 "LLogin":"01/01 12:00:00 PM",
+                 "LTran":"05/14 02:01:07 PM",
+                 "PEdate":"08/20 05:33:16 AM",
+                 "ActStatus":2,
+                 "ExtendToken":null,
+                 "QualifiedBonus":null,
+                 "custBalance":{"finalbalance":0,"Amount":0,"Cash":0,"LockedAmt":0},"BonusCode":null,"IsShowBonus":false,"NeedGotoDeposit":false,"CustBonus":null}}
+      required:
+        - ErrorCode
+        - ErrorMsg
+        - Data
+      properties:
+        ErrorCode:
+          type: integer
+        ErrorMsg:
+          type: string
+        Data:
+          type: object
+          properties:
+            Name:
+              type: string
+            Niname:
+              type: string
+            Bal:
+              type: string
+            OutSd:
+              type: string
+            NP:
+              type: string
+            BCredit:
+              type: string
+            GCredit:
+              type: string
+            LLogin:
+              type: string
+            LTran:
+              type: string
+            PEdate:
+              type: string
+            ActStatus:
+              type: integer
+    TicketsResponse:
+      type: object
+      required:
+        - ErrorCode
+        - ErrorMsg
+        - Data
+      example:
+        {"ErrorCode":0,
+         "ErrorMsg":"",
+         "Data":[{"TicketType":"OU","Minbet":"1","Maxbet":"45","Payout":null,"Bet":"","QuickBet":"1:100:10:1","SeqNo":0,"Line":-0.75,"DisplayHDP":"-0.75","Hdp1":0.75,"Hdp2":0,"DisplayOdds":"1.89","DisplayOddsPair":"1.85","OddsID":250309593,"Betteam":"h","LiveScore":false,"LiveHomeScore":0,"LiveAwayScore":0,"BetID":"","ChoiceValue":"Getafe CF (V)","BettypeName":"Handicap","HomeName":"Getafe CF (V)","AwayName":"Real Valladolid (V)","LeagueName":"*SABA SPAIN PRIMERA LALIGA Virtual PES 20 - 15 Mins Play","Bettype":"1","SportType":1,"SportName":"Soccer","GameName":"","IsLive":false,"IsInPlay":false,"Matchid":36039171,"MatchCode":null,"Code":0,"Message":null,"isOddsChange":false,"AutoAcceptSec":"","MRPercentage":"","OddsInfo":null,"SrcOddsInfo":null,"OddsStatus":null,"PoolType":0,"UseBonus":0,"DisplayTime":"11:59 PM","HasParlay":true,"BonusID":0,"BonusType":0,"PromoID":0,"BetHintMsg":"","Common":{"ErrorCode":0,"ErrorMsg":""}}]}
+      properties:
+        ErrorCode:
+          type: integer
+        ErrorMsg:
+          type: string
+        Data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TicketItem'
+
+    BetTypeClassEnum:
+      type: string
+      enum:
+        - OU
+        - more
+
+    TicketItem:
+      type: object
+      example:
+        {"TicketType":"OU",
+         "Minbet":"1",
+         "Maxbet":"45",
+         "Payout":null,
+         "Bet":"",
+         "QuickBet":"1:100:10:1",
+         "SeqNo":0,
+         "Line":-0.75,
+         "DisplayHDP":"-0.75",
+         "Hdp1":0.75,
+         "Hdp2":0,
+         "DisplayOdds":"1.89",
+         "DisplayOddsPair":"1.85",
+         "OddsID":250309593,
+         "Betteam":"h",
+         "LiveScore":false,
+         "LiveHomeScore":0,
+         "LiveAwayScore":0,
+         "BetID":"",
+         "ChoiceValue":"Getafe CF (V)",
+         "BettypeName":"Handicap",
+         "HomeName":"Getafe CF (V)",
+         "AwayName":"Real Valladolid (V)",
+         "LeagueName":"*SABA SPAIN PRIMERA LALIGA Virtual PES 20 - 15 Mins Play",
+         "Bettype":"1",
+         "SportType":1,
+         "SportName":"Soccer",
+         "GameName":"",
+         "IsLive":false,
+         "IsInPlay":false,
+         "Matchid":36039171,
+         "MatchCode":null,
+         "Code":0,
+         "Message":null,
+         "isOddsChange":false,
+         "AutoAcceptSec":"",
+         "MRPercentage":"",
+         "OddsInfo":null,
+         "SrcOddsInfo":null,
+         "OddsStatus":null,
+         "PoolType":0,
+         "UseBonus":0,
+         "DisplayTime":"11:59 PM",
+         "HasParlay":true,
+         "BonusID":0,
+         "BonusType":0,
+         "PromoID":0,
+         "BetHintMsg":"",
+         "Common":{"ErrorCode":0,"ErrorMsg":""}}
+      properties:
+        TicketType:
+          $ref: '#/components/schemas/BetTypeClassEnum'
+        Minbet:
+          type: string
+        Maxbet:
+          type: string
+        Bet:
+          type: string
+        QuickBet:
+          type: string
+        SeqNo:
+          type: integer
+        Line:
+          type: number
+          format: double
+        DisplayHDP:
+          type: string
+        Hdp1:
+          type: number
+        Hdp2:
+          type: number
+        DisplayOdds:
+          type: string
+        DisplayOddsPair:
+          type: string
+        OddsID:
+          type: integer
+        Betteam:
+          type: string
+        LiveScore:
+          type: boolean
+        LiveHomeScore:
+          type: integer
+        LiveAwayScore:
+          type: integer
+        BetID:
+          type: string
+        ChoiceValue:
+          type: string
+        BettypeName:
+          type: string
+        HomeName:
+          type: string
+        AwayName:
+          type: string
+        LeagueName:
+          type: string
+        Bettype:
+          type: string
+        SportType:
+          type: integer
+        SportName:
+          type: string
+        GameName:
+          type: string
+        IsLive:
+          type: boolean
+        IsInPlay:
+          type: boolean
+        Matchid:
+          type: integer
+        Code:
+          type: integer
+        isOddsChange:
+          type: boolean
+        AutoAcceptSec:
+          type: string
+        MRPercentage:
+          type: string
+        DisplayTime:
+          type: string
+        HasParlay:
+          type: boolean
+        BonusID:
+          type: integer
+        BonusType:
+          type: integer
+        PromoID:
+          type: integer
+        BetHintMsg:
+          type: string
+        Common:
+          $ref: '#/components/schemas/CommonItem'
+
+    TicketsRequest:
+      type: object
+      required:
+        - 'ItemList[0][type]'
+        - 'ItemList[0][oddsid]'
+        - 'ItemList[0][betteam]'
+      properties:
+        ItemList[0][type]:
+          $ref: '#/components/schemas/BetTypeClassEnum'
+        ItemList[0][bettype]:
+          type: integer
+        ItemList[0][oddsid]:
+          type: integer
+        ItemList[0][odds]:
+          type: number
+        ItemList[0][Line]:
+          type: number
+          format: double
+        ItemList[0][Hscore]:
+          type: integer
+        ItemList[0][Ascore]:
+          type: integer
+        ItemList[0][Matchid]:
+          type: integer
+        ItemList[0][betteam]:
+          type: string
+        ItemList[0][stake]:
+          type: integer
+        ItemList[0][QuickBet]:
+          type: string
+        ItemList[0][ChoiceValue]:
+          type: string
+        ItemList[0][home]:
+          type: string
+        ItemList[0][away]:
+          type: string
+        ItemList[0][gameid]:
+          type: integer
+        ItemList[0][IsInPlay]:
+          type: boolean
+        ItemList[0][pty]:
+          type: integer
+        ItemList[0][hdp1]:
+          type: number
+        ItemList[0][hdp2]:
+          type: number
+      example:
+        ItemList[0][type]: OU
+        ItemList[0][bettype]: 1
+        ItemList[0][oddsid]: 250309593
+        ItemList[0][odds]: 1.89
+        ItemList[0][Line]: -0.75
+        ItemList[0][Hscore]: 0
+        ItemList[0][Ascore]: 0
+        ItemList[0][Matchid]: 36039171
+        ItemList[0][betteam]: h
+        ItemList[0][stake]: 0
+        ItemList[0][QuickBet]: 1:100:10:1
+        ItemList[0][ChoiceValue]: 0
+        ItemList[0][home]: Getafe CF (V)
+        ItemList[0][away]: Real Valladolid (V)
+        ItemList[0][gameid]: 1
+        ItemList[0][MRPercentage]:
+        ItemList[0][GameName]:
+        ItemList[0][SportName]:
+        ItemList[0][IsInPlay]: false
+        ItemList[0][SrcOddsInfo]:
+        ItemList[0][pty]: 0
+        ItemList[0][hdp1]: 0.75
+        ItemList[0][hdp2]: 0
+        ItemList[0][BonusID]:
+    PlaceBetRequest:
+      type: object
+      example:
+        {"ErrorCode":0,
+         "ErrorMsg":"",
+         "Data":{"ItemList":[{"Key":"250021354_h","DisplayOdds":"1.97","DisplayHDP":"0.25","Hdp1":0,"Hdp2":0.25,"OddsInfo":null,"SrcOddsInfo":null,"BetID":"","TransId_Cash":"109034866899","TransId_Bonus":"0","Code":1,"Message":"Your bet has been accepted.","isOddsChange":false,"Stake":"1","Stake_Cash":"1.00","Stake_Bonus":"0.00","ActualStake_Cash":"1.00","ActualStake_Bonus":"0.00","LiveHomeScore":0,"LiveAwayScore":0,"TicketStatus":1,"IsInPlay":false,"TotalPerBet":0,"FinalBalance":"199.10","CheckWaitingTicket":false,"ErrorCode":0,"TicketJson":null,"BetRecommendation":[{"matchid":36003476,"sporttype":0,"kickofftime":null}],"Common":{"ErrorCode":0,"ErrorMsg":null}}],
+                 "ErrorMsg":null,
+                 "Common":{"ErrorCode":0,"ErrorMsg":null}}}
+      required:
+        - ErrorCode
+        - ErrorMsg
+        - Data
+      properties:
+        ErrorCode:
+          type: integer
+        ErrorMsg:
+          type: string
+        Data:
+          type: object
+          properties:
+            ItemList:
+              type: array
+              items:
+                $ref: '#/components/schemas/PlaceBetItem'
+            ErrorMsg:
+              type: string
+            Common:
+              $ref: '#/components/schemas/CommonItem'
+    CommonItem:
+      type: object
+      example:
+        {"ErrorCode":0,"ErrorMsg":null}
+      required:
+        - ErrorCode
+      properties:
+        ErrorCode:
+          type: integer
+        ErrorMsg:
+          type: string
+
+    PlaceBetItem:
+      type: object
+      example:
+        {"Key":"250021354_h",
+         "DisplayOdds":"1.97",
+         "DisplayHDP":"0.25",
+         "Hdp1":0,
+         "Hdp2":0.25,
+         "OddsInfo":null,
+         "SrcOddsInfo":null,
+         "BetID":"",
+         "TransId_Cash":"109034866899",
+         "TransId_Bonus":"0",
+         "Code":1,
+         "Message":"Your bet has been accepted.",
+         "isOddsChange":false,
+         "Stake":"1",
+         "Stake_Cash":"1.00",
+         "Stake_Bonus":"0.00",
+         "ActualStake_Cash":"1.00",
+         "ActualStake_Bonus":"0.00",
+         "LiveHomeScore":0,
+         "LiveAwayScore":0,
+         "TicketStatus":1,
+         "IsInPlay":false,
+         "TotalPerBet":0,
+         "FinalBalance":"199.10",
+         "CheckWaitingTicket":false,
+         "ErrorCode":0,
+         "TicketJson":null,
+         "BetRecommendation":[{"matchid":36003476,"sporttype":0,"kickofftime":null}],
+         "Common":{"ErrorCode":0,"ErrorMsg":null}}
+      properties:
+        Key:
+          type: string
+        DisplayOdds:
+          type: string
+        DisplayHDP:
+          type: string
+        Hdp1:
+          type: number
+        Hdp2:
+          type: number
+        BetID:
+          type: string
+        TransId_Cash:
+          type: string
+        TransId_Bonus:
+          type: string
+        Code:
+          type: integer
+        Message:
+          type: string
+        isOddsChange:
+          type: boolean
+        Stake:
+          type: string
+        Stake_Cash:
+          type: string
+        LiveHomeScore:
+          type: integer
+        LiveAwayScore:
+          type: integer
+        TicketStatus:
+          type: integer
+        IsInPlay:
+          type: boolean
+        TotalPerBet:
+          type: integer
+        FinalBalance:
+          type: string
+        CheckWaitingTicket:
+          type: boolean
+        ErrorCode:
+          type: integer
+        Common:
+          $ref: '#/components/schemas/CommonItem'
+    BetStatusResponse:
+      type: object
+      example:
+        {"ErrorCode":0,"ErrorMsg":"","Data":{"status":"running","ReasonID":null}}
+      required:
+        - ErrorCode
+        - ErrorMsg
+        - Data
+      properties:
+        ErrorCode:
+          type: integer
+        ErrorMsg:
+          type: string
+        Data:
+          type: object
+          required:
+            - status
+          properties:
+            status:
+              type: string
+            ReasonID:
+              type: integer
+    GetMarketsResponse:
+      type: object
+      example:
+        {                                                           "ErrorCode":0,
+          "ErrorMsg":"",
+          "Data":{"Markets":{"NewOdds":[{"MarketId":250021348,
+                                         "MatchId":36003476,
+                                         "BetTypeId":2,
+                                         "Line":0.0,
+                                         "Cat":1,
+                                         "Pty":0,
+                                         "Pim":true,
+                                         "Pfm":3,
+                                         "Paj":0,
+                                         "EXSP":0.0,
+                                         "LEXSP":0.0,
+                                         "sort":1,
+                                         "IsCP":false,
+                                         "Selections":{"h":{"SelId":"h","Price":0.94,"Seq":0},"a":{"SelId":"a","Price":0.94,"Seq":1}}},
+                                        {"MarketId":250021339,
+                                         "MatchId":36003476,
+                                         "BetTypeId":5,
+                                         "Line":0.08,"Cat":0,"Pty":1,"Pim":true,"Pfm":0,"Paj":0,"EXSP":0.0,"LEXSP":0.0,"sort":1,"IsCP":false,
+                                         "Selections":{"1":{"SelId":"1","Price":3.2,"Seq":0},
+                                                       "x":{"SelId":"x","Price":3.3,"Seq":1},
+                                                       "2":{"SelId":"2","Price":2.15,"Seq":2}}}]},
+                  "SpMatch":{"NewMatch":[],"TeamN":{},"LeagueN":{}}},"Syt":"2020-05-14T14:47:09.0632376-04:00"}
+      required:
+        - ErrorCode
+        - ErrorMsg
+        - Data
+      properties:
+        ErrorCode:
+          type: integer
+        ErrorMsg:
+          type: string
+        Data:
+          type: object
+          properties:
+            SpMatch:
+              type: object
+              properties:
+                LeagueN:
+                  type: object
+                  additionalProperties:
+                    type: string
+                TeamN:
+                  type: object
+                  additionalProperties:
+                    type: string
+                NewMatch:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/EventItem'
+            NewOdds:
+              type: array
+              items:
+                $ref: '#/components/schemas/MarketItem'
+            Markets:
+              type: object
+              properties:
+                NewOdds:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/MarketItem'
+    AuthenticateRequest:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+    AuthenticateResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        hash:
+          type: string
+        token:
+          type: string
+        matrix:
+          type: boolean
+
+    CheckTokenResponse:
+      type: object
+      example:
+        {"token":"hhhhhhhhhhhhhhhhhhhhhhh","rid":00,"id":000000,"url":"hhhhhhhhh.net"}
+      properties:
+        ErrorCode:
+          type: integer
+        ErrorMsg:
+          type: string
+        token:
+          type: string
+        rid:
+          type: integer
+        id:
+          type: integer
+        url:
+          type: string
+    RunningBetListResponse:
+      type: object
+      required:
+        - StakeCount
+        - Ticket
+        - TicketCount
+      properties:
+        StakeCount:
+          type: string
+        TicketCount:
+          type: integer
+        Ticket:
+          type: string

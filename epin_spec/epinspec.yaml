@@ -1,0 +1,177 @@
+openapi: 3.0.1
+info:
+  title: EpinApi
+  version: 1.0.0
+servers:
+  - url: 'https://api.arcadia.pinnacle.com/0.1/'
+security:
+  - x-api-key: []
+    x-session: []
+paths:
+  /wallet/balance:
+    get:
+      tags:
+        - Client
+      summary: Get Client Balance - v1
+      description: Returns current client balance.
+      operationId: Client_Balance_V1_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientBalanceResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
+      deprecated: false
+  /matchups/{id}/markets/straight:
+    get:
+      tags:
+        - Markets
+      summary: Get Markets
+      description: Returns Markets
+      operationId: GetMarketsByEventId
+      parameters:
+        - name: id
+          in: path
+          description: Event ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MarketsResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
+      deprecated: false
+components:
+  securitySchemes:
+    x-api-key:
+      type: apiKey
+      in: header
+      name: x-api-key
+    x-session:
+      type: apiKey
+      in: header
+      name: x-session
+
+  schemas:
+    UnauthorizedError:
+      required:
+        - detail
+        - status
+        - title
+        - type
+      type: object
+      properties:
+        detail:
+          type: string
+          description: detail
+        status:
+          type: integer
+          description: status
+        title:
+          type: string
+          description: title
+        type:
+          type: string
+          description: type
+      description: Unauthorized Response
+    ClientBalanceResponse:
+      required:
+        - amount
+        - currency
+      type: object
+      properties:
+        amount:
+          type: number
+          description: Amount available for betting.
+          format: float
+        currency:
+          type: string
+          description: Client’s currency code.
+      description: Client Balance Details
+    MarketsResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/MarketItem'
+#        type: object
+#        properties:
+#          key:
+#            type: string
+#            description: key string
+#          period:
+#            type: integer
+#            description: period number
+    MarketItem:
+      required:
+        - key
+        - isAlternate
+        - matchupId
+        - prices
+        - limits
+      type: object
+      properties:
+        cutoffAt:
+          format: date-time
+          type: string
+        isAlternate:
+          type: boolean
+        key:
+          type: string
+        limits:
+          type: array
+          items:
+            $ref: '#/components/schemas/LimitItem'
+        matchupId:
+          type: integer
+        period:
+          type: integer
+        prices:
+          type: array
+          items:
+            $ref: '#/components/schemas/PriceItem'
+        status:
+          type: string
+        type:
+          type: string
+        version:
+          type: integer
+    LimitItem:
+      required:
+        - type
+        - amount
+      type: object
+      properties:
+        amount:
+          type: integer
+        type:
+          type: string
+    PriceItem:
+      required:
+        - designation
+        - price
+      type: object
+      properties:
+        designation:
+          type: string
+        points:
+          type: float
+        price:
+          type: integer
+
+
+
