@@ -1,0 +1,198 @@
+openapi: 3.0.1
+info:
+  title: EpinApi
+  version: 1.0.0
+servers:
+- url: https://api.arcadia.pinnacle.com/0.1/
+security:
+- x-api-key: []
+  x-session: []
+paths:
+  /wallet/balance:
+    get:
+      deprecated: false
+      description: Returns current client balance.
+      operationId: Client_Balance_V1_Get
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientBalanceResponse'
+          description: OK
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
+          description: Unauthorized
+      summary: Get Client Balance - v1
+      tags:
+      - Client
+  /matchups/{id}/markets/straight:
+    get:
+      deprecated: false
+      description: Returns Markets
+      operationId: GetMarketsByEventId
+      parameters:
+      - description: Event ID
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MarketsResponse'
+          description: OK
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
+          description: Unauthorized
+      summary: Get Markets
+      tags:
+      - Markets
+components:
+  schemas:
+    UnauthorizedError:
+      description: Unauthorized Response
+      properties:
+        detail:
+          description: detail
+          type: string
+        status:
+          description: status
+          type: integer
+        title:
+          description: title
+          type: string
+        type:
+          description: type
+          type: string
+      required:
+      - detail
+      - status
+      - title
+      - type
+      type: object
+    ClientBalanceResponse:
+      description: Client Balance Details
+      example:
+        amount: 0.8008282
+        currency: currency
+      properties:
+        amount:
+          description: Amount available for betting.
+          format: float
+          type: number
+        currency:
+          description: Client’s currency code.
+          type: string
+      required:
+      - amount
+      - currency
+      type: object
+    MarketsResponse:
+      items:
+        $ref: '#/components/schemas/MarketItem'
+      type: array
+    MarketItem:
+      example:
+        isAlternate: true
+        period: 1
+        matchupId: 6
+        cutoffAt: 2000-01-23T04:56:07.000+00:00
+        prices:
+        - price: 5
+          designation: designation
+          points: ""
+        - price: 5
+          designation: designation
+          points: ""
+        type: type
+        version: 5
+        key: key
+        limits:
+        - amount: 0
+          type: type
+        - amount: 0
+          type: type
+        status: status
+      properties:
+        cutoffAt:
+          format: date-time
+          type: string
+        isAlternate:
+          type: boolean
+        key:
+          type: string
+        limits:
+          items:
+            $ref: '#/components/schemas/LimitItem'
+          type: array
+        matchupId:
+          type: integer
+        period:
+          type: integer
+        prices:
+          items:
+            $ref: '#/components/schemas/PriceItem'
+          type: array
+        status:
+          type: string
+        type:
+          type: string
+        version:
+          type: integer
+      required:
+      - isAlternate
+      - key
+      - limits
+      - matchupId
+      - prices
+      type: object
+    LimitItem:
+      example:
+        amount: 0
+        type: type
+      properties:
+        amount:
+          type: integer
+        type:
+          type: string
+      required:
+      - amount
+      - type
+      type: object
+    PriceItem:
+      example:
+        price: 5
+        designation: designation
+        points: ""
+      properties:
+        designation:
+          type: string
+        points:
+          type: float
+        price:
+          type: integer
+      required:
+      - designation
+      - price
+      type: object
+  securitySchemes:
+    x-api-key:
+      in: header
+      name: x-api-key
+      type: apiKey
+    x-session:
+      in: header
+      name: x-session
+      type: apiKey
