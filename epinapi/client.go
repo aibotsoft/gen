@@ -35,7 +35,7 @@ import (
 )
 
 var (
-	jsonCheck = regexp.MustCompile(`(?i:(?:application|text)/(?:vnd\.[^;]+\+)?json)`)
+	//jsonCheck = regexp.MustCompile(`(?i:(?:application|text)/(?:vnd\.[^;]+\+)?json)`)
 	xmlCheck  = regexp.MustCompile(`(?i:(?:application|text)/xml)`)
 )
 
@@ -46,6 +46,8 @@ type APIClient struct {
 	common service // Reuse a single struct instead of allocating one for each service on the heap.
 
 	// API Services
+
+	BetApi *BetApiService
 
 	ClientApi *ClientApiService
 
@@ -68,6 +70,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.common.client = c
 
 	// API Services
+	c.BetApi = (*BetApiService)(&c.common)
 	c.ClientApi = (*ClientApiService)(&c.common)
 	c.MarketsApi = (*MarketsApiService)(&c.common)
 

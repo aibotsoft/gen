@@ -104,7 +104,7 @@ func NewConfiguration() *Configuration {
 		Debug:            false,
 		Servers:          ServerConfigurations{
 			{
-				URL: "https://api.arcadia.pinnacle.com/0.1/",
+				URL: "https://api.arcadia.pinnacle.com/0.1",
 				Description: "No description provided",
 			},
 		},

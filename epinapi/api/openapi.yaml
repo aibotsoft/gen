@@ -3,16 +3,95 @@ info:
   title: EpinApi
   version: 1.0.0
 servers:
-- url: https://api.arcadia.pinnacle.com/0.1/
+- url: https://api.arcadia.pinnacle.com/0.1
 security:
 - x-api-key: []
   x-session: []
+  x-device-uuid: []
 paths:
+  /bets/straight/quote:
+    post:
+      operationId: GetLine
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PlaceBetRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetLineResponse'
+          description: Ok
+      tags:
+      - Bet
+  /bets/straight:
+    post:
+      operationId: PlaceBet
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PlaceBetRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlaceBetResponse'
+          description: Ok
+        "400":
+          content:
+            application/*:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+          description: Bad Request
+      tags:
+      - Bet
+  /sessions/{session}:
+    put:
+      operationId: CheckLogin
+      parameters:
+      - explode: false
+        in: path
+        name: session
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+          description: Ok
+      tags:
+      - Client
+  /sessions:
+    post:
+      operationId: Login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+          description: Ok
+      tags:
+      - Client
   /wallet/balance:
     get:
-      deprecated: false
-      description: Returns current client balance.
-      operationId: Client_Balance_V1_Get
+      operationId: GetBalance
       responses:
         "200":
           content:
@@ -20,22 +99,40 @@ paths:
               schema:
                 $ref: '#/components/schemas/ClientBalanceResponse'
           description: OK
-        "401":
+      tags:
+      - Client
+  /matchups/{event_id}/market/{marketKey}:
+    get:
+      operationId: GetMarket
+      parameters:
+      - explode: false
+        in: path
+        name: event_id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - explode: false
+        in: path
+        name: marketKey
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UnauthorizedError'
-          description: Unauthorized
-      summary: Get Client Balance - v1
+                $ref: '#/components/schemas/MarketItem'
+          description: Ok
       tags:
-      - Client
+      - Markets
   /matchups/{id}/markets/straight:
     get:
-      deprecated: false
-      description: Returns Markets
       operationId: GetMarketsByEventId
       parameters:
-      - description: Event ID
+      - description: EventID
         explode: false
         in: path
         name: id
@@ -50,38 +147,10 @@ paths:
               schema:
                 $ref: '#/components/schemas/MarketsResponse'
           description: OK
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UnauthorizedError'
-          description: Unauthorized
-      summary: Get Markets
       tags:
       - Markets
 components:
   schemas:
-    UnauthorizedError:
-      description: Unauthorized Response
-      properties:
-        detail:
-          description: detail
-          type: string
-        status:
-          description: status
-          type: integer
-        title:
-          description: title
-          type: string
-        type:
-          description: type
-          type: string
-      required:
-      - detail
-      - status
-      - title
-      - type
-      type: object
     ClientBalanceResponse:
       description: Client Balance Details
       example:
@@ -105,26 +174,22 @@ components:
       type: array
     MarketItem:
       example:
-        isAlternate: true
-        period: 1
-        matchupId: 6
-        cutoffAt: 2000-01-23T04:56:07.000+00:00
-        prices:
-        - price: 5
-          designation: designation
-          points: ""
-        - price: 5
-          designation: designation
-          points: ""
-        type: type
-        version: 5
-        key: key
+        cutoffAt: 2020-05-19T22:00:00+00:00
+        isAlternate: false
+        key: s;2;m
         limits:
-        - amount: 0
-          type: type
-        - amount: 0
-          type: type
-        status: status
+        - amount: 250
+          type: maxRiskStake
+        matchupId: 1124366254
+        period: 2
+        prices:
+        - designation: home
+          price: -102
+        - designation: away
+          price: -119
+        status: open
+        type: moneyline
+        version: 1001539647
       properties:
         cutoffAt:
           format: date-time
@@ -160,11 +225,12 @@ components:
       type: object
     LimitItem:
       example:
-        amount: 0
-        type: type
+        amount: 0.97
+        type: minWinStake
       properties:
         amount:
-          type: integer
+          format: double
+          type: number
         type:
           type: string
       required:
@@ -172,10 +238,6 @@ components:
       - type
       type: object
     PriceItem:
-      example:
-        price: 5
-        designation: designation
-        points: ""
       properties:
         designation:
           type: string
@@ -187,6 +249,259 @@ components:
       - designation
       - price
       type: object
+    LoginRequest:
+      example:
+        password: password
+        trustCode: trustCode
+        captchaToken: captchaToken
+        username: username
+      properties:
+        password:
+          type: string
+        username:
+          type: string
+        captchaToken:
+          type: string
+        trustCode:
+          type: string
+      required:
+      - captchaToken
+      - password
+      - trustCode
+      - username
+      type: object
+    LoginResponse:
+      example:
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        license: license
+        isSuperseded: true
+        trustCode: trustCode
+        lastUsedAt: 2000-01-23T04:56:07.000+00:00
+        isExpired: true
+        isTimedOut: true
+        preferredView: preferredView
+        expiresAt: 2000-01-23T04:56:07.000+00:00
+        transactionId: transactionId
+        token: token
+        username: username
+      properties:
+        createdAt:
+          format: date-time
+          type: string
+        expiresAt:
+          format: date-time
+          type: string
+        isExpired:
+          type: boolean
+        isSuperseded:
+          type: boolean
+        isTimedOut:
+          type: boolean
+        lastUsedAt:
+          format: date-time
+          type: string
+        license:
+          type: string
+        preferredView:
+          type: string
+        token:
+          type: string
+        transactionId:
+          type: string
+        trustCode:
+          type: string
+        username:
+          type: string
+      type: object
+    PlaceBetRequest:
+      example:
+        oddsFormat: decimal
+        selections:
+        - matchupId: 1124397913
+          marketKey: s;0;m
+          designation: home
+          pitchers:
+          - alignment: home
+            name: ""
+            status: listed
+          - alignment: away
+            name: ""
+            status: listed
+          price: 2.28
+        stake: 1
+        class: Straight
+        acceptBetterPrices: false
+        acceptBetterPrice: false
+      properties:
+        oddsFormat:
+          type: string
+        acceptBetterPrice:
+          type: boolean
+        acceptBetterPrices:
+          type: boolean
+        class:
+          type: string
+        stake:
+          format: double
+          type: number
+        selections:
+          items:
+            $ref: '#/components/schemas/SelectionItem'
+          type: array
+      required:
+      - oddsFormat
+      - selections
+      type: object
+    SelectionItem:
+      example:
+        designation: home
+        marketKey: s;0;m
+        matchupId: 1124397913
+        participantId: null
+        points: null
+        price: 2.28
+      properties:
+        matchupId:
+          type: integer
+        marketKey:
+          type: string
+        designation:
+          type: string
+        pitchers:
+          items:
+            $ref: '#/components/schemas/PitcherItem'
+          type: array
+        price:
+          format: double
+          type: number
+        points:
+          format: double
+          type: number
+        participantId:
+          type: integer
+      required:
+      - designation
+      - marketKey
+      - matchupId
+      - price
+      type: object
+    PitcherItem:
+      example:
+        alignment: home
+        name: ""
+        status: listed
+      properties:
+        alignment:
+          type: string
+        name:
+          type: string
+        status:
+          type: string
+      type: object
+    PlaceBetResponse:
+      example:
+        createdAt: 2020-05-20T09:36:48.549001+00:00
+        id: 1124430658
+        oddsFormat: decimal
+        precisePrice: null
+        price: 2.28
+        requestId: 698edc14-95a8-f7ec-e338-b1c81ac7109e
+        selections:
+        - designation: home
+          marketKey: s;0;m
+          matchupId: 1124397913
+          participantId: null
+          points: null
+          price: 2.28
+        stake: 1.0
+        type: straight
+      properties:
+        createdAt:
+          format: date-time
+          type: string
+        id:
+          type: integer
+        oddsFormat:
+          type: string
+        price:
+          format: double
+          type: number
+        requestId:
+          format: uuid
+          type: string
+        stake:
+          format: double
+          type: number
+        type:
+          type: string
+        selections:
+          items:
+            $ref: '#/components/schemas/SelectionItem'
+          type: array
+      type: object
+    GetLineResponse:
+      example:
+        classes:
+        - name: Straight
+          price: 106.0
+        limits:
+        - amount: 0.91
+          type: minRiskStake
+        - amount: 8445.25
+          type: maxRiskStake
+        - amount: 0.97
+          type: minWinStake
+        - amount: 8951.97
+          type: maxWinStake
+        selections:
+        - designation: home
+          marketKey: s;0;s;1.5
+          matchupId: 1122534955
+          price: 106.0
+      properties:
+        classes:
+          items:
+            $ref: '#/components/schemas/ClassItem'
+          type: array
+        limits:
+          items:
+            $ref: '#/components/schemas/LimitItem'
+          type: array
+        selections:
+          items:
+            $ref: '#/components/schemas/SelectionItem'
+          type: array
+      type: object
+    ClassItem:
+      properties:
+        name:
+          type: string
+        price:
+          format: double
+          type: number
+      type: object
+    BadRequestError:
+      example:
+        detail: This bet was not accepted. The bet amount is less than the minimum.
+          We have adjusted your stake amount to match the minimum limit. Please resubmit
+          to confirm your wager.
+        maxRiskStake: 12679.63
+        maxWinStake: 4615.38
+        minRiskStake: 2.75
+        minWinStake: 1.0
+        status: 400
+        title: BELOW_MIN_BET_AMOUNT
+        type: about:blank
+      properties:
+        title:
+          type: string
+        detail:
+          type: string
+        type:
+          type: string
+        status:
+          type: integer
+      type: object
   securitySchemes:
     x-api-key:
       in: header
@@ -195,4 +510,8 @@ components:
     x-session:
       in: header
       name: x-session
+      type: apiKey
+    x-device-uuid:
+      in: header
+      name: x-device-uuid
       type: apiKey

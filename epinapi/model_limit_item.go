@@ -15,7 +15,7 @@ import (
 
 // LimitItem struct for LimitItem
 type LimitItem struct {
-	Amount int64 `json:"amount"`
+	Amount float64 `json:"amount"`
 	Type string `json:"type"`
 }
 
@@ -23,7 +23,7 @@ type LimitItem struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewLimitItem(amount int64, type_ string, ) *LimitItem {
+func NewLimitItem(amount float64, type_ string, ) *LimitItem {
 	this := LimitItem{}
 	this.Amount = amount
 	this.Type = type_
@@ -39,9 +39,9 @@ func NewLimitItemWithDefaults() *LimitItem {
 }
 
 // GetAmount returns the Amount field value
-func (o *LimitItem) GetAmount() int64 {
+func (o *LimitItem) GetAmount() float64 {
 	if o == nil  {
-		var ret int64
+		var ret float64
 		return ret
 	}
 
@@ -50,7 +50,7 @@ func (o *LimitItem) GetAmount() int64 {
 
 // GetAmountOk returns a tuple with the Amount field value
 // and a boolean to check if the value has been set.
-func (o *LimitItem) GetAmountOk() (*int64, bool) {
+func (o *LimitItem) GetAmountOk() (*float64, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -58,7 +58,7 @@ func (o *LimitItem) GetAmountOk() (*int64, bool) {
 }
 
 // SetAmount sets field value
-func (o *LimitItem) SetAmount(v int64) {
+func (o *LimitItem) SetAmount(v float64) {
 	o.Amount = v
 }
 

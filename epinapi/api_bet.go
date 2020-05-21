@@ -14,7 +14,6 @@ import (
 	_ioutil "io/ioutil"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"strings"
 )
 
 // Linger please
@@ -22,64 +21,64 @@ var (
 	_ _context.Context
 )
 
-// MarketsApiService MarketsApi service
-type MarketsApiService service
+// BetApiService BetApi service
+type BetApiService service
 
-type apiGetMarketRequest struct {
+type apiGetLineRequest struct {
 	ctx _context.Context
-	apiService *MarketsApiService
-	eventId int64
-	marketKey string
+	apiService *BetApiService
+	placeBetRequest *PlaceBetRequest
 }
 
 
+func (r apiGetLineRequest) PlaceBetRequest(placeBetRequest PlaceBetRequest) apiGetLineRequest {
+	r.placeBetRequest = &placeBetRequest
+	return r
+}
+
 /*
-GetMarket Method for GetMarket
+GetLine Method for GetLine
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param eventId
- * @param marketKey
-@return apiGetMarketRequest
+@return apiGetLineRequest
 */
-func (a *MarketsApiService) GetMarket(ctx _context.Context, eventId int64, marketKey string) apiGetMarketRequest {
-	return apiGetMarketRequest{
+func (a *BetApiService) GetLine(ctx _context.Context) apiGetLineRequest {
+	return apiGetLineRequest{
 		apiService: a,
 		ctx: ctx,
-		eventId: eventId,
-		marketKey: marketKey,
 	}
 }
 
 /*
 Execute executes the request
- @return MarketItem
+ @return GetLineResponse
 */
-func (r apiGetMarketRequest) Execute() (MarketItem, *_nethttp.Response, error) {
+func (r apiGetLineRequest) Execute() (GetLineResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  MarketItem
+		localVarReturnValue  GetLineResponse
 	)
 
-	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "MarketsApiService.GetMarket")
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "BetApiService.GetLine")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/matchups/{event_id}/market/{marketKey}"
-	localVarPath = strings.Replace(localVarPath, "{"+"event_id"+"}", _neturl.QueryEscape(parameterToString(r.eventId, "")) , -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"marketKey"+"}", _neturl.QueryEscape(parameterToString(r.marketKey, "")) , -1)
+	localVarPath := localBasePath + "/bets/straight/quote"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	
-	
+	if r.placeBetRequest == nil {
+		return localVarReturnValue, nil, reportError("placeBetRequest is required and must be specified")
+	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -95,6 +94,8 @@ func (r apiGetMarketRequest) Execute() (MarketItem, *_nethttp.Response, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	// body params
+	localVarPostBody = r.placeBetRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -172,56 +173,61 @@ func (r apiGetMarketRequest) Execute() (MarketItem, *_nethttp.Response, error) {
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-type apiGetMarketsByEventIdRequest struct {
+type apiPlaceBetRequest struct {
 	ctx _context.Context
-	apiService *MarketsApiService
-	id int64
+	apiService *BetApiService
+	placeBetRequest *PlaceBetRequest
 }
 
 
+func (r apiPlaceBetRequest) PlaceBetRequest(placeBetRequest PlaceBetRequest) apiPlaceBetRequest {
+	r.placeBetRequest = &placeBetRequest
+	return r
+}
+
 /*
-GetMarketsByEventId Method for GetMarketsByEventId
+PlaceBet Method for PlaceBet
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param id EventID
-@return apiGetMarketsByEventIdRequest
+@return apiPlaceBetRequest
 */
-func (a *MarketsApiService) GetMarketsByEventId(ctx _context.Context, id int64) apiGetMarketsByEventIdRequest {
-	return apiGetMarketsByEventIdRequest{
+func (a *BetApiService) PlaceBet(ctx _context.Context) apiPlaceBetRequest {
+	return apiPlaceBetRequest{
 		apiService: a,
 		ctx: ctx,
-		id: id,
 	}
 }
 
 /*
 Execute executes the request
- @return []MarketItem
+ @return PlaceBetResponse
 */
-func (r apiGetMarketsByEventIdRequest) Execute() ([]MarketItem, *_nethttp.Response, error) {
+func (r apiPlaceBetRequest) Execute() (PlaceBetResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []MarketItem
+		localVarReturnValue  PlaceBetResponse
 	)
 
-	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "MarketsApiService.GetMarketsByEventId")
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "BetApiService.PlaceBet")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/matchups/{id}/markets/straight"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.QueryEscape(parameterToString(r.id, "")) , -1)
+	localVarPath := localBasePath + "/bets/straight"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	
+	if r.placeBetRequest == nil {
+		return localVarReturnValue, nil, reportError("placeBetRequest is required and must be specified")
+	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -230,13 +236,15 @@ func (r apiGetMarketsByEventIdRequest) Execute() ([]MarketItem, *_nethttp.Respon
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "application/_*"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	// body params
+	localVarPostBody = r.placeBetRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -299,6 +307,15 @@ func (r apiGetMarketsByEventIdRequest) Execute() ([]MarketItem, *_nethttp.Respon
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v BadRequestError
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
