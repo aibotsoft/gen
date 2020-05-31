@@ -2375,8 +2375,8 @@ components:
 #          nullable: true
         cancellationReason:
 #          $ref: '#/components/schemas/CancellationReason'
-          type: string
-          description: временная замена
+#          type: string
+#          description: временная замена
         updateSequence:
           type: integer
           description: Update Sequence
@@ -4563,7 +4563,6 @@ components:
           type: string
         cancellationReason:
           $ref: '#/components/schemas/CancellationReason'
-          description: Cancellation Reason for Special Event
     SpecialLineResponse:
       type: object
       properties:

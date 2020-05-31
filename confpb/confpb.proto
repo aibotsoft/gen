@@ -29,6 +29,8 @@ service Conf {
     }
     rpc GetServices (GetServicesRequest) returns (GetServicesResponse) {
     }
+    rpc GetNetStatus (GetNetStatusRequest) returns (GetNetStatusResponse) {
+    }
 }
 
 message GetServicesRequest {
@@ -49,9 +51,8 @@ message GetCurrencyResponse {
     repeated Currency currency_list = 1 [(gogoproto.nullable) = false];
 }
 message Currency {
-    int64 id = 1;
-    string code = 2;
-    double value = 3;
+    string code = 1;
+    double value = 2;
 }
 //--------------------------------------------------------
 message GetAccountRequest {
@@ -82,6 +83,11 @@ message ServiceConfig {
     int64 grpc_port = 1;
 }
 
+message GetNetStatusRequest {
+}
+message GetNetStatusResponse {
+    bool status = 1;
+}
 message PingRequest {
 }
 message PingResponse {

@@ -34,8 +34,8 @@ service Forted {
     }
     rpc GetResults (GetResultsRequest) returns (GetResultsResponse) {
     }
-//    rpc GetConfig (GetConfigRequest) returns (GetConfigResponse) {
-//    }
+    //    rpc GetConfig (GetConfigRequest) returns (GetConfigResponse) {
+    //    }
 }
 
 //message GetConfigRequest {
@@ -50,7 +50,7 @@ service Forted {
 message GetResultsRequest {
 }
 message GetResultsResponse {
-    repeated BetResult results = 1[(gogoproto.nullable) = false];
+    repeated BetResult results = 1 [(gogoproto.nullable) = false];
 }
 message BetResult {
     int64 surebet_id = 1;
@@ -140,13 +140,14 @@ message SurebetSide {
 
     string market_name = 7;
     int64 market_id = 16;
+    string starts = 25;
 
     double price = 8;
     int64 price_id = 17;
     string url = 9;
     bool initiator = 10;
-    int64 event_id = 18;
-    FortedIds forted = 24[(gogoproto.nullable) = false];
+    string event_id = 18;
+    FortedIds forted = 24 [(gogoproto.nullable) = false];
     Check check = 19;
     BetConfig bet_config = 20;
     CheckCalc check_calc = 21;
@@ -219,11 +220,11 @@ message Bet {
 }
 
 message Check {
+    string status = 1;
+    string status_info = 9;
     int64 id = 11;
     int64 account_id = 13;
     string account_login = 14;
-    string status = 1;
-    string status_info = 9;
     int64 count_line = 2;
     int64 count_event = 3;
     int64 amount_event = 4;
@@ -233,7 +234,6 @@ message Check {
     int64 balance = 7;
     double price = 8;
     double currency = 12;
-
     int64 done = 10;
 }
 
