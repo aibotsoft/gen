@@ -34,16 +34,15 @@ service Forted {
     }
     rpc GetResults (GetResultsRequest) returns (GetResultsResponse) {
     }
-    //    rpc GetConfig (GetConfigRequest) returns (GetConfigResponse) {
-    //    }
+    rpc ReleaseCheck (ReleaseCheckRequest) returns (ReleaseCheckResponse) {
+    }
 }
 
-//message GetConfigRequest {
-//    string service_name = 1;
-//}
-//message GetConfigResponse {
-//    ServiceConfig service_config = 1[(gogoproto.nullable) = false];
-//}
+message ReleaseCheckRequest {
+    int64 surebet_id = 1;
+}
+message ReleaseCheckResponse {
+}
 //message ServiceConfig {
 //    int64 grpc_port = 1;
 //}
@@ -61,7 +60,6 @@ message BetResult {
     string api_bet_id = 6;
     string api_bet_status = 7;
 }
-
 
 message CreateSurebetManyRequest {
     repeated Surebet surebet = 1;
@@ -113,9 +111,22 @@ message Surebet {
     int64 forted_surebet_id = 2;
     int64 surebet_id = 11;
     int64 log_id = 12;
-    Calc calc = 13;
+    Calc calc = 13 [(gogoproto.nullable) = false];
     repeated Currency currency = 14 [(gogoproto.nullable) = false];
     repeated SurebetSide members = 15;
+}
+message Calc {
+    double profit = 1;
+    string first_name = 2;
+    string second_name = 3;
+    int64 lower_win_index = 4;
+    int64 higher_win_index = 5;
+    int64 first_index = 8;
+    int64 second_index = 9;
+    double win_diff = 6;
+    double win_diff_rel = 7;
+
+    double middle_diff = 10;
 }
 message Currency {
     string code = 1;
@@ -183,17 +194,7 @@ message BetConfig {
     double round_value = 7;
 }
 
-message Calc {
-    double profit = 1;
-    string first_name = 2;
-    string second_name = 3;
-    int64 lower_win_index = 4;
-    int64 higher_win_index = 5;
-    int64 first_index = 8;
-    int64 second_index = 9;
-    double win_diff = 6;
-    double win_diff_rel = 7;
-}
+
 message CheckCalc {
     string status = 1;
     double max_stake = 2;
@@ -236,7 +237,6 @@ message Check {
     double currency = 12;
     int64 done = 10;
 }
-
 
 message PingRequest {
 }
