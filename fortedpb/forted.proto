@@ -39,7 +39,7 @@ service Forted {
 }
 
 message ReleaseCheckRequest {
-    int64 surebet_id = 1;
+    Surebet surebet = 1;
 }
 message ReleaseCheckResponse {
 }
@@ -53,12 +53,13 @@ message GetResultsResponse {
 }
 message BetResult {
     int64 surebet_id = 1;
-    int64 bet_id = 2;
-    double price = 3;
-    double stake = 4;
-    double win_loss = 5;
-    string api_bet_id = 6;
-    string api_bet_status = 7;
+    int64 side_index = 2;
+    int64 bet_id = 3;
+    double price = 4;
+    double stake = 5;
+    double win_loss = 6;
+    string api_bet_id = 7;
+    string api_bet_status = 8;
 }
 
 message CreateSurebetManyRequest {
@@ -113,7 +114,7 @@ message Surebet {
     int64 log_id = 12;
     Calc calc = 13 [(gogoproto.nullable) = false];
     repeated Currency currency = 14 [(gogoproto.nullable) = false];
-    repeated SurebetSide members = 15;
+    repeated SurebetSide members = 15 ;
 }
 message Calc {
     double profit = 1;
@@ -127,6 +128,12 @@ message Calc {
     double win_diff_rel = 7;
 
     double middle_diff = 10;
+    string surebet_type = 11;
+    double gross = 12;
+    double hours_before_event = 13;
+    double effective_profit = 14;
+    double middle_margin = 15;
+    int64 roi = 16;
 }
 message Currency {
     string code = 1;
@@ -135,6 +142,8 @@ message Currency {
 message SurebetSide {
     int64 num = 1;
     string service_name = 2;
+    string origin = 26;
+
     int64 service_id = 11;
 
     string sport_name = 3;
@@ -164,8 +173,18 @@ message SurebetSide {
     CheckCalc check_calc = 21;
     ToBet to_bet = 22;
     Bet bet = 23;
+    Market market = 27;
 }
 
+message Market {
+    string bet_type = 1;
+    string special = 2;
+    int64 period = 3;
+    double handicap = 4;
+    string side = 5;
+    string team = 6;
+    bool is_lay = 7;
+}
 message FortedIds {
     int64 service_id = 1;
     int64 sport_id = 2;
@@ -192,6 +211,8 @@ message BetConfig {
     int64 max_amount_event = 6;
     int64 max_amount_line = 13;
     double round_value = 7;
+    int64 min_roi = 14;
+    string sub_name = 15;
 }
 
 
@@ -236,6 +257,9 @@ message Check {
     double price = 8;
     double currency = 12;
     int64 done = 10;
+    double middle_margin = 16;
+    string sub_service = 17;
+    double fill_factor = 18;
 }
 
 message PingRequest {

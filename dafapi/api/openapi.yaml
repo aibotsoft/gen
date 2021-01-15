@@ -7,6 +7,38 @@ servers:
 security:
 - x-session: []
 paths:
+  /Customer/OddsType:
+    post:
+      operationId: SetOddsType
+      parameters:
+      - explode: true
+        in: query
+        name: set
+        required: true
+        schema:
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SetOddsTypeResponse'
+          description: Ok
+      tags:
+      - Login
+  /balance/GetAccountInfo:
+    post:
+      operationId: GetAccount
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetAccountResponse'
+          description: Ok
+      tags:
+      - Login
   /statement/GetStatusByTransid:
     post:
       operationId: GetBetStatus
@@ -1494,6 +1526,132 @@ components:
       - Ticket
       - TicketCount
       type: object
+    GetAccountResponse:
+      example:
+        ErrorCode: 0
+        ErrorMsg: ""
+        Data: {}
+      properties:
+        ErrorCode:
+          type: integer
+        ErrorMsg:
+          type: string
+        Data:
+          $ref: '#/components/schemas/AccountInfo'
+      required:
+      - Data
+      - ErrorCode
+      - ErrorMsg
+      type: object
+    SetOddsTypeResponse:
+      example:
+        ErrorCode: 0
+        Data:
+          OddsType: 1
+      properties:
+        ErrorCode:
+          type: integer
+        Data:
+          $ref: '#/components/schemas/SetOddsTypeResponse_Data'
+      required:
+      - Data
+      - ErrorCode
+      type: object
+    AccountInfo:
+      example:
+        Cas: 0
+        SyncCasino: false
+        LCas: 0
+        NG: 1
+        VR: 1
+        RC: 0
+        GD: 0
+        SL: 0
+        MT: 1
+        CF: 0
+        CB: 1
+        BF: 0
+        PG: 0
+        N7: 0
+        SysT: 2020,6,15,13,41,11,+8
+        Lang: en-US
+        Curr: USD (United States Dollar)
+        OType: 1
+        SYT: 1
+        Spread: 0.0
+        LB: null
+        MR: 0
+        CHP: 0
+        UT: 0
+        HP: 0
+        QK: 1
+        QBS: null
+        CL: 0
+        RNGJP: 0
+        UserReject: false
+        CS: true
+        CSByRef: false
+        VsPlace: true
+        ID: 3236931
+        AllBet: true
+        SAGaming: 0
+        LoginUserName: asfdasdf
+        Keno: 1
+        CO: 1
+        KL: 1
+        VRS: 1
+        VSAC: 1
+        Exchange: 1
+        TransFd: false
+        SLOut: false
+        AG: 0
+        SMP: true
+        BetterOdds: true
+        CustSeq: 0
+        AccessToken: null
+        RefreshToken: null
+        BankingUrl: null
+        CurrId: 3
+        VRG: true
+        Indo4D: false
+        SXG: false
+        SC: false
+        VSEP: 0
+        VSCC: 1
+        VSEC: 1
+        BLC: 0
+        OneRng: 0
+        MiniStatus: 0
+        SpadeGaming: 0
+        VBStatus: 0
+        PPStatus: 0
+        TG: 1
+        GG: 0
+        SOC: 0
+        RNGWar: 0
+        ION: 0
+        Name: SPONUUS01001
+        Niname: ""
+        Bal: "0.00"
+        OutSd: "0.00"
+        NP: "0.00"
+        BCredit: "0.00"
+        GCredit: "0.00"
+        LLogin: 0001/01/01 12:00:00 PM
+        LTran: 2020/06/15 01:41:11 PM
+        PEdate: 2010/12/05 02:47:43 AM
+        ActStatus: 1
+        ExtendToken: 917sdfgdsfgsdfgsfgfgsde5
+        QualifiedBonus: null
+        custBalance: null
+        BonusCode: null
+        IsShowBonus: false
+        NeedGotoDeposit: false
+        CustBonus: null
+      properties:
+        LoginUserName:
+          type: string
+      type: object
     inline_object:
       properties:
         datatype:
@@ -1753,6 +1911,10 @@ components:
           type: array
         Markets:
           $ref: '#/components/schemas/GetMarketsResponse_Data_Markets'
+    SetOddsTypeResponse_Data:
+      properties:
+        OddsType:
+          type: integer
   securitySchemes:
     x-session:
       in: header
